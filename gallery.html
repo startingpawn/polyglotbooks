@@ -106,17 +106,14 @@
     /* SCHMALER roter Download-Button */
     .dl-btn{
       display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem;              /* ← schmaler */
-      border-radius:12px; font-weight:700; font-size:.95rem; /* leicht kompakter */
+      padding:.5rem .75rem;
+      border-radius:12px; font-weight:700; font-size:.95rem;
       background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
       color:#fff; border:none; text-decoration:none; white-space:nowrap;
       box-shadow:0 8px 18px rgba(229,9,20,.24);
       transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
-    .dl-btn::before{
-      content:"⤓"; font-size:1rem; line-height:1;
-      filter:drop-shadow(0 1px 0 rgba(0,0,0,.25));
-    }
+    .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
     .dl-btn:active{ transform:translateY(0) }
     .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
@@ -134,7 +131,6 @@
     .info{padding:.7rem .8rem .85rem;color:#dfe1e7;border-top:1px solid #1e2230;display:flex;flex-direction:column;gap:.25rem}
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
-    .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
 
     .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
     /* Hover-Glow global + extra für #flank und ECO C55 */
@@ -143,8 +139,12 @@
     #flank .eco-card:hover .thumb,
     .eco-card[data-eco="C55"]:hover .thumb{ box-shadow: 0 10px 36px rgba(0,0,0,.30) }
 
+    /* Responsive Embed */
+    .embed{ padding:.2rem .9rem .9rem; border-top:1px solid #1e2230 }
+    .embed-box{ position:relative; width:100%; padding-top:61.833%; border-radius:12px; overflow:hidden; background:#0f1117; border:1px solid #222737 }
+    .embed-box iframe{ position:absolute; inset:0; width:100%; height:100%; border:0 }
+
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9eaee}
 
     /* Responsive */
     @media (max-width: 979px){
@@ -213,7 +213,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Gruppen mit Bundle-Download</small>
+    <small>Build: Galerie – Gruppen mit Bundle-Download + Lichess-Embed</small>
   </footer>
 
   <!-- Fehler sichtbar machen -->
@@ -227,7 +227,6 @@
 
   <!-- JSON-Loader + Render -->
   <script>
-    // Hilfsfunktionen
     const fixPath = p => {
       if (typeof p !== 'string') return p;
       p = p.trim();
@@ -258,13 +257,16 @@
           <div class="info">
             <div class="name">${it.name??'Unbenannt'}</div>
             ${it.line ? `<div class="line">${it.line}</div>` : ''}
-            <div class="hint">Klicken zum Download</div>
           </div>
         </a>`;
     }
 
+    function embedHtmlForLichess(id, ply=0, theme='blue', pieceSet='cburnett'){
+      const url = `https://lichess.org/study/embed/${encodeURIComponent(id)}#${ply}?theme=${encodeURIComponent(theme)}&pieceSet=${encodeURIComponent(pieceSet)}`;
+      return `<div class="embed"><div class="embed-box"><iframe src="${url}" allowfullscreen frameborder="0"></iframe></div></div>`;
+    }
+
     function group(opId, g){
-      // Bundle: g.bundle.file ODER g.file (Fallback)
       const bundle = g.bundle || {};
       const bundleFile = fixPath(bundle.file || g.file || '');
       const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
@@ -273,12 +275,19 @@
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
       const cards = (g.items||[]).map(card).join('');
 
-      // Button nur zeigen, wenn Datei angegeben wurde
       const right = bundleFile
         ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSize}</a>`
         : '';
 
       const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
+
+      // Optionaler Lichess-Embed
+      let embed = '';
+      if (g.embed && g.embed.type === 'lichess' && g.embed.id){
+        embed = embedHtmlForLichess(g.embed.id, g.embed.ply || 0, g.embed.theme || 'blue', g.embed.pieceSet || 'cburnett');
+      } else if (g.embedHtml){
+        embed = `<div class="embed"><div class="embed-box"><iframe src="${g.embedHtml}" allowfullscreen frameborder="0"></iframe></div></div>`;
+      }
 
       return `
         <div class="group" id="${gid}">
@@ -292,6 +301,7 @@
           <div class="group-grid">
             ${cards}
           </div>
+          ${embed}
         </div>`;
     }
 
@@ -315,7 +325,6 @@
               ${groups}
             </section>`;
         }
-        // Fallback: alte flache Liste (items)
         const cards = (op.items||[]).map(card).join('');
         return `
           <section class="opening" id="${op.id}">
@@ -327,9 +336,7 @@
               </div>
             </div>
             <div class="group">
-              <div class="group-head">
-                <div><h3 class="group-title">Eröffnungen</h3></div>
-              </div>
+              <div class="group-head"><div><h3 class="group-title">Eröffnungen</h3></div></div>
               <div class="group-grid">${cards}</div>
             </div>
           </section>`;
