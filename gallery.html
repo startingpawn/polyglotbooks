@@ -102,12 +102,23 @@
     }
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.2rem 0 0 }
-    .eco-list{ display:flex; flex-wrap:wrap; gap:.35rem; }
-    .eco-chip{
-      font:600 .78rem/1 system-ui; padding:.35rem .5rem; border-radius:999px;
-      background:rgba(0,0,0,.55); color:#fff; border:1px solid rgba(255,255,255,.08);
-      backdrop-filter:blur(4px)
+
+    /* Neuer roter Download-Button (statt ECO-Chips) */
+    .dl-btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.6rem .9rem; border-radius:12px; font-weight:700;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; border:none; text-decoration:none; white-space:nowrap;
+      box-shadow:0 8px 20px rgba(229,9,20,.25);
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
+    .dl-btn::before{
+      content:"⤓"; font-size:1rem; line-height:1;
+      filter:drop-shadow(0 1px 0 rgba(0,0,0,.25));
+    }
+    .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(229,9,20,.32) }
+    .dl-btn:active{ transform:translateY(0) }
+    .dl-meta{ opacity:.9; font-weight:600; font-size:.85rem; padding:.1rem .45rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding: .9rem }
     .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
@@ -143,6 +154,9 @@
         box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
       }
       body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
+
+      .group-head{ flex-direction:column; align-items:flex-start; gap:.6rem }
+      .dl-btn{ width:100%; justify-content:center }
     }
     @media (min-width: 980px){
       .menu-btn{ display:none }
@@ -198,7 +212,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Gruppen</small>
+    <small>Build: Galerie – Gruppen mit Bundle-Download</small>
   </footer>
 
   <!-- Fehler sichtbar machen -->
@@ -221,14 +235,6 @@
     const slug = s => (s||'').toString().toLowerCase()
       .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
       .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'gruppe';
-    const ecoSort = (a,b) => {
-      const pa = /^([A-E])(\d{2})$/i.exec(a||'') || [];
-      const pb = /^([A-E])(\d{2})$/i.exec(b||'') || [];
-      if (!pa.length || !pb.length) return (a||'').localeCompare(b||'');
-      const la = pa[1].toUpperCase().charCodeAt(0), lb = pb[1].toUpperCase().charCodeAt(0);
-      if (la !== lb) return la - lb;
-      return parseInt(pa[2],10) - parseInt(pb[2],10);
-    };
 
     function card(it){
       const img = fixPath(it.image);
@@ -257,11 +263,22 @@
     }
 
     function group(opId, g){
-      const ecoList = Array.from(new Set((g.items||[]).map(x=>x.eco).filter(Boolean))).sort(ecoSort);
-      const ecoChips = ecoList.map(e=>`<span class="eco-chip">${e}</span>`).join(' ');
-      const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
+      // Bundle: g.bundle.file ODER g.file (Fallback)
+      const bundle = g.bundle || {};
+      const bundleFile = fixPath(bundle.file || g.file || '');
+      const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
+      const bundleSize  = bundle.size ? `<span class="dl-meta">${bundle.size}</span>` : '';
+
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
       const cards = (g.items||[]).map(card).join('');
+
+      // Button nur zeigen, wenn Datei angegeben wurde
+      const right = bundleFile
+        ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSize}</a>`
+        : '';
+
+      const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
+
       return `
         <div class="group" id="${gid}">
           <div class="group-head">
@@ -269,7 +286,7 @@
               <h3 class="group-title">${g.title||'Gruppe'}</h3>
               ${desc}
             </div>
-            <div class="eco-list" aria-label="ECOs">${ecoChips}</div>
+            ${right}
           </div>
           <div class="group-grid">
             ${cards}
@@ -283,7 +300,6 @@
       if(openings.length===0){ root.innerHTML = 'Keine Einträge in <code>data/openings.json</code>.'; return; }
 
       root.innerHTML = openings.map(op => {
-        // Neues: Gruppenansicht
         if (Array.isArray(op.groups) && op.groups.length){
           const groups = op.groups.map(g => group(op.id||'sec', g)).join('');
           return `
