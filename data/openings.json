@@ -5,7 +5,7 @@
     "desc": "Klassische e4–e5-Strukturen. Gefiltert nach Top-Games, Nebenlinien reduziert.",
     "items": [
       {
-        "eco": "C50",
+        "eco": "C50-C59",
         "name": "Italienisch (Giuoco Piano)",
         "image": "images/open/C50.png",
         "file": "books/open/C50.bin",
