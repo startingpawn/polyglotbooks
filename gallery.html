@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Galerie – Polyglot Opening Books</title>
-  <meta name="description" content="ECO-Galerie mit Screenshots und Direkt-Downloads der Polyglot-BINs." />
+  <meta name="description" content="ECO-Galerie mit gruppierten Eröffnungen (z. B. Italienisch C50–C59) inkl. Screenshots und Direkt-Downloads der Polyglot-BINs." />
   <link rel="icon" href="assets/logo.png">
   <style>
     :root{
@@ -76,6 +76,7 @@
 
     /* Inhalt / Karten */
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
+
     .opening{
       background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
       border:1px solid #1e2130;border-radius:var(--radius);
@@ -86,7 +87,29 @@
     .op-title{margin:0;font-size:1.2rem}
     .op-desc{margin:.3rem 0 0;color:#c9cbd3}
 
-    .eco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);padding:.3rem}
+    /* --- Gruppen-Rahmen --- */
+    .group{
+      margin:1rem 0 1.25rem;
+      border:1px solid #222737; border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box,
+        var(--panel);
+      overflow:hidden;
+    }
+    .group-head{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem;
+      padding: .9rem .9rem .7rem .9rem; border-bottom:1px solid #1e2230;
+    }
+    .group-title{ margin:0; font-size:1.05rem }
+    .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.2rem 0 0 }
+    .eco-list{ display:flex; flex-wrap:wrap; gap:.35rem; }
+    .eco-chip{
+      font:600 .78rem/1 system-ui; padding:.35rem .5rem; border-radius:999px;
+      background:rgba(0,0,0,.55); color:#fff; border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(4px)
+    }
+
+    .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding: .9rem }
     .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
     .thumb{aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:12px; box-sizing:border-box}
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
@@ -95,13 +118,13 @@
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
+
     .info{padding:.7rem .8rem .85rem;color:#dfe1e7;border-top:1px solid #1e2230;display:flex;flex-direction:column;gap:.25rem}
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
     .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
 
     .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-
     /* Hover-Glow global + extra für #flank und ECO C55 */
     .eco-card:hover .thumb,
     .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
@@ -175,7 +198,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie</small>
+    <small>Build: Galerie – Gruppen</small>
   </footer>
 
   <!-- Fehler sichtbar machen -->
@@ -189,46 +212,94 @@
 
   <!-- JSON-Loader + Render -->
   <script>
+    // Hilfsfunktionen
+    const fixPath = p => {
+      if (typeof p !== 'string') return p;
+      p = p.trim();
+      return p.startsWith('/') ? p.slice(1) : p;
+    };
+    const slug = s => (s||'').toString().toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'gruppe';
+    const ecoSort = (a,b) => {
+      const pa = /^([A-E])(\d{2})$/i.exec(a||'') || [];
+      const pb = /^([A-E])(\d{2})$/i.exec(b||'') || [];
+      if (!pa.length || !pb.length) return (a||'').localeCompare(b||'');
+      const la = pa[1].toUpperCase().charCodeAt(0), lb = pb[1].toUpperCase().charCodeAt(0);
+      if (la !== lb) return la - lb;
+      return parseInt(pa[2],10) - parseInt(pb[2],10);
+    };
+
+    function card(it){
+      const img = fixPath(it.image);
+      const bin = fixPath(it.file);
+      return `
+        <a class="eco-card"
+           data-eco="${it.eco??''}"
+           href="${bin}" download
+           title="Download ${it.eco??''} – ${it.name??''}">
+          <div class="thumb">
+            <img loading="lazy"
+                 src="${img}"
+                 alt="Screenshot ${it.eco??''}: ${it.name??''}"
+                 onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+          </div>
+          <div class="badges">
+            ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
+            ${it.size ? `<span class="chip">${it.size}</span>` : ''}
+          </div>
+          <div class="info">
+            <div class="name">${it.name??'Unbenannt'}</div>
+            ${it.line ? `<div class="line">${it.line}</div>` : ''}
+            <div class="hint">Klicken zum Download</div>
+          </div>
+        </a>`;
+    }
+
+    function group(opId, g){
+      const ecoList = Array.from(new Set((g.items||[]).map(x=>x.eco).filter(Boolean))).sort(ecoSort);
+      const ecoChips = ecoList.map(e=>`<span class="eco-chip">${e}</span>`).join(' ');
+      const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
+      const gid = `${opId}-${slug(g.title||'gruppe')}`;
+      const cards = (g.items||[]).map(card).join('');
+      return `
+        <div class="group" id="${gid}">
+          <div class="group-head">
+            <div>
+              <h3 class="group-title">${g.title||'Gruppe'}</h3>
+              ${desc}
+            </div>
+            <div class="eco-list" aria-label="ECOs">${ecoChips}</div>
+          </div>
+          <div class="group-grid">
+            ${cards}
+          </div>
+        </div>`;
+    }
+
     function render(openings){
       const root = document.getElementById('app');
-
-      const fixPath = p => {
-        if (typeof p !== 'string') return p;
-        p = p.trim();
-        return p.startsWith('/') ? p.slice(1) : p;
-      };
-
       if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
       if(openings.length===0){ root.innerHTML = 'Keine Einträge in <code>data/openings.json</code>.'; return; }
 
       root.innerHTML = openings.map(op => {
-        const cards = (op.items||[]).map(it => {
-          const img = fixPath(it.image);
-          const bin = fixPath(it.file);
+        // Neues: Gruppenansicht
+        if (Array.isArray(op.groups) && op.groups.length){
+          const groups = op.groups.map(g => group(op.id||'sec', g)).join('');
           return `
-            <a class="eco-card"
-               data-eco="${it.eco??''}"
-               data-opening="${op.id??''}"
-               href="${bin}" download
-               title="Download ${it.eco??''} – ${it.name??''}">
-              <div class="thumb">
-                <img loading="lazy"
-                     src="${img}"
-                     alt="Screenshot ${it.eco??''}: ${it.name??''}"
-                     onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+            <section class="opening" id="${op.id}">
+              <div class="op-head">
+                <div class="op-dot" aria-hidden="true"></div>
+                <div>
+                  <h2 class="op-title">${op.title}</h2>
+                  ${op.desc ? `<p class="op-desc">${op.desc}</p>` : ''}
+                </div>
               </div>
-              <div class="badges">
-                ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
-                ${it.size ? `<span class="chip">${it.size}</span>` : ''}
-              </div>
-              <div class="info">
-                <div class="name">${it.name??'Unbenannt'}</div>
-                ${it.line ? `<div class="line">${it.line}</div>` : ''}
-                <div class="hint">Klicken zum Download</div>
-              </div>
-            </a>`;
-        }).join('');
-
+              ${groups}
+            </section>`;
+        }
+        // Fallback: alte flache Liste (items)
+        const cards = (op.items||[]).map(card).join('');
         return `
           <section class="opening" id="${op.id}">
             <div class="op-head">
@@ -238,7 +309,12 @@
                 ${op.desc ? `<p class="op-desc">${op.desc}</p>` : ''}
               </div>
             </div>
-            <div class="eco-grid">${cards}</div>
+            <div class="group">
+              <div class="group-head">
+                <div><h3 class="group-title">Eröffnungen</h3></div>
+              </div>
+              <div class="group-grid">${cards}</div>
+            </div>
           </section>`;
       }).join('');
     }
