@@ -6,11 +6,18 @@
     "groups": [
       {
         "title": "Italienisch (C50–C59)",
-        "desc": "Italienisches Spiel – gebündelte Varianten C50 bis C59.",
+        "desc": "Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.",
         "bundle": {
           "file": "books/open/Italian_C50-C59.bin",
           "size": "12.3 MB",
           "label": "Alle C50–C59 (.bin)"
+        },
+        "embed": {
+          "type": "lichess",
+          "id": "DEIN_STUDY_ID",
+          "ply": 0,
+          "theme": "blue",
+          "pieceSet": "cburnett"
         },
         "items": [
           { "eco": "C50", "name": "Italienisch – C50", "image": "images/open/C50.png", "file": "books/open/C50.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5" },
@@ -50,13 +57,7 @@
     "title": "Flankenspiele",
     "desc": "1.c4, 1.Nf3 u. a.",
     "items": [
-      {
-        "eco": "A20",
-        "name": "Englisch – Beispiel",
-        "image": "images/flank/A20.png",
-        "file": "books/flank/A20.bin",
-        "line": "1.c4 e5 2.g3"
-      }
+      { "eco": "A20", "name": "Englisch – Beispiel", "image": "images/flank/A20.png", "file": "books/flank/A20.bin", "line": "1.c4 e5 2.g3" }
     ]
   }
 ]
