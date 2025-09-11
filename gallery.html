@@ -15,7 +15,9 @@
     :root{
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
-      --radius:14px; --max:1200px; --gap:1rem;
+      --radius:16px; --max:1200px; --gap:1.2rem;          /* mehr Grundabstand */
+      --gap-desktop:1.6rem;                               /* noch mehr auf Desktop */
+      --border:2px;                                       /* größere Rahmen */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -67,30 +69,43 @@
     .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
     .nav-drawer{
       position:fixed; top:0; right:0; height:100dvh; width:290px;
-      background:var(--panel); border-left:1px solid #1e2130; z-index:90;
+      background:var(--panel); border-left:var(--border) solid #1e2130; z-index:90;
       transform:translateX(100%); transition:transform .18s ease-out; display:flex; flex-direction:column;
     }
     .nav-drawer.open{ transform:translateX(0) }
-    .menu-head{display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:1px solid #1e2130; font-weight:600}
+    .menu-head{display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:var(--border) solid #1e2130; font-weight:600}
     .menu-close{width:36px;height:36px;border-radius:8px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer}
     .menu-list{list-style:none; margin:0; padding:.4rem}
     .menu-list li{margin:.1rem 0}
-    .menu-list li.sep{margin:.6rem 0; border-top:1px solid #1e2130}
+    .menu-list li.sep{margin:.6rem 0; border-top:var(--border) solid #1e2130}
     .menu-list a{display:block; padding:.7rem .8rem; border-radius:10px}
     .menu-list a:hover{ background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)); border:1px solid #2b3240 }
 
     /* Inhalt / Karten */
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Straffer: weniger Leerraum */
-    .opening{ padding:.8rem 1rem 1rem; background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel); border:1px solid #1e2130;border-radius:var(--radius); margin:0.8rem 0 1rem }
+    /* Straffer & größere Rahmen */
+    .opening{
+      padding:.9rem 1.1rem 1.1rem;
+      background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
+      border:var(--border) solid #1e2130;border-radius:var(--radius);
+      margin:1rem 0 1.2rem
+    }
     .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.1rem .3rem .25rem .3rem}
     .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
     .op-title{margin:0;font-size:1.2rem}
     .op-desc{margin:.25rem 0 0;color:#c9cbd3}
 
-    .group{ margin:.5rem 0 .9rem; border:1px solid #222737; border-radius:14px; background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel); overflow:hidden; }
-    .group-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem; padding:.7rem .9rem .55rem .9rem; border-bottom:1px solid #1e2230; }
+    .group{
+      margin:.7rem 0 1rem;
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
+      overflow:hidden;
+    }
+    .group-head{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem;
+      padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230;
+    }
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.15rem 0 0 }
 
@@ -109,60 +124,41 @@
     .dl-btn:active{ transform:translateY(0) }
     .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
-    .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding:.8rem .9rem .9rem }
-
-    /* Karte: Info unter dem Medienbereich */
-    .eco-card{ position:relative; display:flex; flex-direction:column; border-radius:12px; overflow:hidden; background:#0f1117; border:1px solid #222737 }
-    .thumb{
-      width:100%; aspect-ratio:16/10; background:#121420;
-      display:flex; align-items:center; justify-content:center;
-      border-radius:12px 12px 0 0; box-sizing:border-box
+    /* Grid */
+    .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding:.9rem 1rem 1rem }
+    @media (min-width: 980px){
+      .group-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); } /* exakt 3 Spalten */
     }
-    /* Board-Variante: kein künstliches Verhältnis, Board bestimmt Höhe */
+
+    /* Karte */
+    .eco-card{
+      position:relative; display:flex; flex-direction:column;
+      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737
+    }
+    .thumb{
+      width:100%;
+      aspect-ratio:16/10; background:#121420;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box
+    }
+    /* Board-Variante: Board bestimmt Höhe */
     .thumb-board{ aspect-ratio:auto; padding:0 }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
     /* Mini-Board */
-    .auto-board{ width:100%; display:block; cursor:zoom-in }
+    .auto-board{ width:100%; display:block; cursor:default } /* kein Popup mehr */
     .auto-board chess-board{ width:100%; height:auto; display:block }
 
-    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
-    .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
-    .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
-
-    .info{ padding:.6rem .8rem .75rem;color:#dfe1e7;border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.2rem; background:#0f1117 }
-    .name{font-weight:650}
-    .line{color:#b6bac6;font-size:.92rem}
-
-    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-    .eco-card:hover .thumb,
-    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
-    #flank .eco-card:hover .thumb,
-    .eco-card[data-eco="C55"]:hover .thumb{ box-shadow: 0 10px 36px rgba(0,0,0,.30) }
-
-    /* Modal/Popup */
-    .modal{ position:fixed; inset:0; display:none; z-index:150 }
-    .modal.open{ display:block }
-    .modal .backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.6); backdrop-filter:blur(2px) }
-    .modal .dialog{
-      position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-      width:min(92vw, 980px); background:var(--panel); border:1px solid #1e2130; border-radius:16px; box-shadow:0 20px 80px rgba(0,0,0,.6);
-      padding:1rem; max-height:92vh; overflow:auto
+    /* Player unter dem Board */
+    .player{
+      border-top:1px solid #1e2230;
+      background:#0f1117; padding:.55rem .7rem .6rem;
     }
-    .modal .close{
-      position:absolute; top:.6rem; right:.6rem; width:36px; height:36px; border-radius:8px; border:1px solid #2b3240;
-      background:#161a24; color:#e9eaee; cursor:pointer; font-size:18px; line-height:1
-    }
-    .modal .viewer{ min-width:260px }
-    .modal .viewer chess-board{ width:min(90vw, 720px); display:block; margin:auto }
-
-    /* Controls */
     .controls{
       display:flex; justify-content:space-between; align-items:center; gap:.6rem;
-      margin:.6rem auto 0; padding-top:.4rem; max-width:720px
     }
-    .ctrls-left{ display:flex; gap:.4rem; align-items:center }
+    .ctrls-left{ display:flex; gap:.4rem; align-items:center; flex-wrap:wrap }
     .ctr{
       width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
     }
@@ -172,6 +168,18 @@
     .ctrls-right{ display:flex; gap:.6rem; align-items:center; color:#c3c6d1 }
     .speed{ border:1px solid #2b3240; background:#121720; color:#e9eaee; border-radius:10px; padding:.35rem .6rem }
     .counter{ font-variant-numeric:tabular-nums; }
+
+    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
+    .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
+    .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
+
+    .info{ padding:.7rem .9rem .9rem;color:#dfe1e7;border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.25rem; background:#0f1117 }
+    .name{font-weight:650}
+    .line{color:#b6bac6;font-size:.92rem}
+
+    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
+    .eco-card:hover .thumb,
+    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
 
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
 
@@ -186,7 +194,7 @@
       body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
       .group-head{ flex-direction:column; align-items:flex-start; gap:.6rem }
       .dl-btn{ width:100%; justify-content:center }
-      .controls{ padding: .4rem .4rem 0; }
+      .controls{ padding-top:.2rem; }
     }
     @media (min-width: 980px){
       .menu-btn{ display:none }
@@ -241,42 +249,8 @@
     <p>Lade Daten…</p>
   </main>
 
-  <!-- Modal -->
-  <div id="boardModal" class="modal" aria-hidden="true">
-    <div class="backdrop" data-close></div>
-    <div class="dialog" role="dialog" aria-modal="true" aria-label="Partie">
-      <button class="close" title="Schließen" data-close>×</button>
-      <div class="viewer">
-        <chess-board id="modalBoard"></chess-board>
-
-        <!-- Abspiel-Controls -->
-        <div class="controls">
-          <div class="ctrls-left">
-            <button class="ctr" data-first title="Zum Anfang">⏮</button>
-            <button class="ctr" data-prev  title="Zug zurück">◀</button>
-            <button class="ctr" data-play  title="Play/Pause" aria-pressed="false">▶</button>
-            <button class="ctr" data-next  title="Zug vor">▶︎</button>
-            <button class="ctr" data-last  title="Zum Ende">⏭</button>
-          </div>
-          <div class="ctrls-right">
-            <label>Tempo
-              <select class="speed" data-speed>
-                <option value="600">Sehr schnell</option>
-                <option value="900">Schnell</option>
-                <option value="1200" selected>Normal</option>
-                <option value="1800">Langsam</option>
-                <option value="2500">Sehr langsam</option>
-              </select>
-            </label>
-            <span class="counter" data-counter>0/0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer>
-    <small>Build: Galerie – PGN-Dateien + Abspiel-Controls</small>
+    <small>Build: Galerie – Player unter Board, 3 Spalten Desktop, größere Rahmen</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -305,27 +279,55 @@
     function card(it, idx){
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
-      const thumbClass = (it.pgn || it.pgnFile) ? 'thumb thumb-board' : 'thumb';
+      const hasBoard = (it.pgn || it.pgnFile);
+      const thumbClass = hasBoard ? 'thumb thumb-board' : 'thumb';
 
-      const media = (it.pgn || it.pgnFile)
+      const media = hasBoard
         ? `<div class="auto-board"
              ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
              ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(it.pgnFile)}"` : ''}
              ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
-             title="Zum Vergrößern klicken">
+             title="Züge abspielen">
              <chess-board class="cb-mini"></chess-board>
            </div>`
         : `<img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
               onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">`;
 
+      const player = hasBoard ? `
+        <div class="player" data-player>
+          <div class="controls">
+            <div class="ctrls-left">
+              <button class="ctr" data-first title="Zum Anfang">⏮</button>
+              <button class="ctr" data-prev  title="Zug zurück">◀</button>
+              <button class="ctr" data-play  title="Play/Pause" aria-pressed="false">▶</button>
+              <button class="ctr" data-next  title="Zug vor">▶︎</button>
+              <button class="ctr" data-last  title="Zum Ende">⏭</button>
+            </div>
+            <div class="ctrls-right">
+              <label>Tempo
+                <select class="speed" data-speed>
+                  <option value="600">Sehr schnell</option>
+                  <option value="900">Schnell</option>
+                  <option value="1200" selected>Normal</option>
+                  <option value="1800">Langsam</option>
+                  <option value="2500">Sehr langsam</option>
+                </select>
+              </label>
+              <span class="counter" data-counter>0/0</span>
+            </div>
+          </div>
+        </div>` : '';
+
+      /* Hinweis: Für Board-Karten verhindern wir, dass ein Klick aufs Board den Download auslöst. */
+      const tagOpen  = `<a class="eco-card" data-eco="${it.eco??''}" ${bin?`href="${bin}" download`:''} title="${bin?`Download ${it.eco??''} – ${it.name??''}`:`${it.name??''}`}">`;
+      const tagClose = `</a>`;
+
       return `
-        <a class="eco-card"
-           data-eco="${it.eco??''}"
-           href="${bin}" download
-           title="Download ${it.eco??''} – ${it.name??''}">
+        ${tagOpen}
           <div class="${thumbClass}">
             ${media}
           </div>
+          ${player}
           <div class="badges">
             ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
             ${it.size ? `<span class="chip">${it.size}</span>` : ''}
@@ -334,7 +336,7 @@
             <div class="name">${it.name??'Unbenannt'}</div>
             ${it.line ? `<div class="line">${it.line}</div>` : ''}
           </div>
-        </a>`;
+        ${tagClose}`;
     }
 
     function group(opId, g){
@@ -428,12 +430,11 @@
     })();
   </script>
 
-  <!-- Autoplay + PGN-Datei-Lader + Player-Controls (Module) -->
+  <!-- Boards + Player je Karte (keine Popups mehr) -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
     const raf = (cb) => requestAnimationFrame(cb);
-    const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
     document.addEventListener('openings-rendered', () => {
       const autos = document.querySelectorAll('.auto-board');
@@ -445,10 +446,14 @@
       };
 
       autos.forEach(async (wrap) => {
+        const card = wrap.closest('.eco-card');
         const board = wrap.querySelector('chess-board');
-        if (!board) return;
+        if (!board || !card) return;
 
-        // 1) PGN-Quelle (inline oder Datei)
+        // Verhindere Download-Klicks auf Board/Player-Bereich
+        wrap.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
+
+        // 1) PGN-Quelle bestimmen
         let pgn = '';
         const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
         const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
@@ -470,125 +475,76 @@
           return;
         }
 
-        // Klick: Popup statt Download
-        wrap.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openModal(pgn); }, { capture: true });
+        // 2) Player-Steuerung im selben Card-Element
+        const player    = card.querySelector('[data-player]');
+        const ctrFirst  = player?.querySelector('[data-first]');
+        const ctrPrev   = player?.querySelector('[data-prev]');
+        const ctrPlay   = player?.querySelector('[data-play]');
+        const ctrNext   = player?.querySelector('[data-next]');
+        const ctrLast   = player?.querySelector('[data-last]');
+        const selSpeed  = player?.querySelector('[data-speed]');
+        const counter   = player?.querySelector('[data-counter]');
 
-        // Autoplay (Mini-Board)
+        // Klicks im Player sollen niemals downloaden
+        player?.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
+
+        // 3) Spiel laden
         const game = new Chess(); try { game.load_pgn(pgn); } catch {}
         const hist = game.history({ verbose: true });
+        let idx = 0;
+        let playing = false;
+        let timerId = null;
+        let interval = parseInt(selSpeed?.value || '1200', 10) || 1200;
 
-        let idxMove = 0, timerId = null;
-        const tick = () => {
+        function draw(n){
           const g = new Chess();
-          for (let i = 0; i < idxMove; i++) g.move(hist[i]);
+          for (let i = 0; i < n; i++) g.move(hist[i]);
           const fen = g.fen();
           raf(() => board.setPosition(fen));
-          idxMove = (idxMove + 1) % (hist.length + 1);
-        };
-        tick();
-        timerId = setInterval(tick, 1200);
+          if (counter) counter.textContent = `${n}/${hist.length}`;
+          if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
+          if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
+        }
+        function setIdx(n){ idx = Math.max(0, Math.min(n, hist.length)); draw(idx); }
+        function start(){
+          if (playing || hist.length === 0) return;
+          playing = true;
+          if (ctrPlay){ ctrPlay.setAttribute('aria-pressed','true'); ctrPlay.textContent = '❚❚'; }
+          timerId = setInterval(() => {
+            if (idx >= hist.length) { pause(); return; }
+            setIdx(idx + 1);
+          }, interval);
+        }
+        function pause(){
+          playing = false;
+          if (ctrPlay){ ctrPlay.setAttribute('aria-pressed','false'); ctrPlay.textContent = '▶'; }
+          if (timerId){ clearInterval(timerId); timerId = null; }
+        }
 
-        // Pause bei Unsichtbarkeit
+        // initial: pausiert auf Startstellung
+        setIdx(0); pause();
+
+        // Controls binden (falls vorhanden)
+        ctrFirst && (ctrFirst.onclick = () => setIdx(0));
+        ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
+        ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
+        ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
+        ctrPlay  && (ctrPlay.onclick  = () => (playing ? pause() : start()));
+        selSpeed && (selSpeed.onchange = () => { interval = parseInt(selSpeed.value, 10) || 1200; if (playing){ pause(); start(); } });
+
+        // Sichtbarkeit beobachten → Auto-Pause
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
-            else if (!timerId) { timerId = setInterval(tick, 1200); }
+            else if (!timerId && playing) { timerId = setInterval(() => {
+              if (idx >= hist.length) { pause(); return; }
+              setIdx(idx + 1);
+            }, interval); }
           });
         }, { threshold: 0.15 });
-        io.observe(wrap);
+        io.observe(card);
       });
     });
-
-    // Modal-Player
-    const modalEl = document.getElementById('boardModal');
-    const modalBoard = document.getElementById('modalBoard');
-    const ctrFirst = modalEl.querySelector('[data-first]');
-    const ctrPrev  = modalEl.querySelector('[data-prev]');
-    const ctrPlay  = modalEl.querySelector('[data-play]');
-    const ctrNext  = modalEl.querySelector('[data-next]');
-    const ctrLast  = modalEl.querySelector('[data-last]');
-    const selSpeed = modalEl.querySelector('[data-speed]');
-    const counter  = modalEl.querySelector('[data-counter]');
-
-    let modalTimer = null;
-    let modalHist = [];
-    let modalIdx = 0;
-    let playing = false;
-    let interval = 1200;
-
-    function drawIdx(n){
-      const g = new Chess();
-      for (let i = 0; i < n; i++) g.move(modalHist[i]);
-      const fen = g.fen();
-      raf(() => modalBoard.setPosition(fen));
-      counter.textContent = `${n}/${modalHist.length}`;
-      ctrPrev.disabled = ctrFirst.disabled = (n <= 0);
-      ctrNext.disabled = ctrLast.disabled  = (n >= modalHist.length);
-    }
-
-    function setIdx(n){ modalIdx = Math.max(0, Math.min(n, modalHist.length)); drawIdx(modalIdx); }
-
-    function start(){
-      if (playing || modalHist.length === 0) return;
-      playing = true;
-      ctrPlay.setAttribute('aria-pressed','true');
-      ctrPlay.textContent = '❚❚';
-      modalTimer = setInterval(() => {
-        if (modalIdx >= modalHist.length) { pause(); return; }
-        setIdx(modalIdx + 1);
-      }, interval);
-    }
-    function pause(){
-      playing = false;
-      ctrPlay.setAttribute('aria-pressed','false');
-      ctrPlay.textContent = '▶';
-      if (modalTimer) { clearInterval(modalTimer); modalTimer = null; }
-    }
-
-    async function openModal(pgn){
-      modalEl.classList.add('open');
-      modalEl.setAttribute('aria-hidden','false');
-      await raf2(); // Layout stabilisieren
-
-      const game = new Chess(); try { game.load_pgn(pgn); } catch {}
-      modalHist = game.history({ verbose: true });
-      modalIdx = 0;
-      interval = parseInt(selSpeed.value, 10) || 1200;
-      drawIdx(0);
-      pause(); // startet pausiert
-
-      // Listener (einmalig neu binden)
-      ctrFirst.onclick = () => setIdx(0);
-      ctrPrev.onclick  = () => setIdx(modalIdx - 1);
-      ctrNext.onclick  = () => setIdx(modalIdx + 1);
-      ctrLast.onclick  = () => setIdx(modalHist.length);
-      ctrPlay.onclick  = () => (playing ? pause() : start());
-      selSpeed.onchange = () => { interval = parseInt(selSpeed.value, 10) || 1200; if (playing){ pause(); start(); } };
-
-      // Tastatur: Pfeile / Leertaste
-      document.addEventListener('keydown', keyDrive);
-    }
-
-    function keyDrive(e){
-      if (modalEl.getAttribute('aria-hidden') === 'true') return;
-      if (e.key === ' ') { e.preventDefault(); playing ? pause() : start(); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); setIdx(modalIdx + 1); }
-      else if (e.key === 'ArrowLeft')  { e.preventDefault(); setIdx(modalIdx - 1); }
-      else if (e.key === 'Home')       { e.preventDefault(); setIdx(0); }
-      else if (e.key === 'End')        { e.preventDefault(); setIdx(modalHist.length); }
-    }
-
-    function closeModal(){
-      modalEl.classList.remove('open');
-      modalEl.setAttribute('aria-hidden','true');
-      pause();
-      document.removeEventListener('keydown', keyDrive);
-    }
-    modalEl.addEventListener('click', (e) => { if (e.target.hasAttribute('data-close')) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
-
-    // global
-    window.openModal = openModal;
   </script>
 
   <!-- Menü-Logik -->
