@@ -103,22 +103,23 @@
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.2rem 0 0 }
 
-    /* Neuer roter Download-Button (statt ECO-Chips) */
+    /* SCHMALER roter Download-Button */
     .dl-btn{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.6rem .9rem; border-radius:12px; font-weight:700;
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.5rem .75rem;              /* ← schmaler */
+      border-radius:12px; font-weight:700; font-size:.95rem; /* leicht kompakter */
       background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
       color:#fff; border:none; text-decoration:none; white-space:nowrap;
-      box-shadow:0 8px 20px rgba(229,9,20,.25);
+      box-shadow:0 8px 18px rgba(229,9,20,.24);
       transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
     .dl-btn::before{
       content:"⤓"; font-size:1rem; line-height:1;
       filter:drop-shadow(0 1px 0 rgba(0,0,0,.25));
     }
-    .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(229,9,20,.32) }
+    .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
     .dl-btn:active{ transform:translateY(0) }
-    .dl-meta{ opacity:.9; font-weight:600; font-size:.85rem; padding:.1rem .45rem; border-radius:999px; background:rgba(0,0,0,.22) }
+    .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding: .9rem }
     .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
@@ -171,7 +172,7 @@
       <div class="logo" aria-hidden="true"></div>
       <div>
         <h1>Polyglot Opening Books</h1>
-        <div class="sub"><em>StartingPawn - theory that gets to the board.</em></div>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
       </div>
     </div>
 
