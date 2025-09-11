@@ -12,15 +12,15 @@
           "size": "12.3 MB",
           "label": "Alle C50–C59 (.bin)"
         },
-        "embed": {
-          "type": "lichess",
-          "id": "DEIN_STUDY_ID",
-          "ply": 0,
-          "theme": "blue",
-          "pieceSet": "cburnett"
-        },
         "items": [
-          { "eco": "C50", "name": "Italienisch – C50", "image": "images/open/C50.png", "file": "books/open/C50.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5" },
+          {
+            "eco": "C50",
+            "name": "Italienisch – C50 (mit Live-Board)",
+            "image": "images/open/C50.png",
+            "file": "books/open/C50.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5",
+            "iframeSrc": "https://lichess.org/tv/frame?theme=brown&bg=dark"
+          },
           { "eco": "C51", "name": "Italienisch – C51", "image": "images/open/C51.png", "file": "books/open/C51.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4" },
           { "eco": "C52", "name": "Italienisch – C52", "image": "images/open/C52.png", "file": "books/open/C52.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3" },
           { "eco": "C53", "name": "Italienisch – C53", "image": "images/open/C53.png", "file": "books/open/C53.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3" },
