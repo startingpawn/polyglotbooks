@@ -98,7 +98,6 @@
       display:flex; align-items:center; justify-content:center;
       border-radius:12px; box-sizing:border-box;
     }
-    .eco-card:hover .thumb{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
     .thumb.img-error{
       background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px);
     }
@@ -113,10 +112,9 @@
     .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
 
     .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-    .eco-card:active{transform:translateY(0)}
 
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9eaee}
+    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9e9ee}
 
     /* RESPONSIVE: Mobile vs Desktop */
     @media (max-width: 979px){
@@ -135,6 +133,18 @@
     @media (min-width: 980px){
       .menu-btn{ display:none }
       .scrim, .nav-drawer{ display:none !important }
+    }
+
+    /* --- HOVER-GLOW SICHER AKTIVIEREN (global + gezielt) ------------------- */
+    /* Globaler Glow (auch wenn img-error aktiv ist) */
+    .eco-card:hover .thumb,
+    .eco-card:hover .thumb.img-error{
+      box-shadow: 0 8px 28px rgba(0,0,0,.25);
+    }
+    /* Extra: im Abschnitt Flankenspiele und bei ECO C55 (Zweispringerspiel) etwas stärker */
+    #flank .eco-card:hover .thumb,
+    .eco-card[data-eco="C55"]:hover .thumb{
+      box-shadow: 0 10px 36px rgba(0,0,0,.30);
     }
   </style>
 </head>
@@ -228,12 +238,16 @@
           const img = fixPath(it.image);
           const bin = fixPath(it.file);
           return `
-            <a class="eco-card" href="${bin}" download title="Download ${it.eco??''} – ${it.name??''}">
+            <a class="eco-card"
+               data-eco="${it.eco??''}"
+               data-opening="${op.id??''}"
+               href="${bin}" download
+               title="Download ${it.eco??''} – ${it.name??''}">
               <div class="thumb">
                 <img loading="lazy"
-                    src="${img}"
-                    alt="Screenshot ${it.eco??''}: ${it.name??''}"
-                    onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+                     src="${img}"
+                     alt="Screenshot ${it.eco??''}: ${it.name??''}"
+                     onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
               </div>
               <div class="badges">
                 ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
