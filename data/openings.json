@@ -6,160 +6,44 @@
     "groups": [
       {
         "title": "Italienisch (C50–C59)",
-        "desc": "Italienisches Spiel – von Giuoco Piano bis Zweispringerspiel.",
+        "desc": "Italienisches Spiel – gebündelte Varianten C50 bis C59.",
+        "bundle": {
+          "file": "books/open/Italian_C50-C59.bin",
+          "size": "12.3 MB",
+          "label": "Alle C50–C59 (.bin)"
+        },
         "items": [
-          {
-            "eco": "C50",
-            "name": "Italienisch – ECO C50",
-            "image": "images/open/C50.png",
-            "file": "books/open/C50.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5"
-          },
-          {
-            "eco": "C51",
-            "name": "Italienisch – ECO C51",
-            "image": "images/open/C51.png",
-            "file": "books/open/C51.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4"
-          },
-          {
-            "eco": "C52",
-            "name": "Italienisch – ECO C52",
-            "image": "images/open/C52.png",
-            "file": "books/open/C52.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3"
-          },
-          {
-            "eco": "C53",
-            "name": "Italienisch – ECO C53",
-            "image": "images/open/C53.png",
-            "file": "books/open/C53.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3"
-          },
-          {
-            "eco": "C54",
-            "name": "Italienisch – ECO C54",
-            "image": "images/open/C54.png",
-            "file": "books/open/C54.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6"
-          },
-          {
-            "eco": "C55",
-            "name": "Zweispringerspiel – ECO C55",
-            "image": "images/open/C55.png",
-            "file": "books/open/C55.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6"
-          },
-          {
-            "eco": "C56",
-            "name": "Zweispringerspiel – ECO C56",
-            "image": "images/open/C56.png",
-            "file": "books/open/C56.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5"
-          },
-          {
-            "eco": "C57",
-            "name": "Zweispringerspiel – ECO C57",
-            "image": "images/open/C57.png",
-            "file": "books/open/C57.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5"
-          },
-          {
-            "eco": "C58",
-            "name": "Zweispringerspiel – ECO C58",
-            "image": "images/open/C58.png",
-            "file": "books/open/C58.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5"
-          },
-          {
-            "eco": "C59",
-            "name": "Zweispringerspiel – ECO C59",
-            "image": "images/open/C59.png",
-            "file": "books/open/C59.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d3"
-          }
+          { "eco": "C50", "name": "Italienisch – C50", "image": "images/open/C50.png", "file": "books/open/C50.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5" },
+          { "eco": "C51", "name": "Italienisch – C51", "image": "images/open/C51.png", "file": "books/open/C51.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4" },
+          { "eco": "C52", "name": "Italienisch – C52", "image": "images/open/C52.png", "file": "books/open/C52.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3" },
+          { "eco": "C53", "name": "Italienisch – C53", "image": "images/open/C53.png", "file": "books/open/C53.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3" },
+          { "eco": "C54", "name": "Italienisch – C54", "image": "images/open/C54.png", "file": "books/open/C54.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6" },
+          { "eco": "C55", "name": "Zweispringerspiel – C55", "image": "images/open/C55.png", "file": "books/open/C55.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6" },
+          { "eco": "C56", "name": "Zweispringerspiel – C56", "image": "images/open/C56.png", "file": "books/open/C56.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5" },
+          { "eco": "C57", "name": "Zweispringerspiel – C57", "image": "images/open/C57.png", "file": "books/open/C57.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5" },
+          { "eco": "C58", "name": "Zweispringerspiel – C58", "image": "images/open/C58.png", "file": "books/open/C58.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5" },
+          { "eco": "C59", "name": "Zweispringerspiel – C59", "image": "images/open/C59.png", "file": "books/open/C59.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d3" }
         ]
       },
       {
         "title": "Spanisch (C60–C66)",
-        "desc": "Ruy Lopez – Druck auf e5 und langfristige Strukturziele.",
+        "desc": "Ruy Lopez – gebündelte Varianten C60 bis C66.",
+        "bundle": {
+          "file": "books/open/Spanish_C60-C66.bin",
+          "size": "14.8 MB",
+          "label": "Alle C60–C66 (.bin)"
+        },
         "items": [
-          {
-            "eco": "C60",
-            "name": "Spanisch – Grundstellung",
-            "image": "images/open/C60.png",
-            "file": "books/open/C60.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5"
-          },
-          {
-            "eco": "C61",
-            "name": "Spanisch – Bird-Verteidigung",
-            "image": "images/open/C61.png",
-            "file": "books/open/C61.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nd4"
-          },
-          {
-            "eco": "C62",
-            "name": "Spanisch – Old Steinitz",
-            "image": "images/open/C62.png",
-            "file": "books/open/C62.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 d6"
-          },
-          {
-            "eco": "C63",
-            "name": "Spanisch – Schliemann (Jaenisch)",
-            "image": "images/open/C63.png",
-            "file": "books/open/C63.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 f5"
-          },
-          {
-            "eco": "C64",
-            "name": "Spanisch – Klassisch",
-            "image": "images/open/C64.png",
-            "file": "books/open/C64.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Bc5"
-          },
-          {
-            "eco": "C65",
-            "name": "Spanisch – Berliner Verteidigung",
-            "image": "images/open/C65.png",
-            "file": "books/open/C65.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6"
-          },
-          {
-            "eco": "C66",
-            "name": "Spanisch – Berlin mit d3",
-            "image": "images/open/C66.png",
-            "file": "books/open/C66.bin",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.d3"
-          }
+          { "eco": "C60", "name": "Spanisch – Grundstellung", "image": "images/open/C60.png", "file": "books/open/C60.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5" },
+          { "eco": "C61", "name": "Spanisch – Bird", "image": "images/open/C61.png", "file": "books/open/C61.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nd4" },
+          { "eco": "C62", "name": "Spanisch – Old Steinitz", "image": "images/open/C62.png", "file": "books/open/C62.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 d6" },
+          { "eco": "C63", "name": "Spanisch – Schliemann", "image": "images/open/C63.png", "file": "books/open/C63.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 f5" },
+          { "eco": "C64", "name": "Spanisch – Klassisch", "image": "images/open/C64.png", "file": "books/open/C64.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Bc5" },
+          { "eco": "C65", "name": "Spanisch – Berliner", "image": "images/open/C65.png", "file": "books/open/C65.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6" },
+          { "eco": "C66", "name": "Spanisch – Berlin mit d3", "image": "images/open/C66.png", "file": "books/open/C66.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.d3" }
         ]
       }
     ]
-  },
-  {
-    "id": "semiopen",
-    "title": "Halboffene Spiele",
-    "desc": "1.e4 gegen asymmetrische Antworten.",
-    "items": []
-  },
-  {
-    "id": "closed",
-    "title": "Geschlossene Spiele",
-    "desc": "1.d4 d5 und Verwandtes.",
-    "items": []
-  },
-  {
-    "id": "semiclosed",
-    "title": "Halbgeschlossene Spiele",
-    "desc": "1.d4 gefolgt von ...Nf6 ohne ...d5.",
-    "items": []
-  },
-  {
-    "id": "indian",
-    "title": "Indische Verteidigungen",
-    "desc": "Königsindisch, Nimzo-, Damenindisch u. a.",
-    "items": []
   },
   {
     "id": "flank",
