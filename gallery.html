@@ -122,23 +122,21 @@
 
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding: .9rem }
 
-    /* Karte jetzt mit Spalten-Layout, damit Info immer unter dem Medienbereich bleibt */
+    /* Karte: Info unter dem Medienbereich */
     .eco-card{
       position:relative; display:flex; flex-direction:column;
       border-radius:12px; overflow:hidden; background:#0f1117; border:1px solid #222737
     }
     .thumb{
       width:100%;
-      aspect-ratio:16/10;                    /* Standard (Bilder) */
-      background:#121420; display:flex; align-items:center; justify-content:center; border-radius:12px 12px 0 0;
-      box-sizing:border-box
+      aspect-ratio:16/10; background:#121420;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:12px 12px 0 0; box-sizing:border-box
     }
-    /* Variante für Boards: quadratisch */
     .thumb-board{ aspect-ratio:1 / 1; padding:.4rem }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Mini-Board füllt den Bereich, Info bleibt unten */
     .auto-board{ width:100%; height:100%; cursor:zoom-in }
     .auto-board chess-board{ width:100%; height:100%; display:block }
 
@@ -280,7 +278,7 @@
     function card(it, idx){
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
-      const thumbClass = it.pgn ? 'thumb thumb-board' : 'thumb';  /* <- quadratisch für Boards */
+      const thumbClass = it.pgn ? 'thumb thumb-board' : 'thumb';
 
       const media = it.pgn
         ? `<div class="auto-board" data-pgn="${encodeURIComponent(it.pgn)}" title="Zum Vergrößern klicken">
@@ -312,13 +310,15 @@
       const bundle = g.bundle || {};
       const bundleFile = fixPath(bundle.file || g.file || '');
       const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
-      const bundleSize  = bundle.size ? `<span class="dl-meta">${bundleSize}</span>` : '';
+
+      /* FIX: bundleSizeHtml korrekt berechnet */
+      const bundleSizeHtml = bundle.size ? `<span class="dl-meta">${bundle.size}</span>` : '';
 
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
       const cards = (g.items||[]).map((it, i) => card(it, i)).join('');
 
       const right = bundleFile
-        ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSize}</a>`
+        ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSizeHtml}</a>`
         : '';
 
       const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
