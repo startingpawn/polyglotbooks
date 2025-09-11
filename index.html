@@ -14,16 +14,79 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%); color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text);
+      font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
+    }
     a{color:inherit}
-    header{max-width:var(--max);margin:0 auto;padding:2.2rem 1rem 1.2rem;display:flex;align-items:center;gap:1rem}
-    .logo{width:56px;height:56px;border-radius:50%;background:#1a1517 url('assets/logo.png') center/80% no-repeat; box-shadow:0 0 30px rgba(229,9,20,.35)}
+
+    /* Header */
+    header{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:2.2rem 1rem 1.2rem;
+      display:flex; align-items:center; gap:1rem; justify-content:space-between
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:56px;height:56px;border-radius:50%;
+      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 30px rgba(229,9,20,.35)
+    }
     h1{margin:.1rem 0 0;font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.15}
     .sub{color:var(--muted);margin-top:.25rem}
-    main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    .opening{background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
-             border:1px solid #1e2130;border-radius:var(--radius);padding:1rem 1rem 1.2rem;margin:1.1rem 0 1.5rem}
+    /* Menü-Button (Hamburger) */
+    .menu-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:10px;
+      border:1px solid #2b3240; background:#161a24; color:#e9eaee;
+      cursor:pointer; box-shadow:0 0 0 0 rgba(229,9,20,0)
+    }
+    .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
+    .menu-btn .bar{
+      display:block; width:20px; height:2px; background:#e9eaee; margin:2.5px 0; border-radius:2px
+    }
+
+    /* Overlay + Drawer */
+    .scrim{
+      position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px);
+      z-index:80;
+    }
+    .nav-drawer{
+      position:fixed; top:0; right:0; height:100dvh; width:290px;
+      background:var(--panel); border-left:1px solid #1e2130; z-index:90;
+      transform:translateX(100%); transition:transform .18s ease-out;
+      display:flex; flex-direction:column;
+    }
+    .nav-drawer.open{ transform:translateX(0) }
+    .menu-head{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1rem 1rem; border-bottom:1px solid #1e2130; font-weight:600
+    }
+    .menu-close{
+      width:36px;height:36px;border-radius:8px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
+    }
+    .menu-list{list-style:none; margin:0; padding:.4rem}
+    .menu-list li{margin:.1rem 0}
+    .menu-list li.sep{margin:.6rem 0; border-top:1px solid #1e2130}
+    .menu-list a{
+      display:block; padding:.7rem .8rem; border-radius:10px; text-decoration:none; color:#e9eaee
+    }
+    .menu-list a:hover{
+      background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05));
+      border:1px solid #2b3240
+    }
+
+    /* Inhalt */
+    main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
+    .opening{
+      background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
+      border:1px solid #1e2130;border-radius:var(--radius);
+      padding:1rem 1rem 1.2rem;margin:1.1rem 0 1.5rem
+    }
     .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.2rem .3rem .6rem .3rem}
     .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
     .op-title{margin:0;font-size:1.2rem}
@@ -41,31 +104,65 @@
     .line{color:#b6bac6;font-size:.92rem}
     .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
 
-    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
+    .eco-card:focus-visible,.eco-card:hover{
+      outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18);
+      transform:translateY(-1px); transition:.15s ease
+    }
     .eco-card:active{transform:translateY(0)}
+
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
     .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e7e9ee}
   </style>
 </head>
 <body>
+  <!-- Header mit Brand + Menü-Button -->
   <header>
-    <div class="logo" aria-hidden="true"></div>
-    <div>
-      <h1>Polyglot Opening Books</h1>
-      <div class="sub">ECO-Galerie · Screenshot klicken ⇒ Download der passenden <b>.bin</b></div>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Opening Books</h1>
+        <div class="sub">ECO-Galerie · Screenshot klicken ⇒ Download der passenden <b>.bin</b></div>
+      </div>
     </div>
+
+    <button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Menü öffnen">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
   </header>
 
+  <!-- Overlay + Off-Canvas-Menü -->
+  <div class="scrim" hidden></div>
+  <nav id="menu" class="nav-drawer" hidden role="dialog" aria-modal="true" aria-label="Hauptmenü">
+    <div class="menu-head">
+      <span>Menü</span>
+      <button class="menu-close" aria-label="Menü schließen">×</button>
+    </div>
+    <ul class="menu-list">
+      <li><a href="#open">Offene Spiele</a></li>
+      <li><a href="#semiopen">Halboffene</a></li>
+      <li><a href="#closed">Geschlossene</a></li>
+      <li><a href="#semiclosed">Halbgeschlossene</a></li>
+      <li><a href="#indian">Indische</a></li>
+      <li><a href="#flank">Flankenspiele</a></li>
+      <li class="sep"></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+    </ul>
+  </nav>
+
+  <!-- Inhalt -->
   <main id="app" aria-live="polite">
     <p>Lade Daten…</p>
   </main>
 
   <footer>
-    Tipp: BINs mit <span class="kbd">git lfs</span> versionieren. Falls cburnett-Figuren in den Screenshots sind: „Chess piece graphics © Colin M. L. Burnett (cburnett), CC BY-SA 3.0“ in die README aufnehmen.
+    Tipp: BINs mit <span class="kbd">git lfs</span> versionieren. Falls cburnett-Figuren in den Screenshots sind:
+    „Chess piece graphics © Colin M. L. Burnett (cburnett), CC BY-SA 3.0“ in die README aufnehmen.
   </footer>
 
+  <!-- Fehler sichtbar machen + JSON-Loader -->
   <script>
-    // Zeige alle JS-/Promise-Fehler sichtbar im UI
+    // Alle JS-/Promise-Fehler im UI anzeigen
     (function(){
       const show = (msg) => {
         const el = document.getElementById('app');
@@ -126,6 +223,36 @@
       } catch (e) {
         root.innerHTML = `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`;
       }
+    })();
+  </script>
+
+  <!-- Menü-Logik -->
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-btn');
+      const drawer = document.getElementById('menu');
+      const scrim = document.querySelector('.scrim');
+      const closeBtn = document.querySelector('.menu-close');
+
+      function openMenu(){
+        drawer.hidden = false; scrim.hidden = false;
+        // Force reflow, damit die Transition greift
+        void drawer.offsetWidth;
+        drawer.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        const first = drawer.querySelector('a,button'); first && first.focus();
+      }
+      function closeMenu(){
+        drawer.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        // Nach der Transition verstecken
+        setTimeout(()=>{ scrim.hidden = true; drawer.hidden = true; }, 180);
+        btn.focus();
+      }
+      btn.addEventListener('click', () => drawer.classList.contains('open') ? closeMenu() : openMenu());
+      closeBtn.addEventListener('click', closeMenu);
+      scrim.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
     })();
   </script>
 </body>
