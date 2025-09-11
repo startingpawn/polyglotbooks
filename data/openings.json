@@ -2,7 +2,7 @@
   {
     "id": "open",
     "title": "Offene Spiele – 1.e4 e5",
-    "desc": "Klassische e4–e5-Strukturen. Gefiltert nach Top-Games, saubere Nebenlinien entfernt.",
+    "desc": "Klassische e4–e5-Strukturen. Gefiltert nach Top-Games, Nebenlinien reduziert.",
     "items": [
       {
         "eco": "C50",
@@ -10,14 +10,22 @@
         "image": "images/open/C50.png",
         "file": "books/open/C50.bin",
         "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5",
-        "size": "0.00 MB"
+        "size": "2.1 MB"
+      },
+      {
+        "eco": "C55",
+        "name": "Zweispringerspiel",
+        "image": "images/open/C55.png",
+        "file": "books/open/C55.bin",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6",
+        "size": "1.8 MB"
       }
     ]
   },
   {
     "id": "flank",
     "title": "Flankenspiele – 1.c4, 1.Nf3, 1.g3, 1.b3",
-    "desc": "Ausgewählte Systeme ohne A00-Troll-Linien. Gleichgewichte nur an stabilen Knoten.",
+    "desc": "Ausgewählte Systeme ohne A00-Troll-Linien.",
     "items": [
       {
         "eco": "A20",
@@ -25,7 +33,7 @@
         "image": "images/flank/A20.png",
         "file": "books/flank/A20.bin",
         "line": "1.c4 e5 2.Nc3 Nf6 3.g3",
-        "size": "0.00 MB"
+        "size": "1.2 MB"
       }
     ]
   }
