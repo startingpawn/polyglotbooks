@@ -9,76 +9,69 @@
   <style>
     :root{
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
-      --accent:#e50914; --accentSoft:#ff2a2a; --ring: 0 0 0 2px rgba(229,9,20,.35);
+      --accent:#e50914; --accentSoft:#ff2a2a; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:14px; --max:1200px; --gap:1rem;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
-      color:var(--text);
-      font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
     }
-    a{color:inherit}
+    a{color:inherit; text-decoration:none}
 
     /* Header */
     header{
       max-width:var(--max);
-      margin:0 auto;
-      padding:2.2rem 1rem 1.2rem;
-      display:flex; align-items:center; gap:1rem; justify-content:space-between
+      margin:0 auto; padding:1rem 1rem 0.6rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
-      width:56px;height:56px;border-radius:50%;
+      width:48px;height:48px;border-radius:50%;
       background:#1a1517 url('assets/logo.png') center/80% no-repeat;
-      box-shadow:0 0 30px rgba(229,9,20,.35)
+      box-shadow:0 0 24px rgba(229,9,20,.35)
     }
-    h1{margin:.1rem 0 0;font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.15}
-    .sub{color:var(--muted);margin-top:.25rem}
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
 
-    /* Menü-Button (Hamburger) */
+    /* Top-Navigation (feste Menüpunkte) */
+    .topnav{
+      display:flex; align-items:center; gap:.25rem; flex-wrap:wrap
+    }
+    .nav-link{
+      padding:.55rem .75rem; border-radius:10px; color:#e9eaee;
+      border:1px solid transparent
+    }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    /* Hamburger-Button nur auf Mobil sichtbar */
     .menu-btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:44px; height:44px; border-radius:10px;
-      border:1px solid #2b3240; background:#161a24; color:#e9eaee;
-      cursor:pointer; box-shadow:0 0 0 0 rgba(229,9,20,0)
+      display:none; /* Desktop: verstecken */
+      align-items:center; justify-content:center;
+      width:44px;height:44px;border-radius:10px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
     }
     .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
-    .menu-btn .bar{
-      display:block; width:20px; height:2px; background:#e9eaee; margin:2.5px 0; border-radius:2px
-    }
+    .menu-btn .bar{display:block;width:20px;height:2px;background:#e9eaee;margin:2.5px 0;border-radius:2px}
 
-    /* Overlay + Drawer */
-    .scrim{
-      position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px);
-      z-index:80;
-    }
+    /* Drawer für Mobil */
+    .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
     .nav-drawer{
       position:fixed; top:0; right:0; height:100dvh; width:290px;
       background:var(--panel); border-left:1px solid #1e2130; z-index:90;
-      transform:translateX(100%); transition:transform .18s ease-out;
-      display:flex; flex-direction:column;
+      transform:translateX(100%); transition:transform .18s ease-out; display:flex; flex-direction:column;
     }
     .nav-drawer.open{ transform:translateX(0) }
-    .menu-head{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:1rem 1rem; border-bottom:1px solid #1e2130; font-weight:600
-    }
-    .menu-close{
-      width:36px;height:36px;border-radius:8px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
-    }
+    .menu-head{display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:1px solid #1e2130; font-weight:600}
+    .menu-close{width:36px;height:36px;border-radius:8px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer}
     .menu-list{list-style:none; margin:0; padding:.4rem}
     .menu-list li{margin:.1rem 0}
     .menu-list li.sep{margin:.6rem 0; border-top:1px solid #1e2130}
-    .menu-list a{
-      display:block; padding:.7rem .8rem; border-radius:10px; text-decoration:none; color:#e9eaee
-    }
-    .menu-list a:hover{
-      background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05));
-      border:1px solid #2b3240
-    }
+    .menu-list a{display:block; padding:.7rem .8rem; border-radius:10px}
+    .menu-list a:hover{ background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)); border:1px solid #2b3240 }
 
     /* Inhalt */
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
@@ -93,7 +86,7 @@
     .op-desc{margin:.3rem 0 0;color:#c9cbd3}
 
     .eco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);padding:.3rem}
-    .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737; text-decoration:none}
+    .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
     .thumb{aspect-ratio:16/10;background:#121420;display:flex;align-items:center;justify-content:center}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.02)}
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem}
@@ -104,18 +97,25 @@
     .line{color:#b6bac6;font-size:.92rem}
     .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
 
-    .eco-card:focus-visible,.eco-card:hover{
-      outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18);
-      transform:translateY(-1px); transition:.15s ease
-    }
+    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
     .eco-card:active{transform:translateY(0)}
 
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e7e9ee}
+    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9e9ee}
+
+    /* Responsive: ab 980px Topnav sichtbar, darunter Hamburger */
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .menu-btn{ display:inline-flex }
+    }
+    @media (min-width: 980px){
+      .menu-btn{ display:none }
+      .scrim, .nav-drawer{ display:none !important }
+    }
   </style>
 </head>
 <body>
-  <!-- Header mit Brand + Menü-Button -->
+  <!-- Header mit Brand + fester Topnav + Hamburger-Fallback -->
   <header>
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
@@ -125,20 +125,34 @@
       </div>
     </div>
 
+    <!-- Feste Menüpunkte (Desktop) -->
+    <nav class="topnav" aria-label="Hauptmenü">
+      <a class="nav-link" href="#open">Offene</a>
+      <a class="nav-link" href="#semiopen">Halboffene</a>
+      <a class="nav-link" href="#closed">Geschlossene</a>
+      <a class="nav-link" href="#semiclosed">Halbgeschlossene</a>
+      <a class="nav-link" href="#indian">Indische</a>
+      <a class="nav-link" href="#flank">Flankenspiele</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="impressum.html">Impressum</a>
+      <a class="nav-link" href="datenschutz.html">Datenschutz</a>
+    </nav>
+
+    <!-- Hamburger (Mobil) -->
     <button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Menü öffnen">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
   </header>
 
-  <!-- Overlay + Off-Canvas-Menü -->
+  <!-- Drawer (Mobil) -->
   <div class="scrim" hidden></div>
-  <nav id="menu" class="nav-drawer" hidden role="dialog" aria-modal="true" aria-label="Hauptmenü">
+  <nav id="menu" class="nav-drawer" hidden role="dialog" aria-modal="true" aria-label="Hauptmenü (mobil)">
     <div class="menu-head">
       <span>Menü</span>
       <button class="menu-close" aria-label="Menü schließen">×</button>
     </div>
     <ul class="menu-list">
-      <li><a href="#open">Offene Spiele</a></li>
+      <li><a href="#open">Offene</a></li>
       <li><a href="#semiopen">Halboffene</a></li>
       <li><a href="#closed">Geschlossene</a></li>
       <li><a href="#semiclosed">Halbgeschlossene</a></li>
@@ -162,7 +176,7 @@
 
   <!-- Fehler sichtbar machen + JSON-Loader -->
   <script>
-    // Alle JS-/Promise-Fehler im UI anzeigen
+    // JS-/Promise-Fehler im UI anzeigen
     (function(){
       const show = (msg) => {
         const el = document.getElementById('app');
@@ -226,18 +240,17 @@
     })();
   </script>
 
-  <!-- Menü-Logik -->
+  <!-- Menü-Logik (Hamburger für Mobil) -->
   <script>
     (function(){
       const btn = document.querySelector('.menu-btn');
       const drawer = document.getElementById('menu');
       const scrim = document.querySelector('.scrim');
       const closeBtn = document.querySelector('.menu-close');
+      if(!btn) return; // Desktop hat keinen Button
 
       function openMenu(){
-        drawer.hidden = false; scrim.hidden = false;
-        // Force reflow, damit die Transition greift
-        void drawer.offsetWidth;
+        drawer.hidden = false; scrim.hidden = false; void drawer.offsetWidth;
         drawer.classList.add('open');
         btn.setAttribute('aria-expanded','true');
         const first = drawer.querySelector('a,button'); first && first.focus();
@@ -245,7 +258,6 @@
       function closeMenu(){
         drawer.classList.remove('open');
         btn.setAttribute('aria-expanded','false');
-        // Nach der Transition verstecken
         setTimeout(()=>{ scrim.hidden = true; drawer.hidden = true; }, 180);
         btn.focus();
       }
