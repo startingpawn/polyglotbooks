@@ -127,17 +127,6 @@
     .auto-board{ width:100%; display:block; cursor:zoom-in }
     .auto-board chess-board{ width:100%; height:auto; display:block }
 
-    /* Board-Theme (schwarz/rot) */
-    chess-board, .cb-mini, #modalBoard{
-      --light-color:#15171e;     /* helle Felder (dunkles Grau) */
-      --dark-color:#2a0f12;      /* dunkle Felder (Weinrot)     */
-      --highlight-color:#e50914; /* Hervorhebung/Last move      */
-      /* Optional:
-      --border-color:#1e2130;
-      --coordinates-font-size:12px;
-      */
-    }
-
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
@@ -247,7 +236,7 @@
   </div>
 
   <footer>
-    <small>Build: Galerie – kompaktere Rahmen & Board-Theme</small>
+    <small>Build: Galerie – Standard-Board-Theme + PGN-Dateien</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -276,10 +265,14 @@
     function card(it, idx){
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
-      const thumbClass = it.pgn ? 'thumb thumb-board' : 'thumb';
+      const thumbClass = (it.pgn || it.pgnFile) ? 'thumb thumb-board' : 'thumb';
 
-      const media = it.pgn
-        ? `<div class="auto-board" data-pgn="${encodeURIComponent(it.pgn)}" title="Zum Vergrößern klicken">
+      const media = (it.pgn || it.pgnFile)
+        ? `<div class="auto-board"
+             ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
+             ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(it.pgnFile)}"` : ''}
+             ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
+             title="Zum Vergrößern klicken">
              <chess-board class="cb-mini"></chess-board>
            </div>`
         : `<img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
@@ -395,22 +388,53 @@
     })();
   </script>
 
-  <!-- Autoplay-Boards (Module, import chess.js) -->
+  <!-- Autoplay-Boards + PGN-Dateilader (Module, import chess.js) -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
+
     const raf = (cb) => requestAnimationFrame(cb);
     const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
     document.addEventListener('openings-rendered', () => {
       const autos = document.querySelectorAll('.auto-board');
-      autos.forEach((wrap) => {
-        const pgn = decodeURIComponent(wrap.dataset.pgn || '');
-        const board = wrap.querySelector('chess-board');
-        if (!board || !pgn) return;
 
-        // Klick: Popup statt Download
+      const firstGameFrom = (content, index = 0) => {
+        const norm = String(content || '').replace(/\r\n/g, '\n').trim();
+        // naive Trennung: neuer Block beginnt bei Kopfzeile [Event ...]
+        const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
+        return (parts[index] ?? parts[0] ?? norm).trim();
+      };
+
+      autos.forEach(async (wrap) => {
+        const board = wrap.querySelector('chess-board');
+        if (!board) return;
+
+        // 1) PGN-Quelle (inline oder Datei)
+        let pgn = '';
+        const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
+        const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
+        const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
+
+        if (pgnInline) {
+          pgn = pgnInline;
+        } else if (pgnFile) {
+          try {
+            const res = await fetch(pgnFile + '?v=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const txt = await res.text();
+            pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
+          } catch (err) {
+            console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
+            return;
+          }
+        } else {
+          return;
+        }
+
+        // 2) Klick: Popup statt Download
         wrap.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openModal(pgn); }, { capture: true });
 
+        // 3) Autoplay
         const game = new Chess(); try { game.load_pgn(pgn); } catch {}
         const hist = game.history({ verbose: true });
 
@@ -419,12 +443,13 @@
           const g = new Chess();
           for (let i = 0; i < idxMove; i++) g.move(hist[i]);
           const fen = g.fen();
-          raf(() => board.setPosition(fen));   // entkoppelt (kein ResizeObserver-Loop)
+          raf(() => board.setPosition(fen));   // entkoppelt vom Layout
           idxMove = (idxMove + 1) % (hist.length + 1);
         };
         tick();
         timerId = setInterval(tick, 1200);
 
+        // Pause bei Unsichtbarkeit
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
