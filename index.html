@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Polyglot Opening Books – ECO Galerie</title>
   <meta name="description" content="Eröffnungs-Übersicht mit ECO-Varianten, Screenshots und Downloads (Polyglot BIN)." />
   <link rel="icon" href="assets/logo.png">
@@ -37,27 +37,23 @@
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
 
-    /* Top-Navigation (feste Menüpunkte) */
-    .topnav{
-      display:flex; align-items:center; gap:.25rem; flex-wrap:wrap
-    }
-    .nav-link{
-      padding:.55rem .75rem; border-radius:10px; color:#e9eaee;
-      border:1px solid transparent
-    }
+    /* Top-Navigation (feste Menüpunkte – Desktop) */
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Hamburger-Button nur auf Mobil sichtbar */
+    /* Hamburger-Button – Standard: Desktop verstecken */
     .menu-btn{
-      display:none; /* Desktop: verstecken */
+      display:none;
       align-items:center; justify-content:center;
-      width:44px;height:44px;border-radius:10px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
+      width:44px;height:44px;border-radius:12px;
+      border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
     }
     .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
     .menu-btn .bar{display:block;width:20px;height:2px;background:#e9eaee;margin:2.5px 0;border-radius:2px}
 
-    /* Drawer für Mobil */
+    /* Drawer + Overlay (Mobil) */
     .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
     .nav-drawer{
       position:fixed; top:0; right:0; height:100dvh; width:290px;
@@ -103,10 +99,20 @@
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
     .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9e9ee}
 
-    /* Responsive: ab 980px Topnav sichtbar, darunter Hamburger */
+    /* RESPONSIVE: Mobile vs Desktop */
     @media (max-width: 979px){
-      .topnav{ display:none }
-      .menu-btn{ display:inline-flex }
+      .topnav{ display:none }              /* feste Leiste ausblenden */
+      .menu-btn{
+        /* Floating Button: fixiert oben rechts, notch-safe */
+        display:inline-flex;
+        position:fixed;
+        top:calc(env(safe-area-inset-top, 0px) + 12px);
+        right:12px;
+        z-index:120;
+        box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
+      }
+      /* Beim offenen Menü Button ausblenden (kein Doppel-Target) */
+      body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
     }
     @media (min-width: 980px){
       .menu-btn{ display:none }
@@ -115,7 +121,7 @@
   </style>
 </head>
 <body>
-  <!-- Header mit Brand + fester Topnav + Hamburger-Fallback -->
+  <!-- Header mit Brand + (Desktop) fester Topnav + (Mobil) Floating-Hamburger -->
   <header>
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
@@ -125,7 +131,7 @@
       </div>
     </div>
 
-    <!-- Feste Menüpunkte (Desktop) -->
+    <!-- Feste Menüpunkte (nur Desktop sichtbar) -->
     <nav class="topnav" aria-label="Hauptmenü">
       <a class="nav-link" href="#open">Offene</a>
       <a class="nav-link" href="#semiopen">Halboffene</a>
@@ -138,7 +144,7 @@
       <a class="nav-link" href="datenschutz.html">Datenschutz</a>
     </nav>
 
-    <!-- Hamburger (Mobil) -->
+    <!-- Floating Hamburger (nur Mobil sichtbar) -->
     <button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Menü öffnen">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
@@ -240,7 +246,7 @@
     })();
   </script>
 
-  <!-- Menü-Logik (Hamburger für Mobil) -->
+  <!-- Menü-Logik (Floating-Hamburger für Mobil) -->
   <script>
     (function(){
       const btn = document.querySelector('.menu-btn');
@@ -253,11 +259,13 @@
         drawer.hidden = false; scrim.hidden = false; void drawer.offsetWidth;
         drawer.classList.add('open');
         btn.setAttribute('aria-expanded','true');
+        document.body.classList.add('menu-open');     // wichtig für Floating-Button
         const first = drawer.querySelector('a,button'); first && first.focus();
       }
       function closeMenu(){
         drawer.classList.remove('open');
         btn.setAttribute('aria-expanded','false');
+        document.body.classList.remove('menu-open');  // wichtig für Floating-Button
         setTimeout(()=>{ scrim.hidden = true; drawer.hidden = true; }, 180);
         btn.focus();
       }
