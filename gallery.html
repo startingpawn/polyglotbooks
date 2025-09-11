@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Galerie – Polyglot Opening Books</title>
-  <meta name="description" content="ECO-Galerie mit gruppierten Eröffnungen (z. B. Italienisch C50–C59) inkl. Screenshots und Direkt-Downloads der Polyglot-BINs." />
+  <meta name="description" content="ECO-Galerie mit gruppierten Eröffnungen inkl. Screenshots und Direkt-Downloads der Polyglot-BINs." />
   <link rel="icon" href="assets/logo.png">
   <style>
     :root{
@@ -87,13 +87,11 @@
     .op-title{margin:0;font-size:1.2rem}
     .op-desc{margin:.3rem 0 0;color:#c9cbd3}
 
-    /* --- Gruppen-Rahmen --- */
+    /* Gruppen-Rahmen */
     .group{
       margin:1rem 0 1.25rem;
       border:1px solid #222737; border-radius:14px;
-      background:
-        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box,
-        var(--panel);
+      background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       overflow:hidden;
     }
     .group-head{
@@ -103,7 +101,7 @@
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.2rem 0 0 }
 
-    /* SCHMALER roter Download-Button */
+    /* Roter Download-Button (Bundle) */
     .dl-btn{
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.5rem .75rem;
@@ -119,10 +117,13 @@
     .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding: .9rem }
+
     .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
     .thumb{aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:12px; box-sizing:border-box}
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+    /* NEU: iFrame im Thumbnail */
+    .thumb iframe{ width:100%; height:100%; border:0; display:block }
 
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
@@ -133,13 +134,12 @@
     .line{color:#b6bac6;font-size:.92rem}
 
     .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-    /* Hover-Glow global + extra für #flank und ECO C55 */
     .eco-card:hover .thumb,
     .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
     #flank .eco-card:hover .thumb,
     .eco-card[data-eco="C55"]:hover .thumb{ box-shadow: 0 10px 36px rgba(0,0,0,.30) }
 
-    /* Responsive Embed */
+    /* Responsives Gruppen-Embed (falls genutzt) */
     .embed{ padding:.2rem .9rem .9rem; border-top:1px solid #1e2230 }
     .embed-box{ position:relative; width:100%; padding-top:61.833%; border-radius:12px; overflow:hidden; background:#0f1117; border:1px solid #222737 }
     .embed-box iframe{ position:absolute; inset:0; width:100%; height:100%; border:0 }
@@ -155,7 +155,6 @@
         box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
       }
       body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
-
       .group-head{ flex-direction:column; align-items:flex-start; gap:.6rem }
       .dl-btn{ width:100%; justify-content:center }
     }
@@ -213,7 +212,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Gruppen mit Bundle-Download + Lichess-Embed</small>
+    <small>Build: Galerie – iFrame in Karte</small>
   </footer>
 
   <!-- Fehler sichtbar machen -->
@@ -239,16 +238,22 @@
     function card(it){
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
+
+      // NEU: wenn iframeSrc vorhanden, statt Bild ein iFrame in gleicher Box
+      const media = it.iframeSrc
+        ? `<iframe src="${it.iframeSrc}" allowtransparency="true" frameborder="0"></iframe>`
+        : `<img loading="lazy"
+                 src="${img}"
+                 alt="Screenshot ${it.eco??''}: ${it.name??''}"
+                 onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">`;
+
       return `
         <a class="eco-card"
            data-eco="${it.eco??''}"
            href="${bin}" download
            title="Download ${it.eco??''} – ${it.name??''}">
           <div class="thumb">
-            <img loading="lazy"
-                 src="${img}"
-                 alt="Screenshot ${it.eco??''}: ${it.name??''}"
-                 onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+            ${media}
           </div>
           <div class="badges">
             ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
@@ -281,12 +286,12 @@
 
       const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
 
-      // Optionaler Lichess-Embed
+      // Optionaler Gruppen-Embed (unverändert)
       let embed = '';
       if (g.embed && g.embed.type === 'lichess' && g.embed.id){
         embed = embedHtmlForLichess(g.embed.id, g.embed.ply || 0, g.embed.theme || 'blue', g.embed.pieceSet || 'cburnett');
-      } else if (g.embedHtml){
-        embed = `<div class="embed"><div class="embed-box"><iframe src="${g.embedHtml}" allowfullscreen frameborder="0"></iframe></div></div>`;
+      } else if (g.embedUrl){
+        embed = `<div class="embed"><div class="embed-box"><iframe src="${g.embedUrl}" allowfullscreen frameborder="0"></iframe></div></div>`;
       }
 
       return `
