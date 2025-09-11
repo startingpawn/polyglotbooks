@@ -243,7 +243,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Player ohne Tempo, Standard = langsam</small>
+    <small>Build: Galerie – Autoplay (langsam) & robuster PGN-Normalizer</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -414,20 +414,33 @@
     })();
   </script>
 
-  <!-- Boards + Player je Karte (keine Popups, Tempo fix auf langsam/1800ms) -->
+  <!-- Boards + Player je Karte (Autoplay langsam/1800ms, robuster PGN-Parser) -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
     const raf = (cb) => requestAnimationFrame(cb);
-    const INTERVAL = 1800; // langsam (Standard)
+    const AUTOPLAY = true;          // automatisch abspielen
+    const INTERVAL = 1800;          // langsam
 
     document.addEventListener('openings-rendered', () => {
       const autos = document.querySelectorAll('.auto-board');
 
+      // Robuster Normalizer: CRLF -> LF, BOM raus, Mehrfach-PGN splitten, Leerzeile nach Headern sicherstellen
       const firstGameFrom = (content, index = 0) => {
-        const norm = String(content || '').replace(/\r\n/g, '\n').trim();
+        let norm = String(content || '')
+          .replace(/\r\n/g, '\n')
+          .replace(/^\uFEFF/, '')
+          .trim();
+
         const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
-        return (parts[index] ?? parts[0] ?? norm).trim();
+        norm = (parts[index] ?? parts[0] ?? norm).trim();
+
+        // Leerzeile zwischen Headerblock und Zügen erzwingen
+        norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => {
+          return headers.replace(/\s*$/, '\n\n') + next;
+        });
+
+        return norm;
       };
 
       autos.forEach(async (wrap) => {
@@ -460,7 +473,7 @@
           return;
         }
 
-        // Player-Steuerung im selben Card-Element
+        // Player-Elemente in der Karte
         const player    = card.querySelector('[data-player]');
         const ctrFirst  = player?.querySelector('[data-first]');
         const ctrPrev   = player?.querySelector('[data-prev]');
@@ -471,8 +484,13 @@
         player?.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
 
         // Spiel laden
-        const game = new Chess(); try { game.load_pgn(pgn); } catch {}
+        const game = new Chess();
+        try { game.load_pgn(pgn); } catch (e) { console.warn('PGN parse error:', e); }
         const hist = game.history({ verbose: true });
+        if (!hist.length) {
+          console.warn('Keine Züge in PGN erkannt. Beispielanfang:', pgn.slice(0, 200));
+        }
+
         let idx = 0;
         let playing = false;
         let timerId = null;
@@ -502,8 +520,9 @@
           if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
-        // initial: pausiert auf Startstellung
-        setIdx(0); pause();
+        // initial
+        setIdx(0);
+        AUTOPLAY ? start() : pause();
 
         // Controls
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
