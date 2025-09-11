@@ -15,21 +15,84 @@
         "items": [
           {
             "eco": "C50",
-            "name": "Italienisch – C50 (Autoplay-Board)",
+            "name": "Italienisch – C50",
             "image": "images/open/C50.png",
             "file": "books/open/C50.bin",
             "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5",
-            "pgn": "[Event \"Italienisch C50\"] [Site \"GitHub Pages\"] [Date \"2025.09.12\"] [Round \"-\"] [White \"Weiß\"] [Black \"Schwarz\"] [Result \"*\"] 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 *"
+            "pgnFile": "pgn/open/C50.pgn"
           },
-          { "eco": "C51", "name": "Italienisch – C51", "image": "images/open/C51.png", "file": "books/open/C51.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4" },
-          { "eco": "C52", "name": "Italienisch – C52", "image": "images/open/C52.png", "file": "books/open/C52.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3" },
-          { "eco": "C53", "name": "Italienisch – C53", "image": "images/open/C53.png", "file": "books/open/C53.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3" },
-          { "eco": "C54", "name": "Italienisch – C54", "image": "images/open/C54.png", "file": "books/open/C54.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6" },
-          { "eco": "C55", "name": "Zweispringerspiel – C55", "image": "images/open/C55.png", "file": "books/open/C55.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6" },
-          { "eco": "C56", "name": "Zweispringerspiel – C56", "image": "images/open/C56.png", "file": "books/open/C56.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5" },
-          { "eco": "C57", "name": "Zweispringerspiel – C57", "image": "images/open/C57.png", "file": "books/open/C57.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5" },
-          { "eco": "C58", "name": "Zweispringerspiel – C58", "image": "images/open/C58.png", "file": "books/open/C58.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5" },
-          { "eco": "C59", "name": "Zweispringerspiel – C59", "image": "images/open/C59.png", "file": "books/open/C59.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d3" }
+          {
+            "eco": "C51",
+            "name": "Italienisch – C51",
+            "image": "images/open/C51.png",
+            "file": "books/open/C51.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4",
+            "pgnFile": "pgn/open/C51.pgn"
+          },
+          {
+            "eco": "C52",
+            "name": "Italienisch – C52",
+            "image": "images/open/C52.png",
+            "file": "books/open/C52.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3",
+            "pgnFile": "pgn/open/C52.pgn"
+          },
+          {
+            "eco": "C53",
+            "name": "Italienisch – C53",
+            "image": "images/open/C53.png",
+            "file": "books/open/C53.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3",
+            "pgnFile": "pgn/open/C53.pgn"
+          },
+          {
+            "eco": "C54",
+            "name": "Italienisch – C54",
+            "image": "images/open/C54.png",
+            "file": "books/open/C54.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6",
+            "pgnFile": "pgn/open/C54.pgn"
+          },
+          {
+            "eco": "C55",
+            "name": "Zweispringerspiel – C55",
+            "image": "images/open/C55.png",
+            "file": "books/open/C55.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6",
+            "pgnFile": "pgn/open/C55.pgn"
+          },
+          {
+            "eco": "C56",
+            "name": "Zweispringerspiel – C56",
+            "image": "images/open/C56.png",
+            "file": "books/open/C56.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5",
+            "pgnFile": "pgn/open/C56.pgn"
+          },
+          {
+            "eco": "C57",
+            "name": "Zweispringerspiel – C57",
+            "image": "images/open/C57.png",
+            "file": "books/open/C57.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5",
+            "pgnFile": "pgn/open/C57.pgn"
+          },
+          {
+            "eco": "C58",
+            "name": "Zweispringerspiel – C58",
+            "image": "images/open/C58.png",
+            "file": "books/open/C58.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5",
+            "pgnFile": "pgn/open/C58.pgn"
+          },
+          {
+            "eco": "C59",
+            "name": "Zweispringerspiel – C59",
+            "image": "images/open/C59.png",
+            "file": "books/open/C59.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d3",
+            "pgnFile": "pgn/open/C59.pgn"
+          }
         ]
       },
       {
@@ -41,13 +104,62 @@
           "label": "Alle C60–C66 (.bin)"
         },
         "items": [
-          { "eco": "C60", "name": "Spanisch – Grundstellung", "image": "images/open/C60.png", "file": "books/open/C60.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5" },
-          { "eco": "C61", "name": "Spanisch – Bird", "image": "images/open/C61.png", "file": "books/open/C61.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nd4" },
-          { "eco": "C62", "name": "Spanisch – Old Steinitz", "image": "images/open/C62.png", "file": "books/open/C62.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 d6" },
-          { "eco": "C63", "name": "Spanisch – Schliemann", "image": "images/open/C63.png", "file": "books/open/C63.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 f5" },
-          { "eco": "C64", "name": "Spanisch – Klassisch", "image": "images/open/C64.png", "file": "books/open/C64.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Bc5" },
-          { "eco": "C65", "name": "Spanisch – Berliner", "image": "images/open/C65.png", "file": "books/open/C65.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6" },
-          { "eco": "C66", "name": "Spanisch – Berlin mit d3", "image": "images/open/C66.png", "file": "books/open/C66.bin", "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.d3" }
+          {
+            "eco": "C60",
+            "name": "Spanisch – Grundstellung",
+            "image": "images/open/C60.png",
+            "file": "books/open/C60.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5",
+            "pgnFile": "pgn/open/C60.pgn"
+          },
+          {
+            "eco": "C61",
+            "name": "Spanisch – Bird",
+            "image": "images/open/C61.png",
+            "file": "books/open/C61.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nd4",
+            "pgnFile": "pgn/open/C61.pgn"
+          },
+          {
+            "eco": "C62",
+            "name": "Spanisch – Old Steinitz",
+            "image": "images/open/C62.png",
+            "file": "books/open/C62.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 d6",
+            "pgnFile": "pgn/open/C62.pgn"
+          },
+          {
+            "eco": "C63",
+            "name": "Spanisch – Schliemann",
+            "image": "images/open/C63.png",
+            "file": "books/open/C63.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 f5",
+            "pgnFile": "pgn/open/C63.pgn"
+          },
+          {
+            "eco": "C64",
+            "name": "Spanisch – Klassisch",
+            "image": "images/open/C64.png",
+            "file": "books/open/C64.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Bc5",
+            "pgnFile": "pgn/open/C64.pgn"
+          },
+          {
+            "eco": "C65",
+            "name": "Spanisch – Berliner",
+            "image": "images/open/C65.png",
+            "file": "books/open/C65.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6",
+            "pgnFile": "pgn/open/C65.pgn"
+          },
+          {
+            "eco": "C66",
+            "name": "Spanisch – Berlin mit d3",
+            "image": "images/open/C66.png",
+            "file": "books/open/C66.bin",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.d3",
+            "pgnFile": "pgn/open/C66.pgn"
+          }
         ]
       }
     ]
@@ -57,7 +169,14 @@
     "title": "Flankenspiele",
     "desc": "1.c4, 1.Nf3 u. a.",
     "items": [
-      { "eco": "A20", "name": "Englisch – Beispiel", "image": "images/flank/A20.png", "file": "books/flank/A20.bin", "line": "1.c4 e5 2.g3" }
+      {
+        "eco": "A20",
+        "name": "Englisch – Beispiel",
+        "image": "images/flank/A20.png",
+        "file": "books/flank/A20.bin",
+        "line": "1.c4 e5 2.g3",
+        "pgnFile": "pgn/flank/A20.pgn"
+      }
     ]
   }
 ]
