@@ -92,7 +92,6 @@
     .op-title{margin:0;font-size:1.2rem}
     .op-desc{margin:.3rem 0 0;color:#c9cbd3}
 
-    /* Gruppen-Rahmen */
     .group{
       margin:1rem 0 1.25rem;
       border:1px solid #222737; border-radius:14px;
@@ -123,20 +122,34 @@
 
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding: .9rem }
 
-    .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
-    .thumb{aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:12px; box-sizing:border-box}
+    /* Karte jetzt mit Spalten-Layout, damit Info immer unter dem Medienbereich bleibt */
+    .eco-card{
+      position:relative; display:flex; flex-direction:column;
+      border-radius:12px; overflow:hidden; background:#0f1117; border:1px solid #222737
+    }
+    .thumb{
+      width:100%;
+      aspect-ratio:16/10;                    /* Standard (Bilder) */
+      background:#121420; display:flex; align-items:center; justify-content:center; border-radius:12px 12px 0 0;
+      box-sizing:border-box
+    }
+    /* Variante für Boards: quadratisch */
+    .thumb-board{ aspect-ratio:1 / 1; padding:.4rem }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Mini-Auto-Board (statt Bild, falls pgn vorhanden) */
+    /* Mini-Board füllt den Bereich, Info bleibt unten */
     .auto-board{ width:100%; height:100%; cursor:zoom-in }
-    .auto-board chess-board{ width:100%; display:block } /* Höhe = Breite (vom Element berechnet) */
+    .auto-board chess-board{ width:100%; height:100%; display:block }
 
-    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem}
+    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
 
-    .info{padding:.7rem .8rem .85rem;color:#dfe1e7;border-top:1px solid #1e2230;display:flex;flex-direction:column;gap:.25rem}
+    .info{
+      padding:.7rem .8rem .85rem;color:#dfe1e7;border-top:1px solid #1e2230;
+      display:flex; flex-direction:column; gap:.25rem; background:#0f1117
+    }
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
 
@@ -241,7 +254,7 @@
   </div>
 
   <footer>
-    <small>Build: Galerie – chessboard-element + chess.js (Autoplay + Popup)</small>
+    <small>Build: Galerie – Boards angepasst (Info darunter)</small>
   </footer>
 
   <!-- Fehler sichtbar machen -->
@@ -267,8 +280,8 @@
     function card(it, idx){
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
+      const thumbClass = it.pgn ? 'thumb thumb-board' : 'thumb';  /* <- quadratisch für Boards */
 
-      // Mini-Board, wenn PGN vorhanden
       const media = it.pgn
         ? `<div class="auto-board" data-pgn="${encodeURIComponent(it.pgn)}" title="Zum Vergrößern klicken">
              <chess-board class="cb-mini"></chess-board>
@@ -281,7 +294,7 @@
            data-eco="${it.eco??''}"
            href="${bin}" download
            title="Download ${it.eco??''} – ${it.name??''}">
-          <div class="thumb">
+          <div class="${thumbClass}">
             ${media}
           </div>
           <div class="badges">
@@ -299,7 +312,7 @@
       const bundle = g.bundle || {};
       const bundleFile = fixPath(bundle.file || g.file || '');
       const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
-      const bundleSize  = bundle.size ? `<span class="dl-meta">${bundle.size}</span>` : '';
+      const bundleSize  = bundle.size ? `<span class="dl-meta">${bundleSize}</span>` : '';
 
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
       const cards = (g.items||[]).map((it, i) => card(it, i)).join('');
@@ -362,7 +375,6 @@
           </section>`;
       }).join('');
 
-      // Signal an das Modul-Skript: Boards initialisieren
       document.dispatchEvent(new Event('openings-rendered'));
     }
     (async () => {
@@ -391,10 +403,9 @@
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
-    // Mini-Boards initialisieren, wenn Inhalt gerendert wurde
     document.addEventListener('openings-rendered', () => {
       const autos = document.querySelectorAll('.auto-board');
-      autos.forEach((wrap, idx) => {
+      autos.forEach((wrap) => {
         const pgn = decodeURIComponent(wrap.dataset.pgn || '');
         const board = wrap.querySelector('chess-board');
         if (!board || !pgn) return;
@@ -406,7 +417,7 @@
         }, { capture: true });
 
         const game = new Chess();
-        try { game.load_pgn(pgn); } catch { /* ignoriere parse-fehler */ }
+        try { game.load_pgn(pgn); } catch {}
         const hist = game.history({ verbose: true });
 
         let idxMove = 0, timerId = null;
@@ -416,12 +427,10 @@
           board.setPosition(g.fen());
           idxMove = (idxMove + 1) % (hist.length + 1);
         };
-        // Erstmaliger Draw
         tick();
-        // Auto-Play
         timerId = setInterval(tick, 1200);
 
-        // Pause, wenn nicht sichtbar (Performance)
+        // Pause bei Unsichtbarkeit
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
@@ -432,13 +441,12 @@
       });
     });
 
-    // Modal-Logik mit großem Board
+    // Modal-Logik
     const modalEl = document.getElementById('boardModal');
     const modalBoard = document.getElementById('modalBoard');
     let modalTimer = null;
 
     function openModal(pgn){
-      // show modal
       modalEl.classList.add('open');
       modalEl.setAttribute('aria-hidden','false');
 
@@ -461,13 +469,11 @@
       modalEl.setAttribute('aria-hidden','true');
       if (modalTimer) { clearInterval(modalTimer); modalTimer = null; }
     }
-    // Close handlers
     modalEl.addEventListener('click', (e) => {
       if (e.target.hasAttribute('data-close')) closeModal();
     });
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
 
-    // Global verfügbar
     window.openModal = openModal;
   </script>
 
