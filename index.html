@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Polyglot Opening Books – ECO Galerie</title>
-  <meta name="description" content="Eröffnungs-Übersicht mit ECO-Varianten, Screenshots und Downloads (Polyglot BIN)." />
+  <title>Home – Polyglot Opening Books</title>
+  <meta name="description" content="Landingpage: Vorstellung des Projekts Schacheröffnungen & Polyglot-Eröffnungsbücher." />
   <link rel="icon" href="assets/logo.png">
   <style>
     :root{
@@ -37,33 +37,28 @@
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
 
-    /* Top-Navigation (feste Menüpunkte – Desktop) */
+    /* Topnav */
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Menü-Button – Desktop verstecken */
+    /* Menü-Button mobil (Plus) */
     .menu-btn{
-      display:none;
-      align-items:center; justify-content:center;
+      display:none; align-items:center; justify-content:center;
       width:44px;height:44px;border-radius:12px;
       border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
     }
-    .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
-    /* Plus-Icon im Menü-Button */
     .menu-btn .plus{ position:relative; width:22px; height:22px; display:block }
-    .menu-btn .plus::before,
-    .menu-btn .plus::after{
+    .menu-btn .plus::before, .menu-btn .plus::after{
       content:""; position:absolute; left:50%; top:50%;
-      width:22px; height:2px; background:#e9eaee; border-radius:2px;
-      transform:translate(-50%,-50%);
+      width:22px; height:2px; background:#e9eaee; border-radius:2px; transform:translate(-50%,-50%);
     }
     .menu-btn .plus::after{ transform:translate(-50%,-50%) rotate(90deg) }
-    .menu-btn:hover .plus::before,
-    .menu-btn:hover .plus::after{ box-shadow:0 0 0 2px rgba(229,9,20,.15) }
+    .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
 
-    /* Drawer + Overlay (Mobil) */
+    /* Drawer */
     .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
     .nav-drawer{
       position:fixed; top:0; right:0; height:100dvh; width:290px;
@@ -79,100 +74,72 @@
     .menu-list a{display:block; padding:.7rem .8rem; border-radius:10px}
     .menu-list a:hover{ background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)); border:1px solid #2b3240 }
 
-    /* Inhalt */
-    main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
-    .opening{
-      background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
-      border:1px solid #1e2130;border-radius:var(--radius);
-      padding:1rem 1rem 1.2rem;margin:1.1rem 0 1.5rem
+    /* Hero */
+    .hero{
+      max-width:var(--max); margin:0 auto; padding:2.2rem 1rem 2.2rem;
+      display:grid; grid-template-columns:1.1fr .9fr; gap:1.2rem; align-items:center;
     }
-    .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.2rem .3rem .6rem .3rem}
-    .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
-    .op-title{margin:0;font-size:1.2rem}
-    .op-desc{margin:.3rem 0 0;color:#c9cbd3}
-
-    .eco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);padding:.3rem}
-    .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
-    .thumb{
-      aspect-ratio:16/10; background:#121420;
-      display:flex; align-items:center; justify-content:center;
-      border-radius:12px; box-sizing:border-box;
+    .hero h2{font-size:clamp(1.8rem,4vw,2.6rem); margin:.2rem 0 .6rem}
+    .hero p{color:#c9cbd3; font-size:1.05rem; line-height:1.55}
+    .cta{margin-top:1.1rem; display:flex; gap:.6rem; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.7rem 1rem; border-radius:12px; border:1px solid #2b3240; cursor:pointer;
+      background:linear-gradient(180deg, rgba(229,9,20,.14), rgba(229,9,20,.06)); color:#fff; text-decoration:none;
+      box-shadow:0 2px 14px rgba(229,9,20,.15)
     }
-    .thumb.img-error{
-      background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px);
+    .btn.secondary{ background:#161a24; color:#e9eaee }
+    .btn:hover{ box-shadow:0 4px 22px rgba(229,9,20,.22) }
+
+    .card{
+      background:var(--panel); border:1px solid #1e2130; border-radius:14px; padding:1rem 1.2rem
     }
-    .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+    .bullets{margin:0; padding-left:1.1rem; color:#dfe1e7}
+    .bullets li{margin:.35rem 0}
 
-    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem}
-    .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
-    .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
-    .info{padding:.7rem .8rem .85rem;color:#dfe1e7;border-top:1px solid #1e2230;display:flex;flex-direction:column;gap:.25rem}
-    .name{font-weight:650}
-    .line{color:#b6bac6;font-size:.92rem}
-    .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
-
-    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-
+    /* Sections */
+    section{max-width:var(--max); margin:0 auto; padding:0 1rem 2rem}
+    .h3{font-size:1.2rem; margin:0 0 .6rem}
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9e9ee}
 
-    /* RESPONSIVE: Mobile vs Desktop */
+    /* Responsive */
     @media (max-width: 979px){
       .topnav{ display:none }
       .menu-btn{
-        /* Floating Button: fixiert oben rechts, notch-safe */
-        position:fixed !important;
-        display:flex !important;
-        top:calc(env(safe-area-inset-top, 0px) + 12px);
-        right:12px;
-        z-index:120;
+        position:fixed !important; display:flex !important;
+        top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:120;
         box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
       }
       body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
+      .hero{ grid-template-columns:1fr; gap:1rem; padding-top:3.2rem }
     }
     @media (min-width: 980px){
       .menu-btn{ display:none }
       .scrim, .nav-drawer{ display:none !important }
     }
-
-    /* --- HOVER-GLOW SICHER AKTIVIEREN (global + gezielt) ------------------- */
-    /* Globaler Glow (auch wenn img-error aktiv ist) */
-    .eco-card:hover .thumb,
-    .eco-card:hover .thumb.img-error{
-      box-shadow: 0 8px 28px rgba(0,0,0,.25);
-    }
-    /* Extra: im Abschnitt Flankenspiele und bei ECO C55 (Zweispringerspiel) etwas stärker */
-    #flank .eco-card:hover .thumb,
-    .eco-card[data-eco="C55"]:hover .thumb{
-      box-shadow: 0 10px 36px rgba(0,0,0,.30);
-    }
   </style>
 </head>
 <body>
-  <!-- Header mit Brand + (Desktop) fester Topnav + (Mobil) Floating-Plus-Button -->
+  <!-- Header -->
   <header>
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
       <div>
         <h1>Polyglot Opening Books</h1>
-        <div class="sub">ECO-Galerie · Screenshot klicken ⇒ Download der passenden <b>.bin</b></div>
+        <div class="sub">Eröffnungsbücher · ECO-Screenshots · Downloads</div>
       </div>
     </div>
 
-    <!-- Feste Menüpunkte (nur Desktop sichtbar) -->
+    <!-- Topnav (Desktop) -->
     <nav class="topnav" aria-label="Hauptmenü">
-      <a class="nav-link" href="#open">Offene</a>
-      <a class="nav-link" href="#semiopen">Halboffene</a>
-      <a class="nav-link" href="#closed">Geschlossene</a>
-      <a class="nav-link" href="#semiclosed">Halbgeschlossene</a>
-      <a class="nav-link" href="#indian">Indische</a>
-      <a class="nav-link" href="#flank">Flankenspiele</a>
+      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="gallery.html">Galerie</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <a class="nav-link" href="impressum.html">Impressum</a>
       <a class="nav-link" href="datenschutz.html">Datenschutz</a>
     </nav>
 
-    <!-- Floating Plus (nur Mobil sichtbar) -->
+    <!-- Floating Plus (Mobil) -->
     <button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Menü öffnen">
       <span class="plus" aria-hidden="true"></span>
     </button>
@@ -186,137 +153,75 @@
       <button class="menu-close" aria-label="Menü schließen">×</button>
     </div>
     <ul class="menu-list">
-      <li><a href="#open">Offene</a></li>
-      <li><a href="#semiopen">Halboffene</a></li>
-      <li><a href="#closed">Geschlossene</a></li>
-      <li><a href="#semiclosed">Halbgeschlossene</a></li>
-      <li><a href="#indian">Indische</a></li>
-      <li><a href="#flank">Flankenspiele</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
       <li class="sep"></li>
       <li><a href="impressum.html">Impressum</a></li>
       <li><a href="datenschutz.html">Datenschutz</a></li>
     </ul>
   </nav>
 
-  <!-- Inhalt -->
-  <main id="app" aria-live="polite">
-    <p>Lade Daten…</p>
-  </main>
+  <!-- Hero / Intro -->
+  <section class="hero">
+    <div>
+      <h2>Hallo Welt — willkommen bei meinem Projekt der Schacheröffnungen!</h2>
+      <p>
+        Ich sammle, filtere und gewichte Eröffnungsvarianten zu <b>Polyglot</b>-Büchern (<code>.bin</code>),
+        ergänzt durch klare <b>ECO-Screenshots</b> und eine moderne, schnelle Oberfläche.
+        Ziel: praktikable Linien ohne Spam, sinnvoll gewichtet und sofort spielbereit.
+      </p>
+      <div class="cta">
+        <a class="btn" href="gallery.html">Zur Galerie</a>
+        <a class="btn secondary" href="#about">Mehr über das Projekt</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="h3">Was dich erwartet</div>
+      <ul class="bullets">
+        <li>Saubere Polyglot-Bücher mit nachvollziehbaren Filtern</li>
+        <li>ECO-geordnet, jeder Eintrag mit Screenshot & Direkt-Download</li>
+        <li>Schwarz-Rot-Design, mobil optimiert, keine Tracker</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="card">
+      <div class="h3">Über das Projekt</div>
+      <p>
+        Ich veröffentliche fertige Eröffnungsbücher im <code>polyglot bin</code>-Format.
+        Jede Eröffnung hat eine kurze Beschreibung, mehrere ECO-Abfolgen mit Beispielzugfolge
+        und einen Klick-Download. Feedback & Beiträge sind willkommen!
+      </p>
+      <p style="color:#a7acb8">Hinweis: Große <code>.bin</code> Dateien am besten über Releases oder Git LFS bereitstellen.</p>
+    </div>
+  </section>
 
   <footer>
-    Tipp: BINs mit <span class="kbd">git lfs</span> versionieren. Falls cburnett-Figuren in den Screenshots sind:
-    „Chess piece graphics © Colin M. L. Burnett (cburnett), CC BY-SA 3.0“ in die README aufnehmen.
+    <small>Build: Home</small>
   </footer>
 
-  <!-- Fehler sichtbar machen + JSON-Loader -->
-  <script>
-    // JS-/Promise-Fehler im UI anzeigen
-    (function(){
-      const show = (msg) => {
-        const el = document.getElementById('app');
-        if (el) el.innerHTML = `<p style="color:#ff6b6b">Fehler: ${msg}</p>`;
-      };
-      window.addEventListener('error', e => show(e.message));
-      window.addEventListener('unhandledrejection', e => show(e.reason));
-    })();
-
-    function render(openings){
-      const root = document.getElementById('app');
-
-      // Hilfsfunktion: "/images/…" -> "images/…", trimmt Whitespace
-      const fixPath = p => {
-        if (typeof p !== 'string') return p;
-        p = p.trim();
-        return p.startsWith('/') ? p.slice(1) : p;
-      };
-
-      if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
-      if(openings.length===0){ root.innerHTML = 'Keine Einträge in <code>data/openings.json</code>.'; return; }
-
-      root.innerHTML = openings.map(op => {
-        const cards = (op.items||[]).map(it => {
-          const img = fixPath(it.image);
-          const bin = fixPath(it.file);
-          return `
-            <a class="eco-card"
-               data-eco="${it.eco??''}"
-               data-opening="${op.id??''}"
-               href="${bin}" download
-               title="Download ${it.eco??''} – ${it.name??''}">
-              <div class="thumb">
-                <img loading="lazy"
-                     src="${img}"
-                     alt="Screenshot ${it.eco??''}: ${it.name??''}"
-                     onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
-              </div>
-              <div class="badges">
-                ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
-                ${it.size ? `<span class="chip">${it.size}</span>` : ''}
-              </div>
-              <div class="info">
-                <div class="name">${it.name??'Unbenannt'}</div>
-                ${it.line ? `<div class="line">${it.line}</div>` : ''}
-                <div class="hint">Klicken zum Download</div>
-              </div>
-            </a>`;
-        }).join('');
-
-        return `
-          <section class="opening" id="${op.id}">
-            <div class="op-head">
-              <div class="op-dot" aria-hidden="true"></div>
-              <div>
-                <h2 class="op-title">${op.title}</h2>
-                ${op.desc ? `<p class="op-desc">${op.desc}</p>` : ''}
-              </div>
-            </div>
-            <div class="eco-grid">${cards}</div>
-          </section>`;
-      }).join('');
-    }
-
-    (async () => {
-      const root = document.getElementById('app');
-      const url = 'data/openings.json?v=' + Date.now(); // Cache-Buster
-      root.textContent = 'Lade Daten…';
-      try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
-        const text = await res.text();
-        try {
-          const json = JSON.parse(text);
-          render(json);
-        } catch (parseErr) {
-          root.innerHTML = `<p>JSON-Fehler in <code>data/openings.json</code>:</p>
-                            <pre style="white-space:pre-wrap">${String(parseErr)}</pre>`;
-          console.error('JSON content was:', text);
-        }
-      } catch (e) {
-        root.innerHTML = `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`;
-      }
-    })();
-  </script>
-
-  <!-- Menü-Logik (Floating-Plus für Mobil) -->
+  <!-- Menü-Logik (Mobil) -->
   <script>
     (function(){
       const btn = document.querySelector('.menu-btn');
       const drawer = document.getElementById('menu');
       const scrim = document.querySelector('.scrim');
       const closeBtn = document.querySelector('.menu-close');
-      if(!btn) return; // Desktop hat keinen Button
+      if(!btn) return;
 
       function openMenu(){
         drawer.hidden = false; scrim.hidden = false; void drawer.offsetWidth;
         drawer.classList.add('open');
         btn.setAttribute('aria-expanded','true');
-        document.body.classList.add('menu-open');     // wichtig für Floating-Button
+        document.body.classList.add('menu-open');
         const first = drawer.querySelector('a,button'); first && first.focus();
       }
       function closeMenu(){
         drawer.classList.remove('open');
         btn.setAttribute('aria-expanded','false');
-        document.body.classList.remove('menu-open');  // wichtig für Floating-Button
+        document.body.classList.remove('menu-open');
         setTimeout(()=>{ scrim.hidden = true; drawer.hidden = true; }, 180);
         btn.focus();
       }
