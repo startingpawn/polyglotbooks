@@ -65,55 +65,68 @@
   </footer>
 
   <script>
-    async function boot(){
+    // Zeige alle JS-/Promise-Fehler sichtbar im UI
+    (function(){
+      const show = (msg) => {
+        const el = document.getElementById('app');
+        if (el) el.innerHTML = `<p style="color:#ff6b6b">Fehler: ${msg}</p>`;
+      };
+      window.addEventListener('error', e => show(e.message));
+      window.addEventListener('unhandledrejection', e => show(e.reason));
+    })();
+
+    function render(openings){
       const root = document.getElementById('app');
-      try{
-        const res = await fetch('data/openings.json', {cache:'no-store'});
-        if(!res.ok) throw new Error('openings.json nicht gefunden');
-        const openings = await res.json();
-
-        if(!Array.isArray(openings) || openings.length === 0){
-          root.innerHTML = '<p>Keine Einträge in <code>data/openings.json</code>.</p>';
-          return;
-        }
-
-        root.innerHTML = openings.map(op => {
-          const cards = (op.items||[]).map(it => `
-            <a class="eco-card" href="${it.file}" download title="Download ${it.eco} – ${it.name}">
-              <div class="thumb">
-                <img loading="lazy" src="${it.image}" alt="Screenshot ${it.eco}: ${it.name}">
+      if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
+      if(openings.length===0){ root.innerHTML = 'Keine Einträge in <code>data/openings.json</code>.'; return; }
+      root.innerHTML = openings.map(op => {
+        const cards = (op.items||[]).map(it => `
+          <a class="eco-card" href="${it.file}" download title="Download ${it.eco??''} – ${it.name??''}">
+            <div class="thumb"><img loading="lazy" src="${it.image}" alt="Screenshot ${it.eco??''}: ${it.name??''}"></div>
+            <div class="badges">
+              ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
+              ${it.size ? `<span class="chip">${it.size}</span>` : ''}
+            </div>
+            <div class="info">
+              <div class="name">${it.name??'Unbenannt'}</div>
+              ${it.line ? `<div class="line">${it.line}</div>` : ''}
+              <div class="hint">Klicken zum Download</div>
+            </div>
+          </a>`).join('');
+        return `
+          <section class="opening" id="${op.id}">
+            <div class="op-head">
+              <div class="op-dot" aria-hidden="true"></div>
+              <div>
+                <h2 class="op-title">${op.title}</h2>
+                ${op.desc ? `<p class="op-desc">${op.desc}</p>` : ''}
               </div>
-              <div class="badges">
-                <span class="chip eco">${it.eco}</span>
-                ${it.size ? `<span class="chip">${it.size}</span>` : ''}
-              </div>
-              <div class="info">
-                <div class="name">${it.name}</div>
-                ${it.line ? `<div class="line">${it.line}</div>` : ''}
-                <div class="hint">Klicken zum Download</div>
-              </div>
-            </a>
-          `).join('');
-
-          return `
-            <section class="opening" id="\${op.id}">
-              <div class="op-head">
-                <div class="op-dot" aria-hidden="true"></div>
-                <div>
-                  <h2 class="op-title">\${op.title}</h2>
-                  \${op.desc ? `<p class="op-desc">\${op.desc}</p>` : ''}
-                </div>
-              </div>
-              <div class="eco-grid">\${cards}</div>
-            </section>
-          `;
-        }).join('');
-      }catch(e){
-        root.innerHTML = '<p>Fehler beim Laden der Daten. Prüfe <code>data/openings.json</code> und Dateipfade.</p>';
-        console.error(e);
-      }
+            </div>
+            <div class="eco-grid">${cards}</div>
+          </section>`;
+      }).join('');
     }
-    boot();
+
+    (async () => {
+      const root = document.getElementById('app');
+      const url = 'data/openings.json?v=' + Date.now(); // Cache-Buster
+      root.textContent = 'Lade Daten…';
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
+        const text = await res.text();
+        try {
+          const json = JSON.parse(text);
+          render(json);
+        } catch (parseErr) {
+          root.innerHTML = `<p>JSON-Fehler in <code>data/openings.json</code>:</p>
+                            <pre style="white-space:pre-wrap">${String(parseErr)}</pre>`;
+          console.error('JSON content was:', text);
+        }
+      } catch (e) {
+        root.innerHTML = `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`;
+      }
+    })();
   </script>
 </body>
 </html>
