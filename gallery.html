@@ -252,15 +252,22 @@
   </div>
 
   <footer>
-    <small>Build: Galerie – Boards angepasst (Info darunter)</small>
+    <small>Build: Galerie – Boards (ResizeObserver fix)</small>
   </footer>
 
-  <!-- Fehler sichtbar machen -->
+  <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
   <script>
     (function(){
-      const show = (msg) => { const el = document.getElementById('app'); if (el) el.innerHTML = `<p style="color:#ff6b6b">Fehler: ${msg}</p>`; };
-      window.addEventListener('error', e => show(e.message));
-      window.addEventListener('unhandledrejection', e => show(e.reason));
+      const show = (msg) => {
+        const el = document.getElementById('app');
+        if (el) el.innerHTML = `<p style="color:#ff6b6b">Fehler: ${msg}</p>`;
+      };
+      const ignorable = (m) => /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i.test(String(m||''));
+      window.addEventListener('error', e => { if (!ignorable(e.message)) show(e.message); });
+      window.addEventListener('unhandledrejection', e => {
+        const r = e.reason && (e.reason.message || e.reason);
+        if (!ignorable(r)) show(r);
+      });
     })();
   </script>
 
@@ -310,8 +317,6 @@
       const bundle = g.bundle || {};
       const bundleFile = fixPath(bundle.file || g.file || '');
       const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
-
-      /* FIX: bundleSizeHtml korrekt berechnet */
       const bundleSizeHtml = bundle.size ? `<span class="dl-meta">${bundle.size}</span>` : '';
 
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
@@ -403,6 +408,9 @@
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
+    const raf = (cb) => requestAnimationFrame(cb);
+    const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
     document.addEventListener('openings-rendered', () => {
       const autos = document.querySelectorAll('.auto-board');
       autos.forEach((wrap) => {
@@ -424,7 +432,8 @@
         const tick = () => {
           const g = new Chess();
           for (let i = 0; i < idxMove; i++) g.move(hist[i]);
-          board.setPosition(g.fen());
+          const fen = g.fen();
+          raf(() => board.setPosition(fen));   // <<< entkoppelt vom Layout/RO
           idxMove = (idxMove + 1) % (hist.length + 1);
         };
         tick();
@@ -446,9 +455,12 @@
     const modalBoard = document.getElementById('modalBoard');
     let modalTimer = null;
 
-    function openModal(pgn){
+    async function openModal(pgn){
       modalEl.classList.add('open');
       modalEl.setAttribute('aria-hidden','false');
+
+      // Warte 2 Frames, bis Layout/ResizeObserver durch ist
+      await raf2();
 
       const game = new Chess();
       try { game.load_pgn(pgn); } catch {}
@@ -458,7 +470,8 @@
       const tick = () => {
         const g = new Chess();
         for (let i = 0; i < idxMove; i++) g.move(hist[i]);
-        modalBoard.setPosition(g.fen());
+        const fen = g.fen();
+        raf(() => modalBoard.setPosition(fen));  // <<< entkoppelt
         idxMove = (idxMove + 1) % (hist.length + 1);
       };
       tick();
