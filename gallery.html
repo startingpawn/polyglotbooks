@@ -1,1 +1,299 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Galerie – Polyglot Opening Books</title>
+  <meta name="description" content="ECO-Galerie mit Screenshots und Direkt-Downloads der Polyglot-BINs." />
+  <link rel="icon" href="assets/logo.png">
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --accentSoft:#ff2a2a; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:14px; --max:1200px; --gap:1rem;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* Header */
+    header{
+      max-width:var(--max);
+      margin:0 auto; padding:1rem 1rem 0.6rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
+
+    /* Topnav */
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    /* Menü-Button mobil (Plus) */
+    .menu-btn{
+      display:none; align-items:center; justify-content:center;
+      width:44px;height:44px;border-radius:12px;
+      border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
+    }
+    .menu-btn .plus{ position:relative; width:22px; height:22px; display:block }
+    .menu-btn .plus::before, .menu-btn .plus::after{
+      content:""; position:absolute; left:50%; top:50%;
+      width:22px; height:2px; background:#e9eaee; border-radius:2px; transform:translate(-50%,-50%);
+    }
+    .menu-btn .plus::after{ transform:translate(-50%,-50%) rotate(90deg) }
+    .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
+
+    /* Drawer */
+    .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
+    .nav-drawer{
+      position:fixed; top:0; right:0; height:100dvh; width:290px;
+      background:var(--panel); border-left:1px solid #1e2130; z-index:90;
+      transform:translateX(100%); transition:transform .18s ease-out; display:flex; flex-direction:column;
+    }
+    .nav-drawer.open{ transform:translateX(0) }
+    .menu-head{display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:1px solid #1e2130; font-weight:600}
+    .menu-close{width:36px;height:36px;border-radius:8px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer}
+    .menu-list{list-style:none; margin:0; padding:.4rem}
+    .menu-list li{margin:.1rem 0}
+    .menu-list li.sep{margin:.6rem 0; border-top:1px solid #1e2130}
+    .menu-list a{display:block; padding:.7rem .8rem; border-radius:10px}
+    .menu-list a:hover{ background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)); border:1px solid #2b3240 }
+
+    /* Inhalt / Karten */
+    main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
+    .opening{
+      background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
+      border:1px solid #1e2130;border-radius:var(--radius);
+      padding:1rem 1rem 1.2rem;margin:1.1rem 0 1.5rem
+    }
+    .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.2rem .3rem .6rem .3rem}
+    .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
+    .op-title{margin:0;font-size:1.2rem}
+    .op-desc{margin:.3rem 0 0;color:#c9cbd3}
+
+    .eco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);padding:.3rem}
+    .eco-card{display:block;position:relative;border-radius:12px;overflow:hidden;background:#0f1117;border:1px solid #222737}
+    .thumb{aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:12px; box-sizing:border-box}
+    .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+
+    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem}
+    .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
+    .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
+    .info{padding:.7rem .8rem .85rem;color:#dfe1e7;border-top:1px solid #1e2230;display:flex;flex-direction:column;gap:.25rem}
+    .name{font-weight:650}
+    .line{color:#b6bac6;font-size:.92rem}
+    .hint{margin-top:.35rem;font-size:.85rem;color:#a7acb8}
+
+    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
+
+    /* Hover-Glow global + extra für #flank und ECO C55 */
+    .eco-card:hover .thumb,
+    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
+    #flank .eco-card:hover .thumb,
+    .eco-card[data-eco="C55"]:hover .thumb{ box-shadow: 0 10px 36px rgba(0,0,0,.30) }
+
+    footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
+    .kbd{border:1px solid #2a2f3f;border-radius:8px;padding:.15rem .4rem;background:#161a24;color:#e9eaee}
+
+    /* Responsive */
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .menu-btn{
+        position:fixed !important; display:flex !important;
+        top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:120;
+        box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
+      }
+      body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
+    }
+    @media (min-width: 980px){
+      .menu-btn{ display:none }
+      .scrim, .nav-drawer{ display:none !important }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Opening Books</h1>
+        <div class="sub">ECO-Galerie · Screenshot klicken ⇒ Download der passenden <b>.bin</b></div>
+      </div>
+    </div>
+
+    <!-- Topnav (Desktop) -->
+    <nav class="topnav" aria-label="Hauptmenü">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="gallery.html">Galerie</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="impressum.html">Impressum</a>
+      <a class="nav-link" href="datenschutz.html">Datenschutz</a>
+    </nav>
+
+    <!-- Floating Plus (Mobil) -->
+    <button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Menü öffnen">
+      <span class="plus" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <!-- Drawer (Mobil) -->
+  <div class="scrim" hidden></div>
+  <nav id="menu" class="nav-drawer" hidden role="dialog" aria-modal="true" aria-label="Hauptmenü (mobil)">
+    <div class="menu-head">
+      <span>Menü</span>
+      <button class="menu-close" aria-label="Menü schließen">×</button>
+    </div>
+    <ul class="menu-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li class="sep"></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+    </ul>
+  </nav>
+
+  <!-- Inhalt -->
+  <main id="app" aria-live="polite">
+    <p>Lade Daten…</p>
+  </main>
+
+  <footer>
+    <small>Build: Galerie</small>
+  </footer>
+
+  <!-- Fehler sichtbar machen -->
+  <script>
+    (function(){
+      const show = (msg) => { const el = document.getElementById('app'); if (el) el.innerHTML = `<p style="color:#ff6b6b">Fehler: ${msg}</p>`; };
+      window.addEventListener('error', e => show(e.message));
+      window.addEventListener('unhandledrejection', e => show(e.reason));
+    })();
+  </script>
+
+  <!-- JSON-Loader + Render -->
+  <script>
+    function render(openings){
+      const root = document.getElementById('app');
+
+      const fixPath = p => {
+        if (typeof p !== 'string') return p;
+        p = p.trim();
+        return p.startsWith('/') ? p.slice(1) : p;
+      };
+
+      if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
+      if(openings.length===0){ root.innerHTML = 'Keine Einträge in <code>data/openings.json</code>.'; return; }
+
+      root.innerHTML = openings.map(op => {
+        const cards = (op.items||[]).map(it => {
+          const img = fixPath(it.image);
+          const bin = fixPath(it.file);
+          return `
+            <a class="eco-card"
+               data-eco="${it.eco??''}"
+               data-opening="${op.id??''}"
+               href="${bin}" download
+               title="Download ${it.eco??''} – ${it.name??''}">
+              <div class="thumb">
+                <img loading="lazy"
+                     src="${img}"
+                     alt="Screenshot ${it.eco??''}: ${it.name??''}"
+                     onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+              </div>
+              <div class="badges">
+                ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
+                ${it.size ? `<span class="chip">${it.size}</span>` : ''}
+              </div>
+              <div class="info">
+                <div class="name">${it.name??'Unbenannt'}</div>
+                ${it.line ? `<div class="line">${it.line}</div>` : ''}
+                <div class="hint">Klicken zum Download</div>
+              </div>
+            </a>`;
+        }).join('');
+
+        return `
+          <section class="opening" id="${op.id}">
+            <div class="op-head">
+              <div class="op-dot" aria-hidden="true"></div>
+              <div>
+                <h2 class="op-title">${op.title}</h2>
+                ${op.desc ? `<p class="op-desc">${op.desc}</p>` : ''}
+              </div>
+            </div>
+            <div class="eco-grid">${cards}</div>
+          </section>`;
+      }).join('');
+    }
+
+    (async () => {
+      const root = document.getElementById('app');
+      const url = 'data/openings.json?v=' + Date.now();
+      root.textContent = 'Lade Daten…';
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
+        const text = await res.text();
+        try {
+          const json = JSON.parse(text);
+          render(json);
+        } catch (parseErr) {
+          root.innerHTML = `<p>JSON-Fehler in <code>data/openings.json</code>:</p>
+                            <pre style="white-space:pre-wrap">${String(parseErr)}</pre>`;
+          console.error('JSON content was:', text);
+        }
+      } catch (e) {
+        root.innerHTML = `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`;
+      }
+    })();
+  </script>
+
+  <!-- Menü-Logik -->
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-btn');
+      const drawer = document.getElementById('menu');
+      const scrim = document.querySelector('.scrim');
+      const closeBtn = document.querySelector('.menu-close');
+      if(!btn) return;
+
+      function openMenu(){
+        drawer.hidden = false; scrim.hidden = false; void drawer.offsetWidth;
+        drawer.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        document.body.classList.add('menu-open');
+        const first = drawer.querySelector('a,button'); first && first.focus();
+      }
+      function closeMenu(){
+        drawer.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        document.body.classList.remove('menu-open');
+        setTimeout(()=>{ scrim.hidden = true; drawer.hidden = true; }, 180);
+        btn.focus();
+      }
+      btn.addEventListener('click', () => drawer.classList.contains('open') ? closeMenu() : openMenu());
+      closeBtn.addEventListener('click', closeMenu);
+      scrim.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+    })();
+  </script>
+</body>
+</html>
 
