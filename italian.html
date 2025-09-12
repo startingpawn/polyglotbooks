@@ -6,146 +6,63 @@
   <title>Italienisch – Galerie</title>
   <meta name="description" content="Italienische Eröffnung: ECO C50–C59 – gruppierte Varianten mit Mini-Boards, Zügen und Downloads." />
   <link rel="icon" href="assets/logo.png">
-
-  <!-- chessboard-element (Web Component) -->
   <link rel="preload" as="script" href="https://unpkg.com/chessboard-element?module">
   <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
-
   <style>
-    :root{
-      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
-      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
-      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
-      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
-    }
+    :root{ --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee; --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35); --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{ margin:0; background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%); color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial }
     a{color:inherit; text-decoration:none}
-
-    header{
-      max-width:var(--max);
-      margin:0 auto; padding:1rem 1rem 0.6rem;
-      display:flex; align-items:center; justify-content:space-between; gap:1rem
-    }
+    header{ max-width:var(--max); margin:0 auto; padding:1rem 1rem 0.6rem; display:flex; align-items:center; justify-content:space-between; gap:1rem }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{
-      width:48px;height:48px;border-radius:50%;
-      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
-      box-shadow:0 0 24px rgba(229,9,20,.35)
-    }
+    .logo{ width:48px;height:48px;border-radius:50%; background:#1a1517 url('assets/logo.png') center/80% no-repeat; box-shadow:0 0 24px rgba(229,9,20,.35) }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
-
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
-
-    /* Breadcrumb */
     .crumbs{max-width:var(--max);margin:0 auto;padding:0 1rem .4rem;color:#aeb3bf;font-size:.92rem}
-    .crumbs a{color:#cfd3db}
-    .crumbs a:hover{color:#fff;text-decoration:underline}
-
+    .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
-
-    .opening{
-      padding:.9rem 1.1rem 1.1rem;
-      background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
-      border:var(--border) solid #1e2130;border-radius:var(--radius);
-      margin:1rem 0 1.2rem
-    }
+    .opening{ padding:.9rem 1.1rem 1.1rem; background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel); border:var(--border) solid #1e2130;border-radius:var(--radius); margin:1rem 0 1.2rem }
     .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.1rem .3rem .25rem .3rem}
     .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
     .op-title{margin:0;font-size:1.2rem}
     .op-desc{margin:.25rem 0 0;color:#c9cbd3}
-
-    .group{
-      margin:.7rem 0 1rem;
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      overflow:hidden;
-    }
-    .group-head{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem;
-      padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230;
-    }
+    .group{ margin:.7rem 0 1rem; border:var(--border) solid #222737; border-radius:var(--radius); background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel); overflow:hidden; }
+    .group-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem; padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230; }
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.15rem 0 0 }
-
-    /* Bundle-Download */
-    .dl-btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem;
-      border-radius:12px; font-weight:700; font-size:.95rem;
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; border:none; text-decoration:none; white-space:nowrap;
-      box-shadow:0 8px 18px rgba(229,9,20,.24);
-      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
-    }
+    .dl-btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.5rem .75rem; border-radius:12px; font-weight:700; font-size:.95rem; background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; text-decoration:none; white-space:nowrap; box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease, filter .12s ease; }
     .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
-
-    /* Grid */
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding:.9rem 1rem 1rem }
-    @media (min-width: 980px){
-      .group-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); }
-    }
-
-    /* Karte */
-    .eco-card{
-      position:relative; display:flex; flex-direction:column;
-      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737
-    }
-    .thumb{
-      width:100%;
-      aspect-ratio:16/10; background:#121420;
-      display:flex; align-items:center; justify-content:center;
-      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box
-    }
+    @media (min-width: 980px){ .group-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); } }
+    .eco-card{ position:relative; display:flex; flex-direction:column; border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737 }
+    .thumb{ width:100%; aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box }
     .thumb-board{ aspect-ratio:auto; padding:0 }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
-
-    /* Board */
     .auto-board{ width:100%; display:block; cursor:default }
     .auto-board chess-board{ width:100%; height:auto; display:block }
-
-    /* Player */
     .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.55rem .7rem .6rem; }
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; }
     .ctrls-left{ display:flex; gap:.4rem; align-items:center; flex-wrap:wrap }
-    .ctr{
-      width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
-    }
+    .ctr{ width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer; }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .ctr[disabled]{ opacity:.5; cursor:not-allowed }
     .ctr[data-play][aria-pressed="true"]{ background:#1e262f; }
     .ctrls-right{ display:flex; gap:.6rem; align-items:center; color:#c3c6d1 }
     .counter{ font-variant-numeric:tabular-nums; }
-
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
-
     .info{ padding:.7rem .9rem .9rem;color:#dfe1e7;border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.25rem; background:#0f1117 }
-    .name{font-weight:650}
-    .line{color:#b6bac6;font-size:.92rem}
-
-    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-    .eco-card:hover .thumb,
-    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
-
+    .name{font-weight:650} .line{color:#b6bac6;font-size:.92rem}
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-
-    @media (max-width: 979px){
-      .topnav{ display:none }
-    }
+    @media (max-width: 979px){ .topnav{ display:none } }
   </style>
 </head>
 <body>
@@ -173,10 +90,9 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Detailseite (Autoplay aus, langsam)</small>
+    <small>Build: Italienisch – robustes Matching (Autoplay aus, langsam)</small>
   </footer>
 
-  <!-- Fehler-Anzeige -->
   <script>
     (function(){
       const show = (msg) => {
@@ -192,12 +108,41 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch) -->
+  <!-- JSON-Loader + Render (Italienisch robust finden) -->
   <script>
+    const qs = new URLSearchParams(location.search);
+    const Q_ID = (qs.get('id') || 'italian').toLowerCase();
+    const Q_TXT = (qs.get('q') || 'italien').toLowerCase();
+
     const fixPath = p => { if (typeof p !== 'string') return p; p = p.trim(); return p.startsWith('/') ? p.slice(1) : p; };
     const slug = s => (s||'').toString().toLowerCase()
       .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
       .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'gruppe';
+
+    const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
+
+    function flattenItems(op){
+      const its = [];
+      if (Array.isArray(op.items)) its.push(...op.items);
+      if (Array.isArray(op.groups)) for (const g of op.groups||[]) if (Array.isArray(g.items)) its.push(...g.items);
+      return its;
+    }
+
+    function pickItalian(openings){
+      // 1) id=italian
+      let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
+      if (op) return op;
+      // 2) Titel/Desc enthält "italien"/"italian" oder Q_TXT
+      op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
+      if (op) return op;
+      // 3) Irgendeine Gruppe-Titel enthält Suchwort
+      op = openings.find(o => (o.groups||[]).some(g => new RegExp(Q_TXT,'i').test(g.title||'') || new RegExp(Q_TXT,'i').test(g.desc||'')));
+      if (op) return op;
+      // 4) ECO-Heuristik (C50–C59)
+      op = openings.find(o => flattenItems(o).some(it => withinItalianEco(it.eco)));
+      if (op) return op;
+      return null;
+    }
 
     function card(it){
       const img = fixPath(it.image);
@@ -226,9 +171,7 @@
               <button class="ctr" data-next  title="Zug vor">▶︎</button>
               <button class="ctr" data-last  title="Zum Ende">⏭</button>
             </div>
-            <div class="ctrls-right">
-              <span class="counter" data-counter>0/0</span>
-            </div>
+            <div class="ctrls-right"><span class="counter" data-counter>0/0</span></div>
           </div>
         </div>` : '';
 
@@ -237,9 +180,7 @@
 
       return `
         ${tagOpen}
-          <div class="${thumbClass}">
-            ${media}
-          </div>
+          <div class="${thumbClass}">${media}</div>
           ${player}
           <div class="badges">
             ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
@@ -256,40 +197,33 @@
       const bundle = g.bundle || {};
       const bundleFile = fixPath(bundle.file || g.file || '');
       const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
-      const bundleSizeHtml = bundle.size ? `<span class="dl-meta">${g.bundle.size}</span>` : '';
+      const bundleSizeHtml = bundle.size ? `<span class="dl-meta">${bundle.size}</span>` : '';
 
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
       const cards = (g.items||[]).map(it => card(it)).join('');
-
-      const right = bundleFile
-        ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSizeHtml}</a>`
-        : '';
-
+      const right = bundleFile ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSizeHtml}</a>` : '';
       const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
 
       return `
         <div class="group" id="${gid}">
           <div class="group-head">
-            <div>
-              <h3 class="group-title">${g.title||'Gruppe'}</h3>
-              ${desc}
-            </div>
+            <div><h3 class="group-title">${g.title||'Gruppe'}</h3>${desc}</div>
             ${right}
           </div>
-          <div class="group-grid">
-            ${cards}
-          </div>
+          <div class="group-grid">${cards}</div>
         </div>`;
     }
 
-    function renderOnlyItalian(openings){
+    function renderItalian(openings){
       const root = document.getElementById('app');
       if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
-      // 1) nach id
-      let op = openings.find(o => (o.id||'').toLowerCase() === 'italian');
-      // 2) fallback: Titel enthält "Italien"
-      if (!op) op = openings.find(o => /italien/i.test(o.title||''));
-      if (!op){ root.innerHTML = '<p>Keine italienische Eröffnung in <code>data/openings.json</code> gefunden.</p>'; return; }
+
+      const op = pickItalian(openings);
+      if (!op){
+        const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Ohne Titel'}`).join('<br>');
+        root.innerHTML = `<p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
+        return;
+      }
 
       let html = `
         <section class="opening" id="${op.id||'italian'}">
@@ -327,7 +261,7 @@
         if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
         const text = await res.text();
         const json = JSON.parse(text);
-        renderOnlyItalian(json);
+        renderItalian(json);
       } catch (e) {
         root.innerHTML = `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`;
       }
@@ -342,15 +276,10 @@
     const INTERVAL = 1800;    // langsam
 
     const firstGameFrom = (content, index = 0) => {
-      let norm = String(content || '')
-        .replace(/\r\n/g, '\n')
-        .replace(/^\uFEFF/, '')
-        .trim();
+      let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
       const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
       norm = (parts[index] ?? parts[0] ?? norm).trim();
-      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => {
-        return headers.replace(/\s*$/, '\n\n') + next;
-      });
+      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
       return norm;
     };
 
@@ -367,8 +296,7 @@
         .replace(/×/g, 'x')
         .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
         .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
-        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R')
-        .replace(/[♗]/g,'B').replace(/[♘]/g,'N')
+        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R').replace(/[♗]/g,'B').replace(/[♘]/g,'N')
         .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
         .replace(/†/g,'+')
         .replace(/\b\d+\.(?:\.\.)?/g, ' ')
@@ -388,10 +316,7 @@
       let ok = 0;
       for (const t of tokens) {
         if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t) || t === '...') continue;
-        try {
-          const m = g2.move(t, { sloppy: true });
-          if (m) ok++;
-        } catch {}
+        try { if (g2.move(t, { sloppy: true })) ok++; } catch {}
       }
       if (ok) return g2.history({ verbose: true });
 
@@ -403,8 +328,7 @@
         try {
           const from = t.slice(0,2), to = t.slice(2,4);
           const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
-          const done = g3.move({ from, to, promotion: promo });
-          if (done) ok++;
+          if (g3.move({ from, to, promotion: promo })) ok++;
         } catch {}
       }
       if (ok) return g3.history({ verbose: true });
@@ -424,7 +348,6 @@
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
-        // PGN laden
         let pgn = '';
         const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
         const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
@@ -438,13 +361,8 @@
             if (!res.ok) throw new Error('HTTP ' + res.status);
             const txt = await res.text();
             pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
-          } catch (err) {
-            console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
-            return;
-          }
-        } else {
-          return;
-        }
+          } catch (err) { console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err); return; }
+        } else { return; }
 
         let hist = historyFromPGN(pgn);
 
@@ -484,18 +402,16 @@
           if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
-        // initial + Autoplay
         setIdx(0);
-        AUTOPLAY ? start() : pause();
+        // Autoplay AUS:
+        pause();
 
-        // Controls
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
         ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
         ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
         ctrPlay  && (ctrPlay.onclick  = () => (playing ? pause() : start()));
 
-        // Sichtbarkeitssteuerung
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
