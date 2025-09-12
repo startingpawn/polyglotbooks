@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Galerie – Überblick</title>
-  <meta name="description" content="Überblick über alle Polyglot-Eröffnungen. Wähle eine Eröffnung und öffne die Detailseite mit ECO-Screenshots und Board-Player." />
+  <meta name="description" content="Überblick: Hauptkategorien (Offen, Halboffen, Geschlossen, Indisch, Flanken) mit verlinkten Eröffnungen." />
   <link rel="icon" href="assets/logo.png">
 
   <style>
@@ -56,50 +56,43 @@
     .intro h2{ margin:.1rem 0 .35rem; font-size:1.2rem }
     .intro p{ margin:.2rem 0 0; color:#c9cbd3 }
 
-    /* Grid mit Eröffnungen */
-    .overview-grid{
-      display:grid; gap:var(--gap);
-      grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    /* Kategorien-Listen */
+    .cat{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(229,9,20,.04), transparent 120px) padding-box, var(--panel);
+      padding:1rem 1.1rem; margin:0 0 var(--gap);
     }
-    @media (min-width: 980px){
-      .overview-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop) }
+    .cat h3{
+      margin:.1rem 0 .6rem; font-size:1.08rem; letter-spacing:.02em;
+      display:flex; align-items:center; gap:.6rem
+    }
+    .cat h3 .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.65));
+      box-shadow:0 0 0 2px rgba(229,9,20,.18);
     }
 
-    .open-card{
-      position:relative; display:flex; flex-direction:column;
-      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737;
+    .open-list{
+      list-style:none; padding:0; margin:0;
+      display:grid; gap:.45rem;
+      grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    }
+    @media (min-width:980px){
+      .open-list{ grid-template-columns:repeat(3, 1fr); gap:.7rem 1rem; }
+    }
+
+    .item{
+      display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+      padding:.6rem .8rem; border-radius:12px; border:1px solid #2b3240; background:#0f1117;
       transition:.15s ease;
     }
-    .open-card:hover{ box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px) }
+    .item:hover{ box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.16); transform:translateY(-1px) }
+    .item .name{ font-weight:650 }
+    .item .meta{ color:#aeb3bf; font-size:.9rem }
 
-    .open-thumb{
-      width:100%; aspect-ratio:16/9; background:#121420;
-      display:flex; align-items:center; justify-content:center;
+    .item-disabled{
+      opacity:.6; cursor:not-allowed;
     }
-    .open-thumb img{ width:100%; height:100%; object-fit:cover; display:block }
-    .open-thumb.img-error{
-      background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px)
-    }
-
-    .open-info{ padding:.85rem 1rem 1rem; display:flex; flex-direction:column; gap:.35rem }
-    .open-name{ font-weight:700; }
-    .open-meta{ color:#aeb3bf; font-size:.92rem }
-    .open-actions{ margin-top:.3rem; display:flex; gap:.5rem; flex-wrap:wrap }
-
-    .btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem; border-radius:12px; font-weight:700; font-size:.95rem;
-      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
-    }
-    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-
-    .btn-primary{
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none;
-      box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease;
-    }
-    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-
-    .btn-disabled{ opacity:.55; cursor:not-allowed }
 
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
 
@@ -108,10 +101,10 @@
       position:fixed; right:16px; bottom:16px; z-index:60;
       width:56px; height:56px; border-radius:50%;
       display:none; place-items:center; user-select:none; cursor:pointer;
-      background:linear-gradient(180deg, #1b2230, #121a26); /* dunkel */
+      background:linear-gradient(180deg, #1b2230, #121a26);
       color:#e9eaee; font-size:34px; line-height:1;
       border:1px solid #2b3240;
-      box-shadow:0 6px 16px rgba(0,0,0,.35); /* dezent */
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
     .fab:hover{
@@ -119,7 +112,7 @@
       box-shadow:
         0 0 0 2px rgba(229,9,20,.22),
         0 14px 32px rgba(0,0,0,.45),
-        0 0 18px rgba(229,9,20,.16); /* leichter roter Glow */
+        0 0 18px rgba(229,9,20,.16);
     }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
     @media (max-width: 979px){
@@ -173,16 +166,15 @@
   <main id="app" aria-live="polite">
     <section class="intro">
       <h2>Überblick</h2>
-      <p>Wähle eine Eröffnung, um die Detailseite mit ECO-Screenshots, Board-Player und Download-Button zu öffnen.</p>
+      <p>Wähle eine Eröffnung aus einer Hauptkategorie. Bereits umgesetzt: <strong>Italienisch</strong> (Details &amp; Boards). Weitere Seiten kannst du jederzeit ergänzen.</p>
     </section>
 
-    <section id="grid" class="overview-grid" aria-label="Eröffnungs-Übersicht">
-      <!-- Karten werden via JS gerendert -->
-    </section>
+    <!-- Kategorien werden per JS gerendert -->
+    <section id="lists" aria-label="Eröffnungen nach Kategorien"></section>
   </main>
 
   <footer>
-    <small>Build: Galerie – Überblick + mobiler +-Button</small>
+    <small>Build: Galerie – Listenansicht (5 Hauptkategorien) + mobiler +-Button</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -203,8 +195,8 @@
   <script>
     (function(){
       const show = (msg) => {
-        const grid = document.getElementById('grid');
-        if (grid) grid.insertAdjacentHTML('afterend', `<p style="color:#ff6b6b">Fehler: ${msg}</p>`);
+        const lists = document.getElementById('lists');
+        if (lists) lists.insertAdjacentHTML('afterend', `<p style="color:#ff6b6b">Fehler: ${msg}</p>`);
       };
       const ignorable = (m) => /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i.test(String(m||''));
       window.addEventListener('error', e => { if (!ignorable(e.message)) show(e.message); });
@@ -215,85 +207,92 @@
     })();
   </script>
 
-  <!-- Galerie-Renderer (lädt data/openings.json) -->
+  <!-- Listen-Renderer -->
   <script>
-    const fixPath = p => { if (typeof p !== 'string') return p; p = p.trim(); return p.startsWith('/') ? p.slice(1) : p; };
-
-    // ECO-Bereich aus Items bestimmen (z.B. "C50–C59")
-    function ecoRange(opening){
-      const ecos = [];
-      const pushEco = (e) => { if (!e) return; const s=String(e).trim().toUpperCase(); if (/^[A-E]\d{2}$/.test(s)) ecos.push(s); };
-      if (Array.isArray(opening.items)) opening.items.forEach(it => pushEco(it.eco));
-      if (Array.isArray(opening.groups)) opening.groups.forEach(g => (g.items||[]).forEach(it => pushEco(it.eco)));
-      if (!ecos.length) return '';
-      ecos.sort();
-      const first = ecos[0], last = ecos[ecos.length-1];
-      return first===last ? first : `${first}–${last}`;
-    }
-
-    // Ein repräsentatives Bild finden
-    function pickImage(opening){
-      const getImg = (it) => fixPath(it?.image || '');
-      if (Array.isArray(opening.items) && opening.items.length){
-        const i = opening.items.find(it => it.image) || opening.items[0];
-        return getImg(i) || 'assets/logo.png';
+    // Hier konfigurierst du die sichtbaren Einträge und Zielseiten
+    const DATA = [
+      {
+        cat: 'Offen',
+        items: [
+          { name: 'Italienisch', href: 'italian.html' },
+          { name: 'Spanisch', href: 'spanish.html' },
+          { name: 'Schottisch', href: 'scotch.html' },
+          { name: 'Vierspringerspiel', href: 'four-knights.html' },
+          { name: 'Königsgambit', href: 'kings-gambit.html' },
+        ]
+      },
+      {
+        cat: 'Halboffen',
+        items: [
+          { name: 'Sizilianisch', href: 'sicilian.html' },
+          { name: 'Französisch', href: 'french.html' },
+          { name: 'Caro-Kann', href: 'caro-kann.html' },
+          { name: 'Skandinavisch', href: 'scandinavian.html' },
+          { name: 'Pirc', href: 'pirc.html' },
+          { name: 'Aljechin-Verteidigung', href: 'alekhine.html' },
+        ]
+      },
+      {
+        cat: 'Geschlossen',
+        items: [
+          { name: 'Damengambit (abgelehnt)', href: 'qgd.html' },
+          { name: 'Slawisch', href: 'slav.html' },
+          { name: 'Halbslawisch', href: 'semi-slav.html' },
+          { name: 'Tarrasch', href: 'tarrasch.html' },
+          { name: 'Stonewall', href: 'stonewall.html' },
+        ]
+      },
+      {
+        cat: 'Indisch',
+        items: [
+          { name: 'Nimzo-Indisch', href: 'nimzo-indian.html' },
+          { name: 'Königsindisch', href: 'kings-indian.html' },
+          { name: 'Grünfeld-Indisch', href: 'grunfeld.html' },
+          { name: 'Damenindisch', href: 'queens-indian.html' },
+          { name: 'Bogo-Indisch', href: 'bogo-indian.html' },
+          { name: 'Benoni', href: 'benoni.html' },
+          { name: 'Benko-Gambit', href: 'benko.html' },
+        ]
+      },
+      {
+        cat: 'Flanken',
+        items: [
+          { name: 'Englisch', href: 'english.html' },
+          { name: 'Réti', href: 'reti.html' },
+          { name: 'Bird', href: 'birds.html' },
+          { name: 'Katalanisch', href: 'catalan.html' },
+        ]
       }
-      if (Array.isArray(opening.groups)){
-        for (const g of opening.groups){
-          const i = (g.items||[]).find(it => it.image) || (g.items||[])[0];
-          if (i){ return getImg(i) || 'assets/logo.png'; }
-        }
-      }
-      return 'assets/logo.png';
+    ];
+
+    function renderLists(){
+      const root = document.getElementById('lists');
+      if (!root) return;
+      root.innerHTML = DATA.map(group => {
+        const items = (group.items||[]).map(it => {
+          const href = it.href || '#';
+          const disabled = href === '#';
+          return disabled
+            ? `<div class="item item-disabled" title="Demnächst verfügbar">
+                 <span class="name">${it.name}</span>
+                 <span class="meta">In Kürze</span>
+               </div>`
+            : `<a class="item" href="${href}">
+                 <span class="name">${it.name}</span>
+                 <span class="meta">Details</span>
+               </a>`;
+        }).join('');
+        return `
+          <section class="cat" aria-labelledby="h-${encodeURIComponent(group.cat)}">
+            <h3 id="h-${encodeURIComponent(group.cat)}"><span class="dot" aria-hidden="true"></span>${group.cat}</h3>
+            <ul class="open-list" role="list">
+              ${items.split('\n').map(li => `<li>${li}</li>`).join('\n')}
+            </ul>
+          </section>
+        `;
+      }).join('');
     }
-
-    function cardHTML(opening){
-      const id = String(opening.id||'').toLowerCase();
-      const title = opening.title || 'Unbenannte Eröffnung';
-      const desc = opening.desc || '';
-      const eco = ecoRange(opening);
-      const img = pickImage(opening);
-
-      // Link-Ziel: italien -> italian.html, sonst disabled
-      const isItalian = id === 'italian' || /italien/i.test(title);
-      const action = isItalian
-        ? `<a class="btn btn-primary" href="italian.html">Details</a>`
-        : `<span class="btn btn-disabled" title="Demnächst verfügbar">In&nbsp;Kürze</span>`;
-
-      return `
-        <article class="open-card">
-          <div class="open-thumb">
-            <img loading="lazy" src="${img}" alt="${title}"
-                 onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.open-thumb').classList.add('img-error');">
-          </div>
-          <div class="open-info">
-            <div class="open-name">${title}${eco ? ` <small style="color:#c0c4cf;font-weight:600">(${eco})</small>`:''}</div>
-            ${desc ? `<div class="open-meta">${desc}</div>` : ``}
-            <div class="open-actions">${action}</div>
-          </div>
-        </article>
-      `;
-    }
-
-    async function renderOverview(){
-      const grid = document.getElementById('grid');
-      if (!grid) return;
-      grid.innerHTML = '<p style="opacity:.8">Lade Eröffnungen…</p>';
-      const url = 'data/openings.json?v=' + Date.now();
-      try{
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
-        const text = await res.text();
-        const list = JSON.parse(text);
-        if (!Array.isArray(list)) throw new Error('openings.json ist kein Array.');
-        // sortiere nach title
-        list.sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'de'));
-        grid.innerHTML = list.map(cardHTML).join('');
-      }catch(e){
-        grid.innerHTML = `<p style="color:#ff6b6b">Konnte <code>${url}</code> nicht laden.<br><small>${String(e.message||e)}</small></p>`;
-      }
-    }
-    renderOverview();
+    renderLists();
   </script>
 
   <!-- Mobiler + Button (Bottom-Sheet) -->
