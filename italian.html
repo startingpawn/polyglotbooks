@@ -201,7 +201,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Button-Text „Download (.bin)“</small>
+    <small>Build: Italienisch – Bugfix PGN, nur Play-Button, Download (.bin)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -448,7 +448,7 @@
 
     const firstGameFrom = (content, index = 0) => {
       let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
-      const parts = norm split(/\n\n(?=\[Event\s)/g).filter(Boolean);
+      const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
       norm = (parts[index] ?? parts[0] ?? norm).trim();
       norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
       return norm;
@@ -516,7 +516,6 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
-        // Klicks auf Board/Player sollen Karte nicht "klickbar" machen
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
@@ -567,7 +566,6 @@
         }
         function start(){
           if (playing || hist.length === 0) return;
-          // immer von vorne starten
           setIdx(0);
           playing = true;
           if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
@@ -577,8 +575,8 @@
           }, INTERVAL);
         }
 
-        setIdx(0);            // Startstellung
-        stopPlayback();       // Autoplay AUS
+        setIdx(0);
+        stopPlayback();
 
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
@@ -589,7 +587,6 @@
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting && playing) {
-              // Stoppen, wenn Karte aus dem Blick ist
               stopPlayback();
             }
           });
