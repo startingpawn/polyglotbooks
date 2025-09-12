@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Italienisch – Galerie</title>
-  <meta name="description" content="Italienische Eröffnung (C50–C59): Varianten mit Mini-Boards, Zügen und BIN-Downloads – ohne äußere Gruppenrahmen." />
+  <meta name="description" content="Italienische Eröffnung (C50–C59): Varianten mit Mini-Boards, Zügen und BIN-Downloads – flaches Grid mit Header." />
   <link rel="icon" href="assets/logo.png">
 
   <!-- chessboard-element (Web Component) -->
@@ -50,6 +50,29 @@
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
+
+    /* Header über den Boards (Beschreibung + Download) */
+    .top-head{
+      margin:.6rem 0 1rem; padding:.9rem 1rem;
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
+      display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    }
+    .top-title{ margin:.1rem 0 .2rem; font-size:1.2rem }
+    .top-desc{ margin:.1rem 0 0; color:#c9cbd3 }
+
+    .dl-btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.5rem .75rem;
+      border-radius:12px; font-weight:700; font-size:.95rem;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; border:none; text-decoration:none; white-space:nowrap;
+      box-shadow:0 8px 18px rgba(229,9,20,.24);
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
+    .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+    .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
     /* FLACHES GRID (keine Gruppenrahmen) */
     .cards-grid{
@@ -134,7 +157,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – flaches Grid (kein Gruppenrahmen), Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – Header (Beschreibung + Download) über Grid, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Fehler-Anzeige -->
@@ -153,7 +176,7 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch, flaches Grid; Gruppen-Bundle -> Karten-Download) -->
+  <!-- JSON-Loader + Render (nur Italienisch, flaches Grid; Header mit Beschreibung + Bundle-Download) -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -163,25 +186,25 @@
 
     const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
 
-    function flattenItems(op){
-      const its = [];
-      if (Array.isArray(op.items)) its.push(...op.items);
+    function flattenItemsWithBundle(op){
+      // sammelt Items (Root + Gruppen) und mapped Gruppen-Bundle auf Items ohne eigene Datei
+      const items = [];
+      if (Array.isArray(op.items)) items.push(...op.items);
       if (Array.isArray(op.groups)) {
         for (const g of op.groups) {
           const gItems = Array.isArray(g.items) ? g.items : [];
           const bundleFile = g?.bundle?.file || g?.file || null;
           const bundleSize = g?.bundle?.size || g?.size || null;
           for (const it of gItems) {
-            its.push({
+            items.push({
               ...it,
-              // wenn Item keine eigene Datei hat -> Gruppen-Bundle nutzen
               file: it.file || bundleFile || it.file,
               size: it.size || bundleSize || it.size
             });
           }
         }
       }
-      return its;
+      return items;
     }
 
     function pickItalian(openings){
@@ -193,13 +216,13 @@
       if (op) return op;
       // 3) Heuristik via ECO
       op = openings.find(o => {
-        const all = flattenItems(o);
+        const all = flattenItemsWithBundle(o);
         return all.some(it => withinItalianEco(it.eco));
       });
       return op || null;
     }
 
-    // Filtert alles außerhalb C50–C59 weg
+    // Strikt italienisch (C50–C59)
     function filterStrictItalian(op){
       const clone = JSON.parse(JSON.stringify(op||{}));
       if (Array.isArray(clone.items)) {
@@ -215,6 +238,28 @@
       return clone;
     }
 
+    // Wähle passendes Gesamt-Bundle (Opening.bundle > erstes Gruppen-Bundle)
+    function pickBundle(op){
+      if (op?.bundle?.file) {
+        return {
+          file: fixPath(op.bundle.file),
+          size: op.bundle.size || '',
+          label: op.bundle.label || 'Alle C50–C59 (.bin)'
+        };
+      }
+      if (Array.isArray(op?.groups)) {
+        for (const g of op.groups) {
+          const file = fixPath(g?.bundle?.file || g?.file || '');
+          if (file) return {
+            file,
+            size: g?.bundle?.size || g?.size || '',
+            label: g?.bundle?.label || g?.label || 'Alle C50–C59 (.bin)'
+          };
+        }
+      }
+      return null;
+    }
+
     function card(it){
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
@@ -228,7 +273,7 @@
              title="Züge abspielen">
              <chess-board class="cb-mini"></chess-board>
            </div>`
-        : `<div class="thumb ${hasBoard ? 'thumb-board':''}">
+        : `<div class="thumb">
              <img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
                   onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
            </div>`;
@@ -277,8 +322,9 @@
       }
 
       const op = filterStrictItalian(opRaw);
+      const bundle = pickBundle(op);
 
-      // Alle gefilterten Items flach einsammeln & Gruppen-Bundle auf Items mappen
+      // Items flach einsammeln und Gruppen-Bundle auf Items mappen
       let items = [];
       if (Array.isArray(op.items)) items.push(...op.items);
       if (Array.isArray(op.groups)) {
@@ -294,13 +340,30 @@
           }
         }
       }
+      // Nur C50–C59
+      items = items.filter(it => withinItalianEco(it.eco));
+
+      let html = '';
+      // Header mit Beschreibung + Download
+      html += `<section class="top-head">
+        <div>
+          <h2 class="top-title">Italienisch (C50–C59)</h2>
+          <p class="top-desc">Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
+        </div>
+        ${bundle && bundle.file ? `<a class="dl-btn" href="${bundle.file}" download>
+          ${bundle.label || 'Alle C50–C59 (.bin)'} ${bundle.size ? `<span class="dl-meta">${bundle.size}</span>`:''}
+        </a>` : ``}
+      </section>`;
 
       if (!items.length){
-        root.innerHTML = `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>data/openings.json</code>.</p>`;
+        html += `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>data/openings.json</code>.</p>`;
+        root.innerHTML = html;
         return;
       }
 
-      root.innerHTML = `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
+      html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
+      root.innerHTML = html;
+
       document.dispatchEvent(new Event('openings-rendered'));
     }
 
