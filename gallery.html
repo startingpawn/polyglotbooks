@@ -87,17 +87,12 @@
       transition:.15s ease;
     }
     .item:hover{ box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.16); transform:translateY(-1px) }
-    .left{ display:flex; align-items:center; gap:.65rem }
-    .ico{
-      width:28px;height:28px;border-radius:8px; display:grid; place-items:center;
-      background:linear-gradient(180deg, #1b2230, #121a26); color:#e9eaee; border:1px solid #2b3240;
-      box-shadow:0 6px 14px rgba(0,0,0,.28);
-      flex:0 0 28px;
-    }
+    .left{ display:flex; align-items:center; gap:.55rem }
+    /* ehem. .ico entfällt */
     .name{ font-weight:650 }
     .meta{
       color:#c5c9d4; font-size:.86rem; padding:.2rem .5rem; border:1px solid #2b3240; border-radius:999px;
-      background:#121521;
+      background:#121521; white-space:nowrap;
     }
     .chev{
       opacity:.8; transition:.15s ease; margin-left:.3rem;
@@ -181,7 +176,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Listenansicht (nur vorhandene Einträge) + UI-Feinschliff</small>
+    <small>Build: Galerie – ECO-Label an Position des Symbols verschoben</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -198,14 +193,13 @@
     </div>
   </div>
 
-  <!-- Listen-Renderer (zeigt nur Seiten, die es tatsächlich gibt) -->
+  <!-- Listen-Renderer -->
   <script>
-    // Trage hier NUR Seiten ein, die schon existieren
-    // (Platzhalter werden nicht angezeigt)
+    // Nur existierende Seiten eintragen:
     const EXISTING = {
       // Offen
       'italian.html': { cat: 'Offen', name: 'Italienisch', eco: 'C50–C59' },
-      // Weitere vorhandene Seiten hier ergänzen, z. B.:
+      // Beispiel für spätere Ergänzungen:
       // 'spanish.html': { cat: 'Offen', name: 'Spanisch', eco: 'C60–C99' },
       // 'sicilian.html': { cat: 'Halboffen', name: 'Sizilianisch', eco: 'B20–B99' },
     };
@@ -220,7 +214,6 @@
         if (!map.has(cat)) map.set(cat, []);
         map.get(cat).push({ href, name: it.name, eco: it.eco||'' });
       });
-      // sortiere Einträge pro Kategorie alphabetisch
       for (const [cat, arr] of map){
         arr.sort((a,b)=>String(a.name).localeCompare(String(b.name),'de'));
       }
@@ -234,16 +227,15 @@
 
       const html = ORDER.map(cat => {
         const arr = grouped.get(cat) || [];
-        if (!arr.length) return ''; // leere Kategorien ausblenden
+        if (!arr.length) return '';
         const items = arr.map(it => `
           <li>
             <a class="item" href="${it.href}">
               <span class="left">
-                <span class="ico" aria-hidden="true">◎</span>
+                ${it.eco ? `<span class="meta" aria-label="ECO">${it.eco}</span>` : ``}
                 <span class="name">${it.name}</span>
               </span>
               <span class="right">
-                ${it.eco ? `<span class="meta">${it.eco}</span>` : ``}
                 <span class="chev" aria-hidden="true">›</span>
               </span>
             </a>
