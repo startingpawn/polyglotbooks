@@ -104,11 +104,14 @@
     .auto-board chess-board{ width:100%; height:auto; display:block }
 
     /* Player */
-    .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.55rem .7rem .6rem; }
-    .controls{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; }
-    .ctrls-left{ display:flex; gap:.4rem; align-items:center; flex-wrap:wrap }
+    .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.6rem .75rem .65rem; }
+    .controls{ display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
+    .ctrls-left{ display:flex; gap:.45rem; align-items:center; flex-wrap:wrap }
     .ctr{
-      width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
+      width:44px; height:44px; /* größer */
+      border-radius:12px;
+      border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
+      font-size:18px; line-height:1; display:inline-grid; place-items:center;
     }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .ctr[disabled]{ opacity:.5; cursor:not-allowed }
@@ -198,7 +201,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – korrekte Varianten-Namen, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – größere Player-Buttons, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -294,7 +297,7 @@
       return null;
     }
 
-    /* ECO → Variantenname (Fallback, wenn Name fehlt/zu generisch ist) */
+    /* ECO → Variantenname (Fallback) */
     const ECO_NAMES = {
       C50: 'Italienische Partie',
       C51: 'Evans-Gambit',
