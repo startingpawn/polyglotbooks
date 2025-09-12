@@ -201,7 +201,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Bugfix PGN, nur Play-Button, Download (.bin)</small>
+    <small>Build: Italienisch – Download (.bin), nur Play-Button, Menüfix</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -440,7 +440,7 @@
     })();
   </script>
 
-  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) + Mobiler Menübutton -->
+  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
@@ -594,37 +594,49 @@
         io.observe(card);
       });
     });
+  </script>
 
-    // Mobiler + Button (Bottom-Sheet)
+  <!-- Mobiler + Button (Bottom-Sheet) – eigenes (nicht-modulares) Script -->
+  <script>
     (function(){
-      const fab = document.getElementById('fab');
-      const sheet = document.getElementById('sheet');
-      const backdrop = sheet?.querySelector('.sheet-backdrop');
-      const panel = sheet?.querySelector('.sheet-panel');
+      function initMenu(){
+        const fab = document.getElementById('fab');
+        const sheet = document.getElementById('sheet');
+        if (!fab || !sheet) return;
 
-      const open = () => {
-        if (!sheet) return;
-        sheet.hidden = false;
-        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
-        fab?.setAttribute('aria-expanded','true');
-      };
-      const close = () => {
-        if (!sheet) return;
-        sheet.removeAttribute('data-open');
-        fab?.setAttribute('aria-expanded','false');
-        setTimeout(() => { sheet.hidden = true; }, 200);
-      };
+        const backdrop = sheet.querySelector('.sheet-backdrop');
+        const panel = sheet.querySelector('.sheet-panel');
 
-      fab?.addEventListener('click', () => {
-        if (sheet.hidden) open(); else close();
-      });
-      backdrop?.addEventListener('click', close);
-      panel?.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') close();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !sheet.hidden) close();
-      });
+        const open = () => {
+          sheet.hidden = false;
+          requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
+          fab.setAttribute('aria-expanded','true');
+        };
+        const close = () => {
+          sheet.removeAttribute('data-open');
+          fab.setAttribute('aria-expanded','false');
+          setTimeout(() => { sheet.hidden = true; }, 200);
+        };
+
+        fab.addEventListener('click', () => {
+          if (sheet.hidden) open(); else close();
+        }, { passive:true });
+
+        backdrop && backdrop.addEventListener('click', close, { passive:true });
+        panel && panel.addEventListener('click', (e) => {
+          if (e.target.tagName === 'A') close();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !sheet.hidden) close();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMenu);
+      } else {
+        initMenu();
+      }
     })();
   </script>
 </body>
