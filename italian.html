@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Italienisch – Galerie</title>
-  <meta name="description" content="Italienische Eröffnung (C50–C59): gruppierte Varianten mit Mini-Boards, Zügen und BIN-Downloads." />
+  <meta name="description" content="Italienische Eröffnung (C50–C59): Varianten mit Mini-Boards, Zügen und BIN-Downloads – ohne äußere Gruppenrahmen." />
   <link rel="icon" href="assets/logo.png">
 
   <!-- chessboard-element (Web Component) -->
@@ -51,45 +51,22 @@
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Gruppen (einziger Rahmen) */
-    .group{
-      margin:.9rem 0 1.1rem;
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      overflow:hidden;
+    /* FLACHES GRID (keine Gruppenrahmen) */
+    .cards-grid{
+      display:grid; gap:var(--gap);
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
     }
-    .group-head{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem;
-      padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230;
-    }
-    .group-title{ margin:0; font-size:1.05rem }
-    .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.15rem 0 0 }
-
-    /* Bundle-Download */
-    .dl-btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem;
-      border-radius:12px; font-weight:700; font-size:.95rem;
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; border:none; text-decoration:none; white-space:nowrap;
-      box-shadow:0 8px 18px rgba(229,9,20,.24);
-      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
-    }
-    .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
-    .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
-
-    /* Grid */
-    .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding:.9rem 1rem 1rem }
     @media (min-width: 980px){
-      .group-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); }
+      .cards-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); }
     }
 
     /* Karte */
     .eco-card{
       position:relative; display:flex; flex-direction:column;
-      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737
+      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737;
+      transition:.15s ease;
     }
+    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px)}
     .thumb{
       width:100%;
       aspect-ratio:16/10; background:#121420;
@@ -125,10 +102,6 @@
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
 
-    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-    .eco-card:hover .thumb,
-    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
-
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
 
     @media (max-width: 979px){
@@ -161,7 +134,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Hero entfernt, nur Gruppenrahmen (Autoplay aus, langsam)</small>
+    <small>Build: Italienisch – flaches Grid (kein Gruppenrahmen), Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Fehler-Anzeige -->
@@ -180,43 +153,53 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch, ohne Außen-/Hero-Rahmen, striktes C50–C59-Filtering) -->
+  <!-- JSON-Loader + Render (nur Italienisch, flaches Grid; Gruppen-Bundle -> Karten-Download) -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
     const Q_TXT = (qs.get('q') || 'italien').toLowerCase();
 
     const fixPath = p => { if (typeof p !== 'string') return p; p = p.trim(); return p.startsWith('/') ? p.slice(1) : p; };
-    const slug = s => (s||'').toString().toLowerCase()
-      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
-      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'gruppe';
 
     const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
 
     function flattenItems(op){
       const its = [];
       if (Array.isArray(op.items)) its.push(...op.items);
-      if (Array.isArray(op.groups)) for (const g of op.groups||[]) if (Array.isArray(g.items)) its.push(...g.items);
+      if (Array.isArray(op.groups)) {
+        for (const g of op.groups) {
+          const gItems = Array.isArray(g.items) ? g.items : [];
+          const bundleFile = g?.bundle?.file || g?.file || null;
+          const bundleSize = g?.bundle?.size || g?.size || null;
+          for (const it of gItems) {
+            its.push({
+              ...it,
+              // wenn Item keine eigene Datei hat -> Gruppen-Bundle nutzen
+              file: it.file || bundleFile || it.file,
+              size: it.size || bundleSize || it.size
+            });
+          }
+        }
+      }
       return its;
     }
 
     function pickItalian(openings){
-      // zuerst nach id
+      // 1) id=italian
       let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
       if (op) return op;
-      // dann nach Text
+      // 2) Textsuche
       op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
-      // Gruppen-Titel/Desc
-      op = openings.find(o => (o.groups||[]).some(g => new RegExp(Q_TXT,'i').test(g.title||'') || new RegExp(Q_TXT,'i').test(g.desc||'')));
-      if (op) return op;
-      // Heuristik via ECO-Bereich
-      op = openings.find(o => flattenItems(o).some(it => withinItalianEco(it.eco)));
-      if (op) return op;
-      return null;
+      // 3) Heuristik via ECO
+      op = openings.find(o => {
+        const all = flattenItems(o);
+        return all.some(it => withinItalianEco(it.eco));
+      });
+      return op || null;
     }
 
-    // Strikt italienisch halten (entfernt alles außerhalb C50–C59)
+    // Filtert alles außerhalb C50–C59 weg
     function filterStrictItalian(op){
       const clone = JSON.parse(JSON.stringify(op||{}));
       if (Array.isArray(clone.items)) {
@@ -226,7 +209,6 @@
         clone.groups = clone.groups.map(g => {
           const g2 = { ...g };
           g2.items = Array.isArray(g.items) ? g.items.filter(it => withinItalianEco(it.eco)) : [];
-          if (!g2.items.length) g2.bundle = null;
           return g2;
         }).filter(g => Array.isArray(g.items) && g.items.length > 0);
       }
@@ -237,7 +219,6 @@
       const img = fixPath(it.image);
       const bin = fixPath(it.file);
       const hasBoard = (it.pgn || it.pgnFile);
-      const thumbClass = hasBoard ? 'thumb thumb-board' : 'thumb';
 
       const media = hasBoard
         ? `<div class="auto-board"
@@ -247,8 +228,10 @@
              title="Züge abspielen">
              <chess-board class="cb-mini"></chess-board>
            </div>`
-        : `<img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
-              onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">`;
+        : `<div class="thumb ${hasBoard ? 'thumb-board':''}">
+             <img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
+                  onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+           </div>`;
 
       const player = hasBoard ? `
         <div class="player" data-player>
@@ -269,7 +252,7 @@
 
       return `
         ${tagOpen}
-          <div class="${thumbClass}">${media}</div>
+          ${hasBoard ? `<div class="thumb thumb-board">${media}</div>` : media}
           ${player}
           <div class="badges">
             ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
@@ -280,29 +263,6 @@
             ${it.line ? `<div class="line">${it.line}</div>` : ''}
           </div>
         ${tagClose}`;
-    }
-
-    function group(opId, g){
-      const bundle = g.bundle || {};
-      const bundleFile = fixPath(bundle.file || g.file || '');
-      const bundleLabel = bundle.label || `Alle ${g.title||'ECOs'} (.bin)`;
-      const bundleSizeHtml = bundle.size ? `<span class="dl-meta">${bundle.size}</span>` : '';
-
-      const gid = `${opId}-${slug(g.title||'gruppe')}`;
-      const cards = (g.items||[]).map(it => card(it)).join('');
-      const right = (bundleFile && (g.items||[]).length)
-        ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSizeHtml}</a>`
-        : '';
-      const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
-
-      return `
-        <div class="group" id="${gid}">
-          <div class="group-head">
-            <div><h3 class="group-title">${g.title||'Gruppe'}</h3>${desc}</div>
-            ${right}
-          </div>
-          <div class="group-grid">${cards}</div>
-        </div>`;
     }
 
     function renderItalian(openings){
@@ -316,31 +276,31 @@
         return;
       }
 
-      // Strikt auf C50–C59 zuschneiden
       const op = filterStrictItalian(opRaw);
 
-      let html = '';
-
-      let hasContent = false;
-      if (Array.isArray(op.groups) && op.groups.length){
-        const groupsHtml = op.groups.map(g => group(op.id||'italian', g)).join('');
-        if (groupsHtml.trim()) { html += groupsHtml; hasContent = true; }
-      }
-      if (!hasContent && Array.isArray(op.items) && op.items.length){
-        const cards = op.items.map(it => card(it)).join('');
-        html += `
-          <div class="group">
-            <div class="group-head"><div><h3 class="group-title">Varianten</h3></div></div>
-            <div class="group-grid">${cards}</div>
-          </div>`;
-        hasContent = true;
-      }
-
-      if (!hasContent){
-        html += `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>data/openings.json</code>.</p>`;
+      // Alle gefilterten Items flach einsammeln & Gruppen-Bundle auf Items mappen
+      let items = [];
+      if (Array.isArray(op.items)) items.push(...op.items);
+      if (Array.isArray(op.groups)) {
+        for (const g of op.groups) {
+          const bundleFile = g?.bundle?.file || g?.file || null;
+          const bundleSize = g?.bundle?.size || g?.size || null;
+          for (const it of (g.items||[])) {
+            items.push({
+              ...it,
+              file: it.file || bundleFile || it.file,
+              size: it.size || bundleSize || it.size
+            });
+          }
+        }
       }
 
-      root.innerHTML = html;
+      if (!items.length){
+        root.innerHTML = `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>data/openings.json</code>.</p>`;
+        return;
+      }
+
+      root.innerHTML = `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
       document.dispatchEvent(new Event('openings-rendered'));
     }
 
@@ -436,6 +396,7 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
+        // Klicks auf Board/Player sollen keinen Download-Link triggern
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
