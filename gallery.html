@@ -146,10 +146,12 @@
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Mini-Board */
+    /* Board-Wrapper: garantiert quadratisch, kein Beschnitt, kein Freiraum */
     .auto-board{ width:100%; display:block; cursor:default; line-height:0; }
-    .auto-board chess-board{
-      width:100%; height:auto; display:block; margin:0; vertical-align:top; /* beseitigt Freiraum */
+    .board-box{ position:relative; width:100%; aspect-ratio:1/1; }
+    .board-box chess-board{
+      position:absolute; inset:0; width:100%; height:100%;
+      display:block; margin:0; vertical-align:top;
     }
 
     /* Player unter dem Board */
@@ -246,7 +248,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Autoplay aus, Baseline-Gap fix (Board↔Player)</small>
+    <small>Build: Galerie – Autoplay aus, Board-Wrapper fix (kein Beschnitt/Gap)</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -284,7 +286,9 @@
              ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(it.pgnFile)}"` : ''}
              ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
              title="Züge abspielen">
-             <chess-board class="cb-mini"></chess-board>
+             <div class="board-box">
+               <chess-board class="cb-mini"></chess-board>
+             </div>
            </div>`
         : `<img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
               onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">`;
@@ -305,6 +309,7 @@
           </div>
         </div>` : '';
 
+      /* Für Board-Karten: Klicks im Board/Player sollen keinen Download triggern */
       const tagOpen  = `<a class="eco-card" data-eco="${it.eco??''}" ${bin?`href="${bin}" download`:''} title="${bin?`Download ${it.eco??''} – ${it.name??''}`:`${it.name??''}`}">`;
       const tagClose = `</a>`;
 
@@ -441,22 +446,22 @@
     /* SAN-Normalisierung: Tags raus, Kommentare/Varianten/NAGs weg, deutsche/Unicode-Figuren → EN */
     const sanitizeToEnglishSAN = (text) => {
       return text
-        .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')       // PGN-Tags entfernen
-        .replace(/\{[^}]*\}/g, ' ')                // Kommentare
-        .replace(/;[^\n]*/g, ' ')                  // Inline-Kommentare
-        .replace(/\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)/g, ' ') // Varianten
-        .replace(/\$[0-9]+/g, ' ')                 // NAGs
-        .replace(/\b(1-0|0-1|1\/2-1\/2|\*)\b/g, ' ') // Ergebnisse
-        .replace(/…/g, '...')                      // Ellipsen
-        .replace(/[–—-−]/g, '-')                   // Dashes
-        .replace(/×/g, 'x')                        // Multiplikationszeichen
-        .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O') // Rochade
+        .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
+        .replace(/\{[^}]*\}/g, ' ')
+        .replace(/;[^\n]*/g, ' ')
+        .replace(/\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)/g, ' ')
+        .replace(/\$[0-9]+/g, ' ')
+        .replace(/\b(1-0|0-1|1\/2-1\/2|\*)\b/g, ' ')
+        .replace(/…/g, '...')
+        .replace(/[–—-−]/g, '-')
+        .replace(/×/g, 'x')
+        .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
         .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
         .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R')
-        .replace(/[♗]/g,'B').replace(/[♘]/g,'N')   // Unicode → EN
-        .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q') // DE → EN
-        .replace(/†/g,'+')                         // Check
-        .replace(/\b\d+\.(?:\.\.)?/g, ' ')         // Zugnummern
+        .replace(/[♗]/g,'B').replace(/[♘]/g,'N')
+        .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
+        .replace(/†/g,'+')
+        .replace(/\b\d+\.(?:\.\.)?/g, ' ')
         .replace(/\s+/g, ' ')
         .trim();
     };
@@ -548,7 +553,7 @@
           const g = new Chess();
           for (let i = 0; i < n; i++) g.move(hist[i]);
           const fen = g.fen();
-          raf(() => board.setPosition(fen));
+          requestAnimationFrame(() => board.setPosition(fen));
           if (counter) counter.textContent = `${n}/${hist.length}`;
           if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
           if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
