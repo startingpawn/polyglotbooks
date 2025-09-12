@@ -243,7 +243,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Autoplay (langsam) & robuster PGN-Normalizer</small>
+    <small>Build: Galerie – Autoplay (langsam) & robuster PGN-Fallback</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -414,51 +414,124 @@
     })();
   </script>
 
-  <!-- Boards + Player je Karte (Autoplay langsam/1800ms, robuster PGN-Parser) -->
+  <!-- Boards + Player je Karte (Autoplay langsam/1800ms, robuster PGN/Notation-Fallback) -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
     const raf = (cb) => requestAnimationFrame(cb);
-    const AUTOPLAY = true;          // automatisch abspielen
-    const INTERVAL = 1800;          // langsam
+    const AUTOPLAY = true;    // automatisch starten
+    const INTERVAL = 1800;    // langsam
+
+    // ---------- Helfer: robustes Laden & Parsen ----------
+    // 1) Rohtext -> erste Partie (achtet auf Leerzeile nach Tags)
+    const firstGameFrom = (content, index = 0) => {
+      let norm = String(content || '')
+        .replace(/\r\n/g, '\n')
+        .replace(/^\uFEFF/, '')
+        .trim();
+
+      // mehrere Partien grob nach [Event …] trennen
+      const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
+      norm = (parts[index] ?? parts[0] ?? norm).trim();
+
+      // Leerzeile zwischen Headerblock und Zügen erzwingen
+      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => {
+        return headers.replace(/\s*$/, '\n\n') + next;
+      });
+
+      return norm;
+    };
+
+    // 2) Normalisierung für SAN (deutsche Buchstaben, Unicode, Sonderzeichen)
+    const sanitizeToEnglishSAN = (text) => {
+      return text
+        // Kommentare & Variationen weg
+        .replace(/\{[^}]*\}/g, ' ')
+        .replace(/;[^\n]*/g, ' ')
+        .replace(/\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)/g, ' ')
+        .replace(/\$[0-9]+/g, ' ')       // NAGs
+        // Ergebnisse raus
+        .replace(/\b(1-0|0-1|1\/2-1\/2|\*)\b/g, ' ')
+        // Ellipsen/Bindestriche/Multiplikationszeichen normieren
+        .replace(/…/g, '...')
+        .replace(/[–—-−]/g, '-')         // verschiedene Dashes -> '-'
+        .replace(/×/g, 'x')
+        // Rochade-Varianten vereinheitlichen (0/O gemischt, mit/ohne Bindestrich)
+        .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
+        .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
+        // Unicode-Figuren -> EN
+        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R')
+        .replace(/[♗]/g,'B').replace(/[♘]/g,'N')
+        // Deutsche Buchstaben -> EN (S=Springer->N, L=Bishop->B, T=Rook->R, D=Queen->Q)
+        .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
+        // Prüf-/Matt-Zeichen vereinheitlichen
+        .replace(/†/g,'+')
+        // Zugnummern entfernen
+        .replace(/\b\d+\.(?:\.\.)?/g, ' ')
+        // Doppel-/Mehrfachspaces glätten
+        .replace(/\s+/g, ' ')
+        .trim();
+    };
+
+    // 3) Versuche: erst klassisch über load_pgn, dann SAN-Fallback, dann UCI-Fallback
+    function historyFromPGN(pgnRaw) {
+      // a) Direkt versuchen
+      const g1 = new Chess();
+      try { g1.load_pgn(pgnRaw); } catch {}
+      let h = g1.history({ verbose: true });
+      if (h.length) return h;
+
+      // b) SAN-Fallback
+      const san = sanitizeToEnglishSAN(pgnRaw);
+      const g2 = new Chess();
+      const tokens = san.split(/\s+/).filter(Boolean);
+      let ok = 0;
+      for (const t of tokens) {
+        if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t)) continue; // Ergebnisse
+        if (t === '...') continue;
+        const m = g2.move(t, { sloppy: true });
+        if (m) ok++;
+      }
+      if (ok) return g2.history({ verbose: true });
+
+      // c) UCI-Fallback (e2e4 e7e5 ...)
+      const g3 = new Chess();
+      ok = 0;
+      for (const t of tokens) {
+        const m = t.match(/^[a-h][1-8][a-h][1-8][nbrqk]?$/i);
+        if (!m) continue;
+        const from = t.slice(0,2), to = t.slice(2,4);
+        const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
+        const done = g3.move({ from, to, promotion: promo });
+        if (done) ok++;
+      }
+      if (ok) return g3.history({ verbose: true });
+
+      // d) Keine Züge
+      console.warn('PGN/Movetext konnte nicht geparst werden. Anfang:', pgnRaw.slice(0, 200));
+      return [];
+    }
 
     document.addEventListener('openings-rendered', () => {
       const autos = document.querySelectorAll('.auto-board');
-
-      // Robuster Normalizer: CRLF -> LF, BOM raus, Mehrfach-PGN splitten, Leerzeile nach Headern sicherstellen
-      const firstGameFrom = (content, index = 0) => {
-        let norm = String(content || '')
-          .replace(/\r\n/g, '\n')
-          .replace(/^\uFEFF/, '')
-          .trim();
-
-        const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
-        norm = (parts[index] ?? parts[0] ?? norm).trim();
-
-        // Leerzeile zwischen Headerblock und Zügen erzwingen
-        norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => {
-          return headers.replace(/\s*$/, '\n\n') + next;
-        });
-
-        return norm;
-      };
 
       autos.forEach(async (wrap) => {
         const card = wrap.closest('.eco-card');
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
-        // Kein Download, wenn Board/Player angeklickt wird
-        wrap.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
+        // Klicks auf Board/Player sollen keinen Download auslösen
+        const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+        wrap.addEventListener('click', stop);
 
-        // PGN-Quelle
+        // --- PGN laden (inline oder Datei) ---
         let pgn = '';
         const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
         const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
         const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
 
         if (pgnInline) {
-          pgn = pgnInline;
+          pgn = firstGameFrom(pgnInline, pgnIndex);
         } else if (pgnFile) {
           try {
             const res = await fetch(pgnFile + '?v=' + Date.now(), { cache: 'no-store' });
@@ -473,7 +546,10 @@
           return;
         }
 
-        // Player-Elemente in der Karte
+        // --- Historie erzeugen (mit Fallbacks) ---
+        let hist = historyFromPGN(pgn);
+
+        // --- Player-Elemente in der Karte ---
         const player    = card.querySelector('[data-player]');
         const ctrFirst  = player?.querySelector('[data-first]');
         const ctrPrev   = player?.querySelector('[data-prev]');
@@ -481,19 +557,10 @@
         const ctrNext   = player?.querySelector('[data-next]');
         const ctrLast   = player?.querySelector('[data-last]');
         const counter   = player?.querySelector('[data-counter]');
-        player?.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
+        player?.addEventListener('click', stop);
 
-        // Spiel laden
-        const game = new Chess();
-        try { game.load_pgn(pgn); } catch (e) { console.warn('PGN parse error:', e); }
-        const hist = game.history({ verbose: true });
-        if (!hist.length) {
-          console.warn('Keine Züge in PGN erkannt. Beispielanfang:', pgn.slice(0, 200));
-        }
-
-        let idx = 0;
-        let playing = false;
-        let timerId = null;
+        // --- Wiedergabe-Logik ---
+        let idx = 0, playing = false, timerId = null;
 
         function draw(n){
           const g = new Chess();
@@ -520,7 +587,7 @@
           if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
-        // initial
+        // initial + Autoplay
         setIdx(0);
         AUTOPLAY ? start() : pause();
 
@@ -531,7 +598,7 @@
         ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
         ctrPlay  && (ctrPlay.onclick  = () => (playing ? pause() : start()));
 
-        // Sichtbarkeit beobachten → Auto-Pause
+        // Sichtbarkeit → Auto-Pause
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
