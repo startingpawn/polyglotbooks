@@ -108,14 +108,15 @@
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
     .ctrls-left{ display:flex; gap:.45rem; align-items:center; flex-wrap:wrap }
     .ctr{
-      width:44px; height:44px; /* größer */
+      width:44px; height:44px;
       border-radius:12px;
       border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
-      font-size:18px; line-height:1; display:inline-grid; place-items:center;
+      font-size:0; line-height:0; display:inline-grid; place-items:center;
     }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .ctr[disabled]{ opacity:.5; cursor:not-allowed }
     .ctr[data-play][aria-pressed="true"]{ background:#1e262f; }
+    .ctr svg{ width:20px; height:20px; display:block; fill:currentColor }
     .ctrls-right{ display:flex; gap:.6rem; align-items:center; color:#c3c6d1 }
     .counter{ font-variant-numeric:tabular-nums; }
 
@@ -201,7 +202,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – größere Player-Buttons, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – SVG-Icons für Player, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -336,11 +337,40 @@
         <div class="player" data-player>
           <div class="controls">
             <div class="ctrls-left">
-              <button class="ctr" data-first title="Zum Anfang">⏮</button>
-              <button class="ctr" data-prev  title="Zug zurück">◀</button>
-              <button class="ctr" data-play  title="Play/Pause" aria-pressed="false">▶</button>
-              <button class="ctr" data-next  title="Zug vor">▶︎</button>
-              <button class="ctr" data-last  title="Zum Ende">⏭</button>
+              <button class="ctr" data-first title="Zum Anfang" aria-label="Zum Anfang">
+                <!-- First (Skip to start) -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-prev title="Zug zurück" aria-label="Zug zurück">
+                <!-- Prev (Chevron left) -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-play title="Play/Pause" aria-pressed="false" aria-label="Play">
+                <!-- Play -->
+                <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <!-- Pause -->
+                <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true" hidden>
+                  <path d="M6 5h4v14H6zM14 5h4v14h-4z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-next title="Zug vor" aria-label="Zug vor">
+                <!-- Next (Chevron right) -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-last title="Zum Ende" aria-label="Zum Ende">
+                <!-- Last (Skip to end) -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
+                </svg>
+              </button>
             </div>
             <div class="ctrls-right"><span class="counter" data-counter>0/0</span></div>
           </div>
@@ -377,7 +407,6 @@
       const op = filterStrictItalian(opRaw);
       const bundle = pickBundle(op);
 
-      // Items flach einsammeln und nur C50–C59
       let items = flattenItemsWithBundle(op).filter(it => withinItalianEco(it.eco));
 
       let html = '';
@@ -535,10 +564,23 @@
           if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
         }
         function setIdx(n){ idx = Math.max(0, Math.min(n, hist.length)); draw(idx); }
+
+        function setPlayVisual(btn, isPlaying){
+          if (!btn) return;
+          const svgPlay = btn.querySelector('.ic-play');
+          const svgPause = btn.querySelector('.ic-pause');
+          btn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+          btn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
+          if (svgPlay && svgPause){
+            svgPlay.hidden = isPlaying;
+            svgPause.hidden = !isPlaying;
+          }
+        }
+
         function start(){
           if (playing || hist.length === 0) return;
           playing = true;
-          if (ctrPlay){ ctrPlay.setAttribute('aria-pressed','true'); ctrPlay.textContent = '❚❚'; }
+          setPlayVisual(ctrPlay, true);
           timerId = setInterval(() => {
             if (idx >= hist.length) { pause(); return; }
             setIdx(idx + 1);
@@ -546,12 +588,12 @@
         }
         function pause(){
           playing = false;
-          if (ctrPlay){ ctrPlay.setAttribute('aria-pressed','false'); ctrPlay.textContent = '▶'; }
+          setPlayVisual(ctrPlay, false);
           if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
         setIdx(0);
-        pause();
+        pause(); // Autoplay AUS
 
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
