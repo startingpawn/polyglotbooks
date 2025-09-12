@@ -419,8 +419,8 @@
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
     const raf = (cb) => requestAnimationFrame(cb);
-    const AUTOPLAY = true;    // automatisch starten
-    const INTERVAL = 1800;    // langsam
+    const AUTOPLAY = false;    // NICHT automatisch starten
+    const INTERVAL = 1800;     // langsam
 
     // ---------- Helfer: robustes Laden & Parsen ----------
     // 1) Rohtext -> erste Partie (achtet auf Leerzeile nach Tags)
@@ -590,7 +590,7 @@
         function pause(){
           playing = false;
           if (ctrPlay){ ctrPlay.setAttribute('aria-pressed','false'); ctrPlay.textContent = '▶'; }
-          if (timerId){ clearInterval(timerId); timerId = null; }
+        if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
         // initial + Autoplay
