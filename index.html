@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Home – Polyglot Opening Books</title>
-  <meta name="description" content="Landingpage: Vorstellung des Projekts Schacheröffnungen & Polyglot-Eröffnungsbücher." />
+  <title>Starting Pawn – Polyglot Opening Books</title>
+  <meta name="description" content="Polyglot-Eröffnungsbücher für Schach – entwickelt für das Spielen am physischen Brett. 100% kostenlos.">
   <link rel="icon" href="assets/logo.png">
+
   <style>
     :root{
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
-      --accent:#e50914; --accentSoft:#ff2a2a; --ring:0 0 0 2px rgba(229,9,20,.35);
-      --radius:14px; --max:1200px; --gap:1rem;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
       background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
@@ -22,7 +22,7 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header */
+    /* Header + Topnav */
     header{
       max-width:var(--max);
       margin:0 auto; padding:1rem 1rem 0.6rem;
@@ -36,91 +36,101 @@
     }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
-
-    /* Topnav */
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Menü-Button mobil (Plus) */
-    .menu-btn{
-      display:none; align-items:center; justify-content:center;
-      width:44px;height:44px;border-radius:12px;
-      border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
-    }
-    .menu-btn .plus{ position:relative; width:22px; height:22px; display:block }
-    .menu-btn .plus::before, .menu-btn .plus::after{
-      content:""; position:absolute; left:50%; top:50%;
-      width:22px; height:2px; background:#e9eaee; border-radius:2px; transform:translate(-50%,-50%);
-    }
-    .menu-btn .plus::after{ transform:translate(-50%,-50%) rotate(90deg) }
-    .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
-
-    /* Drawer */
-    .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
-    .nav-drawer{
-      position:fixed; top:0; right:0; height:100dvh; width:290px;
-      background:var(--panel); border-left:1px solid #1e2130; z-index:90;
-      transform:translateX(100%); transition:transform .18s ease-out; display:flex; flex-direction:column;
-    }
-    .nav-drawer.open{ transform:translateX(0) }
-    .menu-head{display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:1px solid #1e2130; font-weight:600}
-    .menu-close{width:36px;height:36px;border-radius:8px;border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer}
-    .menu-list{list-style:none; margin:0; padding:.4rem}
-    .menu-list li{margin:.1rem 0}
-    .menu-list li.sep{margin:.6rem 0; border-top:1px solid #1e2130}
-    .menu-list a{display:block; padding:.7rem .8rem; border-radius:10px}
-    .menu-list a:hover{ background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)); border:1px solid #2b3240 }
-
     /* Hero */
     .hero{
-      max-width:var(--max); margin:0 auto; padding:2.2rem 1rem 2.2rem;
-      display:grid; grid-template-columns:1.1fr .9fr; gap:1.2rem; align-items:center;
-    }
-    .hero h2{font-size:clamp(1.8rem,4vw,2.6rem); margin:.2rem 0 .6rem}
-    .hero p{color:#c9cbd3; font-size:1.05rem; line-height:1.55}
-    .cta{margin-top:1.1rem; display:flex; gap:.6rem; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-      padding:.7rem 1rem; border-radius:12px; border:1px solid #2b3240; cursor:pointer;
-      background:linear-gradient(180deg, rgba(229,9,20,.14), rgba(229,9,20,.06)); color:#fff; text-decoration:none;
-      box-shadow:0 2px 14px rgba(229,9,20,.15)
-    }
-    .btn.secondary{ background:#161a24; color:#e9eaee }
-    .btn:hover{ box-shadow:0 4px 22px rgba(229,9,20,.22) }
-
-    .card{
-      background:var(--panel); border:1px solid #1e2130; border-radius:14px; padding:1rem 1.2rem
-    }
-    .bullets{margin:0; padding-left:1.1rem; color:#dfe1e7}
-    .bullets li{margin:.35rem 0}
-
-    /* Sections */
-    section{max-width:var(--max); margin:0 auto; padding:0 1rem 2rem}
-    .h3{font-size:1.2rem; margin:0 0 .6rem}
-    footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-
-    /* Responsive */
-    @media (max-width: 979px){
-      .topnav{ display:none }
-      .menu-btn{
-        position:fixed !important; display:flex !important;
-        top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:120;
-        box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
-      }
-      body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
-      .hero{ grid-template-columns:1fr; gap:1rem; padding-top:3.2rem }
+      max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2rem;
+      display:grid; gap:1.2rem;
+      grid-template-columns: 1fr;
     }
     @media (min-width: 980px){
-      .menu-btn{ display:none }
-      .scrim, .nav-drawer{ display:none !important }
+      .hero{ grid-template-columns: 1.2fr .8fr; align-items:center; gap:2rem }
     }
+    .panel{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
+      padding:1.2rem 1.2rem 1.1rem;
+    }
+    .kicker{ color:#ffb3b3; letter-spacing:.04em; font-weight:700; text-transform:uppercase; font-size:.86rem }
+    .title{ margin:.25rem 0 .5rem; font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
+    .lead{ color:#cfd3db; font-size:1.02rem; margin:.25rem 0 .9rem }
+    .bullets{ display:grid; gap:.45rem; margin:.2rem 0 .9rem; color:#d9dce4 }
+    .bullets div::before{ content:"• "; color:#ff5f6d }
+
+    .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
+    .btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.6rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
+    }
+    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+    .btn-primary{
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none;
+      box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+
+    /* Hero-Side visual */
+    .visual{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:
+        radial-gradient(180px 180px at 80% -20%, rgba(229,9,20,.18), transparent 60%),
+        #0f1117;
+      padding:1rem;
+      display:flex; align-items:center; justify-content:center;
+      min-height:260px;
+    }
+    .visual img{ max-width:100%; height:auto; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,.45)) }
+
+    /* Footer */
+    footer{max-width:var(--max);margin:1.2rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
+
+    /* MOBILER + BUTTON (nur < 980px) */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; font-size:34px; line-height:1; border:1px solid #2b3240;
+      box-shadow:0 12px 26px rgba(229,9,20,.28), 0 2px 8px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{ transform:translateY(-1px); box-shadow:0 16px 30px rgba(229,9,20,.34) }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none } /* Desktop-Nav ausblenden auf Mobil */
+      .fab{ display:grid }
+    }
+
+    /* Bottom-Sheet Menü */
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
@@ -129,8 +139,6 @@
         <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
       </div>
     </div>
-
-    <!-- Topnav (Desktop) -->
     <nav class="topnav" aria-label="Hauptmenü">
       <a class="nav-link active" href="index.html">Home</a>
       <a class="nav-link" href="gallery.html">Galerie</a>
@@ -138,104 +146,81 @@
       <a class="nav-link" href="impressum.html">Impressum</a>
       <a class="nav-link" href="datenschutz.html">Datenschutz</a>
     </nav>
-
-    <!-- Floating Plus (Mobil) -->
-    <button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Menü öffnen">
-      <span class="plus" aria-hidden="true"></span>
-    </button>
   </header>
 
-  <!-- Drawer (Mobil) -->
-  <div class="scrim" hidden></div>
-  <nav id="menu" class="nav-drawer" hidden role="dialog" aria-modal="true" aria-label="Hauptmenü (mobil)">
-    <div class="menu-head">
-      <span>Menü</span>
-      <button class="menu-close" aria-label="Menü schließen">×</button>
-    </div>
-    <ul class="menu-list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="gallery.html">Galerie</a></li>
-      <li class="sep"></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero / Intro -->
-  <section class="hero">
-    <div>
-      <h2>Hallo Welt — willkommen bei meinem Projekt der Schacheröffnungen!</h2>
-      <p>
-        Ich bin <b>Tobias</b>. Ich sammle, filtere und gewichte Eröffnungsvarianten zu
-        <b>Polyglot</b>-Büchern (<code>.bin</code>).
-        Diese Bücher sind bewusst dafür entwickelt, <b>am physischen Schachbrett</b> verwendet zu werden –
-        kurz nachschlagen, Zugfolge übernehmen und direkt aufs Brett bringen.
-        Ergänzt wird alles durch klare ECO-Screenshots und eine moderne, schnelle Oberfläche.
-        Ziel: praktikable Linien ohne Spam, sinnvoll gewichtet und sofort spielbereit.
-        Und das alles ist <b>100&nbsp;% kostenlos</b>.
+  <main class="hero">
+    <section class="panel">
+      <div class="kicker">Hallo Welt</div>
+      <h2 class="title">Willkommen bei meinem Projekt der Schacheröffnungen</h2>
+      <p class="lead">
+        Ich bin <strong>Tobias</strong>. Meine Polyglot-Eröffnungen wurden
+        entwickelt, um mit <strong>physischen Schachbrettern</strong> gespielt zu werden – klar strukturiert, praktisch und direkt am Brett nutzbar.
       </p>
-      <div class="cta">
-        <a class="btn" href="gallery.html">Zur Galerie</a>
-        <a class="btn secondary" href="#about">Mehr über das Projekt</a>
+      <div class="bullets">
+        <div>100% kostenlos – einfach herunterladen und loslegen.</div>
+        <div>Saubere ECO-Struktur, gebündelte Varianten als .bin.</div>
+        <div>Moderne, dunkle Oberfläche im Starting-Pawn-Stil.</div>
       </div>
-    </div>
-    <div class="card">
-      <div class="h3">Was dich erwartet</div>
-      <ul class="bullets">
-        <li>100&nbsp;% kostenlos</li>
-        <li>Saubere Polyglot-Bücher mit nachvollziehbaren Filtern</li>
-        <li>ECO-geordnet, jeder Eintrag mit Screenshot & Direkt-Download</li>
-        <li>Schwarz-Rot-Design, mobil optimiert, keine Tracker</li>
-      </ul>
-    </div>
-  </section>
+      <div class="cta">
+        <a class="btn btn-primary" href="gallery.html">Galerie öffnen</a>
+        <a class="btn" href="italian.html">Italienisch (C50–C59)</a>
+      </div>
+    </section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="card">
-      <div class="h3">Über das Projekt</div>
-      <p>
-        Ich (Tobias) veröffentliche fertige Eröffnungsbücher im <code>polyglot bin</code>-Format.
-        Die Bücher sind speziell für das <b>Schachspielen mit physischen Brettern</b> gedacht:
-        schnell die Theorie griffbereit haben, Varianten prüfen und unmittelbar am Brett anwenden.
-        Jede Eröffnung hat eine kurze Beschreibung, mehrere ECO-Abfolgen mit Beispielzugfolge
-        und einen Klick-Download. Sämtliche Inhalte und Downloads sind <b>100&nbsp;% kostenlos</b>.
-      </p>
-      <p style="color:#a7acb8">Hinweis: Große <code>.bin</code>-Dateien am besten über Releases oder Git LFS bereitstellen.</p>
-    </div>
-  </section>
+    <aside class="visual" aria-hidden="true">
+      <img src="assets/hero-board.png" alt="" onerror="this.src='assets/logo.png'">
+    </aside>
+  </main>
 
   <footer>
-    <small>Build: Home</small>
+    <small>Build: Landing – neuer mobiler +-Button & Bottom-Sheet-Menü</small>
   </footer>
 
-  <!-- Menü-Logik (Mobil) -->
+  <!-- Mobiler + Button & Sheet (wie in italian.html) -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Mobiler + Button (Bottom-Sheet) -->
   <script>
     (function(){
-      const btn = document.querySelector('.menu-btn');
-      const drawer = document.getElementById('menu');
-      const scrim = document.querySelector('.scrim');
-      const closeBtn = document.querySelector('.menu-close');
-      if(!btn) return;
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      const backdrop = sheet?.querySelector('.sheet-backdrop');
+      const panel = sheet?.querySelector('.sheet-panel');
 
-      function openMenu(){
-        drawer.hidden = false; scrim.hidden = false; void drawer.offsetWidth;
-        drawer.classList.add('open');
-        btn.setAttribute('aria-expanded','true');
-        document.body.classList.add('menu-open');
-        const first = drawer.querySelector('a,button'); first && first.focus();
-      }
-      function closeMenu(){
-        drawer.classList.remove('open');
-        btn.setAttribute('aria-expanded','false');
-        document.body.classList.remove('menu-open');
-        setTimeout(()=>{ scrim.hidden = true; drawer.hidden = true; }, 180);
-        btn.focus();
-      }
-      btn.addEventListener('click', () => drawer.classList.contains('open') ? closeMenu() : openMenu());
-      closeBtn.addEventListener('click', closeMenu);
-      scrim.addEventListener('click', closeMenu);
-      document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+      const open = () => {
+        if (!sheet) return;
+        sheet.hidden = false;
+        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
+        fab?.setAttribute('aria-expanded','true');
+      };
+      const close = () => {
+        if (!sheet) return;
+        sheet.removeAttribute('data-open');
+        fab?.setAttribute('aria-expanded','false');
+        setTimeout(() => { sheet.hidden = true; }, 200);
+      };
+
+      fab?.addEventListener('click', () => {
+        if (sheet.hidden) open(); else close();
+      });
+      backdrop?.addEventListener('click', close);
+      panel?.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sheet.hidden) close();
+      });
     })();
   </script>
 </body>
