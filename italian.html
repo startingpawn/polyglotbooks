@@ -201,7 +201,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Download (.bin), nur Play-Button, Menüfix</small>
+    <small>Build: Italienisch – Download (.bin), nur Play-Button, Menüfix, Move-Sound</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -415,11 +415,9 @@
 
       if (!items.length){
         html += `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>data/openings.json</code>.</p>`;
-        root.innerHTML = html;
-        return;
+      } else {
+        html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
       }
-
-      html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
       root.innerHTML = html;
 
       document.dispatchEvent(new Event('openings-rendered'));
@@ -440,11 +438,19 @@
     })();
   </script>
 
-  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) -->
+  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) + Move-Sound -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
     const INTERVAL = 1800;    // langsam
+
+    /* ---- SFX: Move-Sound (MP3) ---- */
+    const sfx = (() => {
+      const a = new Audio('assets/sfx/move.mp3'); // <== deine Datei
+      a.preload = 'auto';
+      a.volume = 0.35;
+      return { enabled: true, play(){ try{ if (this.enabled) a.currentTime = 0, a.play(); }catch(_){} } };
+    })();
 
     const firstGameFrom = (content, index = 0) => {
       let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
@@ -557,7 +563,13 @@
           if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
           if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
         }
-        function setIdx(n){ idx = Math.max(0, Math.min(n, hist.length)); draw(idx); }
+
+        function setIdx(n){
+          const forward = n > idx;
+          idx = Math.max(0, Math.min(n, hist.length));
+          draw(idx);
+          if (forward && idx > 0) sfx.play();   // <-- Move-Sound bei Vorwärts-Schritt
+        }
 
         function stopPlayback(){
           playing = false;
@@ -566,7 +578,7 @@
         }
         function start(){
           if (playing || hist.length === 0) return;
-          setIdx(0);
+          setIdx(0); // immer von vorne starten
           playing = true;
           if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
           timerId = setInterval(() => {
@@ -576,7 +588,7 @@
         }
 
         setIdx(0);
-        stopPlayback();
+        stopPlayback(); // Autoplay AUS
 
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
