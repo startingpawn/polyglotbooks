@@ -19,7 +19,7 @@
             "image": "images/open/C50.png",
             "file": "books/open/C50.bin",
             "size": "1.1 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4",
             "pgnFile": "pgn/open/C50.pgn"
           },
           {
