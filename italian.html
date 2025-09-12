@@ -88,7 +88,7 @@
       border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737;
       transition:.15s ease;
     }
-    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px)}
+    .eco-card:hover{ box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px)}
     .thumb{
       width:100%;
       aspect-ratio:16/10; background:#121420;
@@ -191,7 +191,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – MB-Badges entfernt, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – keine Karten-Downloads, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -242,8 +242,7 @@
           for (const it of gItems) {
             items.push({
               ...it,
-              file: it.file || bundleFile || it.file
-              // size bewusst ignoriert (keine MB-Badges mehr)
+              file: it.file || bundleFile || it.file // Datei bleibt in den Daten, aber NICHT mehr klickbar auf der Karte
             });
           }
         }
@@ -290,7 +289,6 @@
 
     function card(it){
       const img = fixPath(it.image);
-      const bin = fixPath(it.file);
       const hasBoard = (it.pgn || it.pgnFile);
 
       const media = hasBoard
@@ -320,8 +318,9 @@
           </div>
         </div>` : '';
 
-      const tagOpen  = `<a class="eco-card" data-eco="${it.eco??''}" ${bin?`href="${bin}" download`:''} title="${bin?`Download ${it.eco??''} – ${it.name??''}`:`${it.name??''}`}">`;
-      const tagClose = `</a>`;
+      /* WICHTIG: KEIN <a>, KEIN href/download – damit kein Download mehr beim Klicken der Karte */
+      const tagOpen  = `<div class="eco-card" data-eco="${it.eco??''}" tabindex="0" title="${it.name??''}">`;
+      const tagClose = `</div>`;
 
       return `
         ${tagOpen}
@@ -329,7 +328,6 @@
           ${player}
           <div class="badges">
             ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
-            <!-- size-Tag entfernt -->
           </div>
           <div class="info">
             <div class="name">${it.name??'Unbenannt'}</div>
@@ -352,7 +350,7 @@
       const op = filterStrictItalian(opRaw);
       const bundle = pickBundle(op);
 
-      // Items flach einsammeln (MB ignoriert) und nur C50–C59
+      // Items flach einsammeln und nur C50–C59
       let items = flattenItemsWithBundle(op).filter(it => withinItalianEco(it.eco));
 
       let html = '';
@@ -468,7 +466,7 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
-        // Klicks auf Board/Player sollen keinen Download-Link triggern
+        // Board/Player-Klicks sind neutral (kein Download)
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
