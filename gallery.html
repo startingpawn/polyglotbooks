@@ -15,32 +15,24 @@
     :root{
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
-      --radius:16px; --max:1200px; --gap:1.2rem;
-      --gap-desktop:1.6rem;
-      --border:2px;
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
     body{
-      margin:0;
-      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      margin:0; background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
       color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
     }
     a{color:inherit; text-decoration:none}
 
     /* Header */
     header{
-      max-width:var(--max);
-      margin:0 auto; padding:1rem 1rem 0.6rem;
+      max-width:var(--max); margin:0 auto; padding:1rem 1rem 0.6rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem
     }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{
-      width:48px;height:48px;border-radius:50%;
-      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
-      box-shadow:0 0 24px rgba(229,9,20,.35)
-    }
+    .logo{ width:48px;height:48px;border-radius:50%; background:#1a1517 url('assets/logo.png') center/80% no-repeat; box-shadow:0 0 24px rgba(229,9,20,.35) }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
 
@@ -51,16 +43,14 @@
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Menü-Button mobil (Plus) */
+    /* Mobile Menü-Button (Plus) */
     .menu-btn{
-      display:none; align-items:center; justify-content:center;
-      width:44px;height:44px;border-radius:12px;
+      display:none; align-items:center; justify-content:center; width:44px;height:44px;border-radius:12px;
       border:1px solid #2b3240;background:#161a24;color:#e9eaee;cursor:pointer
     }
     .menu-btn .plus{ position:relative; width:22px; height:22px; display:block }
     .menu-btn .plus::before, .menu-btn .plus::after{
-      content:""; position:absolute; left:50%; top:50%;
-      width:22px; height:2px; background:#e9eaee; border-radius:2px; transform:translate(-50%,-50%);
+      content:""; position:absolute; left:50%; top:50%; width:22px; height:2px; background:#e9eaee; border-radius:2px; transform:translate(-50%,-50%);
     }
     .menu-btn .plus::after{ transform:translate(-50%,-50%) rotate(90deg) }
     .menu-btn:hover{box-shadow:0 0 0 2px rgba(229,9,20,.25)}
@@ -68,9 +58,8 @@
     /* Drawer */
     .scrim{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80}
     .nav-drawer{
-      position:fixed; top:0; right:0; height:100dvh; width:290px;
-      background:var(--panel); border-left:var(--border) solid #1e2130; z-index:90;
-      transform:translateX(100%); transition:transform .18s ease-out; display:flex; flex-direction:column;
+      position:fixed; top:0; right:0; height:100dvh; width:290px; background:var(--panel);
+      border-left:var(--border) solid #1e2130; z-index:90; transform:translateX(100%); transition:transform .18s ease-out; display:flex; flex-direction:column;
     }
     .nav-drawer.open{ transform:translateX(0) }
     .menu-head{display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:var(--border) solid #1e2130; font-weight:600}
@@ -81,15 +70,13 @@
     .menu-list a{display:block; padding:.7rem .8rem; border-radius:10px}
     .menu-list a:hover{ background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)); border:1px solid #2b3240 }
 
-    /* Inhalt / Karten */
+    /* Inhalt */
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Abschnitte & Rahmen */
+    /* Abschnitte */
     .opening{
-      padding:.9rem 1.1rem 1.1rem;
-      background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
-      border:var(--border) solid #1e2130;border-radius:var(--radius);
-      margin:1rem 0 1.2rem
+      padding:.9rem 1.1rem 1.1rem; background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel);
+      border:var(--border) solid #1e2130;border-radius:var(--radius); margin:1rem 0 1.2rem
     }
     .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.1rem .3rem .25rem .3rem}
     .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
@@ -97,31 +84,21 @@
     .op-desc{margin:.25rem 0 0;color:#c9cbd3}
 
     .group{
-      margin:.7rem 0 1rem;
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      overflow:hidden;
+      margin:.7rem 0 1rem; border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel); overflow:hidden;
     }
-    .group-head{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem;
-      padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230;
-    }
+    .group-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem; padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230; }
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.15rem 0 0 }
 
     /* Bundle-Download */
     .dl-btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem;
-      border-radius:12px; font-weight:700; font-size:.95rem;
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; border:none; text-decoration:none; white-space:nowrap;
-      box-shadow:0 8px 18px rgba(229,9,20,.24);
-      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      display:inline-flex; align-items:center; gap:.45rem; padding:.5rem .75rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; text-decoration:none; white-space:nowrap;
+      box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
     .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .dl-btn:active{ transform:translateY(0) }
     .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
     /* Grid */
@@ -131,36 +108,33 @@
     }
 
     /* Karte */
-    .eco-card{
-      position:relative; display:flex; flex-direction:column;
-      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737
-    }
-    .thumb{
-      width:100%;
-      aspect-ratio:16/10; background:#121420;
-      display:flex; align-items:center; justify-content:center;
-      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box;
-      line-height:0; /* verhindert Baseline-Gap */
-    }
+    .eco-card{ position:relative; display:flex; flex-direction:column; border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737 }
+    .thumb{ width:100%; aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center;
+      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box; line-height:0; }
     .thumb-board{ aspect-ratio:auto; padding:0 }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Board-Wrapper: garantiert quadratisch, kein Beschnitt, kein Freiraum */
+    /* Board-Wrapper + eigene Koordinaten (auf dem Brett) */
     .auto-board{ width:100%; display:block; cursor:default; line-height:0; }
     .board-box{ position:relative; width:100%; aspect-ratio:1/1; }
     .board-box chess-board{
-      position:absolute; inset:0; width:100%; height:100%;
-      display:block; margin:0; vertical-align:top;
+      position:absolute; inset:0; width:100%; height:100%; display:block; margin:0; vertical-align:top;
     }
+    .coords{ position:absolute; pointer-events:none; color:rgba(255,255,255,.9);
+      font:700 clamp(9px,1.15vw,12px)/1 system-ui; text-shadow:0 1px 2px rgba(0,0,0,.7); }
+    /* Files a–h innen unten rechts je Feld */
+    .coords-files{ bottom:4px; left:0; right:0; display:grid; grid-template-columns:repeat(8,1fr); padding:0 6px; }
+    .coords-files span{ justify-self:end; margin-right:6px; }
+    /* Ranks 8–1 innen links oben je Feld */
+    .coords-ranks{ top:0; bottom:0; left:4px; display:grid; grid-template-rows:repeat(8,1fr); padding:6px 0; }
+    .coords-ranks span{ align-self:start; margin-top:6px; }
 
-    /* Player unter dem Board */
+    /* Player */
     .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.55rem .7rem .6rem; }
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; }
     .ctrls-left{ display:flex; gap:.4rem; align-items:center; flex-wrap:wrap }
-    .ctr{
-      width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
-    }
+    .ctr{ width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer; }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .ctr[disabled]{ opacity:.5; cursor:not-allowed }
     .ctr[data-play][aria-pressed="true"]{ background:#1e262f; }
@@ -176,8 +150,7 @@
     .line{color:#b6bac6;font-size:.92rem}
 
     .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
-    .eco-card:hover .thumb,
-    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
+    .eco-card:hover .thumb,.eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
 
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
 
@@ -185,8 +158,7 @@
     @media (max-width: 979px){
       .topnav{ display:none }
       .menu-btn{
-        position:fixed !important; display:flex !important;
-        top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:120;
+        position:fixed !important; display:flex !important; top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:120;
         box-shadow:0 6px 24px rgba(229,9,20,.25), 0 0 0 2px rgba(229,9,20,.18);
       }
       body.menu-open .menu-btn{ opacity:0; pointer-events:none; transition:opacity .12s ease }
@@ -248,7 +220,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Autoplay aus, Board-Wrapper fix (kein Beschnitt/Gap)</small>
+    <small>Build: Galerie – Autoplay aus, Koordinaten im Brett (Overlay)</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -280,6 +252,9 @@
       const hasBoard = (it.pgn || it.pgnFile);
       const thumbClass = hasBoard ? 'thumb thumb-board' : 'thumb';
 
+      const filesMarkup = '<div class="coords coords-files"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div>';
+      const ranksMarkup = '<div class="coords coords-ranks"><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span></div>';
+
       const media = hasBoard
         ? `<div class="auto-board"
              ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
@@ -287,7 +262,8 @@
              ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
              title="Züge abspielen">
              <div class="board-box">
-               <chess-board class="cb-mini"></chess-board>
+               <chess-board class="cb-mini" coordinates="false"></chess-board>
+               ${filesMarkup}${ranksMarkup}
              </div>
            </div>`
         : `<img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
@@ -309,7 +285,6 @@
           </div>
         </div>` : '';
 
-      /* Für Board-Karten: Klicks im Board/Player sollen keinen Download triggern */
       const tagOpen  = `<a class="eco-card" data-eco="${it.eco??''}" ${bin?`href="${bin}" download`:''} title="${bin?`Download ${it.eco??''} – ${it.name??''}`:`${it.name??''}`}">`;
       const tagClose = `</a>`;
 
@@ -427,23 +402,18 @@
 
     const raf = (cb) => requestAnimationFrame(cb);
     const AUTOPLAY = false;   // NICHT automatisch starten
-    const INTERVAL = 1800;    // langsames Tempo, falls Play gedrückt wird
+    const INTERVAL = 1800;    // Tempo bei Play
 
-    /* Rohtext -> erste Partie & Leerzeile nach Tags sicherstellen */
+    /* Rohtext -> erste Partie & Leerzeile nach Tags sichern */
     const firstGameFrom = (content, index = 0) => {
-      let norm = String(content || '')
-        .replace(/\r\n/g, '\n')
-        .replace(/^\uFEFF/, '')
-        .trim();
+      let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
       const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
       norm = (parts[index] ?? parts[0] ?? norm).trim();
-      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => {
-        return headers.replace(/\s*$/, '\n\n') + next;
-      });
+      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
       return norm;
     };
 
-    /* SAN-Normalisierung: Tags raus, Kommentare/Varianten/NAGs weg, deutsche/Unicode-Figuren → EN */
+    /* SAN-Normalisierung */
     const sanitizeToEnglishSAN = (text) => {
       return text
         .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
@@ -457,8 +427,7 @@
         .replace(/×/g, 'x')
         .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
         .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
-        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R')
-        .replace(/[♗]/g,'B').replace(/[♘]/g,'N')
+        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R').replace(/[♗]/g,'B').replace(/[♘]/g,'N')
         .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
         .replace(/†/g,'+')
         .replace(/\b\d+\.(?:\.\.)?/g, ' ')
@@ -466,7 +435,7 @@
         .trim();
     };
 
-    /* Historie ermitteln: PGN → SAN-Fallback → UCI-Fallback */
+    /* PGN → Historie (PGN | SAN-Fallback | UCI-Fallback) */
     function historyFromPGN(pgnRaw) {
       const g1 = new Chess();
       try { g1.load_pgn(pgnRaw); } catch {}
@@ -479,10 +448,7 @@
       let ok = 0;
       for (const t of tokens) {
         if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t) || t === '...') continue;
-        try {
-          const m = g2.move(t, { sloppy: true });
-          if (m) ok++;
-        } catch {}
+        try { if (g2.move(t, { sloppy: true })) ok++; } catch {}
       }
       if (ok) return g2.history({ verbose: true });
 
@@ -494,8 +460,7 @@
         try {
           const from = t.slice(0,2), to = t.slice(2,4);
           const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
-          const done = g3.move({ from, to, promotion: promo });
-          if (done) ok++;
+          if (g3.move({ from, to, promotion: promo })) ok++;
         } catch {}
       }
       if (ok) return g3.history({ verbose: true });
@@ -512,9 +477,14 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
+        // Sicherheit: eingebaute Koordinaten aus (wir zeigen eigene Overlays)
+        board.setAttribute('coordinates', 'false');
+
+        // Klicks im Board/Player: Download des Cards unterbinden
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
+        // PGN laden
         let pgn = '';
         const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
         const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
@@ -538,6 +508,7 @@
 
         let hist = historyFromPGN(pgn);
 
+        // Player-Elemente
         const player    = card.querySelector('[data-player]');
         const ctrFirst  = player?.querySelector('[data-first]');
         const ctrPrev   = player?.querySelector('[data-prev]');
@@ -547,13 +518,14 @@
         const counter   = player?.querySelector('[data-counter]');
         player?.addEventListener('click', stop);
 
+        // Wiedergabe
         let idx = 0, playing = false, timerId = null;
 
         function draw(n){
           const g = new Chess();
           for (let i = 0; i < n; i++) g.move(hist[i]);
           const fen = g.fen();
-          requestAnimationFrame(() => board.setPosition(fen));
+          raf(() => board.setPosition(fen));
           if (counter) counter.textContent = `${n}/${hist.length}`;
           if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
           if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
@@ -574,16 +546,18 @@
           if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
-        /* initial: pausiert & kein Autoplay */
+        // Initial: pausiert
         setIdx(0);
         pause();
 
+        // Controls
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
         ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
         ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
         ctrPlay  && (ctrPlay.onclick  = () => (playing ? pause() : start()));
 
+        // Sichtbarkeit steuert Timer
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
