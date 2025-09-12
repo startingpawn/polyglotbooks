@@ -51,7 +51,7 @@
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Hero (ohne Rahmen) */
+    /* Hero (ohne Außenrahmen) */
     .hero{ margin: .6rem 0 1rem; padding: .2rem .2rem 0; }
     .hero h2{ margin:.2rem 0 .2rem; font-size:1.35rem }
     .hero p{ margin:.1rem 0 0; color:#c9cbd3 }
@@ -170,7 +170,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Sammelrahmen entfernt, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – Spanisch strikt gefiltert (nur C50–C59)</small>
   </footer>
 
   <!-- Fehler-Anzeige -->
@@ -189,7 +189,7 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch, ohne Außenrahmen) -->
+  <!-- JSON-Loader + Render (nur Italienisch, ohne Außenrahmen, striktes C50–C59-Filtering) -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -210,15 +210,41 @@
     }
 
     function pickItalian(openings){
+      // zuerst nach id
       let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
       if (op) return op;
+      // dann nach Text
       op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
+      // Gruppen-Titel/Desc
       op = openings.find(o => (o.groups||[]).some(g => new RegExp(Q_TXT,'i').test(g.title||'') || new RegExp(Q_TXT,'i').test(g.desc||'')));
       if (op) return op;
+      // Heuristik via ECO-Bereich
       op = openings.find(o => flattenItems(o).some(it => withinItalianEco(it.eco)));
       if (op) return op;
       return null;
+    }
+
+    // NEW: strikt italienisch halten (entfernt Spanisch & alles außerhalb C50–C59)
+    function filterStrictItalian(op){
+      const clone = JSON.parse(JSON.stringify(op||{}));
+      // Items auf Root-Ebene filtern (falls vorhanden)
+      if (Array.isArray(clone.items)) {
+        clone.items = clone.items.filter(it => withinItalianEco(it.eco));
+      }
+      // Gruppen filtern
+      if (Array.isArray(clone.groups)) {
+        clone.groups = clone.groups.map(g => {
+          const g2 = { ...g };
+          g2.items = Array.isArray(g.items) ? g.items.filter(it => withinItalianEco(it.eco)) : [];
+          // Bundle/Download nur zeigen, wenn nach Filter noch Items existieren
+          if (!g2.items.length) {
+            g2.bundle = null;
+          }
+          return g2;
+        }).filter(g => Array.isArray(g.items) && g.items.length > 0);
+      }
+      return clone;
     }
 
     function card(it){
@@ -278,7 +304,9 @@
 
       const gid = `${opId}-${slug(g.title||'gruppe')}`;
       const cards = (g.items||[]).map(it => card(it)).join('');
-      const right = bundleFile ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSizeHtml}</a>` : '';
+      const right = (bundleFile && (g.items||[]).length)
+        ? `<a class="dl-btn" href="${bundleFile}" download title="Download: ${bundleLabel}">${bundleLabel} ${bundleSizeHtml}</a>`
+        : '';
       const desc = g.desc ? `<p class="group-sub">${g.desc}</p>` : '';
 
       return `
@@ -295,14 +323,16 @@
       const root = document.getElementById('app');
       if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
 
-      const op = pickItalian(openings);
-      if (!op){
+      const opRaw = pickItalian(openings);
+      if (!opRaw){
         const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Ohne Titel'}`).join('<br>');
         root.innerHTML = `<div class="hero"><h2>Mit Italienisch (C50–C59)</h2><p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p></div><p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
         return;
       }
 
-      // Hero bleibt, wir hängen NUR die Gruppen an (kein Außenrahmen)
+      // Strikt auf C50–C59 zuschneiden (entfernt Spanisch & Co.)
+      const op = filterStrictItalian(opRaw);
+
       let html = `
         <div class="hero">
           <h2>Mit Italienisch (C50–C59)</h2>
@@ -310,18 +340,27 @@
         </div>
       `;
 
+      let hasContent = false;
+
       if (Array.isArray(op.groups) && op.groups.length){
-        html += op.groups.map(g => group(op.id||'italian', g)).join('');
-      } else if (Array.isArray(op.items)) {
+        const groupsHtml = op.groups.map(g => group(op.id||'italian', g)).join('');
+        if (groupsHtml.trim()) { html += groupsHtml; hasContent = true; }
+      }
+      if (!hasContent && Array.isArray(op.items) && op.items.length){
         const cards = op.items.map(it => card(it)).join('');
         html += `
           <div class="group">
             <div class="group-head"><div><h3 class="group-title">Varianten</h3></div></div>
             <div class="group-grid">${cards}</div>
           </div>`;
+        hasContent = true;
       }
-      root.innerHTML = html;
 
+      if (!hasContent){
+        html += `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>data/openings.json</code>.</p>`;
+      }
+
+      root.innerHTML = html;
       document.dispatchEvent(new Event('openings-rendered'));
     }
 
