@@ -131,10 +131,10 @@
       position:fixed; right:16px; bottom:16px; z-index:60;
       width:56px; height:56px; border-radius:50%;
       display:none; place-items:center; user-select:none; cursor:pointer;
-      background:linear-gradient(180deg, #1b2230, #121a26); /* dunkel */
+      background:linear-gradient(180deg, #1b2230, #121a26);
       color:#e9eaee; font-size:34px; line-height:1;
       border:1px solid #2b3240;
-      box-shadow:0 6px 16px rgba(0,0,0,.35); /* dezent */
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
     .fab:hover{
@@ -142,7 +142,7 @@
       box-shadow:
         0 0 0 2px rgba(229,9,20,.22),
         0 14px 32px rgba(0,0,0,.45),
-        0 0 18px rgba(229,9,20,.16); /* leichter roter Glow */
+        0 0 18px rgba(229,9,20,.16);
     }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
     @media (max-width: 979px){
@@ -198,7 +198,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – keine Karten-Downloads, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – korrekte Varianten-Namen, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -249,7 +249,7 @@
           for (const it of gItems) {
             items.push({
               ...it,
-              file: it.file || bundleFile || it.file // Datei bleibt in den Daten, aber NICHT mehr klickbar auf der Karte
+              file: it.file || bundleFile || it.file
             });
           }
         }
@@ -294,9 +294,27 @@
       return null;
     }
 
+    /* ECO → Variantenname (Fallback, wenn Name fehlt/zu generisch ist) */
+    const ECO_NAMES = {
+      C50: 'Italienische Partie',
+      C51: 'Evans-Gambit',
+      C52: 'Evans-Gambit',
+      C53: 'Giuoco Piano',
+      C54: 'Giuoco Piano',
+      C55: 'Zweispringerspiel',
+      C56: 'Zweispringerspiel',
+      C57: 'Zweispringerspiel – Angriff auf f7',
+      C58: 'Zweispringerspiel',
+      C59: 'Zweispringerspiel'
+    };
+    const looksGenericItalian = (s='') => /italien/i.test(s);
+
     function card(it){
       const img = fixPath(it.image);
       const hasBoard = (it.pgn || it.pgnFile);
+      const eco = String(it.eco||'').toUpperCase();
+      const displayName =
+        (!it.name || looksGenericItalian(it.name)) ? (ECO_NAMES[eco] || it.name || 'Variante') : it.name;
 
       const media = hasBoard
         ? `<div class="auto-board"
@@ -307,7 +325,7 @@
              <chess-board class="cb-mini"></chess-board>
            </div>`
         : `<div class="thumb">
-             <img loading="lazy" src="${img}" alt="Screenshot ${it.eco??''}: ${it.name??''}"
+             <img loading="lazy" src="${img}" alt="Screenshot ${eco}: ${displayName}"
                   onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
            </div>`;
 
@@ -325,8 +343,7 @@
           </div>
         </div>` : '';
 
-      /* WICHTIG: KEIN <a>, KEIN href/download – damit kein Download mehr beim Klicken der Karte */
-      const tagOpen  = `<div class="eco-card" data-eco="${it.eco??''}" tabindex="0" title="${it.name??''}">`;
+      const tagOpen  = `<div class="eco-card" data-eco="${eco}" tabindex="0" title="${displayName}">`;
       const tagClose = `</div>`;
 
       return `
@@ -334,10 +351,10 @@
           ${hasBoard ? `<div class="thumb thumb-board">${media}</div>` : media}
           ${player}
           <div class="badges">
-            ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
+            ${eco ? `<span class="chip eco">${eco}</span>` : ''}
           </div>
           <div class="info">
-            <div class="name">${it.name??'Unbenannt'}</div>
+            <div class="name">${displayName}</div>
             ${it.line ? `<div class="line">${it.line}</div>` : ''}
           </div>
         ${tagClose}`;
@@ -473,13 +490,12 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
-        // Board/Player-Klicks sind neutral (kein Download)
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
         let pgn = '';
         const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
-        const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
+        const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnFile || wrap.dataset.pgnfile) : '';
         const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
 
         if (pgnInline) {
@@ -532,7 +548,6 @@
         }
 
         setIdx(0);
-        // Autoplay AUS
         pause();
 
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
