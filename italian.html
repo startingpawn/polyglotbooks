@@ -72,7 +72,6 @@
     }
     .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
 
     /* FLACHES GRID (keine Gruppenrahmen) */
     .cards-grid{
@@ -157,7 +156,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Header (Beschreibung + Download) über Grid, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – Header ohne MB-Angabe, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Fehler-Anzeige -->
@@ -176,7 +175,7 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch, flaches Grid; Header mit Beschreibung + Bundle-Download) -->
+  <!-- JSON-Loader + Render (nur Italienisch, flaches Grid; Header mit Beschreibung + Bundle-Download, ohne MB) -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -187,14 +186,13 @@
     const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
 
     function flattenItemsWithBundle(op){
-      // sammelt Items (Root + Gruppen) und mapped Gruppen-Bundle auf Items ohne eigene Datei
       const items = [];
       if (Array.isArray(op.items)) items.push(...op.items);
       if (Array.isArray(op.groups)) {
         for (const g of op.groups) {
           const gItems = Array.isArray(g.items) ? g.items : [];
           const bundleFile = g?.bundle?.file || g?.file || null;
-          const bundleSize = g?.bundle?.size || g?.size || null;
+          const bundleSize = g?.bundle?.size || g?.size || null; // behalten, aber nicht im Header anzeigen
           for (const it of gItems) {
             items.push({
               ...it,
@@ -208,13 +206,10 @@
     }
 
     function pickItalian(openings){
-      // 1) id=italian
       let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
       if (op) return op;
-      // 2) Textsuche
       op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
-      // 3) Heuristik via ECO
       op = openings.find(o => {
         const all = flattenItemsWithBundle(o);
         return all.some(it => withinItalianEco(it.eco));
@@ -222,7 +217,6 @@
       return op || null;
     }
 
-    // Strikt italienisch (C50–C59)
     function filterStrictItalian(op){
       const clone = JSON.parse(JSON.stringify(op||{}));
       if (Array.isArray(clone.items)) {
@@ -238,12 +232,10 @@
       return clone;
     }
 
-    // Wähle passendes Gesamt-Bundle (Opening.bundle > erstes Gruppen-Bundle)
     function pickBundle(op){
       if (op?.bundle?.file) {
         return {
           file: fixPath(op.bundle.file),
-          size: op.bundle.size || '',
           label: op.bundle.label || 'Alle C50–C59 (.bin)'
         };
       }
@@ -252,7 +244,6 @@
           const file = fixPath(g?.bundle?.file || g?.file || '');
           if (file) return {
             file,
-            size: g?.bundle?.size || g?.size || '',
             label: g?.bundle?.label || g?.label || 'Alle C50–C59 (.bin)'
           };
         }
@@ -341,18 +332,16 @@
         }
       }
       // Nur C50–C59
-      items = items.filter(it => withinItalianEco(it.eco));
+      items = items.filter(it => /^C5[0-9]$/i.test(String(it.eco||'').trim()));
 
       let html = '';
-      // Header mit Beschreibung + Download
+      // Header mit Beschreibung + Download (ohne MB-Angabe)
       html += `<section class="top-head">
         <div>
           <h2 class="top-title">Italienisch (C50–C59)</h2>
           <p class="top-desc">Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
         </div>
-        ${bundle && bundle.file ? `<a class="dl-btn" href="${bundle.file}" download>
-          ${bundle.label || 'Alle C50–C59 (.bin)'} ${bundle.size ? `<span class="dl-meta">${bundle.size}</span>`:''}
-        </a>` : ``}
+        ${bundle && bundle.file ? `<a class="dl-btn" href="${bundle.file}" download>${bundle.label || 'Alle C50–C59 (.bin)'}</a>` : ``}
       </section>`;
 
       if (!items.length){
