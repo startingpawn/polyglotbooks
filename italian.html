@@ -51,11 +51,6 @@
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Hero (ohne Außenrahmen) */
-    .hero{ margin: .6rem 0 1rem; padding: .2rem .2rem 0; }
-    .hero h2{ margin:.2rem 0 .2rem; font-size:1.35rem }
-    .hero p{ margin:.1rem 0 0; color:#c9cbd3 }
-
     /* Gruppen (einziger Rahmen) */
     .group{
       margin:.9rem 0 1.1rem;
@@ -162,15 +157,11 @@
   <div class="crumbs"> <a href="gallery.html">Galerie</a> &nbsp;→&nbsp; <strong>Italienisch</strong> </div>
 
   <main id="app" aria-live="polite">
-    <div class="hero">
-      <h2>Mit Italienisch (C50–C59)</h2>
-      <p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
-    </div>
     <p>Lade Daten…</p>
   </main>
 
   <footer>
-    <small>Build: Italienisch – Spanisch strikt gefiltert (nur C50–C59)</small>
+    <small>Build: Italienisch – Hero entfernt, nur Gruppenrahmen (Autoplay aus, langsam)</small>
   </footer>
 
   <!-- Fehler-Anzeige -->
@@ -189,7 +180,7 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch, ohne Außenrahmen, striktes C50–C59-Filtering) -->
+  <!-- JSON-Loader + Render (nur Italienisch, ohne Außen-/Hero-Rahmen, striktes C50–C59-Filtering) -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -225,22 +216,17 @@
       return null;
     }
 
-    // NEW: strikt italienisch halten (entfernt Spanisch & alles außerhalb C50–C59)
+    // Strikt italienisch halten (entfernt alles außerhalb C50–C59)
     function filterStrictItalian(op){
       const clone = JSON.parse(JSON.stringify(op||{}));
-      // Items auf Root-Ebene filtern (falls vorhanden)
       if (Array.isArray(clone.items)) {
         clone.items = clone.items.filter(it => withinItalianEco(it.eco));
       }
-      // Gruppen filtern
       if (Array.isArray(clone.groups)) {
         clone.groups = clone.groups.map(g => {
           const g2 = { ...g };
           g2.items = Array.isArray(g.items) ? g.items.filter(it => withinItalianEco(it.eco)) : [];
-          // Bundle/Download nur zeigen, wenn nach Filter noch Items existieren
-          if (!g2.items.length) {
-            g2.bundle = null;
-          }
+          if (!g2.items.length) g2.bundle = null;
           return g2;
         }).filter(g => Array.isArray(g.items) && g.items.length > 0);
       }
@@ -326,22 +312,16 @@
       const opRaw = pickItalian(openings);
       if (!opRaw){
         const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Ohne Titel'}`).join('<br>');
-        root.innerHTML = `<div class="hero"><h2>Mit Italienisch (C50–C59)</h2><p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p></div><p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
+        root.innerHTML = `<p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
         return;
       }
 
-      // Strikt auf C50–C59 zuschneiden (entfernt Spanisch & Co.)
+      // Strikt auf C50–C59 zuschneiden
       const op = filterStrictItalian(opRaw);
 
-      let html = `
-        <div class="hero">
-          <h2>Mit Italienisch (C50–C59)</h2>
-          <p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
-        </div>
-      `;
+      let html = '';
 
       let hasContent = false;
-
       if (Array.isArray(op.groups) && op.groups.length){
         const groupsHtml = op.groups.map(g => group(op.id||'italian', g)).join('');
         if (groupsHtml.trim()) { html += groupsHtml; hasContent = true; }
