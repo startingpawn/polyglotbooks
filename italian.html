@@ -201,7 +201,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Button-Text „Download“</small>
+    <small>Build: Italienisch – Button-Text „Download (.bin)“</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -410,7 +410,7 @@
           <h2 class="top-title">Italienisch (C50–C59)</h2>
           <p class="top-desc">Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
         </div>
-        ${bundle && bundle.file ? `<a class="dl-btn" href="${bundle.file}" download>Download</a>` : ``}
+        ${bundle && bundle.file ? `<a class="dl-btn" href="${bundle.file}" download>Download (.bin)</a>` : ``}
       </section>`;
 
       if (!items.length){
@@ -448,7 +448,7 @@
 
     const firstGameFrom = (content, index = 0) => {
       let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
-      const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
+      const parts = norm split(/\n\n(?=\[Event\s)/g).filter(Boolean);
       norm = (parts[index] ?? parts[0] ?? norm).trim();
       norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
       return norm;
