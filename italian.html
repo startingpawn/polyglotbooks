@@ -115,7 +115,6 @@
     }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .ctr[disabled]{ opacity:.5; cursor:not-allowed }
-    .ctr[data-play][aria-pressed="true"]{ background:#1e262f; }
     .ctr svg{ width:20px; height:20px; display:block; fill:currentColor }
     .ctrls-right{ display:flex; gap:.6rem; align-items:center; color:#c3c6d1 }
     .counter{ font-variant-numeric:tabular-nums; }
@@ -202,7 +201,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – SVG-Icons für Player, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – nur Play-Button, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -338,35 +337,31 @@
           <div class="controls">
             <div class="ctrls-left">
               <button class="ctr" data-first title="Zum Anfang" aria-label="Zum Anfang">
-                <!-- First (Skip to start) -->
+                <!-- First -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
                 </svg>
               </button>
               <button class="ctr" data-prev title="Zug zurück" aria-label="Zug zurück">
-                <!-- Prev (Chevron left) -->
+                <!-- Prev -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                 </svg>
               </button>
-              <button class="ctr" data-play title="Play/Pause" aria-pressed="false" aria-label="Play">
+              <button class="ctr" data-play title="Abspielen" aria-label="Abspielen">
                 <!-- Play -->
                 <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
-                <!-- Pause -->
-                <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true" hidden>
-                  <path d="M6 5h4v14H6zM14 5h4v14h-4z"/>
-                </svg>
               </button>
               <button class="ctr" data-next title="Zug vor" aria-label="Zug vor">
-                <!-- Next (Chevron right) -->
+                <!-- Next -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
                 </svg>
               </button>
               <button class="ctr" data-last title="Zum Ende" aria-label="Zum Ende">
-                <!-- Last (Skip to end) -->
+                <!-- Last -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
                 </svg>
@@ -449,7 +444,6 @@
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
-    const AUTOPLAY = false;   // nicht automatisch starten
     const INTERVAL = 1800;    // langsam
 
     const firstGameFrom = (content, index = 0) => {
@@ -522,6 +516,7 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
+        // Klicks auf Board/Player sollen Karte nicht "klickbar" machen
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
@@ -565,50 +560,37 @@
         }
         function setIdx(n){ idx = Math.max(0, Math.min(n, hist.length)); draw(idx); }
 
-        function setPlayVisual(btn, isPlaying){
-          if (!btn) return;
-          const svgPlay = btn.querySelector('.ic-play');
-          const svgPause = btn.querySelector('.ic-pause');
-          btn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
-          btn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
-          if (svgPlay && svgPause){
-            svgPlay.hidden = isPlaying;
-            svgPause.hidden = !isPlaying;
-          }
+        function stopPlayback(){
+          playing = false;
+          if (timerId){ clearInterval(timerId); timerId = null; }
+          if (ctrPlay) { ctrPlay.disabled = false; ctrPlay.title = 'Abspielen'; ctrPlay.setAttribute('aria-label','Abspielen'); }
         }
-
         function start(){
           if (playing || hist.length === 0) return;
+          // immer von vorne starten
+          setIdx(0);
           playing = true;
-          setPlayVisual(ctrPlay, true);
+          if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
           timerId = setInterval(() => {
-            if (idx >= hist.length) { pause(); return; }
+            if (idx >= hist.length) { stopPlayback(); return; }
             setIdx(idx + 1);
           }, INTERVAL);
         }
-        function pause(){
-          playing = false;
-          setPlayVisual(ctrPlay, false);
-          if (timerId){ clearInterval(timerId); timerId = null; }
-        }
 
-        setIdx(0);
-        pause(); // Autoplay AUS
+        setIdx(0);            // Startstellung
+        stopPlayback();       // Autoplay AUS
 
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
         ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
         ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
-        ctrPlay  && (ctrPlay.onclick  = () => (playing ? pause() : start()));
+        ctrPlay  && (ctrPlay.onclick  = () => start());
 
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
-            if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
-            else if (!timerId && playing) {
-              timerId = setInterval(() => {
-                if (idx >= hist.length) { pause(); return; }
-                setIdx(idx + 1);
-              }, INTERVAL);
+            if (!en.isIntersecting && playing) {
+              // Stoppen, wenn Karte aus dem Blick ist
+              stopPlayback();
             }
           });
         }, { threshold: 0.15 });
