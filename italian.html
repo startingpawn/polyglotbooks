@@ -8,8 +8,19 @@
   <link rel="icon" href="assets/logo.png">
 
   <!-- chessboard-element (Web Component) -->
-  <link rel="preload" as="script" href="https://unpkg.com/chessboard-element?module">
-  <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
+  <!-- Vereinfachte Version ohne Preload -->
+<script type="module">
+  // Importiere das chessboard-element direkt
+  import 'https://unpkg.com/chessboard-element?module';
+  
+  // Warte bis das Element wirklich bereit ist
+  customElements.whenDefined('chess-board').then(() => {
+    console.log('chess-board custom element ist definiert');
+    
+    // Feuere ein Event wenn bereit
+    document.dispatchEvent(new CustomEvent('chess-board-ready'));
+  });
+</script>
 
   <style>
     :root{
@@ -446,7 +457,7 @@
 
   /* ---- SFX: Move-Sound (MP3) ---- */
   const sfx = (() => {
-    const a = new Audio('assets/sfx/move.mp3'); // <== deine Datei
+    const a = new Audio('assets/sfx/move.mp3');
     a.preload = 'auto';
     a.volume = 0.35;
     return { enabled: true, play(){ try{ if (this.enabled) a.currentTime = 0, a.play(); }catch(_){} } };
@@ -514,239 +525,150 @@
     return [];
   }
 
-  // Warte auf vollständige Board-Initialisierung
-  async function waitForBoardReady(board) {
-    // Warte auf Custom Element Upgrade
-    if (!board.setPosition) {
-      await customElements.whenDefined('chess-board');
-      await customElements.upgrade(board);
-    }
+  // Warte auf beide Events: openings-rendered UND chess-board-ready
+  let openingsReady = false;
+  let boardsReady = false;
 
-    // Warte bis das Board intern initialisiert ist
-    let attempts = 0;
-    const maxAttempts = 50; // 5 Sekunden max
-
-    while (attempts < maxAttempts) {
-      // Prüfe ob das Board funktioniert
-      if (board.setPosition && board.shadowRoot) {
-        // Prüfe ob das Shadow DOM auch wirklich Inhalt hat
-        const pieces = board.shadowRoot.querySelectorAll('.piece');
-        const squares = board.shadowRoot.querySelectorAll('.square');
-        
-        // Wenn das Board Felder hat, ist es bereit
-        if (squares && squares.length > 0) {
-          // Setze erstmal die Startposition um sicherzustellen dass alles funktioniert
-          try {
-            board.setPosition('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-            await new Promise(resolve => setTimeout(resolve, 50));
-            return true;
-          } catch (e) {
-            console.warn('Board noch nicht bereit:', e);
-          }
-        }
-      }
-      
-      await new Promise(resolve => setTimeout(resolve, 100));
-      attempts++;
-    }
-
-    console.error('Board konnte nicht initialisiert werden nach', maxAttempts * 100, 'ms');
-    return false;
-  }
-
-  // Initialisiere ein einzelnes Board
-  async function initializeBoard(wrap) {
-    const card = wrap.closest('.eco-card');
-    const board = wrap.querySelector('chess-board');
+  async function initializeAllBoards() {
+    // Nur initialisieren wenn beide Bedingungen erfüllt sind
+    if (!openingsReady || !boardsReady) return;
     
-    if (!board || !card) {
-      console.warn('Kein Board oder Card gefunden');
-      return;
-    }
-
-    console.log('Initialisiere Board für', card.dataset.eco);
-
-    // Warte auf Board-Bereitschaft
-    const isReady = await waitForBoardReady(board);
-    if (!isReady) {
-      console.error('Board nicht bereit für:', card.dataset.eco);
-      return;
-    }
-
-    const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
-    wrap.addEventListener('click', stop);
-
-    let pgn = '';
-    const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
-    const pgnFile = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnFile || wrap.dataset.pgnfile) : '';
-    const pgnIndex = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
-
-    if (pgnInline) {
-      pgn = firstGameFrom(pgnInline, pgnIndex);
-    } else if (pgnFile) {
-      try {
-        const res = await fetch(pgnFile + '?v=' + Date.now(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const txt = await res.text();
-        pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
-      } catch (err) { 
-        console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
-        // Setze Startposition als Fallback
-        board.setPosition('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-        return;
-      }
-    } else {
-      // Keine PGN-Daten, setze nur Startposition
-      board.setPosition('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-      return;
-    }
-
-    let hist = historyFromPGN(pgn);
+    console.log('Initialisiere alle Boards...');
     
-    if (!hist || hist.length === 0) {
-      console.warn('Keine gültigen Züge für:', card.dataset.eco);
-      board.setPosition('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-      const player = card.querySelector('[data-player]');
-      if (player) {
-        player.style.opacity = '0.5';
-        player.style.pointerEvents = 'none';
-      }
-      return;
-    }
-
-    const player = card.querySelector('[data-player]');
-    const ctrFirst = player?.querySelector('[data-first]');
-    const ctrPrev = player?.querySelector('[data-prev]');
-    const ctrPlay = player?.querySelector('[data-play]');
-    const ctrNext = player?.querySelector('[data-next]');
-    const ctrLast = player?.querySelector('[data-last]');
-    const counter = player?.querySelector('[data-counter]');
-    player?.addEventListener('click', stop);
-
-    let idx = 0, playing = false, timerId = null;
-
-    function draw(n) {
-      const g = new Chess();
-      for (let i = 0; i < n; i++) {
-        g.move(hist[i]);
-      }
-      const fen = g.fen();
-      
-      // Direkt setzen, ohne requestAnimationFrame
-      if (board && board.setPosition) {
-        try {
-          board.setPosition(fen);
-        } catch (e) {
-          console.error('Fehler beim Setzen der Position:', e);
-        }
-      }
-      
-      if (counter) counter.textContent = `${n}/${hist.length}`;
-      if (ctrPrev && ctrFirst) { 
-        ctrPrev.disabled = ctrFirst.disabled = (n <= 0); 
-      }
-      if (ctrNext && ctrLast) { 
-        ctrNext.disabled = ctrLast.disabled = (n >= hist.length); 
-      }
-    }
-
-    function setIdx(n) {
-      const forward = n > idx;
-      idx = Math.max(0, Math.min(n, hist.length));
-      draw(idx);
-      if (forward && idx > 0) sfx.play();
-    }
-
-    function stopPlayback() {
-      playing = false;
-      if (timerId) { 
-        clearInterval(timerId); 
-        timerId = null; 
-      }
-      if (ctrPlay) { 
-        ctrPlay.disabled = false; 
-        ctrPlay.title = 'Abspielen'; 
-        ctrPlay.setAttribute('aria-label','Abspielen'); 
-      }
-    }
-    
-    function start() {
-      if (playing || hist.length === 0) return;
-      setIdx(0);
-      playing = true;
-      if (ctrPlay) { 
-        ctrPlay.disabled = true; 
-        ctrPlay.title = 'Wiedergabe läuft'; 
-      }
-      timerId = setInterval(() => {
-        if (idx >= hist.length) { 
-          stopPlayback(); 
-          return; 
-        }
-        setIdx(idx + 1);
-      }, INTERVAL);
-    }
-
-    // Controls
-    ctrFirst && (ctrFirst.onclick = () => setIdx(0));
-    ctrPrev && (ctrPrev.onclick = () => setIdx(idx - 1));
-    ctrNext && (ctrNext.onclick = () => setIdx(idx + 1));
-    ctrLast && (ctrLast.onclick = () => setIdx(hist.length));
-    ctrPlay && (ctrPlay.onclick = () => start());
-
-    // Intersection Observer
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting && playing) {
-          stopPlayback();
-        }
-      });
-    }, { threshold: 0.15 });
-    io.observe(card);
-
-    // Setze initiale Position
-    console.log('Setze Startposition für', card.dataset.eco);
-    setIdx(0);
-    stopPlayback();
-  }
-
-  // Hauptinitialisierung
-  document.addEventListener('openings-rendered', async () => {
-    console.log('openings-rendered Event empfangen');
-    
-    // Warte auf Web Component Definition
-    await customElements.whenDefined('chess-board');
-    console.log('chess-board Element definiert');
-    
-    // Warte einen Moment für Browser-Rendering
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Zusätzliche Wartezeit für Rendering
+    await new Promise(resolve => setTimeout(resolve, 300));
     
     const autos = document.querySelectorAll('.auto-board');
-    console.log('Gefundene Boards:', autos.length);
-    
-    // Initialisiere Boards sequenziell statt parallel
-    for (const wrap of autos) {
-      await initializeBoard(wrap);
-      // Kleine Pause zwischen den Boards
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
-    
-    console.log('Alle Boards initialisiert');
+
+    autos.forEach(async (wrap) => {
+      const card = wrap.closest('.eco-card');
+      const board = wrap.querySelector('chess-board');
+      if (!board || !card) return;
+
+      const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+      wrap.addEventListener('click', stop);
+
+      let pgn = '';
+      const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
+      const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnFile || wrap.dataset.pgnfile) : '';
+      const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
+
+      if (pgnInline) {
+        pgn = firstGameFrom(pgnInline, pgnIndex);
+      } else if (pgnFile) {
+        try {
+          const res = await fetch(pgnFile + '?v=' + Date.now(), { cache: 'no-store' });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const txt = await res.text();
+          pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
+        } catch (err) { 
+          console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
+          return; 
+        }
+      } else { 
+        return; 
+      }
+
+      let hist = historyFromPGN(pgn);
+      
+      if (!hist || hist.length === 0) {
+        console.warn('Keine gültigen Züge für:', card.dataset.eco);
+        return;
+      }
+
+      const player    = card.querySelector('[data-player]');
+      const ctrFirst  = player?.querySelector('[data-first]');
+      const ctrPrev   = player?.querySelector('[data-prev]');
+      const ctrPlay   = player?.querySelector('[data-play]');
+      const ctrNext   = player?.querySelector('[data-next]');
+      const ctrLast   = player?.querySelector('[data-last]');
+      const counter   = player?.querySelector('[data-counter]');
+      player?.addEventListener('click', stop);
+
+      let idx = 0, playing = false, timerId = null;
+
+      function draw(n){
+        const g = new Chess();
+        for (let i = 0; i < n; i++) g.move(hist[i]);
+        const fen = g.fen();
+        
+        // Verwende setTimeout statt requestAnimationFrame für bessere Kompatibilität
+        setTimeout(() => {
+          if (board && board.setPosition) {
+            board.setPosition(fen);
+          }
+        }, 0);
+        
+        if (counter) counter.textContent = `${n}/${hist.length}`;
+        if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
+        if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
+      }
+
+      function setIdx(n){
+        const forward = n > idx;
+        idx = Math.max(0, Math.min(n, hist.length));
+        draw(idx);
+        if (forward && idx > 0) sfx.play();
+      }
+
+      function stopPlayback(){
+        playing = false;
+        if (timerId){ clearInterval(timerId); timerId = null; }
+        if (ctrPlay) { ctrPlay.disabled = false; ctrPlay.title = 'Abspielen'; ctrPlay.setAttribute('aria-label','Abspielen'); }
+      }
+      
+      function start(){
+        if (playing || hist.length === 0) return;
+        setIdx(0);
+        playing = true;
+        if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
+        timerId = setInterval(() => {
+          if (idx >= hist.length) { stopPlayback(); return; }
+          setIdx(idx + 1);
+        }, INTERVAL);
+      }
+
+      setIdx(0);
+      stopPlayback();
+
+      ctrFirst && (ctrFirst.onclick = () => setIdx(0));
+      ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
+      ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
+      ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
+      ctrPlay  && (ctrPlay.onclick  = () => start());
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (!en.isIntersecting && playing) {
+            stopPlayback();
+          }
+        });
+      }, { threshold: 0.15 });
+      io.observe(card);
+    });
+  }
+
+  // Listener für openings-rendered
+  document.addEventListener('openings-rendered', () => {
+    console.log('Openings gerendert');
+    openingsReady = true;
+    initializeAllBoards();
   });
 
-  // Fallback: Nochmal versuchen nach Page Load
-  window.addEventListener('load', async () => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const boards = document.querySelectorAll('chess-board');
-    for (const board of boards) {
-      if (!board.shadowRoot || !board.shadowRoot.querySelector('.square')) {
-        console.log('Re-initialisiere Board nach Page Load');
-        const wrap = board.closest('.auto-board');
-        if (wrap) {
-          await initializeBoard(wrap);
-        }
-      }
+  // Listener für chess-board-ready (wenn definiert)
+  document.addEventListener('chess-board-ready', () => {
+    console.log('Chess boards bereit');
+    boardsReady = true;
+    initializeAllBoards();
+  });
+
+  // Fallback: Wenn chess-board-ready nicht gefeuert wird
+  customElements.whenDefined('chess-board').then(async () => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    if (!boardsReady) {
+      console.log('Fallback: Setze boardsReady manuell');
+      boardsReady = true;
+      initializeAllBoards();
     }
   });
 </script>
