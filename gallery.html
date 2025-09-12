@@ -115,13 +115,13 @@
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Board-Wrapper + eigene Koordinaten (auf dem Brett) */
+    /* Board-Wrapper + unsere Koordinaten-Overlays */
     .auto-board{ width:100%; display:block; cursor:default; line-height:0; }
     .board-box{ position:relative; width:100%; aspect-ratio:1/1; }
     .board-box chess-board{
       position:absolute; inset:0; width:100%; height:100%; display:block; margin:0; vertical-align:top;
     }
-    .coords{ position:absolute; pointer-events:none; color:rgba(255,255,255,.9);
+    .coords{ position:absolute; pointer-events:none; color:rgba(255,255,255,.92);
       font:700 clamp(9px,1.15vw,12px)/1 system-ui; text-shadow:0 1px 2px rgba(0,0,0,.7); }
     /* Files a–h innen unten rechts je Feld */
     .coords-files{ bottom:4px; left:0; right:0; display:grid; grid-template-columns:repeat(8,1fr); padding:0 6px; }
@@ -220,7 +220,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Autoplay aus, Koordinaten im Brett (Overlay)</small>
+    <small>Build: Galerie – Autoplay aus, eigene Koordinaten (keine Doppelanzeige)</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -262,6 +262,7 @@
              ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
              title="Züge abspielen">
              <div class="board-box">
+               <!-- Eingebaute Koordinaten aus, wir rendern eigene Overlays -->
                <chess-board class="cb-mini" coordinates="false"></chess-board>
                ${filesMarkup}${ranksMarkup}
              </div>
@@ -396,15 +397,14 @@
     })();
   </script>
 
-  <!-- Boards + Player je Karte (Autoplay AUS, robuster PGN/Notation-Fallback) -->
+  <!-- Boards + Player je Karte (Autoplay AUS, robuste PGN-Fallbacks) -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
     const raf = (cb) => requestAnimationFrame(cb);
-    const AUTOPLAY = false;   // NICHT automatisch starten
-    const INTERVAL = 1800;    // Tempo bei Play
+    const AUTOPLAY = false;
+    const INTERVAL = 1800;
 
-    /* Rohtext -> erste Partie & Leerzeile nach Tags sichern */
     const firstGameFrom = (content, index = 0) => {
       let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
       const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
@@ -413,7 +413,6 @@
       return norm;
     };
 
-    /* SAN-Normalisierung */
     const sanitizeToEnglishSAN = (text) => {
       return text
         .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
@@ -435,7 +434,6 @@
         .trim();
     };
 
-    /* PGN → Historie (PGN | SAN-Fallback | UCI-Fallback) */
     function historyFromPGN(pgnRaw) {
       const g1 = new Chess();
       try { g1.load_pgn(pgnRaw); } catch {}
@@ -477,14 +475,12 @@
         const board = wrap.querySelector('chess-board');
         if (!board || !card) return;
 
-        // Sicherheit: eingebaute Koordinaten aus (wir zeigen eigene Overlays)
+        // eingebaute Koordinaten sicher AUS (damit keine Dopplung)
         board.setAttribute('coordinates', 'false');
 
-        // Klicks im Board/Player: Download des Cards unterbinden
         const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
         wrap.addEventListener('click', stop);
 
-        // PGN laden
         let pgn = '';
         const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
         const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
@@ -508,7 +504,6 @@
 
         let hist = historyFromPGN(pgn);
 
-        // Player-Elemente
         const player    = card.querySelector('[data-player]');
         const ctrFirst  = player?.querySelector('[data-first]');
         const ctrPrev   = player?.querySelector('[data-prev]');
@@ -518,7 +513,6 @@
         const counter   = player?.querySelector('[data-counter]');
         player?.addEventListener('click', stop);
 
-        // Wiedergabe
         let idx = 0, playing = false, timerId = null;
 
         function draw(n){
@@ -546,18 +540,15 @@
           if (timerId){ clearInterval(timerId); timerId = null; }
         }
 
-        // Initial: pausiert
         setIdx(0);
         pause();
 
-        // Controls
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
         ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
         ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
         ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
         ctrPlay  && (ctrPlay.onclick  = () => (playing ? pause() : start()));
 
-        // Sichtbarkeit steuert Timer
         const io = new IntersectionObserver(entries => {
           entries.forEach(en => {
             if (!en.isIntersecting) { if (timerId) { clearInterval(timerId); timerId = null; } }
