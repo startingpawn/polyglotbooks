@@ -4,40 +4,143 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Galerie – Überblick</title>
-  <meta name="description" content="Überblick über alle Eröffnungen. Wähle eine Gruppe, um Details und PGN-Boards zu sehen." />
+  <meta name="description" content="Überblick über alle Polyglot-Eröffnungen. Wähle eine Eröffnung und öffne die Detailseite mit ECO-Screenshots und Board-Player." />
   <link rel="icon" href="assets/logo.png">
+
   <style>
-    :root{ --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee; --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35); --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{ margin:0; background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%); color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial }
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
+    }
     a{color:inherit; text-decoration:none}
-    header{ max-width:var(--max); margin:0 auto; padding:1rem 1rem .6rem; display:flex; align-items:center; justify-content:space-between; gap:1rem }
+
+    header{
+      max-width:var(--max);
+      margin:0 auto; padding:1rem 1rem 0.6rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem
+    }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{ width:48px;height:48px;border-radius:50%; background:#1a1517 url('assets/logo.png') center/80% no-repeat; box-shadow:0 0 24px rgba(229,9,20,.35) }
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
+
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    .crumbs{max-width:var(--max);margin:0 auto;padding:0 1rem .4rem;color:#aeb3bf;font-size:.92rem}
+    .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
+
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
-    .intro{color:#c9cbd3;margin:.25rem 0 1rem}
-    .grid{ display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); }
-    @media(min-width:980px){ .grid{ gap:var(--gap-desktop); grid-template-columns:repeat(3,1fr); } }
-    .card{ position:relative; background:var(--panel); border:var(--border) solid #222737; border-radius:16px; overflow:hidden; transition:.15s ease; display:flex; flex-direction:column; }
-    .card:hover{ transform:translateY(-2px); box-shadow:var(--ring), 0 10px 28px rgba(229,9,20,.18) }
-    .thumb{ width:100%; aspect-ratio:16/9; background:#171922; display:flex; align-items:center; justify-content:center; }
-    .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
-    .body{ padding:1rem }
-    .title{ margin:.1rem 0 .25rem; font-weight:700; font-size:1.1rem }
-    .desc{ margin:0; color:#aeb3bf }
-    .actions{ display:flex; gap:.6rem; padding:0 1rem 1rem; margin-top:.6rem }
-    .btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.55rem .8rem; border-radius:12px; background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; text-decoration:none; font-weight:700 }
-    .btn::before{ content:"→" }
-    .chip{ position:absolute; top:.6rem; left:.6rem; padding:.35rem .55rem; border-radius:999px; background:rgba(0,0,0,.55); color:#fff; border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(4px); font:600 .78rem/1 system-ui; }
+
+    /* Intro-Panel */
+    .intro{
+      margin:.6rem 0 1rem; padding:1rem 1.1rem;
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
+    }
+    .intro h2{ margin:.1rem 0 .35rem; font-size:1.2rem }
+    .intro p{ margin:.2rem 0 0; color:#c9cbd3 }
+
+    /* Grid mit Eröffnungen */
+    .overview-grid{
+      display:grid; gap:var(--gap);
+      grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    }
+    @media (min-width: 980px){
+      .overview-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop) }
+    }
+
+    .open-card{
+      position:relative; display:flex; flex-direction:column;
+      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737;
+      transition:.15s ease;
+    }
+    .open-card:hover{ box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px) }
+
+    .open-thumb{
+      width:100%; aspect-ratio:16/9; background:#121420;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .open-thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+    .open-thumb.img-error{
+      background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px)
+    }
+
+    .open-info{ padding:.85rem 1rem 1rem; display:flex; flex-direction:column; gap:.35rem }
+    .open-name{ font-weight:700; }
+    .open-meta{ color:#aeb3bf; font-size:.92rem }
+    .open-actions{ margin-top:.3rem; display:flex; gap:.5rem; flex-wrap:wrap }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.5rem .75rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
+    }
+    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+
+    .btn-primary{
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none;
+      box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+
+    .btn-disabled{ opacity:.55; cursor:not-allowed }
+
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-    .menu-btn{ display:none } @media(max-width:979px){ .topnav{display:none} }
+
+    /* MOBILER + BUTTON (nur < 980px) */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; font-size:34px; line-height:1; border:1px solid #2b3240;
+      box-shadow:0 12px 26px rgba(229,9,20,.28), 0 2px 8px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{ transform:translateY(-1px); box-shadow:0 16px 30px rgba(229,9,20,.34) }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
+
+    /* Bottom-Sheet Menü */
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
   </style>
 </head>
 <body>
@@ -58,54 +161,166 @@
     </nav>
   </header>
 
-  <main>
-    <p class="intro">Wähle eine Eröffnungs-Gruppe, um Details, ECO-Varianten, Boards & Downloads zu sehen.</p>
+  <div class="crumbs"><strong>Galerie</strong></div>
 
-    <section class="grid">
-      <!-- Italienisch -->
-      <a class="card" href="italian.html?q=italien">
-        <div class="chip">Offene Spiele</div>
-        <div class="thumb">
-          <img src="images/open/italian/cover.jpg" alt="Italienisch – Cover" onerror="this.src='assets/logo.png'">
-        </div>
-        <div class="body">
-          <div class="title">Italienisch (ECO C50–C59)</div>
-          <p class="desc">Giuoco Piano, Evans Gambit, Zweispringerspiel u.v.m.</p>
-        </div>
-        <div class="actions">
-          <span class="btn">Öffnen</span>
-        </div>
-      </a>
+  <main id="app" aria-live="polite">
+    <section class="intro">
+      <h2>Überblick</h2>
+      <p>Wähle eine Eröffnung, um die Detailseite mit ECO-Screenshots, Board-Player und Download-Button zu öffnen.</p>
+    </section>
 
-      <!-- Weitere Beispiele – später eigene Detailseiten -->
-      <a class="card" href="spanish.html?q=spanisch">
-        <div class="chip">Offene Spiele</div>
-        <div class="thumb">
-          <img src="images/open/spanish/cover.jpg" alt="Spanisch – Cover" onerror="this.src='assets/logo.png'">
-        </div>
-        <div class="body">
-          <div class="title">Spanisch (ECO C60–C99)</div>
-          <p class="desc">Ruy López: Klassisch, Offene Verteidigung, Marshall…</p>
-        </div>
-        <div class="actions"><span class="btn">Öffnen</span></div>
-      </a>
-
-      <a class="card" href="flank.html?q=flank">
-        <div class="chip">Flankenspiele</div>
-        <div class="thumb">
-          <img src="images/flank/cover.jpg" alt="Flankenspiele – Cover" onerror="this.src='assets/logo.png'">
-        </div>
-        <div class="body">
-          <div class="title">Flankenspiele</div>
-          <p class="desc">Englisch, Réti, Larsen …</p>
-        </div>
-        <div class="actions"><span class="btn">Öffnen</span></div>
-      </a>
+    <section id="grid" class="overview-grid" aria-label="Eröffnungs-Übersicht">
+      <!-- Karten werden via JS gerendert -->
     </section>
   </main>
 
   <footer>
-    <small>Build: Galerie-Überblick</small>
+    <small>Build: Galerie – Überblick + mobiler +-Button</small>
   </footer>
+
+  <!-- Mobiler + Button & Sheet -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Fehler-Anzeige -->
+  <script>
+    (function(){
+      const show = (msg) => {
+        const grid = document.getElementById('grid');
+        if (grid) grid.insertAdjacentHTML('afterend', `<p style="color:#ff6b6b">Fehler: ${msg}</p>`);
+      };
+      const ignorable = (m) => /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i.test(String(m||''));
+      window.addEventListener('error', e => { if (!ignorable(e.message)) show(e.message); });
+      window.addEventListener('unhandledrejection', e => {
+        const r = e.reason && (e.reason.message || e.reason);
+        if (!ignorable(r)) show(r);
+      });
+    })();
+  </script>
+
+  <!-- Galerie-Renderer (lädt data/openings.json) -->
+  <script>
+    const fixPath = p => { if (typeof p !== 'string') return p; p = p.trim(); return p.startsWith('/') ? p.slice(1) : p; };
+
+    // ECO-Bereich aus Items bestimmen (z.B. "C50–C59")
+    function ecoRange(opening){
+      const ecos = [];
+      const pushEco = (e) => { if (!e) return; const s=String(e).trim().toUpperCase(); if (/^[A-E]\d{2}$/.test(s)) ecos.push(s); };
+      if (Array.isArray(opening.items)) opening.items.forEach(it => pushEco(it.eco));
+      if (Array.isArray(opening.groups)) opening.groups.forEach(g => (g.items||[]).forEach(it => pushEco(it.eco)));
+      if (!ecos.length) return '';
+      ecos.sort();
+      const first = ecos[0], last = ecos[ecos.length-1];
+      return first===last ? first : `${first}–${last}`;
+    }
+
+    // Ein repräsentatives Bild finden
+    function pickImage(opening){
+      const getImg = (it) => fixPath(it?.image || '');
+      if (Array.isArray(opening.items) && opening.items.length){
+        const i = opening.items.find(it => it.image) || opening.items[0];
+        return getImg(i) || 'assets/logo.png';
+      }
+      if (Array.isArray(opening.groups)){
+        for (const g of opening.groups){
+          const i = (g.items||[]).find(it => it.image) || (g.items||[])[0];
+          if (i){ return getImg(i) || 'assets/logo.png'; }
+        }
+      }
+      return 'assets/logo.png';
+    }
+
+    function cardHTML(opening){
+      const id = String(opening.id||'').toLowerCase();
+      const title = opening.title || 'Unbenannte Eröffnung';
+      const desc = opening.desc || '';
+      const eco = ecoRange(opening);
+      const img = pickImage(opening);
+
+      // Link-Ziel: italien -> italian.html, sonst disabled
+      const isItalian = id === 'italian' || /italien/i.test(title);
+      const action = isItalian
+        ? `<a class="btn btn-primary" href="italian.html">Details</a>`
+        : `<span class="btn btn-disabled" title="Demnächst verfügbar">In&nbsp;Kürze</span>`;
+
+      return `
+        <article class="open-card">
+          <div class="open-thumb">
+            <img loading="lazy" src="${img}" alt="${title}"
+                 onerror="this.onerror=null; this.src='assets/logo.png'; this.closest('.open-thumb').classList.add('img-error');">
+          </div>
+          <div class="open-info">
+            <div class="open-name">${title}${eco ? ` <small style="color:#c0c4cf;font-weight:600">(${eco})</small>`:''}</div>
+            ${desc ? `<div class="open-meta">${desc}</div>` : ``}
+            <div class="open-actions">${action}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    async function renderOverview(){
+      const grid = document.getElementById('grid');
+      if (!grid) return;
+      grid.innerHTML = '<p style="opacity:.8">Lade Eröffnungen…</p>';
+      const url = 'data/openings.json?v=' + Date.now();
+      try{
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
+        const text = await res.text();
+        const list = JSON.parse(text);
+        if (!Array.isArray(list)) throw new Error('openings.json ist kein Array.');
+        // sortiere nach title
+        list.sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'de'));
+        grid.innerHTML = list.map(cardHTML).join('');
+      }catch(e){
+        grid.innerHTML = `<p style="color:#ff6b6b">Konnte <code>${url}</code> nicht laden.<br><small>${String(e.message||e)}</small></p>`;
+      }
+    }
+    renderOverview();
+  </script>
+
+  <!-- Mobiler + Button (Bottom-Sheet) -->
+  <script>
+    (function(){
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      const backdrop = sheet?.querySelector('.sheet-backdrop');
+      const panel = sheet?.querySelector('.sheet-panel');
+
+      const open = () => {
+        if (!sheet) return;
+        sheet.hidden = false;
+        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
+        fab?.setAttribute('aria-expanded','true');
+      };
+      const close = () => {
+        if (!sheet) return;
+        sheet.removeAttribute('data-open');
+        fab?.setAttribute('aria-expanded','false');
+        setTimeout(() => { sheet.hidden = true; }, 200);
+      };
+
+      fab?.addEventListener('click', () => {
+        if (sheet.hidden) open(); else close();
+      });
+      backdrop?.addEventListener('click', close);
+      panel?.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sheet.hidden) close();
+      });
+    })();
+  </script>
 </body>
 </html>
