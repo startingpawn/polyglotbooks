@@ -4,65 +4,141 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Italienisch – Galerie</title>
-  <meta name="description" content="Italienische Eröffnung: ECO C50–C59 – gruppierte Varianten mit Mini-Boards, Zügen und Downloads." />
+  <meta name="description" content="Italienische Eröffnung (C50–C59): gruppierte Varianten mit Mini-Boards, Zügen und BIN-Downloads." />
   <link rel="icon" href="assets/logo.png">
+
+  <!-- chessboard-element (Web Component) -->
   <link rel="preload" as="script" href="https://unpkg.com/chessboard-element?module">
   <script type="module" src="https://unpkg.com/chessboard-element?module"></script>
+
   <style>
-    :root{ --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee; --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35); --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px; }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{ margin:0; background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%); color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial }
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
+    }
     a{color:inherit; text-decoration:none}
-    header{ max-width:var(--max); margin:0 auto; padding:1rem 1rem 0.6rem; display:flex; align-items:center; justify-content:space-between; gap:1rem }
+
+    header{
+      max-width:var(--max);
+      margin:0 auto; padding:1rem 1rem 0.6rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem
+    }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{ width:48px;height:48px;border-radius:50%; background:#1a1517 url('assets/logo.png') center/80% no-repeat; box-shadow:0 0 24px rgba(229,9,20,.35) }
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
+
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
     .crumbs{max-width:var(--max);margin:0 auto;padding:0 1rem .4rem;color:#aeb3bf;font-size:.92rem}
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
+
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
-    .opening{ padding:.9rem 1.1rem 1.1rem; background:linear-gradient(180deg, rgba(229,9,20,.08), transparent 140px) padding-box, var(--panel); border:var(--border) solid #1e2130;border-radius:var(--radius); margin:1rem 0 1.2rem }
-    .op-head{display:flex;gap:1rem;align-items:flex-start;padding:.1rem .3rem .25rem .3rem}
-    .op-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px rgba(229,9,20,.8), inset 0 0 8px #8b0b12; margin-top:.55rem}
-    .op-title{margin:0;font-size:1.2rem}
-    .op-desc{margin:.25rem 0 0;color:#c9cbd3}
-    .group{ margin:.7rem 0 1rem; border:var(--border) solid #222737; border-radius:var(--radius); background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel); overflow:hidden; }
-    .group-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem; padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230; }
+
+    /* Hero (ohne Rahmen) */
+    .hero{ margin: .6rem 0 1rem; padding: .2rem .2rem 0; }
+    .hero h2{ margin:.2rem 0 .2rem; font-size:1.35rem }
+    .hero p{ margin:.1rem 0 0; color:#c9cbd3 }
+
+    /* Gruppen (einziger Rahmen) */
+    .group{
+      margin:.9rem 0 1.1rem;
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
+      overflow:hidden;
+    }
+    .group-head{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:.8rem;
+      padding:.8rem 1rem .65rem 1rem; border-bottom:var(--border) solid #1e2230;
+    }
     .group-title{ margin:0; font-size:1.05rem }
     .group-sub{ color:#aeb3bf; font-size:.92rem; margin:.15rem 0 0 }
-    .dl-btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.5rem .75rem; border-radius:12px; font-weight:700; font-size:.95rem; background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; text-decoration:none; white-space:nowrap; box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease, filter .12s ease; }
+
+    /* Bundle-Download */
+    .dl-btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.5rem .75rem;
+      border-radius:12px; font-weight:700; font-size:.95rem;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; border:none; text-decoration:none; white-space:nowrap;
+      box-shadow:0 8px 18px rgba(229,9,20,.24);
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
     .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+    .dl-meta{ opacity:.9; font-weight:600; font-size:.82rem; padding:.05rem .4rem; border-radius:999px; background:rgba(0,0,0,.22) }
+
+    /* Grid */
     .group-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:var(--gap); padding:.9rem 1rem 1rem }
-    @media (min-width: 980px){ .group-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); } }
-    .eco-card{ position:relative; display:flex; flex-direction:column; border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737 }
-    .thumb{ width:100%; aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box }
+    @media (min-width: 980px){
+      .group-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); }
+    }
+
+    /* Karte */
+    .eco-card{
+      position:relative; display:flex; flex-direction:column;
+      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737
+    }
+    .thumb{
+      width:100%;
+      aspect-ratio:16/10; background:#121420;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box
+    }
     .thumb-board{ aspect-ratio:auto; padding:0 }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+
+    /* Board */
     .auto-board{ width:100%; display:block; cursor:default }
     .auto-board chess-board{ width:100%; height:auto; display:block }
+
+    /* Player */
     .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.55rem .7rem .6rem; }
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; }
     .ctrls-left{ display:flex; gap:.4rem; align-items:center; flex-wrap:wrap }
-    .ctr{ width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer; }
+    .ctr{
+      width:38px; height:38px; border-radius:10px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
+    }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .ctr[disabled]{ opacity:.5; cursor:not-allowed }
     .ctr[data-play][aria-pressed="true"]{ background:#1e262f; }
     .ctrls-right{ display:flex; gap:.6rem; align-items:center; color:#c3c6d1 }
     .counter{ font-variant-numeric:tabular-nums; }
+
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
+
     .info{ padding:.7rem .9rem .9rem;color:#dfe1e7;border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.25rem; background:#0f1117 }
-    .name{font-weight:650} .line{color:#b6bac6;font-size:.92rem}
+    .name{font-weight:650}
+    .line{color:#b6bac6;font-size:.92rem}
+
+    .eco-card:focus-visible,.eco-card:hover{outline:none; box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px); transition:.15s ease}
+    .eco-card:hover .thumb,
+    .eco-card:hover .thumb.img-error{ box-shadow: 0 8px 28px rgba(0,0,0,.25) }
+
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-    @media (max-width: 979px){ .topnav{ display:none } }
+
+    @media (max-width: 979px){
+      .topnav{ display:none }
+    }
   </style>
 </head>
 <body>
@@ -86,18 +162,23 @@
   <div class="crumbs"> <a href="gallery.html">Galerie</a> &nbsp;→&nbsp; <strong>Italienisch</strong> </div>
 
   <main id="app" aria-live="polite">
+    <div class="hero">
+      <h2>Mit Italienisch (C50–C59)</h2>
+      <p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
+    </div>
     <p>Lade Daten…</p>
   </main>
 
   <footer>
-    <small>Build: Italienisch – robustes Matching (Autoplay aus, langsam)</small>
+    <small>Build: Italienisch – Sammelrahmen entfernt, Autoplay aus (langsam)</small>
   </footer>
 
+  <!-- Fehler-Anzeige -->
   <script>
     (function(){
       const show = (msg) => {
         const el = document.getElementById('app');
-        if (el) el.innerHTML = `<p style="color:#ff6b6b">Fehler: ${msg}</p>`;
+        if (el) el.insertAdjacentHTML('beforeend', `<p style="color:#ff6b6b">Fehler: ${msg}</p>`);
       };
       const ignorable = (m) => /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i.test(String(m||''));
       window.addEventListener('error', e => { if (!ignorable(e.message)) show(e.message); });
@@ -108,7 +189,7 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (Italienisch robust finden) -->
+  <!-- JSON-Loader + Render (nur Italienisch, ohne Außenrahmen) -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -129,16 +210,12 @@
     }
 
     function pickItalian(openings){
-      // 1) id=italian
       let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
       if (op) return op;
-      // 2) Titel/Desc enthält "italien"/"italian" oder Q_TXT
       op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
-      // 3) Irgendeine Gruppe-Titel enthält Suchwort
       op = openings.find(o => (o.groups||[]).some(g => new RegExp(Q_TXT,'i').test(g.title||'') || new RegExp(Q_TXT,'i').test(g.desc||'')));
       if (op) return op;
-      // 4) ECO-Heuristik (C50–C59)
       op = openings.find(o => flattenItems(o).some(it => withinItalianEco(it.eco)));
       if (op) return op;
       return null;
@@ -221,19 +298,16 @@
       const op = pickItalian(openings);
       if (!op){
         const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Ohne Titel'}`).join('<br>');
-        root.innerHTML = `<p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
+        root.innerHTML = `<div class="hero"><h2>Mit Italienisch (C50–C59)</h2><p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p></div><p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
         return;
       }
 
+      // Hero bleibt, wir hängen NUR die Gruppen an (kein Außenrahmen)
       let html = `
-        <section class="opening" id="${op.id||'italian'}">
-          <div class="op-head">
-            <div class="op-dot" aria-hidden="true"></div>
-            <div>
-              <h2 class="op-title">${op.title||'Italienisch'}</h2>
-              ${op.desc ? `<p class="op-desc">${op.desc}</p>` : ''}
-            </div>
-          </div>
+        <div class="hero">
+          <h2>Mit Italienisch (C50–C59)</h2>
+          <p>Gebündelte Varianten C50 bis C59. Screenshots je ECO, ein gemeinsamer .bin-Download.</p>
+        </div>
       `;
 
       if (Array.isArray(op.groups) && op.groups.length){
@@ -246,7 +320,6 @@
             <div class="group-grid">${cards}</div>
           </div>`;
       }
-      html += `</section>`;
       root.innerHTML = html;
 
       document.dispatchEvent(new Event('openings-rendered'));
@@ -255,7 +328,6 @@
     (async () => {
       const root = document.getElementById('app');
       const url = 'data/openings.json?v=' + Date.now();
-      root.textContent = 'Lade Daten…';
       try {
         const res = await fetch(url, { cache: 'no-store' });
         if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
@@ -263,7 +335,7 @@
         const json = JSON.parse(text);
         renderItalian(json);
       } catch (e) {
-        root.innerHTML = `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`;
+        root.insertAdjacentHTML('beforeend', `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`);
       }
     })();
   </script>
@@ -403,7 +475,7 @@
         }
 
         setIdx(0);
-        // Autoplay AUS:
+        // Autoplay AUS
         pause();
 
         ctrFirst && (ctrFirst.onclick = () => setIdx(0));
