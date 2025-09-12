@@ -243,7 +243,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Autoplay (langsam) & robuster PGN-Fallback</small>
+    <small>Build: Galerie – PGN-Tags gefiltert & try/catch in Fallback</small>
   </footer>
 
   <!-- Fehler sichtbar machen (ResizeObserver-Hinweis ignorieren) -->
@@ -302,7 +302,7 @@
           </div>
         </div>` : '';
 
-      /* Hinweis: Für Board-Karten verhindern wir, dass ein Klick aufs Board/Player den Download auslöst. */
+      /* Für Board-Karten: Klicks im Board/Player sollen keinen Download triggern */
       const tagOpen  = `<a class="eco-card" data-eco="${it.eco??''}" ${bin?`href="${bin}" download`:''} title="${bin?`Download ${it.eco??''} – ${it.name??''}`:`${it.name??''}`}">`;
       const tagClose = `</a>`;
 
@@ -445,6 +445,8 @@
     // 2) Normalisierung für SAN (deutsche Buchstaben, Unicode, Sonderzeichen)
     const sanitizeToEnglishSAN = (text) => {
       return text
+        // --- PGN-Tagzeilen entfernen ---
+        .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
         // Kommentare & Variationen weg
         .replace(/\{[^}]*\}/g, ' ')
         .replace(/;[^\n]*/g, ' ')
@@ -489,8 +491,10 @@
       for (const t of tokens) {
         if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t)) continue; // Ergebnisse
         if (t === '...') continue;
-        const m = g2.move(t, { sloppy: true });
-        if (m) ok++;
+        try {
+          const m = g2.move(t, { sloppy: true });
+          if (m) ok++;
+        } catch (_) { /* ignorieren */ }
       }
       if (ok) return g2.history({ verbose: true });
 
@@ -500,10 +504,12 @@
       for (const t of tokens) {
         const m = t.match(/^[a-h][1-8][a-h][1-8][nbrqk]?$/i);
         if (!m) continue;
-        const from = t.slice(0,2), to = t.slice(2,4);
-        const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
-        const done = g3.move({ from, to, promotion: promo });
-        if (done) ok++;
+        try {
+          const from = t.slice(0,2), to = t.slice(2,4);
+          const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
+          const done = g3.move({ from, to, promotion: promo });
+          if (done) ok++;
+        } catch (_) { /* ignorieren */ }
       }
       if (ok) return g3.history({ verbose: true });
 
