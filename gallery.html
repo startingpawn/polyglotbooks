@@ -103,17 +103,24 @@
 
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
 
-    /* MOBILER + BUTTON (nur < 980px) */
+    /* MOBILER + BUTTON (dunkel, mit leichtem Hover-Glow) */
     .fab{
       position:fixed; right:16px; bottom:16px; z-index:60;
       width:56px; height:56px; border-radius:50%;
       display:none; place-items:center; user-select:none; cursor:pointer;
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; font-size:34px; line-height:1; border:1px solid #2b3240;
-      box-shadow:0 12px 26px rgba(229,9,20,.28), 0 2px 8px rgba(0,0,0,.35);
+      background:linear-gradient(180deg, #1b2230, #121a26); /* dunkel */
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35); /* dezent */
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
-    .fab:hover{ transform:translateY(-1px); box-shadow:0 16px 30px rgba(229,9,20,.34) }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:
+        0 0 0 2px rgba(229,9,20,.22),
+        0 14px 32px rgba(0,0,0,.45),
+        0 0 18px rgba(229,9,20,.16); /* leichter roter Glow */
+    }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
     @media (max-width: 979px){
       .topnav{ display:none }
