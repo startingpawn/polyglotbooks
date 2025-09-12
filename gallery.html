@@ -7,52 +7,25 @@
   <meta name="description" content="Überblick über alle Eröffnungen. Wähle eine Gruppe, um Details und PGN-Boards zu sehen." />
   <link rel="icon" href="assets/logo.png">
   <style>
-    :root{
-      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
-      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
-      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
-      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
-    }
+    :root{ --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee; --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35); --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{ margin:0; background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%); color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial }
     a{color:inherit; text-decoration:none}
-
-    header{
-      max-width:var(--max); margin:0 auto; padding:1rem 1rem .6rem;
-      display:flex; align-items:center; justify-content:space-between; gap:1rem
-    }
+    header{ max-width:var(--max); margin:0 auto; padding:1rem 1rem .6rem; display:flex; align-items:center; justify-content:space-between; gap:1rem }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{
-      width:48px;height:48px;border-radius:50%;
-      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
-      box-shadow:0 0 24px rgba(229,9,20,.35)
-    }
+    .logo{ width:48px;height:48px;border-radius:50%; background:#1a1517 url('assets/logo.png') center/80% no-repeat; box-shadow:0 0 24px rgba(229,9,20,.35) }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
-
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
-
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
     .intro{color:#c9cbd3;margin:.25rem 0 1rem}
-
-    .grid{
-      display:grid; gap:var(--gap);
-      grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-    }
+    .grid{ display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); }
     @media(min-width:980px){ .grid{ gap:var(--gap-desktop); grid-template-columns:repeat(3,1fr); } }
-
-    .card{
-      position:relative; background:var(--panel); border:var(--border) solid #222737; border-radius:16px; overflow:hidden;
-      transition:.15s ease; display:flex; flex-direction:column;
-    }
+    .card{ position:relative; background:var(--panel); border:var(--border) solid #222737; border-radius:16px; overflow:hidden; transition:.15s ease; display:flex; flex-direction:column; }
     .card:hover{ transform:translateY(-2px); box-shadow:var(--ring), 0 10px 28px rgba(229,9,20,.18) }
     .thumb{ width:100%; aspect-ratio:16/9; background:#171922; display:flex; align-items:center; justify-content:center; }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
@@ -60,21 +33,11 @@
     .title{ margin:.1rem 0 .25rem; font-weight:700; font-size:1.1rem }
     .desc{ margin:0; color:#aeb3bf }
     .actions{ display:flex; gap:.6rem; padding:0 1rem 1rem; margin-top:.6rem }
-    .btn{
-      display:inline-flex; align-items:center; gap:.45rem; padding:.55rem .8rem; border-radius:12px;
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; text-decoration:none; font-weight:700
-    }
+    .btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.55rem .8rem; border-radius:12px; background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; text-decoration:none; font-weight:700 }
     .btn::before{ content:"→" }
-    .chip{
-      position:absolute; top:.6rem; left:.6rem; padding:.35rem .55rem; border-radius:999px;
-      background:rgba(0,0,0,.55); color:#fff; border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(4px); font:600 .78rem/1 system-ui;
-    }
-
+    .chip{ position:absolute; top:.6rem; left:.6rem; padding:.35rem .55rem; border-radius:999px; background:rgba(0,0,0,.55); color:#fff; border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(4px); font:600 .78rem/1 system-ui; }
     footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
-
-    /* mobile menu button (keine Drawer-Implementierung nötig, wenn du schon eine hast, kannst du sie übernehmen) */
-    .menu-btn{ display:none }
-    @media(max-width:979px){ .topnav{display:none} }
+    .menu-btn{ display:none } @media(max-width:979px){ .topnav{display:none} }
   </style>
 </head>
 <body>
@@ -100,78 +63,43 @@
 
     <section class="grid">
       <!-- Italienisch -->
-      <a class="card" href="italian.html">
+      <a class="card" href="italian.html?q=italien">
         <div class="chip">Offene Spiele</div>
         <div class="thumb">
           <img src="images/open/italian/cover.jpg" alt="Italienisch – Cover" onerror="this.src='assets/logo.png'">
         </div>
         <div class="body">
           <div class="title">Italienisch (ECO C50–C59)</div>
-          <p class="desc">Giuoco Piano, Evans Gambit, Zwei Springer gegen Italienisch u.v.m.</p>
+          <p class="desc">Giuoco Piano, Evans Gambit, Zweispringerspiel u.v.m.</p>
         </div>
         <div class="actions">
           <span class="btn">Öffnen</span>
         </div>
       </a>
 
-      <!-- Spanisch (Beispiel – verlinke später auf spanish.html) -->
-      <a class="card" href="spanish.html">
+      <!-- Weitere Beispiele – später eigene Detailseiten -->
+      <a class="card" href="spanish.html?q=spanisch">
         <div class="chip">Offene Spiele</div>
         <div class="thumb">
           <img src="images/open/spanish/cover.jpg" alt="Spanisch – Cover" onerror="this.src='assets/logo.png'">
         </div>
         <div class="body">
           <div class="title">Spanisch (ECO C60–C99)</div>
-          <p class="desc">Ruy López: Klassisch, Offene Verteidigung, Marshall-Angriff…</p>
+          <p class="desc">Ruy López: Klassisch, Offene Verteidigung, Marshall…</p>
         </div>
-        <div class="actions">
-          <span class="btn">Öffnen</span>
-        </div>
+        <div class="actions"><span class="btn">Öffnen</span></div>
       </a>
 
-      <!-- Flankenspiele (Beispiel) -->
-      <a class="card" href="flank.html">
+      <a class="card" href="flank.html?q=flank">
         <div class="chip">Flankenspiele</div>
         <div class="thumb">
           <img src="images/flank/cover.jpg" alt="Flankenspiele – Cover" onerror="this.src='assets/logo.png'">
         </div>
         <div class="body">
           <div class="title">Flankenspiele</div>
-          <p class="desc">u.a. Englisch, Réti, Larsen…</p>
+          <p class="desc">Englisch, Réti, Larsen …</p>
         </div>
-        <div class="actions">
-          <span class="btn">Öffnen</span>
-        </div>
-      </a>
-
-      <!-- Zwei Springer (Beispiel) -->
-      <a class="card" href="two-knights.html">
-        <div class="chip">Offene Spiele</div>
-        <div class="thumb">
-          <img src="images/open/two-knights/cover.jpg" alt="Zweispringerspiel – Cover" onerror="this.src='assets/logo.png'">
-        </div>
-        <div class="body">
-          <div class="title">Zweispringerspiel</div>
-          <p class="desc">Scharfe Taktik nach 1.e4 e5 2.Sf3 Sc6 3.Lc4 Sf6</p>
-        </div>
-        <div class="actions">
-          <span class="btn">Öffnen</span>
-        </div>
-      </a>
-
-      <!-- Sizilianisch (Beispiel) -->
-      <a class="card" href="sicilian.html">
-        <div class="chip">Halboffen</div>
-        <div class="thumb">
-          <img src="images/sicilian/cover.jpg" alt="Sizilianisch – Cover" onerror="this.src='assets/logo.png'">
-        </div>
-        <div class="body">
-          <div class="title">Sizilianisch</div>
-          <p class="desc">Najdorf, Drachen, Sveshnikov, Taimanov…</p>
-        </div>
-        <div class="actions">
-          <span class="btn">Öffnen</span>
-        </div>
+        <div class="actions"><span class="btn">Öffnen</span></div>
       </a>
     </section>
   </main>
