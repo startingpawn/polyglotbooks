@@ -191,7 +191,7 @@
   </main>
 
   <footer>
-    <small>Build: Italienisch – Header ohne MB, +-Menü ergänzt, Autoplay aus (langsam)</small>
+    <small>Build: Italienisch – MB-Badges entfernt, Autoplay aus (langsam)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -224,14 +224,12 @@
     })();
   </script>
 
-  <!-- JSON-Loader + Render (nur Italienisch, flaches Grid; Header mit Beschreibung + Bundle-Download, ohne MB) -->
+  <!-- JSON-Loader + Render -->
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
     const Q_TXT = (qs.get('q') || 'italien').toLowerCase();
-
     const fixPath = p => { if (typeof p !== 'string') return p; p = p.trim(); return p.startsWith('/') ? p.slice(1) : p; };
-
     const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
 
     function flattenItemsWithBundle(op){
@@ -241,12 +239,11 @@
         for (const g of op.groups) {
           const gItems = Array.isArray(g.items) ? g.items : [];
           const bundleFile = g?.bundle?.file || g?.file || null;
-          const bundleSize = g?.bundle?.size || g?.size || null; // behalten, aber nicht im Header anzeigen
           for (const it of gItems) {
             items.push({
               ...it,
-              file: it.file || bundleFile || it.file,
-              size: it.size || bundleSize || it.size
+              file: it.file || bundleFile || it.file
+              // size bewusst ignoriert (keine MB-Badges mehr)
             });
           }
         }
@@ -259,10 +256,7 @@
       if (op) return op;
       op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
-      op = openings.find(o => {
-        const all = flattenItemsWithBundle(o);
-        return all.some(it => withinItalianEco(it.eco));
-      });
+      op = openings.find(o => flattenItemsWithBundle(o).some(it => withinItalianEco(it.eco)));
       return op || null;
     }
 
@@ -283,18 +277,12 @@
 
     function pickBundle(op){
       if (op?.bundle?.file) {
-        return {
-          file: fixPath(op.bundle.file),
-          label: op.bundle.label || 'Alle C50–C59 (.bin)'
-        };
+        return { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle C50–C59 (.bin)' };
       }
       if (Array.isArray(op?.groups)) {
         for (const g of op.groups) {
           const file = fixPath(g?.bundle?.file || g?.file || '');
-          if (file) return {
-            file,
-            label: g?.bundle?.label || g?.label || 'Alle C50–C59 (.bin)'
-          };
+          if (file) return { file, label: g?.bundle?.label || g?.label || 'Alle C50–C59 (.bin)' };
         }
       }
       return null;
@@ -341,7 +329,7 @@
           ${player}
           <div class="badges">
             ${it.eco ? `<span class="chip eco">${it.eco}</span>` : ''}
-            ${it.size ? `<span class="chip">${it.size}</span>` : ''}
+            <!-- size-Tag entfernt -->
           </div>
           <div class="info">
             <div class="name">${it.name??'Unbenannt'}</div>
@@ -364,27 +352,10 @@
       const op = filterStrictItalian(opRaw);
       const bundle = pickBundle(op);
 
-      // Items flach einsammeln und Gruppen-Bundle auf Items mappen
-      let items = [];
-      if (Array.isArray(op.items)) items.push(...op.items);
-      if (Array.isArray(op.groups)) {
-        for (const g of op.groups) {
-          const bundleFile = g?.bundle?.file || g?.file || null;
-          const bundleSize = g?.bundle?.size || g?.size || null;
-          for (const it of (g.items||[])) {
-            items.push({
-              ...it,
-              file: it.file || bundleFile || it.file,
-              size: it.size || bundleSize || it.size
-            });
-          }
-        }
-      }
-      // Nur C50–C59
-      items = items.filter(it => /^C5[0-9]$/i.test(String(it.eco||'').trim()));
+      // Items flach einsammeln (MB ignoriert) und nur C50–C59
+      let items = flattenItemsWithBundle(op).filter(it => withinItalianEco(it.eco));
 
       let html = '';
-      // Header mit Beschreibung + Download (ohne MB-Angabe)
       html += `<section class="top-head">
         <div>
           <h2 class="top-title">Italienisch (C50–C59)</h2>
@@ -420,7 +391,7 @@
     })();
   </script>
 
-  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) -->
+  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) + Mobiler Menübutton -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
@@ -613,4 +584,4 @@
     })();
   </script>
 </body>
-</html> ok
+</html>
