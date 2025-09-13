@@ -74,11 +74,11 @@
     .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1rem; line-height:1.5 }
 
-    /* Packs-Grid – EIN Card, zentriert und breit */
+    /* Packs-Grid – nur eine Card, zentriert und SCHMALER */
     .packs-grid{
       display:grid; gap:var(--gap);
       grid-template-columns:1fr;
-      justify-items:center;            /* Card horizontal zentrieren */
+      justify-items:center;
     }
 
     .pack-card{
@@ -87,7 +87,7 @@
       background:#0f1117; overflow:hidden;
       transition:.15s ease;
       width:100%;
-      max-width:980px;                 /* breiter, passend zum Layout */
+      max-width:720px;                /* schmaler gemacht */
     }
     .pack-card:hover{ box-shadow:var(--ring), 0 8px 24px rgba(229,9,20,.16); transform:translateY(-1px) }
 
@@ -97,11 +97,6 @@
       display:flex; align-items:center; justify-content:space-between; gap:.6rem;
     }
     .pack-title{ font-weight:700 }
-    .badge{
-      font:600 .78rem/1.2 system-ui;
-      padding:.28rem .55rem; border-radius:999px;
-      background:#121521; color:#cfd3db; border:1px solid #2b3240; white-space:nowrap;
-    }
 
     .pack-body{
       padding:.75rem 1rem .9rem; color:#dfe1e7; line-height:1.5; flex:1;
@@ -152,7 +147,7 @@
       box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
     }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
-    @media (max-width: 979px){
+    @media (max-width: 799px){
       .topnav{ display:none }
       .fab{ display:grid }
       .pack-card{ max-width:100%; }   /* mobil vollbreit */
@@ -211,19 +206,17 @@
       <p class="lead">Basierend auf 7,8 Mio. Lichess-Partien (2022–2025) von 2500+ vs. 2300+ Spielern.</p>
 
       <div class="packs-grid" role="list">
-        <!-- EINZIGER, BREITER PACK-Rahmen -->
+        <!-- EINZIGER RAHMEN mit Download-Button -->
         <article class="pack-card" role="listitem">
           <div class="pack-head">
-            <div class="pack-title">Offene Spiele Pack</div>
-            <span class="badge">10+ Linien</span>
+            <div class="pack-title">Elite-Paket (Allbook)</div>
           </div>
           <div class="pack-body">
             <p>Das Elite-Paket bündelt sechs thematisch saubere Polyglot-Eröffnungsbücher aus Lichess-Partien plus ein zusammengefasstes „Allbook“. Jede Familie deckt einen klaren Eröffnungskomplex ab; das Allbook vereint alle Linien in einer Datei.</p>
             <div class="pack-meta">Format: Polyglot <code>.bin</code></div>
           </div>
           <div class="pack-actions">
-            <a class="btn" href="gallery.html">Details</a>
-            <a class="btn btn-primary" href="downloads/open-openings.bin" download>Download</a>
+            <a class="btn btn-primary" href="downloads/elite-allbooks.bin" download>Download</a>
           </div>
         </article>
       </div>
