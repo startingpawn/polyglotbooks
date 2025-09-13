@@ -25,10 +25,10 @@
     /* Header + Topnav */
     header{
       max-width:var(--max);
-      margin:0 auto; padding:1rem 1rem 0.6rem;
-      display:flex; align-items:center; justify-content:space-between; gap:1rem
+      margin:0 auto; padding:1rem 1rem .8rem; /* etwas mehr unten */
+      display:flex; align-items:center; justify-content:space-between; gap:1.1rem
     }
-    .brand{display:flex; align-items:center; gap:1rem}
+    .brand{display:flex; align-items:center; gap:1.1rem}
     .logo{
       width:48px;height:48px;border-radius:50%;
       background:#1a1517 url('assets/logo.png') center/80% no-repeat;
@@ -36,35 +36,35 @@
     }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
-    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
-    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .topnav{ display:flex; align-items:center; gap:.35rem; flex-wrap:wrap }
+    .nav-link{ padding:.6rem .8rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
-    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .3rem; display:inline-block }
 
     /* Hero */
     .hero{
-      max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2rem;
-      display:grid; gap:1.2rem;
+      max-width:var(--max); margin:0 auto; padding:1.6rem 1.2rem 2.6rem; /* mehr Innenabstand */
+      display:grid; gap:1.6rem; /* mehr Abstand zwischen Panel & Visual */
       grid-template-columns: 1fr;
     }
     @media (min-width: 980px){
-      .hero{ grid-template-columns: 1.2fr .8fr; align-items:center; gap:2rem }
+      .hero{ grid-template-columns: 1.2fr .8fr; align-items:center; gap:2.4rem }
     }
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      padding:1.2rem 1.2rem 1.1rem;
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 140px) padding-box, var(--panel);
+      padding:1.4rem 1.4rem 1.3rem; /* etwas großzügiger */
     }
-    .title{ margin:.25rem 0 .5rem; font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
-    .lead{ color:#cfd3db; font-size:1.02rem; margin:.25rem 0 .9rem }
-    .bullets{ display:grid; gap:.45rem; margin:.2rem 0 .9rem; color:#d9dce4 }
+    .title{ margin:.3rem 0 .8rem; font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.2 }
+    .lead{ color:#cfd3db; font-size:1.05rem; margin:.4rem 0 1.1rem; line-height:1.6 }
+    .bullets{ display:grid; gap:.6rem; margin:.6rem 0 1.2rem; color:#d9dce4 }
     .bullets div::before{ content:"• "; color:#ff5f6d }
 
-    .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
+    .cta{ display:flex; gap:.8rem; flex-wrap:wrap; margin-top:.6rem }
     .btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.6rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      display:inline-flex; align-items:center; gap:.55rem;
+      padding:.7rem 1rem; border-radius:12px; font-weight:700; font-size:.95rem;
       text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
     }
     .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
@@ -80,14 +80,14 @@
       background:
         radial-gradient(180px 180px at 80% -20%, rgba(229,9,20,.18), transparent 60%),
         #0f1117;
-      padding:1rem;
+      padding:1.2rem; /* etwas mehr Innenabstand */
       display:flex; align-items:center; justify-content:center;
-      min-height:260px;
+      min-height:300px; /* einen Tick höher für Luft */
     }
     .visual img{ max-width:100%; height:auto; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,.45)) }
 
     /* Footer */
-    footer{max-width:var(--max);margin:1.2rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
+    footer{max-width:var(--max);margin:1.6rem auto 2.8rem;color:#a2a6b2;font-size:.92rem;padding:0 1.2rem}
 
     /* MOBILER + BUTTON (dunkel, mit leichtem Hover-Glow) */
     .fab{
@@ -178,7 +178,7 @@
   </main>
 
   <footer>
-    <small>Build: Landing – seriöse Einleitung (Hardware/Software erwähnt)</small>
+    <small>Build: Landing – mehr Luft & ordentliche Abstände</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
