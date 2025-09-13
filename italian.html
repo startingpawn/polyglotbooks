@@ -9,18 +9,12 @@
 
   <!-- chessboard-element (Web Component) -->
   <!-- Vereinfachte Version ohne Preload -->
-<script type="module">
-  // Importiere das chessboard-element direkt
-  import 'https://unpkg.com/chessboard-element?module';
-  
-  // Warte bis das Element wirklich bereit ist
-  customElements.whenDefined('chess-board').then(() => {
-    console.log('chess-board custom element ist definiert');
-    
-    // Feuere ein Event wenn bereit
-    document.dispatchEvent(new CustomEvent('chess-board-ready'));
-  });
-</script>
+  <script type="module">
+    import 'https://unpkg.com/chessboard-element?module';
+    customElements.whenDefined('chess-board').then(() => {
+      document.dispatchEvent(new CustomEvent('chess-board-ready'));
+    });
+  </script>
 
   <style>
     :root{
@@ -205,7 +199,13 @@
     </nav>
   </header>
 
-  <div class="crumbs"> <a href="gallery.html">Einzel- Eröffnungen</a> &nbsp;→&nbsp; <strong>Italienisch</strong> </div>
+  <!-- Breadcrumbs: Home → Auswahl → Einzel-Eröffnungen → Italienisch -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="index.html">Home</a> &nbsp;→&nbsp;
+    <a href="choose.html">Auswahl</a> &nbsp;→&nbsp;
+    <a href="gallery.html">Einzel-Eröffnungen</a> &nbsp;→&nbsp;
+    <strong>Italienisch</strong>
+  </nav>
 
   <main id="app" aria-live="polite">
     <p>Lade Daten…</p>
@@ -348,31 +348,26 @@
           <div class="controls">
             <div class="ctrls-left">
               <button class="ctr" data-first title="Zum Anfang" aria-label="Zum Anfang">
-                <!-- First -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
                 </svg>
               </button>
               <button class="ctr" data-prev title="Zug zurück" aria-label="Zug zurück">
-                <!-- Prev -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
                 </svg>
               </button>
               <button class="ctr" data-play title="Abspielen" aria-label="Abspielen">
-                <!-- Play -->
                 <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </button>
               <button class="ctr" data-next title="Zug vor" aria-label="Zug vor">
-                <!-- Next -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
                 </svg>
               </button>
               <button class="ctr" data-last title="Zum Ende" aria-label="Zum Ende">
-                <!-- Last -->
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
                 </svg>
@@ -450,226 +445,204 @@
   </script>
 
   <!-- Boards + Player (Autoplay AUS, langsam 1800ms) + Move-Sound -->
-<script type="module">
-  import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
+  <script type="module">
+    import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
-  const INTERVAL = 1800;    // langsam
+    const INTERVAL = 1800;    // langsam
 
-  /* ---- SFX: Move-Sound (MP3) ---- */
-  const sfx = (() => {
-    const a = new Audio('assets/sfx/move.mp3');
-    a.preload = 'auto';
-    a.volume = 0.35;
-    return { enabled: true, play(){ try{ if (this.enabled) a.currentTime = 0, a.play(); }catch(_){} } };
-  })();
+    /* ---- SFX: Move-Sound (MP3) ---- */
+    const sfx = (() => {
+      const a = new Audio('assets/sfx/move.mp3');
+      a.preload = 'auto';
+      a.volume = 0.35;
+      return { enabled: true, play(){ try{ if (this.enabled) a.currentTime = 0, a.play(); }catch(_){} } };
+    })();
 
-  const firstGameFrom = (content, index = 0) => {
-    let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
-    const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
-    norm = (parts[index] ?? parts[0] ?? norm).trim();
-    norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
-    return norm;
-  };
+    const firstGameFrom = (content, index = 0) => {
+      let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
+      const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
+      norm = (parts[index] ?? parts[0] ?? norm).trim();
+      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
+      return norm;
+    };
 
-  const sanitizeToEnglishSAN = (text) => {
-    return text
-      .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
-      .replace(/\{[^}]*\}/g, ' ')
-      .replace(/;[^\n]*/g, ' ')
-      .replace(/\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)/g, ' ')
-      .replace(/\$[0-9]+/g, ' ')
-      .replace(/\b(1-0|0-1|1\/2-1\/2|\*)\b/g, ' ')
-      .replace(/…/g, '...')
-      .replace(/[–—-−]/g, '-')
-      .replace(/×/g, 'x')
-      .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
-      .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
-      .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R').replace(/[♗]/g,'B').replace(/[♘]/g,'N')
-      .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
-      .replace(/†/g,'+')
-      .replace(/\b\d+\.(?:\.\.)?/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-  };
+    const sanitizeToEnglishSAN = (text) => {
+      return text
+        .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
+        .replace(/\{[^}]*\}/g, ' ')
+        .replace(/;[^\n]*/g, ' ')
+        .replace(/\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)/g, ' ')
+        .replace(/\$[0-9]+/g, ' ')
+        .replace(/\b(1-0|0-1|1\/2-1\/2|\*)\b/g, ' ')
+        .replace(/…/g, '...')
+        .replace(/[–—-−]/g, '-')
+        .replace(/×/g, 'x')
+        .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
+        .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
+        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R').replace(/[♗]/g,'B').replace(/[♘]/g,'N')
+        .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
+        .replace(/†/g,'+')
+        .replace(/\b\d+\.(?:\.\.)?/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    };
 
-  function historyFromPGN(pgnRaw) {
-    const g1 = new Chess();
-    try { g1.load_pgn(pgnRaw); } catch {}
-    let h = g1.history({ verbose: true });
-    if (h.length) return h;
+    function historyFromPGN(pgnRaw) {
+      const g1 = new Chess();
+      try { g1.load_pgn(pgnRaw); } catch {}
+      let h = g1.history({ verbose: true });
+      if (h.length) return h;
 
-    const san = sanitizeToEnglishSAN(pgnRaw);
-    const g2 = new Chess();
-    const tokens = san.split(/\s+/).filter(Boolean);
-    let ok = 0;
-    for (const t of tokens) {
-      if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t) || t === '...') continue;
-      try { if (g2.move(t, { sloppy: true })) ok++; } catch {}
-    }
-    if (ok) return g2.history({ verbose: true });
+      const san = sanitizeToEnglishSAN(pgnRaw);
+      const g2 = new Chess();
+      const tokens = san.split(/\s+/).filter(Boolean);
+      let ok = 0;
+      for (const t of tokens) {
+        if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t) || t === '...') continue;
+        try { if (g2.move(t, { sloppy: true })) ok++; } catch {}
+      }
+      if (ok) return g2.history({ verbose: true });
 
-    const g3 = new Chess();
-    ok = 0;
-    for (const t of tokens) {
-      const m = t.match(/^[a-h][1-8][a-h][1-8][nbrqk]?$/i);
-      if (!m) continue;
-      try {
-        const from = t.slice(0,2), to = t.slice(2,4);
-        const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
-        if (g3.move({ from, to, promotion: promo })) ok++;
-      } catch {}
-    }
-    if (ok) return g3.history({ verbose: true });
-
-    console.warn('PGN/Movetext konnte nicht geparst werden. Anfang:', pgnRaw.slice(0, 200));
-    return [];
-  }
-
-  // Warte auf beide Events: openings-rendered UND chess-board-ready
-  let openingsReady = false;
-  let boardsReady = false;
-
-  async function initializeAllBoards() {
-    // Nur initialisieren wenn beide Bedingungen erfüllt sind
-    if (!openingsReady || !boardsReady) return;
-    
-    console.log('Initialisiere alle Boards...');
-    
-    // Zusätzliche Wartezeit für Rendering
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const autos = document.querySelectorAll('.auto-board');
-
-    autos.forEach(async (wrap) => {
-      const card = wrap.closest('.eco-card');
-      const board = wrap.querySelector('chess-board');
-      if (!board || !card) return;
-
-      const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
-      wrap.addEventListener('click', stop);
-
-      let pgn = '';
-      const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
-      const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnFile || wrap.dataset.pgnfile) : '';
-      const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
-
-      if (pgnInline) {
-        pgn = firstGameFrom(pgnInline, pgnIndex);
-      } else if (pgnFile) {
+      const g3 = new Chess();
+      ok = 0;
+      for (const t of tokens) {
+        const m = t.match(/^[a-h][1-8][a-h][1-8][nbrqk]?$/i);
+        if (!m) continue;
         try {
-          const res = await fetch(pgnFile + '?v=' + Date.now(), { cache: 'no-store' });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const txt = await res.text();
-          pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
-        } catch (err) { 
-          console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
+          const from = t.slice(0,2), to = t.slice(2,4);
+          const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
+          if (g3.move({ from, to, promotion: promo })) ok++;
+        } catch {}
+      }
+      if (ok) return g3.history({ verbose: true });
+
+      console.warn('PGN/Movetext konnte nicht geparst werden. Anfang:', pgnRaw.slice(0, 200));
+      return [];
+    }
+
+    // Warte auf beide Events: openings-rendered UND chess-board-ready
+    let openingsReady = false;
+    let boardsReady = false;
+
+    async function initializeAllBoards() {
+      if (!openingsReady || !boardsReady) return;
+      await new Promise(resolve => setTimeout(resolve, 300));
+      const autos = document.querySelectorAll('.auto-board');
+
+      autos.forEach(async (wrap) => {
+        const card = wrap.closest('.eco-card');
+        const board = wrap.querySelector('chess-board');
+        if (!board || !card) return;
+
+        const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+        wrap.addEventListener('click', stop);
+
+        let pgn = '';
+        const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
+        const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnFile || wrap.dataset.pgnfile) : '';
+        const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
+
+        if (pgnInline) {
+          pgn = firstGameFrom(pgnInline, pgnIndex);
+        } else if (pgnFile) {
+          try {
+            const res = await fetch(pgnFile + '?v=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const txt = await res.text();
+            pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
+          } catch (err) { 
+            console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
+            return; 
+          }
+        } else { 
           return; 
         }
-      } else { 
-        return; 
-      }
 
-      let hist = historyFromPGN(pgn);
-      
-      if (!hist || hist.length === 0) {
-        console.warn('Keine gültigen Züge für:', card.dataset.eco);
-        return;
-      }
+        let hist = historyFromPGN(pgn);
+        if (!hist || hist.length === 0) return;
 
-      const player    = card.querySelector('[data-player]');
-      const ctrFirst  = player?.querySelector('[data-first]');
-      const ctrPrev   = player?.querySelector('[data-prev]');
-      const ctrPlay   = player?.querySelector('[data-play]');
-      const ctrNext   = player?.querySelector('[data-next]');
-      const ctrLast   = player?.querySelector('[data-last]');
-      const counter   = player?.querySelector('[data-counter]');
-      player?.addEventListener('click', stop);
+        const player    = card.querySelector('[data-player]');
+        const ctrFirst  = player?.querySelector('[data-first]');
+        const ctrPrev   = player?.querySelector('[data-prev]');
+        const ctrPlay   = player?.querySelector('[data-play]');
+        const ctrNext   = player?.querySelector('[data-next]');
+        const ctrLast   = player?.querySelector('[data-last]');
+        const counter   = player?.querySelector('[data-counter]');
+        player?.addEventListener('click', stop);
 
-      let idx = 0, playing = false, timerId = null;
+        let idx = 0, playing = false, timerId = null;
 
-      function draw(n){
-        const g = new Chess();
-        for (let i = 0; i < n; i++) g.move(hist[i]);
-        const fen = g.fen();
+        function draw(n){
+          const g = new Chess();
+          for (let i = 0; i < n; i++) g.move(hist[i]);
+          const fen = g.fen();
+          setTimeout(() => { board?.setPosition?.(fen); }, 0);
+          if (counter) counter.textContent = `${n}/${hist.length}`;
+          if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
+          if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
+        }
+
+        function setIdx(n){
+          const forward = n > idx;
+          idx = Math.max(0, Math.min(n, hist.length));
+          draw(idx);
+          if (forward && idx > 0) sfx.play();
+        }
+
+        function stopPlayback(){
+          playing = false;
+          if (timerId){ clearInterval(timerId); timerId = null; }
+          if (ctrPlay) { ctrPlay.disabled = false; ctrPlay.title = 'Abspielen'; ctrPlay.setAttribute('aria-label','Abspielen'); }
+        }
         
-        // Verwende setTimeout statt requestAnimationFrame für bessere Kompatibilität
-        setTimeout(() => {
-          if (board && board.setPosition) {
-            board.setPosition(fen);
-          }
-        }, 0);
-        
-        if (counter) counter.textContent = `${n}/${hist.length}`;
-        if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
-        if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
-      }
+        function start(){
+          if (playing || hist.length === 0) return;
+          setIdx(0);
+          playing = true;
+          if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
+          timerId = setInterval(() => {
+            if (idx >= hist.length) { stopPlayback(); return; }
+            setIdx(idx + 1);
+          }, INTERVAL);
+        }
 
-      function setIdx(n){
-        const forward = n > idx;
-        idx = Math.max(0, Math.min(n, hist.length));
-        draw(idx);
-        if (forward && idx > 0) sfx.play();
-      }
-
-      function stopPlayback(){
-        playing = false;
-        if (timerId){ clearInterval(timerId); timerId = null; }
-        if (ctrPlay) { ctrPlay.disabled = false; ctrPlay.title = 'Abspielen'; ctrPlay.setAttribute('aria-label','Abspielen'); }
-      }
-      
-      function start(){
-        if (playing || hist.length === 0) return;
         setIdx(0);
-        playing = true;
-        if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
-        timerId = setInterval(() => {
-          if (idx >= hist.length) { stopPlayback(); return; }
-          setIdx(idx + 1);
-        }, INTERVAL);
-      }
+        stopPlayback();
 
-      setIdx(0);
-      stopPlayback();
+        ctrFirst && (ctrFirst.onclick = () => setIdx(0));
+        ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
+        ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
+        ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
+        ctrPlay  && (ctrPlay.onclick  = () => start());
 
-      ctrFirst && (ctrFirst.onclick = () => setIdx(0));
-      ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
-      ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
-      ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
-      ctrPlay  && (ctrPlay.onclick  = () => start());
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(en => {
+            if (!en.isIntersecting && playing) {
+              stopPlayback();
+            }
+          });
+        }, { threshold: 0.15 });
+        io.observe(card);
+      });
+    }
 
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(en => {
-          if (!en.isIntersecting && playing) {
-            stopPlayback();
-          }
-        });
-      }, { threshold: 0.15 });
-      io.observe(card);
+    document.addEventListener('openings-rendered', () => {
+      openingsReady = true;
+      initializeAllBoards();
     });
-  }
 
-  // Listener für openings-rendered
-  document.addEventListener('openings-rendered', () => {
-    console.log('Openings gerendert');
-    openingsReady = true;
-    initializeAllBoards();
-  });
-
-  // Listener für chess-board-ready (wenn definiert)
-  document.addEventListener('chess-board-ready', () => {
-    console.log('Chess boards bereit');
-    boardsReady = true;
-    initializeAllBoards();
-  });
-
-  // Fallback: Wenn chess-board-ready nicht gefeuert wird
-  customElements.whenDefined('chess-board').then(async () => {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    if (!boardsReady) {
-      console.log('Fallback: Setze boardsReady manuell');
+    document.addEventListener('chess-board-ready', () => {
       boardsReady = true;
       initializeAllBoards();
-    }
-  });
-</script>
+    });
 
+    customElements.whenDefined('chess-board').then(async () => {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      if (!boardsReady) {
+        boardsReady = true;
+        initializeAllBoards();
+      }
+    });
+  </script>
+</body>
+</html>
