@@ -23,7 +23,7 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header + Topnav – wie index.html */
+    /* Header – exakt wie index.html */
     header{
       max-width:var(--max);
       margin:0 auto;
@@ -38,13 +38,14 @@
     }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
+
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Breadcrumbs (wie auf den anderen Seiten) */
+    /* Breadcrumbs */
     .crumbs{
       max-width:var(--max); margin:0 auto; padding:0 1rem .4rem;
       color:#aeb3bf; font-size:.92rem;
@@ -52,17 +53,17 @@
     .crumbs a{ color:#cfd3db }
     .crumbs a:hover{ color:#fff; text-decoration:underline }
 
-    /* Hero – gleiche Abstände wie index, aber: equal-height Panels */
+    /* Hero – gleiche vertikale Optik wie index + gleich hohe, gleich breite Panels */
     .hero{
       max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2rem;
       display:grid; gap:1.2rem;
       grid-template-columns: 1fr;
-      min-height:60vh;
-      align-items:stretch;           /* wichtig: Panels gleich hoch */
+      min-height:60vh;              /* mittige Wahrnehmung */
+      align-items:stretch;          /* Panels auf gleiche Höhe strecken */
     }
     @media (min-width: 980px){
       .hero{
-        grid-template-columns: 1.2fr .8fr;
+        grid-template-columns: repeat(2, 1fr); /* gleich breit */
         gap:2rem;
         padding-top:clamp(4rem, 12vh, 8rem);
         padding-bottom:clamp(3rem, 10vh, 6rem);
@@ -73,7 +74,8 @@
     }
 
     .panel{
-      display:flex; flex-direction:column;   /* für gleich hohe Boxen + sauberes Layout */
+      display:flex; flex-direction:column;
+      height:100%; /* füllt die gestreckte Grid-Zeile vollständig */
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       padding:1.2rem 1.2rem 1.1rem;
@@ -86,7 +88,7 @@
     .bullets{ display:grid; gap:.45rem; margin:.2rem 0 .9rem; color:#d9dce4 }
     .bullets div::before{ content:"• "; color:#ff5f6d }
 
-    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:auto } /* CTA nach unten drücken */
+    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:auto } /* Buttons nach unten, gleicht Höhen aus */
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.6rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
@@ -99,7 +101,7 @@
       box-shadow:0 8px 18px rgba(229,9,20,.24);
     }
 
-    /* Footer – wie index.html (zentriert) */
+    /* Footer – identisch zur index.html (zentriert, gleiche Höhe) */
     footer{
       max-width:var(--max);
       margin:1.2rem auto 2.4rem;
@@ -176,7 +178,7 @@
     <a href="index.html">Home</a> &nbsp;→&nbsp; <strong>Auswahl</strong>
   </nav>
 
-  <!-- Gleiche Hero-Abstände wie index, Panels gleich hoch -->
+  <!-- Mittig wie index + gleiche Panel-Größe -->
   <main class="hero">
     <!-- Links: Einzel-Eröffnungen -->
     <section class="panel">
