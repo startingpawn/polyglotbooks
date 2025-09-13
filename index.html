@@ -25,7 +25,7 @@
     /* Header + Topnav */
     header{
       max-width:var(--max);
-      margin:0 auto; padding:1rem 1rem .6rem;
+      margin:0 auto; padding:1rem 1rem 0.6rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem
     }
     .brand{display:flex; align-items:center; gap:1rem}
@@ -45,7 +45,7 @@
     /* Hero */
     .hero{
       max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2rem;
-      display:grid; gap:1.2rem;  /* Elementabstand (Panel ↔ Visual) bleibt kompakt */
+      display:grid; gap:1.2rem;
       grid-template-columns: 1fr;
     }
     @media (min-width: 980px){
@@ -56,15 +56,10 @@
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       padding:1.2rem 1.2rem 1.1rem;
     }
-
     .title{ margin:.25rem 0 .5rem; font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
-
-    /* NUR Absatz → Element mehr Abstand geben, ohne zusammengehörigen Text aufzublähen */
-    .panel p{ margin:.25rem 0 1.05rem; line-height:1.55; }       /* etwas mehr unten */
-    .panel p + *{ margin-top:1.05rem; }                           /* extra Luft NACH Absätzen */
-    .bullets{ display:grid; gap:.45rem; margin:.2rem 0 .9rem; color:#d9dce4 } /* unverändert kompakt */
+    .lead{ color:#cfd3db; font-size:1.02rem; margin:.25rem 0 .9rem }
+    .bullets{ display:grid; gap:.45rem; margin:.2rem 0 .9rem; color:#d9dce4 }
     .bullets div::before{ content:"• "; color:#ff5f6d }
-    .bullets + .cta{ margin-top:1.05rem }                          /* Abstand Element nach Liste */
 
     .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
     .btn{
@@ -183,7 +178,7 @@
   </main>
 
   <footer>
-    <small>Build: Landing – gezielter Absatz-/Elementabstand</small>
+    <small>Build: Landing – seriöse Einleitung (Hardware/Software erwähnt)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
