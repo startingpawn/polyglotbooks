@@ -22,14 +22,14 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header – wie auf der Startseite (Brand links / Menü rechts) */
+    /* Header – Abstände wie index.html (mehr Padding, Brand links / Menü rechts) */
     header{
       max-width:var(--max);
-      margin:0 auto; padding:1.2rem 1.2rem .8rem;
+      margin:0 auto; padding:1.6rem 1.6rem 1.2rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
     }
     @media (min-width: 980px){
-      header{ padding:2rem 1.5rem 1.2rem; }
+      header{ padding:2.4rem 2rem 1.4rem; }
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
@@ -46,14 +46,15 @@
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    .crumbs{max-width:var(--max);margin:0 auto;padding:0 1rem .6rem;color:#aeb3bf;font-size:.92rem}
+    /* Breadcrumbs – gleiche seitliche Abstände wie index.html */
+    .crumbs{max-width:var(--max);margin:0 auto;padding:0 1.6rem .75rem;color:#aeb3bf;font-size:.92rem}
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
 
-    /* Main – Desktop wird via JS exakt zwischen Header + Footer zentriert */
+    /* Main – gleiche seitliche Abstände + mehr Luft unten */
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding:0 1rem 2.4rem;
+      padding:0 1.6rem 3.2rem;
       display:block; /* wird auf Desktop per JS auf flex gesetzt */
     }
     @media (min-width:980px){
@@ -97,13 +98,13 @@
     }
     .hint{ color:#aeb3bf; font-size:.92rem; margin-top:.6rem }
 
-    /* Footer – mittig mit © */
+    /* Footer – mittig mit © wie index.html */
     footer{
       max-width:var(--max);
       margin:1.2rem auto 2.4rem;
       color:#a2a6b2;
       font-size:.92rem;
-      padding:0 1rem;
+      padding:0 1.6rem;
       text-align:center;
     }
 
@@ -248,13 +249,10 @@
         const f = footer ? footer.offsetHeight : 0;
         const vh = window.innerHeight;
 
-        // Hauptbereich bekommt genau den Platz zwischen Header und Footer
         const min = Math.max(0, vh - h - f);
         main.style.minHeight = min + 'px';
         main.style.display = 'flex';
         main.style.flexDirection = 'column';
-
-        // Grid vertikal in diesem Bereich zentrieren
         grid.style.marginBlock = 'auto';
       }
 
