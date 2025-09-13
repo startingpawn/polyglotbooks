@@ -76,12 +76,21 @@
     }
     .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 .9rem; line-height:1.5 }
-    .panel p{ color:#dfe1e7; line-height:1.55; margin:.2rem 0 .8rem }
 
-    /* Button */
-    .panel-actions{
-      display:flex; justify-content:flex-end; gap:.6rem; margin-top:.6rem;
+    /* Info-Card im Panel */
+    .info-card{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:#0f1117; overflow:hidden;
     }
+    .info-card .card-body{
+      padding:.9rem 1rem 1rem; color:#dfe1e7; line-height:1.55;
+    }
+    .info-card .card-actions{
+      padding:.75rem 1rem; border-top:1px solid #1e2230; background:#0f1117;
+      display:flex; justify-content:flex-end; gap:.6rem;
+    }
+
+    /* Buttons */
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.55rem .8rem; border-radius:12px; font-weight:700; font-size:.95rem;
@@ -179,11 +188,15 @@
       <h2 id="packs">Lichess Elite Books</h2>
       <p class="lead">Basierend auf 7,8 Mio. Lichess-Partien (2022–2025) von 2500+ vs. 2300+ Spielern.</p>
 
-      <p>Das Elite-Paket bündelt sechs thematisch saubere Polyglot-Eröffnungsbücher aus Lichess-Partien plus ein zusammengefasstes „Allbook“. Jede Familie deckt einen klaren Eröffnungskomplex ab; das Allbook vereint alle Linien in einer Datei.</p>
-
-      <div class="panel-actions">
-        <a class="btn btn-primary" href="downloads/elite-allbooks.bin" download>Download</a>
-      </div>
+      <!-- Neue Card mit Text + Download -->
+      <article class="info-card" aria-label="Elite-Paket">
+        <div class="card-body">
+          <p>Das Elite-Paket bündelt sechs thematisch saubere Polyglot-Eröffnungsbücher aus Lichess-Partien plus ein zusammengefasstes „Allbook“. Jede Familie deckt einen klaren Eröffnungskomplex ab; das Allbook vereint alle Linien in einer Datei.</p>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="downloads/elite-allbooks.bin" download>Download</a>
+        </div>
+      </article>
     </section>
   </main>
 
