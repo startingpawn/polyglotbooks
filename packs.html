@@ -49,7 +49,7 @@
     .crumbs{
       max-width:var(--max);
       margin:0 auto;
-      padding:0 1rem .8rem;
+      padding:0 1rem 1.6rem;   /* ↑ mehr Abstand unter Breadcrumbs */
       color:#aeb3bf; font-size:.92rem;
     }
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
@@ -58,11 +58,12 @@
     main.hero{
       max-width:var(--max);
       margin:0 auto;
-      padding:1.2rem 1rem 2rem;
+      padding:1.2rem 1rem 2.8rem; /* ↑ mehr Abstand vor Footer */
       display:grid; gap:1.2rem;
       grid-template-columns:1fr;
       min-height:60vh;
       align-items:center;
+      justify-items:center;        /* Rahmen horizontal mittig */
     }
 
     /* Panel (äußerer Rahmen) – schmaler + zentriert */
@@ -70,8 +71,8 @@
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       padding:1.1rem 1.2rem;
-      max-width:760px;              /* schmalerer äußerer Rahmen */
-      margin-inline:auto;           /* zentrieren */
+      max-width:760px;
+      margin-inline:auto;
     }
     .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1rem; line-height:1.5 }
@@ -89,7 +90,7 @@
       background:#0f1117; overflow:hidden;
       transition:.15s ease;
       width:100%;
-      max-width:720px;              /* schmalere Card */
+      max-width:720px;
     }
     .pack-card:hover{ box-shadow:var(--ring), 0 8px 24px rgba(229,9,20,.16); transform:translateY(-1px) }
 
@@ -153,8 +154,8 @@
     @media (max-width: 799px){
       .topnav{ display:none }
       .fab{ display:grid }
-      .panel{ max-width:100%; }     /* Panel mobil vollbreit */
-      .pack-card{ max-width:100%; } /* Card mobil vollbreit */
+      .panel{ max-width:100%; }
+      .pack-card{ max-width:100%; }
     }
 
     /* Bottom-Sheet Menü */
