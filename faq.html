@@ -63,12 +63,16 @@
       grid-template-columns:1fr;
       min-height:60vh;        /* optisch mittig */
       align-items:center;     /* vertikal zentrieren */
+      justify-items:center;   /* HORIZONTAL zentrieren */
     }
 
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       padding:1.1rem 1.2rem;
+      width:100%;
+      max-width:900px;        /* Rahmenbreite begrenzen */
+      margin:0 auto;          /* und mittig ausrichten */
     }
     .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1rem; line-height:1.5 }
@@ -97,7 +101,7 @@
       margin:1.2rem auto 2.4rem;
       color:#a2a6b2; font-size:.92rem;
       padding:0 1rem;
-      text-align:center;
+      text-align:center;      /* mittig */
     }
 
     /* Mobiler + Button */
