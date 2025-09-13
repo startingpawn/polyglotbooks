@@ -23,7 +23,7 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header – exakt wie index.html */
+    /* Header – wie index.html */
     header{
       max-width:var(--max);
       margin:0 auto;
@@ -45,37 +45,42 @@
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Breadcrumbs */
+    /* Breadcrumbs – mehr Abstand nach unten */
     .crumbs{
-      max-width:var(--max); margin:0 auto; padding:0 1rem .4rem;
+      max-width:var(--max);
+      margin:0 auto 1.2rem;          /* NEU: Abstand unter Breadcrumbs */
+      padding:0 1rem .4rem;
       color:#aeb3bf; font-size:.92rem;
+    }
+    @media (min-width:980px){
+      .crumbs{ margin:0 auto 1.8rem; } /* NEU: noch etwas mehr auf Desktop */
     }
     .crumbs a{ color:#cfd3db }
     .crumbs a:hover{ color:#fff; text-decoration:underline }
 
-    /* Hero – gleiche vertikale Optik wie index + gleich hohe, gleich breite Panels */
+    /* Hero – gleich hohe Panels, mehr Luft nach unten zum Footer */
     .hero{
-      max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2rem;
+      max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2.4rem; /* NEU: mehr bottom padding */
       display:grid; gap:1.2rem;
       grid-template-columns: 1fr;
-      min-height:60vh;              /* mittige Wahrnehmung */
-      align-items:stretch;          /* Panels auf gleiche Höhe strecken */
+      min-height:60vh;
+      align-items:stretch;
     }
     @media (min-width: 980px){
       .hero{
-        grid-template-columns: repeat(2, 1fr); /* gleich breit */
+        grid-template-columns: repeat(2, 1fr);
         gap:2rem;
         padding-top:clamp(4rem, 12vh, 8rem);
-        padding-bottom:clamp(3rem, 10vh, 6rem);
+        padding-bottom:clamp(4rem, 12vh, 8rem); /* NEU: symmetrisch & größer */
       }
     }
     @media (max-width: 979px){
-      .hero{ padding-top:2rem; padding-bottom:2rem; }
+      .hero{ padding-top:2rem; padding-bottom:2.4rem; } /* NEU: mobil etwas größer */
     }
 
     .panel{
       display:flex; flex-direction:column;
-      height:100%; /* füllt die gestreckte Grid-Zeile vollständig */
+      height:100%;
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       padding:1.2rem 1.2rem 1.1rem;
@@ -88,7 +93,7 @@
     .bullets{ display:grid; gap:.45rem; margin:.2rem 0 .9rem; color:#d9dce4 }
     .bullets div::before{ content:"• "; color:#ff5f6d }
 
-    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:auto } /* Buttons nach unten, gleicht Höhen aus */
+    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:auto }
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.6rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
@@ -101,7 +106,7 @@
       box-shadow:0 8px 18px rgba(229,9,20,.24);
     }
 
-    /* Footer – identisch zur index.html (zentriert, gleiche Höhe) */
+    /* Footer – unverändert (zentriert wie index.html) */
     footer{
       max-width:var(--max);
       margin:1.2rem auto 2.4rem;
@@ -178,7 +183,7 @@
     <a href="index.html">Home</a> &nbsp;→&nbsp; <strong>Auswahl</strong>
   </nav>
 
-  <!-- Mittig wie index + gleiche Panel-Größe -->
+  <!-- Mittig + gleiche Panel-Größe -->
   <main class="hero">
     <!-- Links: Einzel-Eröffnungen -->
     <section class="panel">
