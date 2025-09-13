@@ -22,38 +22,46 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header + Topnav */
+    /* Header + Topnav (Brand links, Menü rechts) */
     header{
-      /* etwas breiter als der Content → Elemente wirken weiter außen */
-      max-width:calc(var(--max) + 160px);
+      max-width:var(--max);
       margin:0 auto;
-      /* weniger Abstand nach oben/unten & schmalere Seiten-Polster */
-      padding:.35rem .75rem .45rem;
-      display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+      padding:1rem 1rem .6rem;           /* Standard-Header wie gehabt */
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
     }
-    .brand{display:flex; align-items:center; gap:.9rem}
+    .brand{display:flex; align-items:center; gap:1rem}
     .logo{
       width:48px;height:48px;border-radius:50%;
       background:#1a1517 url('assets/logo.png') center/80% no-repeat;
       box-shadow:0 0 24px rgba(229,9,20,.35)
     }
-    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.05}
-    .sub{color:var(--muted);font-size:.9rem;margin-top:.1rem}
-    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap; margin-top:0 }
-    .nav-link{ padding:.5rem .7rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Hero */
+    /* Hero – MEHR Padding oben/unten auf Desktop */
     .hero{
-      max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2rem;
+      max-width:var(--max);
+      margin:0 auto;
+      /* deutlich mehr Luft oben/unten, responsive */
+      padding:clamp(2.5rem, 6vh, 4rem) 1rem clamp(2.5rem, 6vh, 4rem);
       display:grid; gap:1.2rem;
       grid-template-columns: 1fr;
     }
     @media (min-width: 980px){
-      .hero{ grid-template-columns: 1.2fr .8fr; align-items:center; gap:2rem }
+      .hero{
+        grid-template-columns: 1.2fr .8fr;
+        align-items:center; gap:2rem;
+        /* extra Desktop-Boost oben/unten */
+        padding-top:clamp(4rem, 12vh, 8rem);
+        padding-bottom:clamp(3rem, 10vh, 6rem);
+      }
     }
+
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
@@ -88,17 +96,6 @@
       min-height:260px;
     }
     .visual img{ max-width:100%; height:auto; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,.45)) }
-
-    /* ===== Layout-Verbesserungen: Hero auf Desktop angenehm zentrieren ===== */
-    body{ min-height:100vh; display:flex; flex-direction:column; }
-    main.hero{ flex:1; }
-    @media (min-width:980px){
-      .hero{
-        min-height:calc(100vh - 160px); /* passt den Freiraum nach Header an */
-        place-content:center;
-        padding-block:3rem;
-      }
-    }
 
     /* Footer */
     footer{
