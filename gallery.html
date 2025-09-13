@@ -66,6 +66,12 @@
       background:linear-gradient(180deg, rgba(229,9,20,.04), transparent 120px) padding-box, var(--panel);
       padding:1rem 1.1rem; margin:0 0 var(--gap);
     }
+    /* Offen-Rahmen schmaler + zentriert */
+    .cat--offen{
+      max-width:760px;
+      margin-inline:auto;
+    }
+
     .cat h3{
       margin:.1rem 0 .6rem; font-size:1.08rem; letter-spacing:.02em;
       display:flex; align-items:center; gap:.6rem
@@ -228,6 +234,13 @@
       return map;
     }
 
+    // Hilfsfunktion für CSS-Klassen-Slug
+    const slug = s => String(s||'')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'');
+
     function renderLists(){
       const root = document.getElementById('lists');
       if (!root) return;
@@ -249,8 +262,9 @@
             </a>
           </li>
         `).join('');
+        const cls = `cat cat--${slug(cat)}`;
         return `
-          <section class="cat" aria-labelledby="h-${encodeURIComponent(cat)}">
+          <section class="${cls}" aria-labelledby="h-${encodeURIComponent(cat)}">
             <h3 id="h-${encodeURIComponent(cat)}"><span class="dot" aria-hidden="true"></span>${cat}</h3>
             <ul class="open-list" role="list">
               ${items}
