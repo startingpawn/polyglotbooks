@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Auswahl – Eröffnungen & Packs</title>
+  <meta name="description" content="Wähle zwischen einzelnen Eröffnungen und kompletten Eröffnungspaketen.">
+  <link rel="icon" href="assets/logo.png">
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* Header */
+    header{
+      max-width:var(--max);
+      margin:0 auto; padding:1rem 1rem .6rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
+
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    .crumbs{max-width:var(--max);margin:0 auto;padding:0 1rem .4rem;color:#aeb3bf;font-size:.92rem}
+    .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
+
+    /* Main */
+    main{max-width:var(--max);margin:0 auto;padding:0 1rem 2.4rem}
+    .grid{
+      display:grid; gap:var(--gap);
+      grid-template-columns:1fr;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns:1fr 1fr; gap:var(--gap-desktop); }
+    }
+
+    .panel{
+      position:relative;
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 140px) padding-box, var(--panel);
+      padding:1.2rem 1.2rem 1.15rem;
+      transition:.15s ease;
+    }
+    .panel:hover{ box-shadow:var(--ring), 0 8px 28px rgba(229,9,20,.16); transform:translateY(-1px) }
+    .kicker{ color:#ffb3b3; letter-spacing:.04em; font-weight:700; text-transform:uppercase; font-size:.86rem }
+    .title{ margin:.35rem 0 .55rem; font-size:1.35rem }
+    .lead{ color:#cfd3db; line-height:1.55; margin:.2rem 0 1rem }
+
+    .list{ margin:.4rem 0 1.1rem; padding-left:1.1rem; color:#d9dce4 }
+    .list li{ margin:.25rem 0 }
+
+    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.2rem }
+    .btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.6rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
+      transition:.12s ease;
+    }
+    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+    .btn-primary{
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none;
+      box-shadow:0 8px 18px rgba(229,9,20,.24);
+    }
+    .hint{ color:#aeb3bf; font-size:.92rem; margin-top:.6rem }
+
+    footer{max-width:var(--max);margin:1rem auto 2.4rem;color:#a2a6b2;font-size:.92rem;padding:0 1rem}
+
+    /* Mobiler + Button (dunkel, mit leichtem Hover-Glow) */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
+    }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
+
+    /* Bottom-Sheet Menü */
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Opening Books</h1>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
+      </div>
+    </div>
+    <nav class="topnav" aria-label="Hauptmenü">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="gallery.html">Eröffnungen</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="kontakt.html">Kontakt</a>
+      <a class="nav-link" href="impressum.html">Impressum</a>
+      <a class="nav-link" href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </header>
+
+  <div class="crumbs"><a href="index.html">Home</a> &nbsp;→&nbsp; <strong>Auswahl</strong></div>
+
+  <main>
+    <section class="grid" aria-label="Auswahl">
+      <!-- Links: Einzel-Eröffnungen -->
+      <article class="panel">
+        <div class="kicker">Links</div>
+        <h2 class="title">Einzel-Eröffnungen</h2>
+        <p class="lead">Wähle eine konkrete Eröffnung (z. B. Italienisch, Spanisch, Sizilianisch) und öffne die Detailseite mit ECO-Screenshots und Board-Player.</p>
+        <ul class="list">
+          <li>Gezielte Theorie je ECO</li>
+          <li>Screenshots pro Variante</li>
+          <li>.bin-Download pro Pack, wo vorhanden</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-primary" href="gallery.html" aria-label="Zu den Einzel-Eröffnungen">Zu den Einzel-Eröffnungen</a>
+        </div>
+        <div class="hint">Ziel: <code>gallery.html</code></div>
+      </article>
+
+      <!-- Rechts: Komplett-Packs -->
+      <article class="panel">
+        <div class="kicker">Rechts</div>
+        <h2 class="title">Komplett-Packs</h2>
+        <p class="lead">Fertige Sammlungen: mehrere Eröffnungen nach Kategorie gebündelt – ideal zum schnellen Start auf dem physischen Brett.</p>
+        <ul class="list">
+          <li>Nach Kategorien gebündelt</li>
+          <li>Ein Download für viele Linien</li>
+          <li>Für DGT, Chessnut, Millennium u. a.</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-primary" href="packs.html" aria-label="Zu den Komplett-Packs">Zu den Komplett-Packs</a>
+        </div>
+        <div class="hint">Ziel: <code>packs.html</code></div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <small>Build: Auswahl – zwei Panels (links/rechts) mit direkten Links</small>
+  </footer>
+
+  <!-- Mobiler + Button & Sheet -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Eröffnungen</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Sheet-Logic -->
+  <script>
+    (function(){
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      const backdrop = sheet?.querySelector('.sheet-backdrop');
+      const panel = sheet?.querySelector('.sheet-panel');
+
+      const open = () => {
+        if (!sheet) return;
+        sheet.hidden = false;
+        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
+        fab?.setAttribute('aria-expanded','true');
+      };
+      const close = () => {
+        if (!sheet) return;
+        sheet.removeAttribute('data-open');
+        fab?.setAttribute('aria-expanded','false');
+        setTimeout(() => { sheet.hidden = true; }, 200);
+      };
+
+      fab?.addEventListener('click', () => {
+        if (sheet.hidden) open(); else close();
+      });
+      backdrop?.addEventListener('click', close);
+      panel?.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sheet.hidden) close();
+      });
+    })();
+  </script>
+</body>
+</html>
