@@ -154,7 +154,12 @@
     </nav>
   </header>
 
-  <div class="crumbs"><strong>Einzel- Eröffnungen</strong></div>
+  <!-- Breadcrumbs: Home → Auswahl → Einzel-Eröffnungen -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="index.html">Home</a> &nbsp;→&nbsp;
+    <a href="choose.html">Auswahl</a> &nbsp;→&nbsp;
+    <strong>Einzel-Eröffnungen</strong>
+  </nav>
 
   <main id="app" aria-live="polite">
     <!-- Kategorien werden per JS gerendert -->
@@ -162,7 +167,7 @@
   </main>
 
   <footer>
-    <small>Build: Galerie – Intro entfernt</small>
+    <small>Build: Galerie – Breadcrumbs (Home → Auswahl → Einzel-Eröffnungen)</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
