@@ -47,14 +47,6 @@
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    .intro{
-      margin:.6rem 0 1rem; padding:1rem 1.1rem;
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-    }
-    .intro h2{ margin:.1rem 0 .35rem; font-size:1.2rem }
-    .intro p{ margin:.2rem 0 0; color:#c9cbd3 }
-
     /* Kategorien-Liste (optimiert) */
     .cat{
       border:var(--border) solid #222737; border-radius:var(--radius);
@@ -88,7 +80,6 @@
     }
     .item:hover{ box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.16); transform:translateY(-1px) }
     .left{ display:flex; align-items:center; gap:.55rem }
-    /* ehem. .ico entfällt */
     .name{ font-weight:650 }
     .meta{
       color:#c5c9d4; font-size:.86rem; padding:.2rem .5rem; border:1px solid #2b3240; border-radius:999px;
@@ -166,17 +157,12 @@
   <div class="crumbs"><strong>Eröffnungen</strong></div>
 
   <main id="app" aria-live="polite">
-    <section class="intro">
-      <h2>Überblick</h2>
-      <p>Einzelne Eröffnungen nach Kategorien – Finde schnell die passende Theorie.</p>
-    </section>
-
     <!-- Kategorien werden per JS gerendert -->
     <section id="lists" aria-label="Eröffnungen nach Kategorien"></section>
   </main>
 
   <footer>
-    <small>Build: Galerie – ECO-Label an Position des Symbols verschoben</small>
+    <small>Build: Galerie – Intro entfernt</small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
