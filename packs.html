@@ -49,7 +49,7 @@
     .crumbs{
       max-width:var(--max);
       margin:0 auto;
-      padding:0 1rem 1.6rem;   /* ↑ mehr Abstand unter Breadcrumbs */
+      padding:0 1rem 1.6rem;   /* Abstand unter Breadcrumbs */
       color:#aeb3bf; font-size:.92rem;
     }
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
@@ -58,7 +58,7 @@
     main.hero{
       max-width:var(--max);
       margin:0 auto;
-      padding:1.2rem 1rem 2.8rem; /* ↑ mehr Abstand vor Footer */
+      padding:1.2rem 1rem 2.8rem; /* Abstand vor Footer */
       display:grid; gap:1.2rem;
       grid-template-columns:1fr;
       min-height:60vh;
@@ -66,7 +66,7 @@
       justify-items:center;        /* Rahmen horizontal mittig */
     }
 
-    /* Panel (äußerer Rahmen) – schmaler + zentriert */
+    /* Panel (einziger Rahmen) */
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
@@ -75,42 +75,11 @@
       margin-inline:auto;
     }
     .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
-    .lead{ color:#cfd3db; margin:.2rem 0 1rem; line-height:1.5 }
+    .panel p{ color:#dfe1e7; line-height:1.55; margin:.2rem 0 .8rem }
 
-    /* Packs-Grid – eine Card, zentriert */
-    .packs-grid{
-      display:grid; gap:var(--gap);
-      grid-template-columns:1fr;
-      justify-items:center;
-    }
-
-    .pack-card{
-      display:flex; flex-direction:column;
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background:#0f1117; overflow:hidden;
-      transition:.15s ease;
-      width:100%;
-      max-width:720px;
-    }
-    .pack-card:hover{ box-shadow:var(--ring), 0 8px 24px rgba(229,9,20,.16); transform:translateY(-1px) }
-
-    .pack-head{
-      padding:.8rem 1rem; border-bottom:1px solid #1e2230;
-      background:linear-gradient(180deg, rgba(229,9,20,.05), transparent 120px);
-      display:flex; align-items:center; justify-content:space-between; gap:.6rem;
-    }
-    .pack-title{ font-weight:700 }
-
-    .pack-body{
-      padding:.75rem 1rem .9rem; color:#dfe1e7; line-height:1.5; flex:1;
-    }
-    .pack-body p{ margin:.2rem 0 .4rem }
-    .pack-meta{ color:#aeb3bf; font-size:.9rem }
-
-    .pack-actions{
-      padding:.75rem 1rem; border-top:1px solid #1e2230; background:#0f1117;
-      display:flex; gap:.6rem; align-items:center; justify-content:flex-end;
-      margin-top:auto;
+    /* Button */
+    .panel-actions{
+      display:flex; justify-content:flex-end; gap:.6rem; margin-top:.6rem;
     }
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
@@ -155,7 +124,6 @@
       .topnav{ display:none }
       .fab{ display:grid }
       .panel{ max-width:100%; }
-      .pack-card{ max-width:100%; }
     }
 
     /* Bottom-Sheet Menü */
@@ -208,22 +176,11 @@
   <main class="hero">
     <section class="panel" aria-labelledby="packs">
       <h2 id="packs">Lichess Elite Books</h2>
-      <p class="lead">Basierend auf 7,8 Mio. Lichess-Partien (2022–2025) von 2500+ vs. 2300+ Spielern.</p>
 
-      <div class="packs-grid" role="list">
-        <!-- EINZIGER RAHMEN mit Download-Button -->
-        <article class="pack-card" role="listitem">
-          <div class="pack-head">
-            <div class="pack-title">Alle sechs Eröffnungskategorien und ein zusammenfassendes Allbook</div>
-          </div>
-          <div class="pack-body">
-            <p>Das Elite-Paket bündelt sechs thematisch saubere Polyglot-Eröffnungsbücher aus Lichess-Partien plus ein zusammengefasstes „Allbook“. Jede Familie deckt einen klaren Eröffnungskomplex ab; das Allbook vereint alle Linien in einer Datei.</p>
-            <div class="pack-meta">Format: Polyglot <code>.bin</code></div>
-          </div>
-          <div class="pack-actions">
-            <a class="btn btn-primary" href="downloads/elite-allbooks.bin" download>Download</a>
-          </div>
-        </article>
+      <p>Das Elite-Paket bündelt sechs thematisch saubere Polyglot-Eröffnungsbücher aus Lichess-Partien plus ein zusammengefasstes „Allbook“. Jede Familie deckt einen klaren Eröffnungskomplex ab; das Allbook vereint alle Linien in einer Datei.</p>
+
+      <div class="panel-actions">
+        <a class="btn btn-primary" href="downloads/elite-allbooks.bin" download>Download</a>
       </div>
     </section>
   </main>
