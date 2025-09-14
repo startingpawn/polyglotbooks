@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -8,18 +9,20 @@
   <link rel="icon" href="assets/logo.png">
 
   <!-- Netzwerk-Optimierung für externe Module -->
+
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
   <!-- chessboard-element (Web Component) -->
+
   <script type="module">
     import 'https://unpkg.com/chessboard-element?module';
-    customElements.whenDefined('chess-board').then(() => {
-      document.dispatchEvent(new CustomEvent('chess-board-ready'));
-    });
   </script>
+
+</body>
+</html>
 
   <style>
     :root{
@@ -36,7 +39,7 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header (wie index.html) */
+    /* Header */
     header{
       max-width:var(--max);
       margin:0 auto;
@@ -58,7 +61,7 @@
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Breadcrumbs – unten etwas kleiner */
+    /* Breadcrumbs */
     .crumbs{
       max-width:var(--max);margin:0 auto;
       padding:0 1rem .8rem;
@@ -68,9 +71,9 @@
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Header über den Boards – unten etwas größer */
+    /* Header über den Boards */
     .top-head{
-      margin:.6rem 0 1.4rem; /* etwas mehr Luft nach unten */
+      margin:.6rem 0 1.4rem;
       padding:.9rem 1rem;
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
@@ -117,14 +120,16 @@
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
-    /* Board: zuverlässig sichtbar machen */
+    /* Board */
     .auto-board{ width:100%; display:block; cursor:default }
     .auto-board chess-board{
       display:block;
       width:100%;
-      aspect-ratio:1 / 1;   /* Quadrat erzwingen */
-      min-height:180px;     /* verhindert 0px-Höhe beim ersten Paint */
+      aspect-ratio:1 / 1;
+      min-height:180px;
     }
+    .auto-board.not-initialized { opacity: 0.7; }
+    .auto-board.initialized { opacity: 1; transition: opacity 0.3s ease; }
 
     /* Player */
     .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.6rem .75rem .65rem; }
@@ -145,12 +150,13 @@
     .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
     .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
+    .chip.error{background:#d32f2f; border:none}
 
     .info{ padding:.7rem .9rem .9rem;color:#dfe1e7;border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.25rem; background:#0f1117 }
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
 
-    /* Footer (wie index.html) */
+    /* Footer */
     footer{
       max-width:var(--max);
       margin:1.2rem auto 2.4rem;
@@ -204,6 +210,7 @@
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
   </style>
+
 </head>
 <body>
   <header>
@@ -223,7 +230,8 @@
     </nav>
   </header>
 
-  <!-- Breadcrumbs: Home → Auswahl → Einzel-Eröffnungen → Italienisch -->
+  <!-- Breadcrumbs -->
+
   <nav class="crumbs" aria-label="Breadcrumb">
     <a href="index.html">Home</a> &nbsp;→&nbsp;
     <a href="choose.html">Auswahl</a> &nbsp;→&nbsp;
@@ -240,7 +248,9 @@
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
-  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+
+<button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+
   <div class="sheet" id="sheet" hidden>
     <div class="sheet-backdrop" data-close></div>
     <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
@@ -254,6 +264,7 @@
   </div>
 
   <!-- Fehler-Anzeige -->
+
   <script>
     (function(){
       const show = (msg) => {
@@ -269,7 +280,37 @@
     })();
   </script>
 
+  <!-- Mobile Menu Handler -->
+
+  <script>
+    document.getElementById('fab')?.addEventListener('click', function() {
+      const sheet = document.getElementById('sheet');
+      const isOpen = sheet.dataset.open === 'true';
+      
+      if (isOpen) {
+        sheet.dataset.open = 'false';
+        this.setAttribute('aria-expanded', 'false');
+        setTimeout(() => sheet.hidden = true, 200);
+      } else {
+        sheet.hidden = false;
+        requestAnimationFrame(() => {
+          sheet.dataset.open = 'true';
+          this.setAttribute('aria-expanded', 'true');
+        });
+      }
+    });
+
+    document.querySelector('.sheet-backdrop')?.addEventListener('click', () => {
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      sheet.dataset.open = 'false';
+      fab?.setAttribute('aria-expanded', 'false');
+      setTimeout(() => sheet.hidden = true, 200);
+    });
+  </script>
+
   <!-- JSON-Loader + Render -->
+
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -329,7 +370,6 @@
       return null;
     }
 
-    /* ECO → Variantenname (Fallback) */
     const ECO_NAMES = {
       C50: 'Italienische Partie',
       C51: 'Evans-Gambit',
@@ -352,7 +392,7 @@
         (!it.name || looksGenericItalian(it.name)) ? (ECO_NAMES[eco] || it.name || 'Variante') : it.name;
 
       const media = hasBoard
-        ? `<div class="auto-board"
+        ? `<div class="auto-board not-initialized"
              ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
              ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(it.pgnFile)}"` : ''}
              ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
@@ -464,20 +504,42 @@
     })();
   </script>
 
-  <!-- Boards + Player (Autoplay AUS, langsam 1800ms) + Move-Sound -->
+  <!-- Optimized Board & Player Module -->
+
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
-    const INTERVAL = 1800;    // langsam
+    const INTERVAL = 1800;
+    
+    // Global timer tracking for cleanup
+    const activeTimers = new Set();
+    const boardControllers = new WeakMap();
 
-    /* ---- SFX: Move-Sound (MP3) ---- */
+    // Sound effect manager
     const sfx = (() => {
       const a = new Audio('assets/sfx/move.mp3');
       a.preload = 'auto';
       a.volume = 0.35;
-      return { enabled: true, play(){ try{ if (this.enabled) a.currentTime = 0, a.play(); }catch(_){} } };
+      return { 
+        enabled: true, 
+        play() { 
+          try { 
+            if (this.enabled) {
+              a.currentTime = 0;
+              a.play().catch(() => {});
+            }
+          } catch(_) {} 
+        } 
+      };
     })();
 
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      activeTimers.forEach(timer => clearInterval(timer));
+      activeTimers.clear();
+    });
+
+    // PGN parsing utilities
     const firstGameFrom = (content, index = 0) => {
       let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
       const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
@@ -539,157 +601,264 @@
       return [];
     }
 
-    // --- Robuste Initialisierung ---
-    let openingsReady = false;
-    let boardsReady = false;
-
-    const wait = (ms) => new Promise(r => setTimeout(r, ms));
-    async function waitForUpgrade(){ await customElements.whenDefined('chess-board'); }
-    async function waitForSize(el, tries=20){
-      for(let i=0;i<tries;i++){
-        const w = el.getBoundingClientRect().width;
-        if (w > 20) return true;
-        await wait(50);
-      }
-      return false;
-    }
-    async function fetchWithRetry(url, tries=3){
+    // Fetch with retry and error handling
+    async function fetchWithRetry(url, tries = 3) {
       let lastErr;
-      for (let i=0;i<tries;i++){
-        try{
-          const res = await fetch(url, { cache:'no-store' });
-          if(!res.ok) throw new Error('HTTP ' + res.status);
+      for (let i = 0; i < tries; i++) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
           return await res.text();
-        }catch(e){
+        } catch(e) {
           lastErr = e;
-          await wait(150 + i*200);
+          await new Promise(r => setTimeout(r, 150 + i * 200));
         }
       }
       throw lastErr;
     }
 
-    async function initializeAllBoards() {
-      if (!openingsReady || !boardsReady) return;
-      await waitForUpgrade();
-      await wait(100); // kleinen Puffer geben
+    // Board Controller Class for better encapsulation
+    class BoardController {
+      constructor(wrap, card, board, hist) {
+        this.wrap = wrap;
+        this.card = card;
+        this.board = board;
+        this.hist = hist;
+        this.idx = 0;
+        this.playing = false;
+        this.timerId = null;
+        
+        this.player = card.querySelector('[data-player]');
+        this.controls = {
+          first: this.player?.querySelector('[data-first]'),
+          prev: this.player?.querySelector('[data-prev]'),
+          play: this.player?.querySelector('[data-play]'),
+          next: this.player?.querySelector('[data-next]'),
+          last: this.player?.querySelector('[data-last]'),
+          counter: this.player?.querySelector('[data-counter]')
+        };
+        
+        this.setupControls();
+        this.setupIntersectionObserver();
+        this.draw(0);
+      }
 
-      const autos = document.querySelectorAll('.auto-board');
+      draw(n) {
+        const g = new Chess();
+        for (let i = 0; i < n; i++) g.move(this.hist[i]);
+        const fen = g.fen();
+        
+        requestAnimationFrame(() => {
+          this.board?.setPosition?.(fen);
+        });
+        
+        if (this.controls.counter) {
+          this.controls.counter.textContent = `${n}/${this.hist.length}`;
+        }
+        
+        this.updateButtonStates(n);
+      }
 
-      autos.forEach(async (wrap) => {
-        const card = wrap.closest('.eco-card');
-        const board = wrap.querySelector('chess-board');
-        if (!board || !card) return;
+      updateButtonStates(n) {
+        const { first, prev, next, last } = this.controls;
+        if (prev && first) {
+          prev.disabled = first.disabled = (n <= 0);
+        }
+        if (next && last) {
+          next.disabled = last.disabled = (n >= this.hist.length);
+        }
+      }
 
-        const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
-        wrap.addEventListener('click', stop);
+      setIdx(n) {
+        const forward = n > this.idx;
+        this.idx = Math.max(0, Math.min(n, this.hist.length));
+        this.draw(this.idx);
+        if (forward && this.idx > 0) sfx.play();
+      }
 
-        // Sicherstellen, dass das Board messbar ist
-        const sized = await waitForSize(board);
-        if (!sized) return;
-
-        let pgn = '';
-        const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
-        const pgnFile   = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnFile || wrap.dataset.pgnfile) : '';
-        const pgnIndex  = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
-
-        if (pgnInline) {
-          pgn = firstGameFrom(pgnInline, pgnIndex);
-        } else if (pgnFile) {
-          try {
-            const txt = await fetchWithRetry(pgnFile + '?v=' + Date.now());
-            pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
-          } catch (err) {
-            console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
+      start() {
+        if (this.playing || this.hist.length === 0) return;
+        this.setIdx(0);
+        this.playing = true;
+        
+        if (this.controls.play) {
+          this.controls.play.disabled = true;
+          this.controls.play.title = 'Wiedergabe läuft';
+        }
+        
+        this.timerId = setInterval(() => {
+          if (this.idx >= this.hist.length) {
+            this.stop();
             return;
           }
-        } else {
+          this.setIdx(this.idx + 1);
+        }, INTERVAL);
+        
+        activeTimers.add(this.timerId);
+      }
+
+      stop() {
+        this.playing = false;
+        if (this.timerId) {
+          clearInterval(this.timerId);
+          activeTimers.delete(this.timerId);
+          this.timerId = null;
+        }
+        
+        if (this.controls.play) {
+          this.controls.play.disabled = false;
+          this.controls.play.title = 'Abspielen';
+          this.controls.play.setAttribute('aria-label', 'Abspielen');
+        }
+      }
+
+      setupControls() {
+        const stopPropagation = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        };
+        
+        this.wrap.addEventListener('click', stopPropagation);
+        this.player?.addEventListener('click', stopPropagation);
+        
+        const { first, prev, play, next, last } = this.controls;
+        
+        first?.addEventListener('click', () => this.setIdx(0));
+        prev?.addEventListener('click', () => this.setIdx(this.idx - 1));
+        next?.addEventListener('click', () => this.setIdx(this.idx + 1));
+        last?.addEventListener('click', () => this.setIdx(this.hist.length));
+        play?.addEventListener('click', () => this.start());
+      }
+
+      setupIntersectionObserver() {
+        const observer = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting && this.playing) {
+                this.stop();
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        
+        observer.observe(this.card);
+      }
+
+      destroy() {
+        this.stop();
+      }
+    }
+
+    // Lazy initialization with IntersectionObserver
+    async function initializeSingleBoard(wrap) {
+      // Check if already initialized
+      if (wrap.classList.contains('initialized')) return;
+      
+      const card = wrap.closest('.eco-card');
+      const board = wrap.querySelector('chess-board');
+      if (!board || !card) return;
+
+      // Mark as initializing to prevent double initialization
+      wrap.classList.add('initializing');
+
+      // Wait for board to be sized
+      let sized = false;
+      for (let i = 0; i < 20; i++) {
+        const w = board.getBoundingClientRect().width;
+        if (w > 20) {
+          sized = true;
+          break;
+        }
+        await new Promise(r => setTimeout(r, 50));
+      }
+      
+      if (!sized) {
+        wrap.classList.remove('initializing');
+        return;
+      }
+
+      // Load PGN data
+      let pgn = '';
+      const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
+      const pgnFile = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
+      const pgnIndex = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
+
+      if (pgnInline) {
+        pgn = firstGameFrom(pgnInline, pgnIndex);
+      } else if (pgnFile) {
+        try {
+          const txt = await fetchWithRetry(pgnFile + '?v=' + Date.now());
+          pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
+        } catch (err) {
+          console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
+          
+          // Add error indicator
+          const errorChip = document.createElement('span');
+          errorChip.className = 'chip error';
+          errorChip.textContent = 'PGN fehlt';
+          card.querySelector('.badges')?.appendChild(errorChip);
+          
+          wrap.classList.remove('initializing');
           return;
         }
+      } else {
+        wrap.classList.remove('initializing');
+        return;
+      }
 
-        let hist = historyFromPGN(pgn);
-        if (!hist || hist.length === 0) return;
+      const hist = historyFromPGN(pgn);
+      if (!hist || hist.length === 0) {
+        wrap.classList.remove('initializing');
+        return;
+      }
 
-        const player    = card.querySelector('[data-player]');
-        const ctrFirst  = player?.querySelector('[data-first]');
-        const ctrPrev   = player?.querySelector('[data-prev]');
-        const ctrPlay   = player?.querySelector('[data-play]');
-        const ctrNext   = player?.querySelector('[data-next]');
-        const ctrLast   = player?.querySelector('[data-last]');
-        const counter   = player?.querySelector('[data-counter]');
-        player?.addEventListener('click', stop);
+      // Create controller
+      const controller = new BoardController(wrap, card, board, hist);
+      boardControllers.set(wrap, controller);
+      
+      // Mark as initialized
+      wrap.classList.remove('initializing', 'not-initialized');
+      wrap.classList.add('initialized');
+    }
 
-        let idx = 0, playing = false, timerId = null;
+    // Main initialization with lazy loading
+    async function setupBoards() {
+      await customElements.whenDefined('chess-board');
+      
+      const boards = document.querySelectorAll('.auto-board');
+      if (boards.length === 0) return;
 
-        function draw(n){
-          const g = new Chess();
-          for (let i = 0; i < n; i++) g.move(hist[i]);
-          const fen = g.fen();
-          // Auf nächsten Frame setzen, falls Layout noch committed
-          requestAnimationFrame(() => { board?.setPosition?.(fen); });
-          if (counter) counter.textContent = `${n}/${hist.length}`;
-          if (ctrPrev && ctrFirst){ ctrPrev.disabled = ctrFirst.disabled = (n <= 0); }
-          if (ctrNext && ctrLast){ ctrNext.disabled = ctrLast.disabled = (n >= hist.length); }
-        }
-
-        function setIdx(n){
-          const forward = n > idx;
-          idx = Math.max(0, Math.min(n, hist.length));
-          draw(idx);
-          if (forward && idx > 0) sfx.play();
-        }
-
-        function stopPlayback(){
-          playing = false;
-          if (timerId){ clearInterval(timerId); timerId = null; }
-          if (ctrPlay) { ctrPlay.disabled = false; ctrPlay.title = 'Abspielen'; ctrPlay.setAttribute('aria-label','Abspielen'); }
-        }
-
-        function start(){
-          if (playing || hist.length === 0) return;
-          setIdx(0);
-          playing = true;
-          if (ctrPlay) { ctrPlay.disabled = true; ctrPlay.title = 'Wiedergabe läuft'; }
-          timerId = setInterval(() => {
-            if (idx >= hist.length) { stopPlayback(); return; }
-            setIdx(idx + 1);
-          }, INTERVAL);
-        }
-
-        setIdx(0);
-        stopPlayback();
-
-        ctrFirst && (ctrFirst.onclick = () => setIdx(0));
-        ctrPrev  && (ctrPrev.onclick  = () => setIdx(idx - 1));
-        ctrNext  && (ctrNext.onclick  = () => setIdx(idx + 1));
-        ctrLast  && (ctrLast.onclick  = () => setIdx(hist.length));
-        ctrPlay  && (ctrPlay.onclick  = () => start());
-
-        const io = new IntersectionObserver(entries => {
-          entries.forEach(en => {
-            if (!en.isIntersecting && playing) stopPlayback();
+      // Setup intersection observer for lazy loading
+      const boardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('initialized')) {
+              initializeSingleBoard(entry.target);
+            }
           });
-        }, { threshold: 0.15 });
-        io.observe(card);
+        },
+        { rootMargin: '100px' }
+      );
+
+      // Observe all boards
+      boards.forEach(board => {
+        boardObserver.observe(board);
       });
     }
 
-    document.addEventListener('openings-rendered', () => {
-      openingsReady = true;
-      initializeAllBoards();
-    });
-
-    document.addEventListener('chess-board-ready', () => {
-      boardsReady = true;
-      initializeAllBoards();
-    });
-
-    // Fallback: falls 'chess-board-ready' nicht feuert (Edge-Cases)
-    customElements.whenDefined('chess-board').then(async () => {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      if (!boardsReady) {
-        boardsReady = true;
-        initializeAllBoards();
-      }
+    // Single initialization point
+    Promise.all([
+      customElements.whenDefined('chess-board'),
+      new Promise(resolve => {
+        if (document.querySelector('.cards-grid')) {
+          resolve();
+        } else {
+          document.addEventListener('openings-rendered', resolve);
+        }
+      })
+    ]).then(setupBoards).catch(err => {
+      console.error('Board initialization failed:', err);
     });
   </script>
 </body>
