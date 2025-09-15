@@ -23,12 +23,21 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header – wie index.html */
+    /* Header – OPTIMIERT mit Sticky & Glasmorphismus */
     header{
       max-width:var(--max);
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      
+      /* NEU: Sticky Header mit Glasmorphismus */
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
@@ -63,7 +72,7 @@
       grid-template-columns:1fr;
       min-height:60vh;
       align-items:center;
-      justify-items:center;   /* horizontal mittig */
+      justify-items:center;
     }
     @media (min-width: 980px){
       main.hero{
@@ -73,34 +82,77 @@
       }
     }
 
+    /* Panel - OPTIMIERT mit mehr visueller Präsenz */
     .panel{
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      padding:1.1rem 1.2rem;
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, 
+        var(--panel);
+      padding:1.2rem 1.2rem 1.1rem;
       width:100%;
       max-width:900px;
-      margin:0 auto;          /* mittig ausrichten */
+      margin:0 auto;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow: 
+        0 1px 3px rgba(0,0,0,0.2),
+        0 10px 40px rgba(229,9,20,0.08);
     }
-    .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
-    .lead{ color:#cfd3db; margin:.2rem 0 1rem; line-height:1.5 }
+    .panel:hover{ 
+      transform:translateY(-2px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.3),
+        0 15px 50px rgba(229,9,20,0.12);
+    }
+    
+    /* OPTIMIERT: Konsistente Abstände */
+    .panel h2{ 
+      margin:.2rem 0 1.5rem; /* Mehr Abstand nach unten */
+      font-size:1.35rem 
+    }
+    .lead{ 
+      color:#cfd3db; 
+      margin:.2rem 0 1.8rem; /* Mehr Abstand nach unten */
+      line-height:1.5 
+    }
 
-    /* FAQ Akkordeon */
-    .faq{ display:grid; gap:.8rem; margin-top:.6rem }
+    /* FAQ Akkordeon - OPTIMIERT mit besseren visuellen Effekten */
+    .faq{ 
+      display:grid; 
+      gap:1rem; /* Mehr Abstand zwischen Fragen */
+      margin-top:1.5rem /* Mehr Abstand nach oben */
+    }
     details.qa{
-      border:1px solid #2b3240; border-radius:12px; background:#0f1117; overflow:hidden;
+      border:1px solid #2b3240; 
+      border-radius:12px; 
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
+      overflow:hidden;
       transition:.15s ease;
     }
-    details.qa[open]{ box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.12) }
+    details.qa[open]{ 
+      box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.12);
+      background:linear-gradient(135deg, #111319 0%, #141623 100%);
+    }
     .qa summary{
       list-style:none; cursor:pointer; outline:none;
-      padding:.8rem 1rem; font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+      padding:.9rem 1.1rem; /* Etwas mehr Padding */
+      font-weight:700; 
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      gap:.6rem;
     }
     .qa summary::-webkit-details-marker{ display:none }
     .qa summary .chev{ opacity:.85; transition:transform .15s ease }
     details.qa[open] summary .chev{ transform:rotate(90deg) }
-    .qa .answer{ padding:.2rem 1rem 1rem; color:#d6d9e2; line-height:1.6 }
-    .qa .answer p{ margin:.4rem 0 }
-    .qa .answer ul{ margin:.35rem 0 .2rem 1.2rem }
+    .qa .answer{ 
+      padding:.4rem 1.1rem 1.2rem; /* Mehr Padding */
+      color:#d6d9e2; 
+      line-height:1.6 
+    }
+    .qa .answer p{ margin:.5rem 0 }
+    .qa .answer ul{ margin:.5rem 0 .4rem 1.2rem }
 
     /* Footer (zentriert) */
     footer{
@@ -185,12 +237,12 @@
       <div class="faq" role="list">
         <details class="qa">
           <summary>
-            Was sind Polyglot-„.bin“-Eröffnungsbücher?
+            Was sind Polyglot-„.bin"-Eröffnungsbücher?
             <span class="chev" aria-hidden="true">›</span>
           </summary>
           <div class="answer">
             <p>Polyglot-Eröffnungsbücher sind kompakte digitale Bibliotheken von Eröffnungszügen im <code>.bin</code>-Format. Dieses binäre Format wurde ursprünglich für das PolyGlot-Programm entwickelt und hat sich als verbreiteter Standard etabliert: Zahlreiche Schach-Programme (GUIs, Engines und Apps) können Polyglot-Bücher laden und nutzen.</p>
-            <p>In einem solchen <code>.bin</code>-Buch sind tausende bewährte Eröffnungszüge und komplette Varianten gespeichert – oft zusammengestellt aus Meisterpartien oder umfassenden Analysen. Nutzt du ein Polyglot-Buch in deiner Schachsoftware oder auf deinem e-Board, werden die Anfangszüge einer Partie automatisch daraus gespielt oder vorgeschlagen. Deine Engine muss in dieser Phase also nicht selbst rechnen, sondern greift auf das vorgefertigte Eröffnungswissen zurück. Das spart Zeit und führt dich schneller zu guten Mittelspielstellungen. Sobald keine Buchzüge mehr verfügbar sind (man sagt auch: „aus dem Buch“), übernimmt die Engine wieder das eigenständige Rechnen.</p>
+            <p>In einem solchen <code>.bin</code>-Buch sind tausende bewährte Eröffnungszüge und komplette Varianten gespeichert – oft zusammengestellt aus Meisterpartien oder umfassenden Analysen. Nutzt du ein Polyglot-Buch in deiner Schachsoftware oder auf deinem e-Board, werden die Anfangszüge einer Partie automatisch daraus gespielt oder vorgeschlagen. Deine Engine muss in dieser Phase also nicht selbst rechnen, sondern greift auf das vorgefertigte Eröffnungswissen zurück. Das spart Zeit und führt dich schneller zu guten Mittelspielstellungen. Sobald keine Buchzüge mehr verfügbar sind (man sagt auch: „aus dem Buch"), übernimmt die Engine wieder das eigenständige Rechnen.</p>
           </div>
         </details>
 
@@ -203,8 +255,8 @@
             <p>Die Nutzung eines Polyglot-Buchs auf deinem e-Board ist einfach:</p>
             <ul>
               <li><strong>Herunterladen:</strong> Lade zunächst das gewünschte Eröffnungsbuch-Paket von Starting Pawn auf deinen Computer oder dein Gerät herunter. Die <code>.bin</code>-Datei befindet sich in der Regel in einem ZIP-Archiv, das du entpacken musst.</li>
-              <li><strong>Importieren:</strong> Öffne die Software oder App deines Schachbretts (z.&nbsp;B. die Anwendung für DGT, Chessnut oder Millennium) und importiere dort die entpackte <code>.bin</code>-Datei als Eröffnungsbuch. Viele Programme bieten dafür eine Funktion wie „Buch laden“ oder erwarten, dass du die Datei in einen bestimmten Ordner legst.</li>
-              <li><strong>Aktivieren:</strong> Stelle in der Software sicher, dass das Eröffnungsbuch aktiviert ist. Oft gibt es eine Option wie „Eröffnungsbuch verwenden“ oder ein entsprechendes Kontrollkästchen, das du anhaken musst.</li>
+              <li><strong>Importieren:</strong> Öffne die Software oder App deines Schachbretts (z.&nbsp;B. die Anwendung für DGT, Chessnut oder Millennium) und importiere dort die entpackte <code>.bin</code>-Datei als Eröffnungsbuch. Viele Programme bieten dafür eine Funktion wie „Buch laden" oder erwarten, dass du die Datei in einen bestimmten Ordner legst.</li>
+              <li><strong>Aktivieren:</strong> Stelle in der Software sicher, dass das Eröffnungsbuch aktiviert ist. Oft gibt es eine Option wie „Eröffnungsbuch verwenden" oder ein entsprechendes Kontrollkästchen, das du anhaken musst.</li>
               <li><strong>Starten:</strong> Beginne nun eine neue Partie. Solange ihr euch in einer im Buch enthaltenen Eröffnungsvariante befindet, werden die Züge automatisch aus dem geladenen Book ausgeführt oder deinem Gegner bzw. dir vorgeschlagen. Erst wenn die Partie die Buchtheorie verlässt, übernimmt wieder die Engine oder der normale Spielmodus.</li>
             </ul>
           </div>
@@ -247,7 +299,7 @@
             <span class="chev" aria-hidden="true">›</span>
           </summary>
           <div class="answer">
-            <p>Schreib mir gerne jederzeit eine Nachricht – entweder direkt per E-Mail an <a href="mailto:info@startingpawn.com">info@startingpawn.com</a> oder über das <a href="kontakt.html">Kontaktformular</a> auf der Website. Ich bin für alle Hinweise, Fehlermeldungen oder Vorschläge dankbar, denn sie helfen dabei, Starting Pawn stetig zu verbessern.</p>
+            <p>Schreib mir gerne jederzeit eine Nachricht – entweder direkt per E-Mail an <a href="mailto:info@startingpawn.com">info@startingpawn.com</a> oder über das <a href="kontakt.html">Kontaktformular</a> auf der Website. Ich bin für alle Hinweise, Fehlermeldungen oder Vorschläge dankbar, denn sie helfen dabei, Starting Pawn stetig zu verbessern.</p>
           </div>
         </details>
       </div>
@@ -290,10 +342,10 @@
         if (!sheet) return;
         sheet.removeAttribute('data-open');
         fab?.setAttribute('aria-expanded','false');
-        setTimeout(() => { sheet hidden = true; }, 200);
+        setTimeout(() => { sheet.hidden = true; }, 200);
       };
 
-      fab?.addEventListener('click', () => { sheet hidden ? open() : close(); });
+      fab?.addEventListener('click', () => { sheet.hidden ? open() : close(); });
       backdrop?.addEventListener('click', close);
       panel?.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
