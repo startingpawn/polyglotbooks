@@ -22,12 +22,21 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header (wie index.html) */
+    /* Header - OPTIMIERT mit Sticky & Glasmorphismus */
     header{
       max-width:var(--max);
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      
+      /* NEU: Sticky Header mit Glasmorphismus */
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
@@ -60,20 +69,49 @@
       padding:1.2rem 1rem 2rem;
       display:grid; gap:1.2rem;
       grid-template-columns:1fr;
-      min-height:60vh;        /* optisch mittig */
-      align-items:center;     /* vertikal ausrichten */
+      min-height:60vh;
+      align-items:center;
     }
 
+    /* Panel - OPTIMIERT mit mehr visueller Präsenz */
     .panel{
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      padding:1.1rem 1.2rem;
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, 
+        var(--panel);
+      padding:1.2rem 1.2rem 1.1rem;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow: 
+        0 1px 3px rgba(0,0,0,0.2),
+        0 10px 40px rgba(229,9,20,0.08);
     }
-    .panel h2{ margin:.2rem 0 .6rem; font-size:1.35rem }
-    .lead{ color:#cfd3db; margin:.2rem 0 1rem; line-height:1.5 }
+    .panel:hover{ 
+      transform:translateY(-2px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.3),
+        0 15px 50px rgba(229,9,20,0.12);
+    }
+    
+    /* OPTIMIERT: Konsistente Abstände */
+    .panel h2{ 
+      margin:.2rem 0 1.5rem; /* Mehr Abstand nach unten */
+      font-size:1.35rem 
+    }
+    .lead{ 
+      color:#cfd3db; 
+      margin:.2rem 0 2rem; /* Deutlich mehr Abstand nach unten */
+      line-height:1.5 
+    }
     .contact{
-      display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin:.6rem 0 0;
+      display:flex; 
+      align-items:center; 
+      gap:.6rem; 
+      flex-wrap:wrap; 
+      margin-top:1.8rem; /* Mehr Abstand nach oben */
     }
+    
     .email-chip{
       display:inline-flex; align-items:center; gap:.5rem;
       padding:.55rem .8rem; border-radius:12px; background:#0f1117; color:#e9eaee;
@@ -89,7 +127,13 @@
     .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .btn-primary{
       background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; border:none; box-shadow:0 8px 18px rgba(229,9,20,.24);
+      color:#fff; border:none; 
+      box-shadow:0 8px 18px rgba(229,9,20,.24);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn-primary:hover{ 
+      transform:translateY(-1px); 
+      box-shadow:0 10px 24px rgba(229,9,20,.30);
     }
 
     /* Footer (zentriert, wie index.html) */
@@ -172,11 +216,10 @@
       <h2 id="kontakt">Kontakt</h2>
       <p class="lead">
         Du hast Fragen zu den Polyglot-Eröffnungen, möchtest Feedback geben oder eine Idee einbringen?
-        <br class="br-xs">
-        <br class="br-xs">
+        <br>
+        <br>
         Ich freue mich über deine Nachricht. Am schnellsten erreichst du mich per E-Mail.
       </p>
-      <br class="br-xs">
 
       <div class="contact">
         <span class="email-chip" title="E-Mail-Adresse">
