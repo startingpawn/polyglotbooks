@@ -17,7 +17,8 @@
     html,body{height:100%}
     body{
       margin:0;
-      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      /* Nur der Seitenhintergrund auf schwarz */
+      background:#000;
       color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
     }
     a{color:inherit; text-decoration:none}
@@ -90,9 +91,8 @@
     .card-actions{
       padding:.9rem 1.2rem; border-top:1px solid #1e2230;
       background:linear-gradient(180deg, #0f1117, #0d0f14);
-      display:flex; gap:.6rem; justify-content:flex-end; align-items:center; flex-wrap:wrap;
+      display:flex; gap:.6rem; justify-content:flex-end;
     }
-    .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
     /* Countdown – Kreis + Zahl */
     .timer{
@@ -112,17 +112,17 @@
     /* Buttons */
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
-      padding:.55rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      padding:.55rem .8rem; border-radius:12px; font-weight:700; font-size:.95rem;
       text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
       transition:.12s ease;
     }
     .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-    .btn-donate{
+    .btn-primary{
       background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
       color:#fff; border:none; box-shadow:0 8px 18px rgba(229,9,20,.24);
+      transition:transform .12s ease, box-shadow .12s ease;
     }
-    .btn-donate:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .btn-donate::before{ content:"❤"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
+    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
 
     /* Footer */
     footer{
@@ -205,7 +205,7 @@
               <svg width="120" height="120" viewBox="0 0 120 120">
                 <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/>
                 <circle id="progress" cx="60" cy="60" r="54" fill="none" stroke="url(#g)" stroke-width="10"
-                        stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="0"/>
+                        stroke-linecap="round" stroke-dasharray="339.292"/>
                 <defs>
                   <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="rgba(229,9,20,1)" />
@@ -216,24 +216,31 @@
               <div class="num" id="num">15</div>
             </div>
             <div>
-              <h3 style="margin:.2rem 0 .2rem;font-size:1.05rem">Download startet in <span id="txtSec">15</span> Sekunden …</h3>
-              <p id="status" aria-live="polite">
-                Wenn dir Starting Pawn hilft, die richtigen Stellungen schneller zu erreichen, 
-                freue ich mich über eine kleine Unterstützung. Schon <strong>3&nbsp;€</strong> 
-                helfen, <em>Server-, Domain- und Traffic-Kosten</em> zu decken und neue Books zu bauen.
-                Kein Paywall, keine Werbung – nur Schach. ❤️
-              </p>
+              <h3 style="margin:.2rem 0 .2rem;font-size:1.05rem">
+                Download startet in <span id="txtSec">15</span> Sekunden …
+              </h3>
+              <p id="status" aria-live="polite">Danke, dass du Starting Pawn nutzt! ❤️</p>
             </div>
+          </div>
+
+          <!-- Spendenaufruf -->
+          <div style="margin-top:1rem; color:#cfd3db">
+            <p style="margin:.4rem 0 .2rem">
+              Dieses Projekt ist kostenlos und bleibt werbefrei. Wenn dir die Books helfen,
+              erwäge bitte eine kleine Unterstützung (z. B. 2–5 €). Damit decke ich Hosting & Domain
+              und kann neue Pakete und Updates veröffentlichen. Jeder Betrag hilft – wirklich.
+              Danke! 🙏
+            </p>
           </div>
         </div>
         <div class="card-actions">
-          <span class="support-note">Dein Beitrag fließt zu 100 % in den Betrieb & neue Inhalte.</span>
-          <a class="btn btn-donate" href="donate.html" target="_blank" rel="noopener">Jetzt unterstützen</a>
+          <!-- TODO: Link zur eigenen Spendenseite anpassen -->
+          <a class="btn btn-primary" href="donate.html">Jetzt unterstützen</a>
         </div>
       </article>
 
       <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem">
-        Der Download startet automatisch. Danke für deine Geduld!
+        Der Download startet automatisch. Sollte etwas hängen, versuche es in wenigen Sekunden erneut.
       </p>
     </section>
   </main>
@@ -282,8 +289,7 @@
       const isBin = /\.bin(?:\?.*)?$/i.test(raw);
       const file = (isRelative && isBin) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
 
-      const fileLabel = document.getElementById('fileLabel');
-      fileLabel.textContent = file;
+      document.getElementById('fileLabel').textContent = file;
 
       const SECS_TOTAL = 15;
       let secs = SECS_TOTAL;
@@ -292,14 +298,15 @@
 
       const num = document.getElementById('num');
       const txtSec = document.getElementById('txtSec');
+      const status = document.getElementById('status');
       const progress = document.getElementById('progress');
 
-      const CIRC = 2 * Math.PI * 54; // r=54 -> Umfang ~339.292
+      // Ring-Geometrie (r=54 -> Umfang ~339.292)
+      const CIRC = 2 * Math.PI * 54;
       progress.setAttribute('stroke-dasharray', String(CIRC));
-      progress.setAttribute('stroke-dashoffset', '0');
 
       function setProgress(s){
-        const p = (SECS_TOTAL - s) / SECS_TOTAL;
+        const p = (SECS_TOTAL - s) / SECS_TOTAL; // 0..1
         const off = CIRC * (1 - p);
         progress.setAttribute('stroke-dashoffset', String(off));
       }
@@ -307,6 +314,7 @@
       function triggerDownload(){
         if (done) return;
         done = true;
+        status.textContent = 'Download startet …';
         const a = document.createElement('a');
         a.href = file;
         a.download = '';
@@ -332,9 +340,11 @@
       }
 
       function start(){
+        // Initial anzeigen
         num.textContent = String(secs);
         txtSec.textContent = String(secs);
         setProgress(secs);
+        // sanfter Start
         setTimeout(() => { timer = setInterval(tick, 1000); }, 350);
       }
 
