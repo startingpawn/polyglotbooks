@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Download – Starting Pawn</title>
-  <meta name="description" content="Automatischer Download – 15-Sekunden-Countdown mit Animation, bevor die Datei startet." />
+  <meta name="description" content="Automatischer Download – 10-Sekunden-Countdown mit Animation, bevor die Datei startet." />
   <link rel="icon" href="assets/logo.png">
 
   <style>
@@ -213,10 +213,10 @@
                   </linearGradient>
                 </defs>
               </svg>
-              <div class="num" id="num">15</div>
+              <div class="num" id="num">10</div>
             </div>
             <div>
-              <h3 style="margin:.2rem 0 .2rem;font-size:1.05rem">Download startet in <span id="txtSec">15</span> Sekunden …</h3>
+              <h3 style="margin:.2rem 0 .2rem;font-size:1.05rem">Download startet in <span id="txtSec">10</span> Sekunden …</h3>
               <p id="status" aria-live="polite">
                 Wenn dir Starting Pawn hilft, die richtigen Stellungen schneller zu erreichen, 
                 freue ich mich über eine kleine Unterstützung. Schon <strong>3&nbsp;€</strong> 
@@ -285,7 +285,7 @@
       const fileLabel = document.getElementById('fileLabel');
       fileLabel.textContent = file;
 
-      const SECS_TOTAL = 15;
+      const SECS_TOTAL = 10;
       let secs = SECS_TOTAL;
       let timer = null;
       let done = false;
