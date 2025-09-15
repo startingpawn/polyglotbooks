@@ -22,12 +22,21 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header – gleiche Abstände wie index.html */
+    /* Header – OPTIMIERT mit Sticky & Glasmorphismus */
     header{
       max-width:var(--max);
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      
+      /* NEU: Sticky Header mit Glasmorphismus */
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
@@ -60,21 +69,42 @@
       min-height:60vh;
     }
 
-    /* Kategorien-Liste */
+    /* Kategorien-Liste - OPTIMIERT mit mehr visueller Präsenz */
     .cat{
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.04), transparent 120px) padding-box, var(--panel);
-      padding:1rem 1.1rem; margin:0 0 var(--gap);
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.10), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.04), transparent 120px) padding-box, 
+        var(--panel);
+      padding:1.2rem 1.3rem; 
+      margin:0 0 1.8rem; /* OPTIMIERT: größerer Abstand zwischen Kategorien */
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow: 
+        0 1px 3px rgba(0,0,0,0.2),
+        0 10px 40px rgba(229,9,20,0.06);
     }
+    .cat:hover{
+      transform:translateY(-2px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.3),
+        0 15px 50px rgba(229,9,20,0.10);
+    }
+    
     /* Offen-Rahmen schmaler + zentriert */
     .cat--offen{
       max-width:760px;
       margin-inline:auto;
+      margin-bottom:1.8rem; /* Konsistenter Abstand */
     }
 
     .cat h3{
-      margin:.1rem 0 .6rem; font-size:1.08rem; letter-spacing:.02em;
-      display:flex; align-items:center; gap:.6rem
+      margin:.1rem 0 1rem; /* OPTIMIERT: mehr Abstand nach unten */
+      font-size:1.08rem; 
+      letter-spacing:.02em;
+      display:flex; 
+      align-items:center; 
+      gap:.6rem
     }
     .cat h3 .dot{
       width:10px;height:10px;border-radius:50%;
@@ -94,10 +124,15 @@
     .item{
       position:relative;
       display:flex; align-items:center; justify-content:space-between; gap:.8rem;
-      padding:.7rem .9rem; border-radius:12px; border:1px solid #2b3240; background:#0f1117;
+      padding:.7rem .9rem; border-radius:12px; border:1px solid #2b3240; 
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%); /* OPTIMIERT: subtiler Gradient */
       transition:.15s ease;
     }
-    .item:hover{ box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.16); transform:translateY(-1px) }
+    .item:hover{ 
+      box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.16); 
+      transform:translateY(-1px);
+      background:linear-gradient(135deg, #111319 0%, #141623 100%);
+    }
     .left{ display:flex; align-items:center; gap:.55rem }
     .name{ font-weight:650 }
     .meta{
