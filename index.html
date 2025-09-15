@@ -76,13 +76,22 @@
       padding:1.2rem 1.2rem 1.1rem;
     }
     
-    /* OPTIMIERT: Konsistente Abstände ohne BR-Tags */
-    .panel p { margin-bottom:1.2rem; }
-    .panel .bullets { margin:1.5rem 0; }
-    .panel .cta { margin-top:1.5rem; }
+    /* OPTIMIERT: Größere Abstände wo vorher BR-Tags waren */
+    .panel .title { 
+      margin:.25rem 0 1.5rem; /* Erhöht von .5rem auf 1.5rem unten */
+    }
+    .panel .lead { 
+      margin:.25rem 0 1.8rem; /* Erhöht von .9rem auf 1.8rem unten */
+    }
+    .panel .bullets { 
+      margin:1.8rem 0 1.8rem; /* Großzügiger Abstand oben und unten */
+    }
+    .panel .cta { 
+      margin-top:1.8rem; /* Mehr Abstand nach oben */
+    }
     
-    .title{ margin:.25rem 0 .5rem; font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
-    .lead{ color:#cfd3db; font-size:1.02rem; margin:.25rem 0 .9rem }
+    .title{ font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
+    .lead{ color:#cfd3db; font-size:1.02rem; }
     .bullets{ display:grid; gap:.45rem; color:#d9dce4 }
     .bullets div::before{ content:"• "; color:#ff5f6d }
 
