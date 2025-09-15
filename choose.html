@@ -20,12 +20,15 @@
       background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
       color:var(--text);
       font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      display:flex;
+      flex-direction:column;
     }
     a{color:inherit; text-decoration:none}
 
     /* Header – OPTIMIERT mit Sticky & Glasmorphismus */
     header{
       max-width:var(--max);
+      width:100%;
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
@@ -57,6 +60,7 @@
     /* Breadcrumbs – mehr Abstand nach unten */
     .crumbs{
       max-width:var(--max);
+      width:100%;
       margin:0 auto 1.2rem;          
       padding:0 1rem .4rem;
       color:#aeb3bf; font-size:.92rem;
@@ -67,24 +71,116 @@
     .crumbs a{ color:#cfd3db }
     .crumbs a:hover{ color:#fff; text-decoration:underline }
 
-    /* Hero – gleich hohe Panels, mehr Luft nach unten zum Footer */
+    /* Hero – OPTIMIERT für Breitformat */
     .hero{
-      max-width:var(--max); margin:0 auto; padding:1.2rem 1rem 2.4rem; 
-      display:grid; gap:1.2rem;
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto; 
+      padding:1.2rem 1rem 2.4rem; 
+      display:grid; 
+      gap:1.2rem;
       grid-template-columns: 1fr;
-      min-height:60vh;
+      flex:1;
       align-items:stretch;
     }
+    
+    /* Desktop Normal */
     @media (min-width: 980px){
       .hero{
         grid-template-columns: repeat(2, 1fr);
         gap:2rem;
-        padding-top:clamp(4rem, 12vh, 8rem);
-        padding-bottom:clamp(4rem, 12vh, 8rem); 
+        padding:2rem 1rem;
       }
     }
-    @media (max-width: 979px){
-      .hero{ padding-top:2rem; padding-bottom:2.4rem; } 
+    
+    /* LANDSCAPE OPTIMIERUNG - weniger Höhe, alles passt auf Bildschirm */
+    @media (orientation: landscape) and (max-height: 768px){
+      header{
+        padding:0.8rem 1rem 0.5rem;
+      }
+      .logo{
+        width:40px;
+        height:40px;
+      }
+      h1{
+        font-size:clamp(1.1rem,1.8vw,1.4rem);
+      }
+      .crumbs{
+        margin:0 auto 0.6rem;
+        padding:0 1rem 0.2rem;
+      }
+      .hero{
+        padding:1rem;
+        gap:1.5rem;
+      }
+      .panel{
+        padding:1rem;
+      }
+      .panel .title{
+        margin:0 0 0.8rem;
+        font-size:clamp(1.2rem,2.5vw,1.7rem);
+      }
+      .panel .lead{
+        margin:0 0 1rem;
+        font-size:0.95rem;
+      }
+      .panel .bullets{
+        margin:1rem 0;
+        font-size:0.92rem;
+      }
+      .cta{
+        padding-top:1rem;
+      }
+      footer{
+        margin:0.5rem auto 1rem;
+      }
+    }
+    
+    /* Sehr breite Bildschirme im Landscape */
+    @media (orientation: landscape) and (min-width: 1400px){
+      .hero{
+        max-width:1400px;
+      }
+    }
+    
+    /* Mobile Landscape (Smartphones) */
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      .hero{
+        grid-template-columns: repeat(2, 1fr);
+        padding:0.8rem;
+        gap:1rem;
+      }
+      .panel{
+        padding:0.8rem;
+      }
+      .panel .title{
+        font-size:1.1rem;
+        margin:0 0 0.5rem;
+      }
+      .panel .lead{
+        font-size:0.88rem;
+        margin:0 0 0.7rem;
+      }
+      .panel .bullets{
+        margin:0.7rem 0;
+        font-size:0.85rem;
+        gap:0.3rem;
+      }
+      .cta{
+        padding-top:0.8rem;
+      }
+      .btn{
+        padding:0.5rem 0.75rem;
+        font-size:0.9rem;
+      }
+    }
+    
+    /* Mobile Portrait bleibt unverändert */
+    @media (max-width: 979px) and (orientation: portrait){
+      .hero{ 
+        padding-top:2rem; 
+        padding-bottom:2.4rem; 
+      }
     }
 
     /* Panel - OPTIMIERT mit besseren Hover-Effekten und konsistenten Abständen */
@@ -159,6 +255,7 @@
     /* Footer – unverändert (zentriert wie index.html) */
     footer{
       max-width:var(--max);
+      width:100%;
       margin:1.2rem auto 2.4rem;
       color:#a2a6b2;
       font-size:.92rem;
