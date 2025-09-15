@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -9,20 +8,15 @@
   <link rel="icon" href="assets/logo.png">
 
   <!-- Netzwerk-Optimierung für externe Module -->
-
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
   <!-- chessboard-element (Web Component) -->
-
   <script type="module">
     import 'https://unpkg.com/chessboard-element?module';
   </script>
-
-</body>
-</html>
 
   <style>
     :root{
@@ -39,12 +33,21 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header */
+    /* Header - OPTIMIERT mit Sticky & Glasmorphismus */
     header{
       max-width:var(--max);
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
-      display:flex; align-items:center; justify-content:space-between; gap:1rem
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      
+      /* NEU: Sticky Header mit Glasmorphismus */
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
@@ -71,16 +74,40 @@
 
     main{max-width:var(--max);margin:0 auto;padding:0 1rem 3rem}
 
-    /* Header über den Boards */
+    /* Header über den Boards - OPTIMIERT mit mehr visueller Präsenz */
     .top-head{
-      margin:.6rem 0 1.4rem;
-      padding:.9rem 1rem;
-      border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+      margin:.6rem 0 2rem; /* OPTIMIERT: mehr Abstand nach unten */
+      padding:1.2rem 1.3rem; /* OPTIMIERT: mehr Padding */
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, 
+        var(--panel);
+      display:flex; 
+      align-items:flex-start; 
+      justify-content:space-between; 
+      gap:1rem; 
+      flex-wrap:wrap;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow: 
+        0 1px 3px rgba(0,0,0,0.2),
+        0 10px 40px rgba(229,9,20,0.08);
     }
-    .top-title{ margin:.1rem 0 .2rem; font-size:1.2rem }
-    .top-desc{ margin:.1rem 0 0; color:#c9cbd3 }
+    .top-head:hover{ 
+      transform:translateY(-2px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.3),
+        0 15px 50px rgba(229,9,20,0.12);
+    }
+    .top-title{ 
+      margin:.1rem 0 .8rem; /* OPTIMIERT: mehr Abstand nach unten */
+      font-size:1.2rem 
+    }
+    .top-desc{ 
+      margin:.1rem 0 0; 
+      color:#c9cbd3 
+    }
 
     .dl-btn{
       display:inline-flex; align-items:center; gap:.45rem;
@@ -94,22 +121,38 @@
     .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
 
-    /* Grid */
+    /* Grid - OPTIMIERT mit mehr Abstand */
     .cards-grid{
-      display:grid; gap:var(--gap);
+      display:grid; 
+      gap:1.5rem; /* OPTIMIERT: mehr Gap */
       grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
     }
     @media (min-width: 980px){
-      .cards-grid{ grid-template-columns:repeat(3, 1fr); gap:var(--gap-desktop); }
+      .cards-grid{ 
+        grid-template-columns:repeat(3, 1fr); 
+        gap:1.8rem; /* OPTIMIERT: mehr Gap auf Desktop */
+      }
     }
 
-    /* Karte */
+    /* Karte - OPTIMIERT mit besseren visuellen Effekten */
     .eco-card{
-      position:relative; display:flex; flex-direction:column;
-      border-radius:var(--radius); overflow:hidden; background:#0f1117; border:var(--border) solid #222737;
+      position:relative; 
+      display:flex; 
+      flex-direction:column;
+      border-radius:var(--radius); 
+      overflow:hidden; 
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
+      border:var(--border) solid #222737;
       transition:.15s ease;
+      box-shadow: 
+        0 1px 3px rgba(0,0,0,0.15),
+        0 8px 20px rgba(229,9,20,0.04);
     }
-    .eco-card:hover{ box-shadow:var(--ring), 0 6px 28px rgba(229,9,20,.18); transform:translateY(-1px)}
+    .eco-card:hover{ 
+      box-shadow:var(--ring), 0 10px 30px rgba(229,9,20,.20); 
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, #111319 0%, #141623 100%);
+    }
     .thumb{
       width:100%;
       aspect-ratio:16/10; background:#121420;
@@ -132,7 +175,11 @@
     .auto-board.initialized { opacity: 1; transition: opacity 0.3s ease; }
 
     /* Player */
-    .player{ border-top:1px solid #1e2230; background:#0f1117; padding:.6rem .75rem .65rem; }
+    .player{ 
+      border-top:1px solid #1e2230; 
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+      padding:.7rem .85rem .75rem; /* OPTIMIERT: mehr Padding */
+    }
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
     .ctrls-left{ display:flex; gap:.45rem; align-items:center; flex-wrap:wrap }
     .ctr{
@@ -152,7 +199,15 @@
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
     .chip.error{background:#d32f2f; border:none}
 
-    .info{ padding:.7rem .9rem .9rem;color:#dfe1e7;border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.25rem; background:#0f1117 }
+    .info{ 
+      padding:.8rem 1rem 1rem; /* OPTIMIERT: mehr Padding */
+      color:#dfe1e7;
+      border-top:1px solid #1e2230; 
+      display:flex; 
+      flex-direction:column; 
+      gap:.35rem; /* OPTIMIERT: mehr Gap */
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+    }
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
 
@@ -231,7 +286,6 @@
   </header>
 
   <!-- Breadcrumbs -->
-
   <nav class="crumbs" aria-label="Breadcrumb">
     <a href="index.html">Home</a> &nbsp;→&nbsp;
     <a href="choose.html">Auswahl</a> &nbsp;→&nbsp;
@@ -248,8 +302,7 @@
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
-
-<button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
 
   <div class="sheet" id="sheet" hidden>
     <div class="sheet-backdrop" data-close></div>
@@ -264,7 +317,6 @@
   </div>
 
   <!-- Fehler-Anzeige -->
-
   <script>
     (function(){
       const show = (msg) => {
@@ -281,7 +333,6 @@
   </script>
 
   <!-- Mobile Menu Handler -->
-
   <script>
     document.getElementById('fab')?.addEventListener('click', function() {
       const sheet = document.getElementById('sheet');
@@ -310,7 +361,6 @@
   </script>
 
   <!-- JSON-Loader + Render -->
-
   <script>
     const qs = new URLSearchParams(location.search);
     const Q_ID = (qs.get('id') || 'italian').toLowerCase();
@@ -505,7 +555,6 @@
   </script>
 
   <!-- Optimized Board & Player Module -->
-
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
 
