@@ -283,7 +283,9 @@
       const file = (isRelative && isBin) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
 
       const fileLabel = document.getElementById('fileLabel');
-      fileLabel.textContent = file;
+// nur den Dateinamen ohne Pfad/Query/Hash anzeigen
+const displayName = file.replace(/^.*[\\/]/, '').split('?')[0].split('#')[0];
+fileLabel.textContent = displayName;
 
       const SECS_TOTAL = 10;
       let secs = SECS_TOTAL;
