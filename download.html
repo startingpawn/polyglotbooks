@@ -279,8 +279,8 @@
 
       // Nur relative .bin-Dateien zulassen
       const isRelative = !/^[a-z]+:/i.test(raw);
-      const isBin = /\.bin(?:\?.*)?$/i.test(raw);
-      const file = (isRelative && isBin) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
+      const isAllowed = /\.(?:bin|zip)(?:\?.*)?$/i.test(raw);
+const file = (isRelative && isAllowed) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
 
       const fileLabel = document.getElementById('fileLabel');
 // nur den Dateinamen ohne Pfad/Query/Hash anzeigen
