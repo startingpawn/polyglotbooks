@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Download – Starting Pawn</title>
-  <meta name="description" content="Automatischer Download – 10-Sekunden-Countdown mit Animation, bevor die Datei startet." />
+  <meta name="description" content="Automatischer Download – 15-Sekunden-Countdown mit Animation, bevor die Datei startet." />
   <link rel="icon" href="assets/logo.png">
 
   <style>
@@ -90,9 +90,8 @@
     .card-actions{
       padding:.9rem 1.2rem; border-top:1px solid #1e2230;
       background:linear-gradient(180deg, #0f1117, #0d0f14);
-      display:flex; gap:.6rem; justify-content:flex-end; align-items:center; flex-wrap:wrap;
+      display:flex; gap:.6rem; justify-content:flex-end;
     }
-    .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
     /* Countdown – Kreis + Zahl */
     .timer{
@@ -112,17 +111,17 @@
     /* Buttons */
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
-      padding:.55rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      padding:.55rem .8rem; border-radius:12px; font-weight:700; font-size:.95rem;
       text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
       transition:.12s ease;
     }
     .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-    .btn-donate{
+    .btn-primary{
       background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
       color:#fff; border:none; box-shadow:0 8px 18px rgba(229,9,20,.24);
     }
-    .btn-donate:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .btn-donate::before{ content:"❤"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
+    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+    .btn-primary::before{ content:"⤓"; font-size:1rem; line-height:1 }
 
     /* Footer */
     footer{
@@ -213,27 +212,22 @@
                   </linearGradient>
                 </defs>
               </svg>
-              <div class="num" id="num">10</div>
+              <div class="num" id="num">15</div>
             </div>
             <div>
-              <h3 style="margin:.2rem 0 .2rem;font-size:1.05rem">Download startet in <span id="txtSec">10</span> Sekunden …</h3>
-              <p id="status" aria-live="polite">
-                Wenn dir Starting Pawn hilft, die richtigen Stellungen schneller zu erreichen, 
-                freue ich mich über eine kleine Unterstützung. Schon <strong>3&nbsp;€</strong> 
-                helfen, <em>Server-, Domain- und Traffic-Kosten</em> zu decken und neue Books zu bauen.
-                Kein Paywall, keine Werbung – nur Schach. ❤️
-              </p>
+              <h3 style="margin:.2rem 0 .2rem;font-size:1.05rem">Download startet in <span id="txtSec">15</span> Sekunden …</h3>
+              <p id="status" aria-live="polite">Du kannst den Download jederzeit sofort starten.</p>
             </div>
           </div>
         </div>
         <div class="card-actions">
-          <span class="support-note">Dein Beitrag fließt zu 100 % in den Betrieb & neue Inhalte.</span>
-          <a class="btn btn-donate" href="donate.html" target="_blank" rel="noopener">Jetzt unterstützen</a>
+          <a id="nowBtn" class="btn btn-primary" href="#" role="button">Jetzt herunterladen</a>
+          <a id="cancelBtn" class="btn" href="#" role="button">Abbrechen</a>
         </div>
       </article>
 
       <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem">
-        Der Download startet automatisch. Danke für deine Geduld!
+        Falls der Download nicht automatisch startet, klicke auf „Jetzt herunterladen“ oder prüfe, ob Pop-ups/Downloads blockiert werden.
       </p>
     </section>
   </main>
@@ -277,7 +271,7 @@
       const qs = new URLSearchParams(location.search);
       const raw = qs.get('file') ? decodeURIComponent(qs.get('file')) : DEFAULT_FILE;
 
-      // Nur relative .bin-Dateien zulassen
+      // Nur relative .bin-Dateien zulassen (Sicherheits- und Erwartungs-Check)
       const isRelative = !/^[a-z]+:/i.test(raw);
       const isBin = /\.bin(?:\?.*)?$/i.test(raw);
       const file = (isRelative && isBin) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
@@ -285,20 +279,26 @@
       const fileLabel = document.getElementById('fileLabel');
       fileLabel.textContent = file;
 
-      const SECS_TOTAL = 10;
+      const SECS_TOTAL = 15;
       let secs = SECS_TOTAL;
       let timer = null;
+      let cancelled = false;
       let done = false;
 
       const num = document.getElementById('num');
       const txtSec = document.getElementById('txtSec');
+      const status = document.getElementById('status');
       const progress = document.getElementById('progress');
+      const nowBtn = document.getElementById('nowBtn');
+      const cancelBtn = document.getElementById('cancelBtn');
 
-      const CIRC = 2 * Math.PI * 54; // r=54 -> Umfang ~339.292
+      // Ring-Geometrie (r=54 -> Umfang ~339.292)
+      const CIRC = 2 * Math.PI * 54;
       progress.setAttribute('stroke-dasharray', String(CIRC));
       progress.setAttribute('stroke-dashoffset', '0');
 
       function setProgress(s){
+        // s Sekunden verbleibend -> Fortschritt [0..1]
         const p = (SECS_TOTAL - s) / SECS_TOTAL;
         const off = CIRC * (1 - p);
         progress.setAttribute('stroke-dashoffset', String(off));
@@ -307,6 +307,7 @@
       function triggerDownload(){
         if (done) return;
         done = true;
+        status.textContent = 'Download startet …';
         const a = document.createElement('a');
         a.href = file;
         a.download = '';
@@ -317,6 +318,7 @@
       }
 
       function tick(){
+        if (cancelled || done) { clearInterval(timer); return; }
         secs--;
         if (secs <= 0){
           num.textContent = '0';
@@ -332,11 +334,29 @@
       }
 
       function start(){
+        // Initial anzeigen
         num.textContent = String(secs);
         txtSec.textContent = String(secs);
         setProgress(secs);
+        // sanfter Start (kleine Verzögerung)
         setTimeout(() => { timer = setInterval(tick, 1000); }, 350);
       }
+
+      nowBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (cancelled) return;
+        clearInterval(timer);
+        secs = 0;
+        setProgress(0);
+        triggerDownload();
+      });
+
+      cancelBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        cancelled = true;
+        clearInterval(timer);
+        status.textContent = 'Automatischer Start wurde abgebrochen.';
+      });
 
       start();
     })();
