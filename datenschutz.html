@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Datenschutz – Starting Pawn</title>
+  <meta name="description" content="Datenschutzerklärung für Starting Pawn: Informationen zur Verarbeitung personenbezogener Daten, Hosting (GitHub Pages), CDN (Cloudflare), Logfiles, Rechte nach DSGVO.">
+  <link rel="icon" href="assets/logo.png">
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      display:flex;
+      flex-direction:column;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* Header - OPTIMIERT mit Sticky & Glasmorphismus */
+    header{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      position:sticky; top:0; z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
+
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    /* Breadcrumbs */
+    .crumbs{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem .8rem;
+      color:#aeb3bf; font-size:.92rem;
+    }
+    .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
+
+    /* Inhalt */
+    main.hero{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:1.2rem 1rem 2rem;
+      display:grid; gap:1.2rem;
+      grid-template-columns:1fr;
+      flex:1;
+      align-items:start;
+    }
+
+    /* Panels */
+    .panel{
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, 
+        var(--panel);
+      padding:1.2rem 1.2rem 1.1rem;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
+    }
+    .panel:hover{ 
+      transform:translateY(-2px);
+      box-shadow:0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12);
+    }
+    .panel h2{ margin:.2rem 0 1rem; font-size:1.35rem }
+    .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
+    .muted{ color:var(--muted) }
+
+    .kblocks{ display:grid; gap:1rem }
+    .kblocks h3{ margin:.2rem 0 .4rem; font-size:1.05rem }
+    .kblocks p{ margin:.2rem 0 .8rem; line-height:1.6 }
+    .kblocks ul{ margin:.2rem 0 1rem 1.2rem }
+    .kblocks li{ margin:.25rem 0 }
+
+    /* Footer */
+    footer{
+      max-width:var(--max);
+      width:100%;
+      margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem;
+      padding:0 1rem;
+      text-align:center;
+    }
+
+    /* FAB / Mobile Menü */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
+    }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+
+    /* Landscape Optimierungen (wie Vorlage) */
+    @media (orientation: landscape) and (max-height: 768px){
+      header{ padding:0.8rem 1rem 0.5rem }
+      .logo{ width:40px; height:40px }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem) }
+      .crumbs{ padding:0 1rem 0.4rem }
+      main.hero{ padding:1rem }
+      .panel{ padding:1rem }
+      .panel h2{ margin:0.1rem 0 0.8rem; font-size:1.2rem }
+      .lead{ margin:0.1rem 0 1rem; font-size:0.95rem }
+      footer{ margin:0.5rem auto 1rem }
+    }
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      main.hero{ padding:0.8rem }
+      .panel{ padding:0.8rem }
+      .panel h2{ font-size:1.1rem; margin:0 0 0.5rem }
+      .lead{ font-size:0.88rem; margin:0 0 0.8rem }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Opening Books</h1>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
+      </div>
+    </div>
+    <nav class="topnav" aria-label="Hauptmenü">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="choose.html">Eröffnungen</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="kontakt.html">Kontakt</a>
+      <a class="nav-link" href="faq.html">FAQ</a>
+      <a class="nav-link active" href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </header>
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="index.html">Home</a> &nbsp;→&nbsp; <strong>Datenschutz</strong>
+  </nav>
+
+  <main class="hero">
+    <!-- Intro -->
+    <section class="panel" aria-labelledby="ds-title">
+      <h2 id="ds-title">Datenschutzerklärung</h2>
+      <p class="lead">
+        Diese Seite informiert dich über Art, Umfang und Zwecke der Verarbeitung personenbezogener Daten
+        beim Besuch von <strong>startingpawn.com</strong>. Wir verwenden <strong>keine eigenen Cookies</strong>,
+        kein Tracking und keine Statistik-Tools wie Google Analytics. Die Seite wird über
+        <strong>GitHub Pages</strong> gehostet und über <strong>Cloudflare</strong> ausgeliefert.
+      </p>
+      <p class="muted">Letzte Aktualisierung: 16. September 2025</p>
+    </section>
+
+    <!-- Verantwortlicher -->
+    <section class="panel" aria-labelledby="verant">
+      <h2 id="verant">Verantwortlicher</h2>
+      <div class="kblocks">
+        <p>
+          Verantwortlich im Sinne der DSGVO:<br>
+          <strong>Starting Pawn (privates Projekt)</strong><br>
+          E-Mail: <a href="mailto:info@startingpawn.com">info@startingpawn.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Hosting & CDN -->
+    <section class="panel" aria-labelledby="hosting">
+      <h2 id="hosting">Hosting & CDN (GitHub Pages, Cloudflare)</h2>
+      <div class="kblocks">
+        <p>
+          Diese Website wird auf <strong>GitHub Pages</strong> bereitgestellt. Zur sicheren und schnellen Auslieferung
+          nutzen wir zusätzlich das <strong>Content Delivery Network (CDN) von Cloudflare</strong>. Dabei können
+          technisch notwendige Verarbeitungen (z.&nbsp;B. IP-Adresse, Zeitstempel, angeforderte Ressourcen,
+          User-Agent, Referrer) stattfinden, um Angriffe abzuwehren und die Auslieferung zu ermöglichen.
+        </p>
+        <ul>
+          <li>Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an sicherer, effizienter Bereitstellung)</li>
+          <li>Empfänger: GitHub, Inc. (Hosting) und Cloudflare, Inc. (CDN/Schutz)</li>
+          <li>Datenübermittlung in Drittländer (z.&nbsp;B. USA) ist möglich, es kommen geeignete Garantien (z.&nbsp;B. Standardvertragsklauseln) der Anbieter zur Anwendung.</li>
+        </ul>
+        <p class="muted">Hinweis: Wir setzen keine optionalen/marketingbezogenen Cloudflare-Funktionen ein.</p>
+      </div>
+    </section>
+
+    <!-- Server-Logfiles -->
+    <section class="panel" aria-labelledby="logs">
+      <h2 id="logs">Server-Logfiles</h2>
+      <div class="kblocks">
+        <p>
+          Beim Aufruf der Seiten fallen technisch bedingt Server-Logdaten an (z.&nbsp;B. IP-Adresse, Datum/Uhrzeit,
+          aufgerufene URL, Statuscode, übertragene Datenmenge, Referrer, Browser/OS). Diese Daten werden durch die
+          Hosting-/CDN-Infrastruktur verarbeitet, um die Website auszuliefern, Störungen zu erkennen und Missbrauch zu verhindern.
+        </p>
+        <ul>
+          <li>Zwecke: Betriebssicherheit, Fehlerdiagnose, Abwehr missbräuchlicher Nutzung</li>
+          <li>Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO</li>
+          <li>Speicherdauer: Protokolle werden in der Regel kurzfristig vorgehalten und danach gelöscht bzw. anonymisiert.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Cookies -->
+    <section class="panel" aria-labelledby="cookies">
+      <h2 id="cookies">Cookies</h2>
+      <div class="kblocks">
+        <p>
+          Wir setzen <strong>keine eigenen Cookies</strong> ein. Je nach technischer Notwendigkeit können
+          unsere Infrastruktur-Anbieter (Hosting/CDN) <em>technisch erforderliche</em> Cookies verwenden,
+          um Sicherheit und Auslieferung zu gewährleisten. Solche Cookies speichern keine Profil- oder Marketingdaten.
+        </p>
+      </div>
+    </section>
+
+    <!-- Kontakt per E-Mail -->
+    <section class="panel" aria-labelledby="mail">
+      <h2 id="mail">Kontakt per E-Mail</h2>
+      <div class="kblocks">
+        <p>
+          Wenn du uns per E-Mail kontaktierst, verarbeiten wir deine Angaben (E-Mail-Adresse, Nachricht,
+          freiwillige Inhalte) zur Bearbeitung der Anfrage und für etwaige Rückfragen.
+        </p>
+        <ul>
+          <li>Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO (vorvertragliche Kommunikation) oder lit.&nbsp;f (allg. Anfragen)</li>
+          <li>Speicherdauer: Wir bewahren Korrespondenz nur so lange auf, wie es zur Bearbeitung und gemäß gesetzlichen Pflichten erforderlich ist.</li>
+        </ul>
+        <p>Kontakt: <a href="mailto:info@startingpawn.com">info@startingpawn.com</a></p>
+      </div>
+    </section>
+
+    <!-- Sicherheit -->
+    <section class="panel" aria-labelledby="sec">
+      <h2 id="sec">Sicherheit (TLS/SSL)</h2>
+      <div class="kblocks">
+        <p>
+          Die Übertragung zwischen deinem Browser und unserer Seite ist durch <strong>TLS/SSL</strong> verschlüsselt.
+          Erkennbar am Schlosssymbol in der Adresszeile deines Browsers.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rechte -->
+    <section class="panel" aria-labelledby="rights">
+      <h2 id="rights">Deine Rechte nach DSGVO</h2>
+      <div class="kblocks">
+        <ul>
+          <li><strong>Auskunft</strong> über die gespeicherten Daten (Art.&nbsp;15)</li>
+          <li><strong>Berichtigung</strong> unrichtiger Daten (Art.&nbsp;16)</li>
+          <li><strong>Löschung</strong> („Recht auf Vergessenwerden“, Art.&nbsp;17)</li>
+          <li><strong>Einschränkung</strong> der Verarbeitung (Art.&nbsp;18)</li>
+          <li><strong>Datenübertragbarkeit</strong> (Art.&nbsp;20)</li>
+          <li><strong>Widerspruch</strong> gegen Verarbeitungen auf Basis berechtigter Interessen (Art.&nbsp;21)</li>
+          <li><strong>Beschwerde</strong> bei einer Aufsichtsbehörde, z.&nbsp;B. in deinem EU-Mitgliedstaat (Art.&nbsp;77)</li>
+        </ul>
+        <p>
+          Zur Ausübung deiner Rechte genügt eine formlose Nachricht an:
+          <a href="mailto:info@startingpawn.com">info@startingpawn.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Änderungen -->
+    <section class="panel" aria-labelledby="changes">
+      <h2 id="changes">Änderungen dieser Erklärung</h2>
+      <div class="kblocks">
+        <p>
+          Wir passen diese Datenschutzerklärung an, wenn sich Funktionen, Dienste oder Rechtslagen ändern.
+          Die jeweils aktuelle Fassung findest du jederzeit auf dieser Seite.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>&copy; 2025 Starting Pawn</small>
+  </footer>
+
+  <!-- Mobiler + Button & Sheet -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="choose.html">Eröffnungen</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="faq.html">FAQ</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    // Mobiler + Button (Bottom-Sheet)
+    (function(){
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      const backdrop = sheet?.querySelector('.sheet-backdrop');
+      const panel = sheet?.querySelector('.sheet-panel');
+
+      const open = () => {
+        if (!sheet) return;
+        sheet.hidden = false;
+        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
+        fab?.setAttribute('aria-expanded','true');
+      };
+      const close = () => {
+        if (!sheet) return;
+        sheet.removeAttribute('data-open');
+        fab?.setAttribute('aria-expanded','false');
+        setTimeout(() => { sheet.hidden = true; }, 200);
+      };
+
+      fab?.addEventListener('click', () => {
+        if (sheet.hidden) open(); else close();
+      });
+      backdrop?.addEventListener('click', close);
+      panel?.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sheet.hidden) close();
+      });
+    })();
+  </script>
+</body>
+</html>
