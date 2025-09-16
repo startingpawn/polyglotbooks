@@ -24,7 +24,7 @@
           },
           {
             "eco": "C51",
-            "name": "Evans-Gambit (abgelehnt/sonstige)",
+            "name": "Evans-Gambit (abgelehnt)",
             "image": "images/open/C51.png",
             "file": "books/open/C51.bin",
             "size": "1.2 MB",
@@ -33,7 +33,7 @@
           },
           {
             "eco": "C52",
-            "name": "Evans-Gambit – angenommen (…Bxb4 5.c3 Ba5)",
+            "name": "Evans-Gambit (angenommen)",
             "image": "images/open/C52.png",
             "file": "books/open/C52.bin",
             "size": "1.2 MB",
@@ -42,7 +42,7 @@
           },
           {
             "eco": "C53",
-            "name": "Giuoco Piano (4.c3)",
+            "name": "Giuoco Piano",
             "image": "images/open/C53.png",
             "file": "books/open/C53.bin",
             "size": "1.3 MB",
@@ -87,7 +87,7 @@
           },
           {
             "eco": "C58",
-            "name": "Zweispringerspiel – Kieseritzky (…d5 5.exd5 Na5)",
+            "name": "Zweispringerspiel – Kieseritzky",
             "image": "images/open/C58.png",
             "file": "books/open/C58.bin",
             "size": "1.3 MB",
@@ -96,7 +96,7 @@
           },
           {
             "eco": "C59",
-            "name": "Zweispringerspiel – 6.Bb5+ (Fortsetzung)",
+            "name": "Zweispringerspiel – (Fortsetzung)",
             "image": "images/open/C59.png",
             "file": "books/open/C59.bin",
             "size": "1.1 MB",
