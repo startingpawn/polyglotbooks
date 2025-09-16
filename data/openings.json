@@ -15,7 +15,7 @@
         "items": [
           {
             "eco": "C50",
-            "name": "Italienisch – C50",
+            "name": "Italienische Partie – Sammelcode",
             "image": "images/open/C50.png",
             "file": "books/open/C50.bin",
             "size": "1.1 MB",
@@ -24,7 +24,7 @@
           },
           {
             "eco": "C51",
-            "name": "Italienisch – C51",
+            "name": "Evans-Gambit (abgelehnt/sonstige)",
             "image": "images/open/C51.png",
             "file": "books/open/C51.bin",
             "size": "1.2 MB",
@@ -33,34 +33,34 @@
           },
           {
             "eco": "C52",
-            "name": "Italienisch – C52",
+            "name": "Evans-Gambit – angenommen (…Bxb4 5.c3 Ba5)",
             "image": "images/open/C52.png",
             "file": "books/open/C52.bin",
             "size": "1.2 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5",
             "pgnFile": "pgn/open/C52.pgn"
           },
           {
             "eco": "C53",
-            "name": "Italienisch – C53",
+            "name": "Giuoco Piano (4.c3)",
             "image": "images/open/C53.png",
             "file": "books/open/C53.bin",
             "size": "1.3 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d3",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3",
             "pgnFile": "pgn/open/C53.pgn"
           },
           {
             "eco": "C54",
-            "name": "Italienisch – C54",
+            "name": "Giuoco Piano – mit …Nf6",
             "image": "images/open/C54.png",
             "file": "books/open/C54.bin",
             "size": "1.4 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 c3 Nf6",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6",
             "pgnFile": "pgn/open/C54.pgn"
           },
           {
             "eco": "C55",
-            "name": "Zweispringerspiel – C55",
+            "name": "Zweispringerspiel – Grundstellung",
             "image": "images/open/C55.png",
             "file": "books/open/C55.bin",
             "size": "1.1 MB",
@@ -69,38 +69,38 @@
           },
           {
             "eco": "C56",
-            "name": "Zweispringerspiel – C56",
+            "name": "Zweispringerspiel – Max-Lange-Angriff",
             "image": "images/open/C56.png",
             "file": "books/open/C56.bin",
             "size": "1.2 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d4 exd4 5.O-O Bc5 6.e5",
             "pgnFile": "pgn/open/C56.pgn"
           },
           {
             "eco": "C57",
-            "name": "Zweispringerspiel – C57",
+            "name": "Zweispringerspiel – 4.Ng5",
             "image": "images/open/C57.png",
             "file": "books/open/C57.bin",
             "size": "1.3 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5",
             "pgnFile": "pgn/open/C57.pgn"
           },
           {
             "eco": "C58",
-            "name": "Zweispringerspiel – C58",
+            "name": "Zweispringerspiel – Kieseritzky (…d5 5.exd5 Na5)",
             "image": "images/open/C58.png",
             "file": "books/open/C58.bin",
             "size": "1.3 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5",
             "pgnFile": "pgn/open/C58.pgn"
           },
           {
             "eco": "C59",
-            "name": "Zweispringerspiel – C59",
+            "name": "Zweispringerspiel – 6.Bb5+ (Fortsetzung)",
             "image": "images/open/C59.png",
             "file": "books/open/C59.bin",
             "size": "1.1 MB",
-            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.d3",
+            "line": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6",
             "pgnFile": "pgn/open/C59.pgn"
           }
         ]
