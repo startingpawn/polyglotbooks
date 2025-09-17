@@ -12,7 +12,7 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      /* NEU: Einrückung wie auf der Index.html */
+      /* Einrückung wie auf der Index.html */
       --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
@@ -34,11 +34,7 @@
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
-      
-      /* NEU: Sticky Header mit Glasmorphismus */
-      position:sticky;
-      top:0;
-      z-index:40;
+      position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
@@ -82,76 +78,33 @@
       justify-items:center;
     }
     
-    /* LANDSCAPE OPTIMIERUNG - weniger Höhe, alles passt auf Bildschirm */
+    /* LANDSCAPE OPTIMIERUNG */
     @media (orientation: landscape) and (max-height: 768px){
-      header{
-        padding:0.8rem 1rem 0.5rem;
-      }
-      .logo{
-        width:40px;
-        height:40px;
-      }
-      h1{
-        font-size:clamp(1.1rem,1.8vw,1.4rem);
-      }
-      .crumbs{
-        padding:0 1rem 0.8rem;
-      }
-      main.hero{
-        padding:1rem;
-      }
-      .panel{
-        padding:1rem;
-      }
-      .panel h2{
-        margin:0.1rem 0 0.8rem;
-        font-size:1.2rem;
-      }
-      .lead{
-        margin:0.1rem 0 1rem;
-        font-size:0.95rem;
-      }
-      .info-card .card-body{
-        padding:0.9rem 1rem;
-      }
-      .info-card .card-actions{
-        padding:0.7rem 1rem;
-      }
-      footer{
-        margin:0.5rem auto 1rem;
-      }
+      header{ padding:0.8rem 1rem 0.5rem }
+      .logo{ width:40px; height:40px }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem) }
+      .crumbs{ padding:0 1rem 0.8rem }
+      main.hero{ padding:1rem }
+      .panel{ padding:1rem }
+      .panel h2{ margin:0.1rem 0 0.8rem; font-size:1.2rem }
+      .lead{ margin:0.1rem 0 1rem; font-size:0.95rem }
+      .info-card .card-body{ padding:0.9rem 1rem }
+      .info-card .card-actions{ padding:0.7rem 1rem }
+      footer{ margin:0.5rem auto 1rem }
     }
     
-    /* Mobile Landscape (Smartphones) */
+    /* Mobile Landscape */
     @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
-      main.hero{
-        padding:0.8rem;
-      }
-      .panel{
-        padding:0.8rem;
-      }
-      .panel h2{
-        font-size:1.1rem;
-        margin:0 0 0.5rem;
-      }
-      .lead{
-        font-size:0.88rem;
-        margin:0 0 0.8rem;
-      }
-      .info-card .card-body{
-        padding:0.7rem 0.9rem;
-        font-size:0.9rem;
-      }
-      .info-card .card-actions{
-        padding:0.6rem 0.9rem;
-      }
-      .btn{
-        padding:0.45rem 0.7rem;
-        font-size:0.9rem;
-      }
+      main.hero{ padding:0.8rem }
+      .panel{ padding:0.8rem }
+      .panel h2{ font-size:1.1rem; margin:0 0 0.5rem }
+      .lead{ font-size:0.88rem; margin:0 0 0.8rem }
+      .info-card .card-body{ padding:0.7rem 0.9rem; font-size:0.9rem }
+      .info-card .card-actions{ padding:0.6rem 0.9rem }
+      .btn{ padding:0.45rem 0.7rem; font-size:0.9rem }
     }
 
-    /* Panel - OPTIMIERT mit mehr visueller Präsenz */
+    /* Panel */
     .panel{
       border:var(--border) solid #222737; 
       border-radius:var(--radius);
@@ -163,27 +116,16 @@
       max-width:760px;
       margin-inline:auto;
       transition:transform .2s ease, box-shadow .2s ease;
-      box-shadow: 
-        0 1px 3px rgba(0,0,0,0.2),
-        0 10px 40px rgba(229,9,20,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
     }
     .panel:hover{ 
       transform:translateY(-2px);
-      box-shadow:
-        0 4px 8px rgba(0,0,0,0.3),
-        0 15px 50px rgba(229,9,20,0.12);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12);
     }
     
-    /* OPTIMIERT: Konsistente Abstände */
-    .panel h2{ 
-      margin:.2rem 0 1.5rem; 
-      font-size:1.35rem 
-    }
-    .lead{ 
-      color:#cfd3db; 
-      margin:.2rem 0 1.8rem; 
-      line-height:1.5 
-    }
+    /* Abstände */
+    .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
+    .lead{ color:#cfd3db; margin:.2rem 0 1.8rem; line-height:1.5 }
 
     /* Text-Anordnung wie in der Index.html */
     .panel > h2,
@@ -199,7 +141,7 @@
       overflow-wrap:anywhere;
     }
 
-    /* Info-Card im Panel */
+    /* Info-Card */
     .info-card{
       border:var(--border) solid #222737; 
       border-radius:var(--radius);
@@ -207,15 +149,22 @@
       overflow:hidden;
       transition:transform .15s ease, box-shadow .15s ease;
     }
-    .info-card:hover{
-      transform:translateY(-1px);
-      box-shadow:0 8px 22px rgba(229,9,20,.10);
-    }
+    .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
     .info-card .card-body{
       padding:1.1rem 1.2rem 1.3rem; 
       color:#dfe1e7; 
       line-height:1.55;
     }
+    /* >>> Einrückung & Typografie für den Card-Text wie Index.html <<< */
+    .info-card .card-body p{
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+      margin:0;
+    }
+
     .info-card .card-actions{
       padding:.9rem 1.2rem; 
       border-top:1px solid #1e2230; 
@@ -239,10 +188,7 @@
       box-shadow:0 8px 18px rgba(229,9,20,.24);
       transition:transform .12s ease, box-shadow .12s ease;
     }
-    .btn-primary:hover{ 
-      transform:translateY(-1px); 
-      box-shadow:0 10px 24px rgba(229,9,20,.30);
-    }
+    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
     .btn-primary::before{ content:"⤓"; font-size:1rem; line-height:1 }
 
     /* Footer */
