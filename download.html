@@ -12,8 +12,7 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      /* NEU: Einrückung wie auf der Index.html */
-      --indent-start: 1.15rem;
+      --indent-start: 1.15rem; /* Einrückung wie Index.html */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -75,110 +74,40 @@
     
     /* LANDSCAPE OPTIMIERUNG - weniger Höhe, alles passt auf Bildschirm */
     @media (orientation: landscape) and (max-height: 768px){
-      header{
-        padding:0.8rem 1rem 0.5rem;
-      }
-      .logo{
-        width:40px;
-        height:40px;
-      }
-      h1{
-        font-size:clamp(1.1rem,1.8vw,1.4rem);
-      }
-      .crumbs{
-        padding:0 1rem 0.8rem;
-      }
-      main.hero{
-        padding:1rem;
-      }
-      .panel{
-        padding:1rem;
-      }
-      .panel h2{
-        margin:0.1rem 0 0.8rem;
-        font-size:1.2rem;
-      }
-      .lead{
-        margin:0.1rem 0 0.8rem;
-      }
-      .ring{
-        width:100px !important;
-        height:100px !important;
-      }
-      .ring svg{
-        width:100px;
-        height:100px;
-      }
-      .ring .num{
-        font-size:1.6rem;
-      }
-      .timer h3{
-        font-size:0.95rem !important;
-      }
-      .timer p{
-        font-size:0.9rem;
-      }
-      .card-body{
-        padding:0.9rem 1rem;
-      }
-      .card-actions{
-        padding:0.7rem 1rem;
-      }
-      footer{
-        margin:0.5rem auto 1rem;
-      }
+      header{ padding:0.8rem 1rem 0.5rem }
+      .logo{ width:40px; height:40px }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem) }
+      .crumbs{ padding:0 1rem 0.8rem }
+      main.hero{ padding:1rem }
+      .panel{ padding:1rem }
+      .panel h2{ margin:0.1rem 0 0.8rem; font-size:1.2rem }
+      .lead{ margin:0.1rem 0 0.8rem }
+      .ring{ width:100px !important; height:100px !important }
+      .ring svg{ width:100px; height:100px }
+      .ring .num{ font-size:1.6rem }
+      .timer h3{ font-size:0.95rem !important }
+      .timer p{ font-size:0.9rem }
+      .card-body{ padding:0.9rem 1rem }
+      .card-actions{ padding:0.7rem 1rem }
+      footer{ margin:0.5rem auto 1rem }
     }
     
     /* Mobile Landscape (Smartphones) */
     @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
-      main.hero{
-        padding:0.8rem;
-      }
-      .panel{
-        padding:0.8rem;
-      }
-      .panel h2{
-        font-size:1.1rem;
-        margin:0 0 0.5rem;
-      }
-      .lead{
-        font-size:0.88rem;
-        margin:0 0 0.6rem;
-      }
-      .ring{
-        width:80px !important;
-        height:80px !important;
-      }
-      .ring svg{
-        width:80px;
-        height:80px;
-      }
-      .ring .num{
-        font-size:1.3rem;
-      }
-      .timer{
-        gap:0.7rem;
-      }
-      .timer h3{
-        font-size:0.88rem !important;
-        margin:0 0 0.15rem !important;
-      }
-      .timer p{
-        font-size:0.82rem;
-      }
-      .card-body{
-        padding:0.7rem 0.9rem;
-      }
-      .card-actions{
-        padding:0.6rem 0.9rem;
-      }
-      .support-note{
-        font-size:0.85rem;
-      }
-      .btn{
-        padding:0.45rem 0.7rem;
-        font-size:0.9rem;
-      }
+      main.hero{ padding:0.8rem }
+      .panel{ padding:0.8rem }
+      .panel h2{ font-size:1.1rem; margin:0 0 0.5rem }
+      .lead{ font-size:0.88rem; margin:0 0 0.6rem }
+      .ring{ width:80px !important; height:80px !important }
+      .ring svg{ width:80px; height:80px }
+      .ring .num{ font-size:1.3rem }
+      .timer{ gap:0.7rem }
+      .timer h3{ font-size:0.88rem !important; margin:0 0 0.15rem !important }
+      .timer p{ font-size:0.82rem }
+      .card-body{ padding:0.7rem 0.9rem }
+      .card-actions{ padding:0.6rem 0.9rem }
+      .support-note{ font-size:0.85rem }
+      .btn{ padding:0.45rem 0.7rem; font-size:0.9rem }
     }
 
     /* Panel */
@@ -197,7 +126,7 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
 
-    /* NEU: Typografie & Einrückung wie Index.html */
+    /* Einrückung wie Index.html */
     .panel > h2,
     .panel > .lead,
     .panel > p{
@@ -238,7 +167,30 @@
     .ring .num{
       position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
       text-shadow:0 1px 0 rgba(0,0,0,.35);
+      left:50%; top:50%; transform:translate(-50%, -50%);
+      text-align:center;
+      /* (keine Breitenfixes nötig – Wunsch: nicht im Ring ändern) */
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "lnum" 1;
     }
+
+    /* Die Problemzeile: „Download startet in XX Sekunden …“ */
+    .timer h3{
+      margin:.2rem 0 1.5rem;
+      font-size:1.05rem; /* Desktop/normal */
+      max-width:100%;
+      text-wrap: balance;
+      overflow-wrap:anywhere;
+    }
+    /* Ziffern stabil, aber OHNE feste Mindestbreite (damit „9“ schmaler ist als „10“) */
+    #txtSec{
+      display:inline-block;
+      text-align:center;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "lnum" 1;
+      /* KEIN min-width hier! */
+    }
+
     .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
 
     /* Buttons */
@@ -300,38 +252,36 @@
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
 
-    /* Mobile Portrait Optimierung */
+    /* Mobile Portrait Optimierung – HIER schrumpfen wir die h3-Zeile */
     @media (max-width: 600px) and (orientation: portrait) {
       .timer {
         grid-template-columns: 1fr !important;
         text-align: center;
         gap: 1.5rem;
       }
-      
-      .ring {
-        margin: 0 auto;
-      }
-      
+      .ring { margin: 0 auto; }
       .timer h3 {
-        text-align: center;
+        /* kleiner auf engen Screens, damit „10 Sekunden“ in eine Zeile passt */
+        font-size: clamp(0.90rem, 4.5vw, 1.02rem) !important;
+        margin: 0 0 1.1rem !important;
       }
-      
+      #txtSec{
+        /* sicherstellen, dass keine Mindestbreite greift */
+        min-width: 0 !important;
+      }
       .timer p {
         text-align: left;
         font-size: 0.9rem;
       }
-      
       .card-actions {
         flex-direction: column;
         gap: 0.8rem;
       }
-      
       .support-note {
         margin-right: 0;
         text-align: center;
         font-size: 0.85rem;
       }
-      
       .btn-donate {
         width: 100%;
         justify-content: center;
@@ -340,27 +290,11 @@
 
     /* Sehr kleine Bildschirme (unter 380px Breite) */
     @media (max-width: 380px) {
-      .ring {
-        width: 100px !important;
-        height: 100px !important;
-      }
-      
-      .ring svg {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .ring .num {
-        font-size: 1.6rem;
-      }
-      
-      .timer h3 {
-        font-size: 0.95rem !important;
-      }
-      
-      .timer p {
-        font-size: 0.85rem;
-      }
+      .ring { width: 100px !important; height: 100px !important }
+      .ring svg { width: 100px; height: 100px }
+      .ring .num { font-size: 1.6rem }
+      .timer h3 { font-size: 0.95rem !important }
+      .timer p { font-size: 0.85rem }
     }
   </style>
 </head>
@@ -475,15 +409,15 @@
       const qs = new URLSearchParams(location.search);
       const raw = qs.get('file') ? decodeURIComponent(qs.get('file')) : DEFAULT_FILE;
 
-      // Nur relative .bin-Dateien zulassen
+      // Nur relative .bin/.zip-Dateien zulassen
       const isRelative = !/^[a-z]+:/i.test(raw);
       const isAllowed = /\.(?:bin|zip)(?:\?.*)?$/i.test(raw);
-const file = (isRelative && isAllowed) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
+      const file = (isRelative && isAllowed) ? raw.replace(/^[./]+/,'').replace(/\.\./g,'') : DEFAULT_FILE;
 
       const fileLabel = document.getElementById('fileLabel');
-// nur den Dateinamen ohne Pfad/Query/Hash anzeigen
-const displayName = file.replace(/^.*[\\/]/, '').split('?')[0].split('#')[0];
-fileLabel.textContent = displayName;
+      // nur den Dateinamen ohne Pfad/Query/Hash anzeigen
+      const displayName = file.replace(/^.*[\\/]/, '').split('?')[0].split('#')[0];
+      fileLabel.textContent = displayName;
 
       const SECS_TOTAL = 10;
       let secs = SECS_TOTAL;
