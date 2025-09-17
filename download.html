@@ -12,6 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+      /* NEU: Einrückung wie auf der Index.html */
+      --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -195,6 +197,20 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
 
+    /* NEU: Typografie & Einrückung wie Index.html */
+    .panel > h2,
+    .panel > .lead,
+    .panel > p{
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+    }
+    .lead,
+    .panel > p{
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+
     /* Info-Card */
     .info-card{
       border:var(--border) solid #222737; border-radius:var(--radius);
@@ -223,7 +239,7 @@
       position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
       text-shadow:0 1px 0 rgba(0,0,0,.35);
     }
-    .timer p{ margin:.2rem 0 0; color:#c7cbd6 }
+    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
 
     /* Buttons */
     .btn{
