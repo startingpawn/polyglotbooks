@@ -551,6 +551,33 @@ fileLabel.textContent = displayName;
 
       start();
     })();
+
+    /* ---------- Ko-fi Widget beim Klick auf "Jetzt unterstützen" ---------- */
+    (function(){
+      const btn = document.querySelector('.btn.btn-donate');
+      btn?.addEventListener('click', function(e){
+        e.preventDefault();
+        if (document.getElementById('kofiframe')) {
+          document.getElementById('kofiframe').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        const wrap = document.createElement('div');
+        const iframe = document.createElement('iframe');
+        iframe.id = 'kofiframe';
+        iframe.src = 'https://ko-fi.com/startingpawn/?hidefeed=true&widget=true&embed=true&preview=true';
+        iframe.style.border = 'none';
+        iframe.style.width = '100%';
+        iframe.style.padding = '4px';
+        iframe.style.background = '#f9f9f9';
+        iframe.height = '712';
+        iframe.title = 'startingpawn';
+        wrap.appendChild(iframe);
+        const panel = document.querySelector('section.panel');
+        panel?.appendChild(wrap);
+        wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        iframe.focus?.();
+      });
+    })();
   </script>
 </body>
 </html>
