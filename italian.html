@@ -42,11 +42,7 @@
       margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
-      
-      /* NEU: Sticky Header mit Glasmorphismus */
-      position:sticky;
-      top:0;
-      z-index:40;
+      position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
@@ -85,103 +81,43 @@
       flex:1;
     }
     
-    /* LANDSCAPE OPTIMIERUNG - weniger Höhe, alles passt auf Bildschirm */
+    /* LANDSCAPE OPTIMIERUNG */
     @media (orientation: landscape) and (max-height: 768px){
-      header{
-        padding:0.8rem 1rem 0.5rem;
-      }
-      .logo{
-        width:40px;
-        height:40px;
-      }
-      h1{
-        font-size:clamp(1.1rem,1.8vw,1.4rem);
-      }
-      .crumbs{
-        padding:0 1rem 0.4rem;
-      }
-      main{
-        padding:0 1rem 2rem;
-      }
-      .top-head{
-        margin:0.4rem 0 1.2rem;
-        padding:1rem;
-      }
-      .top-title{
-        margin:0.1rem 0 0.5rem;
-        font-size:1.1rem;
-      }
-      .cards-grid{
-        gap:1rem;
-      }
-      .eco-card{
-        box-shadow:0 1px 2px rgba(0,0,0,0.15), 0 6px 15px rgba(229,9,20,0.03);
-      }
-      .info{
-        padding:0.7rem 0.9rem;
-      }
-      .player{
-        padding:0.6rem 0.75rem;
-      }
-      .ctr{
-        width:40px;
-        height:40px;
-      }
-      footer{
-        margin:0.5rem auto 1rem;
-      }
+      header{ padding:0.8rem 1rem 0.5rem; }
+      .logo{ width:40px; height:40px; }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
+      .crumbs{ padding:0 1rem 0.4rem; }
+      main{ padding:0 1rem 2rem; }
+      .top-head{ margin:0.4rem 0 1.2rem; padding:1rem; }
+      .top-title{ margin:0.1rem 0 0.5rem; font-size:1.1rem; }
+      .cards-grid{ gap:1rem; }
+      .eco-card{ box-shadow:0 1px 2px rgba(0,0,0,0.15), 0 6px 15px rgba(229,9,20,0.03); }
+      .info{ padding:0.7rem 0.9rem; }
+      .player{ padding:0.6rem 0.75rem; }
+      .ctr{ width:40px; height:40px; }
+      footer{ margin:0.5rem auto 1rem; }
     }
     
     /* Mobile Landscape (Smartphones) */
     @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
-      main{
-        padding:0 0.8rem 1.5rem;
-      }
-      .top-head{
-        margin:0.3rem 0 0.8rem;
-        padding:0.8rem;
-      }
-      .top-title{
-        margin:0 0 0.3rem;
-        font-size:1rem;
-      }
-      .top-desc{
-        font-size:0.88rem;
-      }
-      .dl-btn{
-        padding:0.4rem 0.65rem;
-        font-size:0.9rem;
-      }
-      .cards-grid{
-        gap:0.7rem;
-      }
-      .info{
-        padding:0.6rem 0.8rem;
-        font-size:0.9rem;
-      }
-      .line{
-        font-size:0.85rem;
-      }
-      .player{
-        padding:0.5rem 0.65rem;
-      }
-      .ctr{
-        width:36px;
-        height:36px;
-      }
-      .ctr svg{
-        width:18px;
-        height:18px;
-      }
-      .counter{
-        font-size:0.85rem;
-      }
+      main{ padding:0 0.8rem 1.5rem; }
+      .top-head{ margin:0.3rem 0 0.8rem; padding:0.8rem; }
+      .top-title{ margin:0 0 0.3rem; font-size:1rem; }
+      .top-desc{ font-size:0.88rem; }
+      .dl-btn{ padding:0.4rem 0.65rem; font-size:0.9rem; }
+      .cards-grid{ gap:0.7rem; }
+      .info{ padding:0.6rem 0.8rem; font-size:0.9rem; }
+      .line{ font-size:0.85rem; }
+      .player{ padding:0.5rem 0.65rem; }
+      .ctr{ width:36px; height:36px; }
+      .ctr svg{ width:18px; height:18px; }
+      .counter{ font-size:0.85rem; }
     }
 
-    /* Header über den Boards - OPTIMIERT mit mehr visueller Präsenz */
+    /* Header über den Boards */
     .top-head{
-      margin:.6rem 0 2rem; /* OPTIMIERT: mehr Abstand nach unten */
-      padding:1.2rem 1.3rem; /* OPTIMIERT: mehr Padding */
+      margin:.6rem 0 2rem;
+      padding:1.2rem 1.3rem;
       border:var(--border) solid #222737; 
       border-radius:var(--radius);
       background:
@@ -194,32 +130,31 @@
       gap:1rem; 
       flex-wrap:wrap;
       transition:transform .2s ease, box-shadow .2s ease;
-      box-shadow: 
-        0 1px 3px rgba(0,0,0,0.2),
-        0 10px 40px rgba(229,9,20,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
     }
     .top-head:hover{ 
       transform:translateY(-2px);
-      box-shadow:
-        0 4px 8px rgba(0,0,0,0.3),
-        0 15px 50px rgba(229,9,20,0.12);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12);
     }
     .top-title{ 
-      margin:.1rem 0 .8rem; /* OPTIMIERT: mehr Abstand nach unten */
+      margin:.1rem 0 .8rem;
       font-size:1.2rem;
-      /* NEU: Textformatierung wie auf der Startseite */
-      padding-left:1.15rem;
+      padding-left:1.15rem;          /* Einrückung wie Startseite */
       text-wrap:balance;
     }
     .top-desc{ 
       margin:.1rem 0 0; 
       color:#c9cbd3;
-      /* NEU: Textformatierung wie auf der Startseite */
-      padding-left:1.15rem;
+      padding-left:1.15rem;          /* Einrückung wie Startseite */
       text-wrap:balance;
       hyphens:auto;
       -webkit-hyphens:auto;
       overflow-wrap:anywhere;
+    }
+    /* Button ebenfalls einrücken (wenn er unter den Text umbricht) */
+    .top-head .dl-btn{
+      align-self:flex-start;
+      margin-left:1.15rem;
     }
 
     .dl-btn{
@@ -234,32 +169,24 @@
     .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
 
-    /* Grid - OPTIMIERT mit mehr Abstand */
+    /* Grid */
     .cards-grid{
       display:grid; 
-      gap:1.5rem; /* OPTIMIERT: mehr Gap */
+      gap:1.5rem;
       grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
     }
     @media (min-width: 980px){
-      .cards-grid{ 
-        grid-template-columns:repeat(3, 1fr); 
-        gap:1.8rem; /* OPTIMIERT: mehr Gap auf Desktop */
-      }
+      .cards-grid{ grid-template-columns:repeat(3, 1fr); gap:1.8rem; }
     }
 
-    /* Karte - OPTIMIERT mit besseren visuellen Effekten */
+    /* Karte */
     .eco-card{
-      position:relative; 
-      display:flex; 
-      flex-direction:column;
-      border-radius:var(--radius); 
-      overflow:hidden; 
+      position:relative; display:flex; flex-direction:column;
+      border-radius:var(--radius); overflow:hidden; 
       background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
       border:var(--border) solid #222737;
       transition:.15s ease;
-      box-shadow: 
-        0 1px 3px rgba(0,0,0,0.15),
-        0 8px 20px rgba(229,9,20,0.04);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15), 0 8px 20px rgba(229,9,20,0.04);
     }
     .eco-card:hover{ 
       box-shadow:var(--ring), 0 10px 30px rgba(229,9,20,.20); 
@@ -291,13 +218,12 @@
     .player{ 
       border-top:1px solid #1e2230; 
       background:linear-gradient(180deg, #0f1117, #0d0f14);
-      padding:.7rem .85rem .75rem; /* OPTIMIERT: mehr Padding */
+      padding:.7rem .85rem .75rem;
     }
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
     .ctrls-left{ display:flex; gap:.45rem; align-items:center; flex-wrap:wrap }
     .ctr{
-      width:44px; height:44px;
-      border-radius:12px;
+      width:44px; height:44px; border-radius:12px;
       border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
       font-size:0; line-height:0; display:inline-grid; place-items:center;
     }
@@ -313,12 +239,10 @@
     .chip.error{background:#d32f2f; border:none}
 
     .info{ 
-      padding:.8rem 1rem 1rem; /* OPTIMIERT: mehr Padding */
+      padding:.8rem 1rem 1rem;
       color:#dfe1e7;
       border-top:1px solid #1e2230; 
-      display:flex; 
-      flex-direction:column; 
-      gap:.35rem; /* OPTIMIERT: mehr Gap */
+      display:flex; flex-direction:column; gap:.35rem;
       background:linear-gradient(180deg, #0f1117, #0d0f14);
     }
     .name{font-weight:650}
@@ -346,10 +270,7 @@
     }
     .fab:hover{
       transform:translateY(-1px);
-      box-shadow:
-        0 0 0 2px rgba(229,9,20,.22),
-        0 14px 32px rgba(0,0,0,.45),
-        0 0 18px rgba(229,9,20,.16);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
     }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
     @media (max-width: 979px){
@@ -676,11 +597,9 @@
 
     const INTERVAL = 1800;
     
-    // Global timer tracking for cleanup
     const activeTimers = new Set();
     const boardControllers = new WeakMap();
 
-    // Sound effect manager
     const sfx = (() => {
       const a = new Audio('assets/sfx/move.mp3');
       a.preload = 'auto';
@@ -698,13 +617,11 @@
       };
     })();
 
-    // Cleanup on page unload
     window.addEventListener('beforeunload', () => {
       activeTimers.forEach(timer => clearInterval(timer));
       activeTimers.clear();
     });
 
-    // PGN parsing utilities
     const firstGameFrom = (content, index = 0) => {
       let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
       const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
@@ -766,7 +683,6 @@
       return [];
     }
 
-    // Fetch with retry and error handling
     async function fetchWithRetry(url, tries = 3) {
       let lastErr;
       for (let i = 0; i < tries; i++) {
@@ -782,7 +698,6 @@
       throw lastErr;
     }
 
-    // Board Controller Class for better encapsulation
     class BoardController {
       constructor(wrap, card, board, hist) {
         this.wrap = wrap;
@@ -812,26 +727,15 @@
         const g = new Chess();
         for (let i = 0; i < n; i++) g.move(this.hist[i]);
         const fen = g.fen();
-        
-        requestAnimationFrame(() => {
-          this.board?.setPosition?.(fen);
-        });
-        
-        if (this.controls.counter) {
-          this.controls.counter.textContent = `${n}/${this.hist.length}`;
-        }
-        
+        requestAnimationFrame(() => { this.board?.setPosition?.(fen); });
+        if (this.controls.counter) this.controls.counter.textContent = `${n}/${this.hist.length}`;
         this.updateButtonStates(n);
       }
 
       updateButtonStates(n) {
         const { first, prev, next, last } = this.controls;
-        if (prev && first) {
-          prev.disabled = first.disabled = (n <= 0);
-        }
-        if (next && last) {
-          next.disabled = last.disabled = (n >= this.hist.length);
-        }
+        if (prev && first) prev.disabled = first.disabled = (n <= 0);
+        if (next && last) next.disabled = last.disabled = (n >= this.hist.length);
       }
 
       setIdx(n) {
@@ -845,31 +749,17 @@
         if (this.playing || this.hist.length === 0) return;
         this.setIdx(0);
         this.playing = true;
-        
-        if (this.controls.play) {
-          this.controls.play.disabled = true;
-          this.controls.play.title = 'Wiedergabe läuft';
-        }
-        
+        if (this.controls.play) { this.controls.play.disabled = true; this.controls.play.title = 'Wiedergabe läuft'; }
         this.timerId = setInterval(() => {
-          if (this.idx >= this.hist.length) {
-            this.stop();
-            return;
-          }
+          if (this.idx >= this.hist.length) { this.stop(); return; }
           this.setIdx(this.idx + 1);
         }, INTERVAL);
-        
         activeTimers.add(this.timerId);
       }
 
       stop() {
         this.playing = false;
-        if (this.timerId) {
-          clearInterval(this.timerId);
-          activeTimers.delete(this.timerId);
-          this.timerId = null;
-        }
-        
+        if (this.timerId) { clearInterval(this.timerId); activeTimers.delete(this.timerId); this.timerId = null; }
         if (this.controls.play) {
           this.controls.play.disabled = false;
           this.controls.play.title = 'Abspielen';
@@ -878,16 +768,10 @@
       }
 
       setupControls() {
-        const stopPropagation = (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        };
-        
+        const stopPropagation = (e) => { e.preventDefault(); e.stopPropagation(); };
         this.wrap.addEventListener('click', stopPropagation);
         this.player?.addEventListener('click', stopPropagation);
-        
         const { first, prev, play, next, last } = this.controls;
-        
         first?.addEventListener('click', () => this.setIdx(0));
         prev?.addEventListener('click', () => this.setIdx(this.idx - 1));
         next?.addEventListener('click', () => this.setIdx(this.idx + 1));
@@ -896,54 +780,30 @@
       }
 
       setupIntersectionObserver() {
-        const observer = new IntersectionObserver(
-          entries => {
-            entries.forEach(entry => {
-              if (!entry.isIntersecting && this.playing) {
-                this.stop();
-              }
-            });
-          },
-          { threshold: 0.15 }
-        );
-        
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if (!entry.isIntersecting && this.playing) this.stop(); });
+        }, { threshold: 0.15 });
         observer.observe(this.card);
       }
 
-      destroy() {
-        this.stop();
-      }
+      destroy() { this.stop(); }
     }
 
-    // Lazy initialization with IntersectionObserver
     async function initializeSingleBoard(wrap) {
-      // Check if already initialized
       if (wrap.classList.contains('initialized')) return;
-      
       const card = wrap.closest('.eco-card');
       const board = wrap.querySelector('chess-board');
       if (!board || !card) return;
-
-      // Mark as initializing to prevent double initialization
       wrap.classList.add('initializing');
 
-      // Wait for board to be sized
       let sized = false;
       for (let i = 0; i < 20; i++) {
         const w = board.getBoundingClientRect().width;
-        if (w > 20) {
-          sized = true;
-          break;
-        }
+        if (w > 20) { sized = true; break; }
         await new Promise(r => setTimeout(r, 50));
       }
-      
-      if (!sized) {
-        wrap.classList.remove('initializing');
-        return;
-      }
+      if (!sized) { wrap.classList.remove('initializing'); return; }
 
-      // Load PGN data
       let pgn = '';
       const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
       const pgnFile = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
@@ -957,13 +817,10 @@
           pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
         } catch (err) {
           console.warn('PGN-Datei konnte nicht geladen werden:', pgnFile, err);
-          
-          // Add error indicator
           const errorChip = document.createElement('span');
           errorChip.className = 'chip error';
           errorChip.textContent = 'PGN fehlt';
           card.querySelector('.badges')?.appendChild(errorChip);
-          
           wrap.classList.remove('initializing');
           return;
         }
@@ -973,54 +830,35 @@
       }
 
       const hist = historyFromPGN(pgn);
-      if (!hist || hist.length === 0) {
-        wrap.classList.remove('initializing');
-        return;
-      }
+      if (!hist || hist.length === 0) { wrap.classList.remove('initializing'); return; }
 
-      // Create controller
       const controller = new BoardController(wrap, card, board, hist);
       boardControllers.set(wrap, controller);
-      
-      // Mark as initialized
       wrap.classList.remove('initializing', 'not-initialized');
       wrap.classList.add('initialized');
     }
 
-    // Main initialization with lazy loading
     async function setupBoards() {
       await customElements.whenDefined('chess-board');
-      
       const boards = document.querySelectorAll('.auto-board');
       if (boards.length === 0) return;
 
-      // Setup intersection observer for lazy loading
-      const boardObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('initialized')) {
-              initializeSingleBoard(entry.target);
-            }
-          });
-        },
-        { rootMargin: '100px' }
-      );
+      const boardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('initialized')) {
+            initializeSingleBoard(entry.target);
+          }
+        });
+      }, { rootMargin: '100px' });
 
-      // Observe all boards
-      boards.forEach(board => {
-        boardObserver.observe(board);
-      });
+      boards.forEach(board => { boardObserver.observe(board); });
     }
 
-    // Single initialization point
     Promise.all([
       customElements.whenDefined('chess-board'),
       new Promise(resolve => {
-        if (document.querySelector('.cards-grid')) {
-          resolve();
-        } else {
-          document.addEventListener('openings-rendered', resolve);
-        }
+        if (document.querySelector('.cards-grid')) resolve();
+        else document.addEventListener('openings-rendered', resolve);
       })
     ]).then(setupBoards).catch(err => {
       console.error('Board initialization failed:', err);
