@@ -314,6 +314,9 @@
       
       .timer h3 {
         text-align: center;
+        /* FIX: Verhindert das Springen bei einstelligen Zahlen */
+        white-space: nowrap;
+        font-size: 0.95rem !important;
       }
       
       .timer p {
@@ -355,7 +358,10 @@
       }
       
       .timer h3 {
-        font-size: 0.95rem !important;
+        font-size: 0.85rem !important;
+        /* Erlaubt Umbruch bei sehr kleinen Bildschirmen */
+        white-space: normal;
+        line-height: 1.4;
       }
       
       .timer p {
@@ -413,9 +419,12 @@
               <div class="num" id="num">15</div>
             </div>
             <div>
-              <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">Download startet in <span id="txtSec">15</span> Sekunden …</h3>
+              <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">
+                Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
+              </h3>
               <p id="status" aria-live="polite" style="line-height:1.7;">
-                Wie versprochen ist Starting Pawn absolut kostenlos!<br><br></vr> Wenn dir mein Projekt hilft, die richtigen Stellungen schneller zu erreichen, 
+                Wie versprochen ist Starting Pawn absolut kostenlos!<br><br>
+                Wenn dir mein Projekt hilft, die richtigen Stellungen schneller zu erreichen, 
                 freue ich mich über deine Unterstützung.<br><br>
                 Schon ein <strong>kleiner&nbsp;Betrag</strong> hilft, <em>Server-, Domain- und Traffic-Kosten</em> 
                 zu decken und neue Books zu entwickeln.<br><br>
