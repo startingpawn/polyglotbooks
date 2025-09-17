@@ -216,6 +216,21 @@
       overflow-wrap:anywhere;
     }
 
+    /* NEU: Einrückung auch in verschachtelten Rahmen (FAQ-Akkordeons) */
+    .qa summary,
+    .qa .answer > :is(p, ul, ol){
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+    /* Saubere Bullets innerhalb der Antworten */
+    .qa .answer > :is(ul, ol){
+      margin:.5rem 0 .4rem;               /* reset linker Außenabstand */
+      padding-left: calc(var(--indent-start) + 1.1rem); /* Platz für Marker */
+    }
+
     /* FAQ Akkordeon - OPTIMIERT mit besseren visuellen Effekten */
     .faq{ 
       display:grid; 
@@ -241,10 +256,6 @@
       align-items:center; 
       justify-content:space-between; 
       gap:.6rem;
-      text-wrap: balance;
-      hyphens:auto;
-      -webkit-hyphens:auto;
-      overflow-wrap:anywhere;
     }
     .qa summary::-webkit-details-marker{ display:none }
     .qa summary .chev{ opacity:.85; transition:transform .15s ease }
@@ -255,7 +266,7 @@
       line-height:1.6 
     }
     .qa .answer p{ margin:.5rem 0 }
-    .qa .answer ul{ margin:.5rem 0 .4rem 1.2rem }
+    /* .qa .answer ul wird oben mit padding-left auf Einrückung gebracht */
 
     /* Footer (zentriert) */
     footer{
@@ -346,7 +357,7 @@
             <span class="chev" aria-hidden="true">›</span>
           </summary>
           <div class="answer">
-            <p>Polyglot-Eröffnungsbücher sind kompakte digitale Bibliotheken von Eröffnungszügen im <code>.bin</code>-Format. Dieses binäre Format wurde ursprünglich für das PolyGlot-Programm entwickelt und hat sich als verbreiteter Standard etabliert: Zahlreiche Schach-Programme (GUIs, Engines und Apps) können Polyglot-Bücher laden und nutzen.</p>
+            <p>Polyglot-Eröffnungsbücher sind kompakte digitale Bibliotheken von Eröffnungszügen im <code>.bin</code>-Format. Dieses binäre Format wurde ursprünglich für das PolyGlot-Programm entwickelt und hat sich als verbreiteter Standard etabliert: Zahlreiche Schach-Programmme (GUIs, Engines und Apps) können Polyglot-Bücher laden und nutzen.</p>
             <p>In einem solchen <code>.bin</code>-Buch sind tausende bewährte Eröffnungszüge und komplette Varianten gespeichert – oft zusammengestellt aus Meisterpartien oder umfassenden Analysen. Nutzt du ein Polyglot-Buch in deiner Schachsoftware oder auf deinem e-Board, werden die Anfangszüge einer Partie automatisch daraus gespielt oder vorgeschlagen. Deine Engine muss in dieser Phase also nicht selbst rechnen, sondern greift auf das vorgefertigte Eröffnungswissen zurück. Das spart Zeit und führt dich schneller zu guten Mittelspielstellungen. Sobald keine Buchzüge mehr verfügbar sind (man sagt auch: „aus dem Buch"), übernimmt die Engine wieder das eigenständige Rechnen.</p>
           </div>
         </details>
