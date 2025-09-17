@@ -12,6 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+      /* NEU: Einrückung wie auf der Index.html */
+      --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -174,16 +176,30 @@
     
     /* OPTIMIERT: Konsistente Abstände */
     .panel h2{ 
-      margin:.2rem 0 1.5rem; /* Mehr Abstand nach unten */
+      margin:.2rem 0 1.5rem; 
       font-size:1.35rem 
     }
     .lead{ 
       color:#cfd3db; 
-      margin:.2rem 0 1.8rem; /* Mehr Abstand nach unten */
+      margin:.2rem 0 1.8rem; 
       line-height:1.5 
     }
 
-    /* Info-Card im Panel - OPTIMIERT mit besseren visuellen Effekten */
+    /* Text-Anordnung wie in der Index.html */
+    .panel > h2,
+    .panel > .lead,
+    .panel > p{
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+    }
+    .panel > .lead,
+    .panel > p{
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+
+    /* Info-Card im Panel */
     .info-card{
       border:var(--border) solid #222737; 
       border-radius:var(--radius);
@@ -196,12 +212,12 @@
       box-shadow:0 8px 22px rgba(229,9,20,.10);
     }
     .info-card .card-body{
-      padding:1.1rem 1.2rem 1.3rem; /* Mehr Padding */
+      padding:1.1rem 1.2rem 1.3rem; 
       color:#dfe1e7; 
       line-height:1.55;
     }
     .info-card .card-actions{
-      padding:.9rem 1.2rem; /* Mehr Padding */
+      padding:.9rem 1.2rem; 
       border-top:1px solid #1e2230; 
       background:linear-gradient(180deg, #0f1117, #0d0f14);
       display:flex; 
