@@ -12,6 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --border:2px;
+      /* Einrückung wie auf der Index.html */
+      --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -200,6 +202,20 @@
       line-height:1.5 
     }
 
+    /* NEU: Typografie & Einrückung wie Index.html */
+    .panel > h2,
+    .panel > .lead,
+    .panel > p{
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+    }
+    .panel > .lead,
+    .panel > p{
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+
     /* FAQ Akkordeon - OPTIMIERT mit besseren visuellen Effekten */
     .faq{ 
       display:grid; 
@@ -225,6 +241,10 @@
       align-items:center; 
       justify-content:space-between; 
       gap:.6rem;
+      text-wrap: balance;
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
     }
     .qa summary::-webkit-details-marker{ display:none }
     .qa summary .chev{ opacity:.85; transition:transform .15s ease }
