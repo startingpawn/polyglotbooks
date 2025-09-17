@@ -12,6 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --border:2px;
+      /* Einrückung wie auf der Index.html */
+      --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -172,12 +174,29 @@
       margin:.2rem 0 2rem; /* Deutlich mehr Abstand nach unten */
       line-height:1.5 
     }
+
+    /* Text-Anordnung wie in der Index.html */
+    .panel > h2,
+    .panel > .lead,
+    .panel > p{
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+    }
+    .panel > .lead,
+    .panel > p{
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+
     .contact{
       display:flex; 
       align-items:center; 
       gap:.6rem; 
       flex-wrap:wrap; 
       margin-top:1.8rem; /* Mehr Abstand nach oben */
+      /* Einrückung wie CTA auf der Index.html */
+      padding-left: var(--indent-start);
     }
     
     .email-chip{
