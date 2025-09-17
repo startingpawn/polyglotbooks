@@ -12,7 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      --indent-start: 1.15rem; /* EINRÜCKUNG: Startkante für Titel, Lead, Bullets-Text & CTA */
+      --indent-start: 1.15rem;  /* Startkante für Titel, Lead, Bullets & CTA */
+      --bullet-gap: 1rem;       /* Abstand zwischen Punkt und Text */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -125,17 +126,18 @@
     .title{ font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
     .lead{ color:#cfd3db; font-size:1.02rem; }
 
-    /* Semantische Liste mit bündigem Text (zur Titel/Lead-Indent) */
+    /* Bullets: ganze Liste + Punkte eingerückt */
     .bullets{
       list-style:none;
       padding:0;
       display:grid;
       gap:.45rem;
       color:#d9dce4;
+      padding-left: var(--indent-start); /* verschiebt Liste inkl. Punkten */
     }
     .bullets li{
       position:relative;
-      padding-left: var(--indent-start); /* gleiche Startkante wie Titel/Lead/CTA */
+      padding-left: var(--bullet-gap);   /* Abstand Punkt -> Text */
       line-height:1.55;
     }
     .bullets li::before{
