@@ -1,32 +1,7 @@
 <!doctype html>
 <html lang="de">
 <head>
-<!-- InMobi Choice (fix + force UI) -->
-<script>
-(function () {
-  // Host sauber machen: www.startingpawn.com -> startingpawn.com
-  var host = (location.hostname || 'startingpawn.com').replace(/^www\./,'');
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://cmp.inmobi.com/choice/Ub9d_8mHntEp-/' + host + '/choice.js?tag_version=V3';
-
-  // Wenn choice.js geladen ist, UI anzeigen (falls noch kein Consent gespeichert)
-  s.onload = function () {
-    if (typeof __tcfapi !== 'function') return;
-    __tcfapi('ping', 2, function (p) {
-      if (!p || (p.cmpStatus !== 'loaded' && p.cmpStatus !== 'loading')) return;
-      __tcfapi('getTCData', 2, function (tc) {
-        var hasString = tc && typeof tc.tcString === 'string' && tc.tcString.length > 0;
-        if (!hasString) {
-          __tcfapi('displayConsentUi', 2, function(){});
-        }
-      });
-    });
-  };
-
-  document.head.appendChild(s);
-})();
-</script>
+<script defer src="https://cmp.inmobi.com/choice/Ub9d_8mHntEp-/startingpawn.com/choice.js?tag_version=V3"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Starting Pawn – Polyglot Opening Books</title>
