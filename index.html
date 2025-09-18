@@ -325,6 +325,16 @@
 })();
 </script>
 <!-- End InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
+  <script>
+  window.addEventListener('load', function () {
+    if (window.__tcfapi) {
+      __tcfapi('ping', 2, function(p){ console.log('TCF ping:', p); });
+      __tcfapi('displayConsentUi', 2, function(shown){ console.log('UI forced:', shown); });
+    } else {
+      console.warn('__tcfapi not ready');
+    }
+  });
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Starting Pawn – Polyglot Opening Books</title>
