@@ -1,7 +1,43 @@
 <!doctype html>
 <html lang="de">
 <head>
-<script defer src="https://cmp.inmobi.com/choice/Ub9d_8mHntEp-/startingpawn.com/choice.js?tag_version=V3"></script>
+<!-- InMobi Choice (debug + www->apex + force UI) -->
+<script>
+(function () {
+  // Host normalisieren: www.startingpawn.com -> startingpawn.com
+  var host = (location.hostname || 'startingpawn.com').replace(/^www\./,'');
+  var url  = 'https://cmp.inmobi.com/choice/Ub9d_8mHntEp-/' + host + '/choice.js?tag_version=V3';
+
+  // kleine Debug-Box (damit du am iPhone siehst, was passiert)
+  function log(m){
+    var b = document.getElementById('cmp-debug');
+    if(!b){
+      b = document.createElement('pre');
+      b.id='cmp-debug';
+      b.style.cssText='position:fixed;left:8px;bottom:8px;z-index:999999;background:#111;color:#0f0;border:1px solid #0f0;padding:6px 8px;max-width:90vw;font:12px/1.3 monospace;white-space:pre-wrap;';
+      document.addEventListener('DOMContentLoaded', function(){ document.body.appendChild(b); });
+    }
+    b.textContent += (b.textContent?'\n':'') + m;
+  }
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src   = url;
+  s.onload = function(){
+    log('choice.js loaded: ' + url);
+    if (typeof __tcfapi !== 'function'){ log('__tcfapi not defined'); return; }
+    __tcfapi('ping', 2, function(p){ log('TCF ping: ' + JSON.stringify(p));
+      __tcfapi('getTCData', 2, function(tc){
+        var hasTC = !!(tc && tc.tcString);
+        log('getTCData: ' + (hasTC ? 'tcString present' : 'no tcString'));
+        if (!hasTC) { __tcfapi('displayConsentUi', 2, function(ok){ log('displayConsentUi -> ' + ok); }); }
+      });
+    });
+  };
+  s.onerror = function(){ log('ERROR loading: ' + url); };
+  document.head.appendChild(s);
+})();
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Starting Pawn – Polyglot Opening Books</title>
