@@ -12,8 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      /* Einrückung wie auf der Index.html */
-      --indent-start: 1.15rem;
+      --indent-start: 1.15rem;  /* wie index.html */
+      --bullet-gap: 1rem;
     }
     *{ box-sizing:border-box }
     html,body{ height:100% }
@@ -27,7 +27,7 @@
     a{ color:inherit; text-decoration:none; }
     a:focus-visible{ outline:2px solid rgba(229,9,20,.6); outline-offset:2px; border-radius:6px; }
 
-    /* Header – identisch zu gallery.html */
+    /* Header – identisch zur index.html */
     header{
       max-width:var(--max); width:100%; margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
@@ -52,6 +52,7 @@
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
+    /* Breadcrumbs */
     .crumbs{
       max-width:var(--max); width:100%; margin:0 auto; padding:0 1rem .8rem;
       color:#aeb3bf; font-size:.92rem;
@@ -59,53 +60,58 @@
     .crumbs a{ color:#cfd3db }
     .crumbs a:hover{ color:#fff; text-decoration:underline }
 
+    /* Layout wie index.html */
     main.hero{
       max-width:var(--max); width:100%; margin:0 auto; padding:1.2rem 1rem 2rem;
       display:grid; gap:1.2rem; grid-template-columns:1fr; flex:1; align-items:start;
     }
+    @media (orientation: landscape) and (max-height: 768px){
+      header{ padding:0.8rem 1rem 0.5rem }
+      .logo{ width:40px; height:40px }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem) }
+      .crumbs{ padding:0 1rem 0.4rem }
+      main.hero{ padding:1rem }
+      .panel{ padding:1rem }
+    }
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      main.hero{ padding:0.8rem }
+      .panel{ padding:0.8rem }
+    }
+
+    /* Panels – wie index.html */
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
-      background:
-        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
-        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box,
-        var(--panel);
+      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
       padding:1.2rem 1.2rem 1.1rem;
-      transition:transform .2s ease, box-shadow .2s ease;
-      box-shadow:0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
     }
-    .panel:hover{ transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12) }
-    .panel :is(h2,h3,h4){ margin:.2rem 0 1rem }
-    .panel p{ line-height:1.6 }
-
-    /* Neutrale Variante ohne rote Akzente */
+    /* optionale neutrale Variante ohne roten Glow */
     .panel--neutral{
       background: var(--panel) !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
       border-color: #2b3240;
+      box-shadow:none;
     }
 
-    /* Inhaltsverzeichnis & Aufzählungen */
+    /* Einrückung & Typografie */
+    .panel :is(h2,h3,h4){ margin:.2rem 0 1rem; text-wrap:balance; }
+    .panel p{ line-height:1.6 }
+    /* sanfte Einrückung – angelehnt an index.html (indent-start) */
+    .panel > :is(h2,h3,h4,p,address,ul,ol){ padding-left:var(--indent-start); }
+    .panel > :is(ul,ol){ margin:.6rem 0 1rem; padding-left:calc(var(--indent-start) + 1.1rem) }
+
+    /* Listen im Datenschutz-Teil */
     .index{ list-style:none; padding-left:var(--indent-start); margin:.5rem 0 1rem; display:grid; gap:.35rem }
     .index-link{ display:inline-block; padding:.25rem .4rem; border-radius:8px; border:1px solid #2b3240 }
     .index-link:hover{ background:rgba(229,9,20,.08) }
     .m-elements{ margin:.6rem 0 1rem; padding-left:calc(var(--indent-start) + 1.1rem) }
     .m-elements li{ margin:.25rem 0 }
 
-    /* Datenschutz-Generator Siegel */
-    .seal{ margin-top:1.2rem; padding-left:var(--indent-start) }
-    .seal a{ color:#cfd3db; text-decoration:underline dotted }
-
-    /* Einrückung & Typografie wie auf der Index.html */
-    .panel > :is(h2,h3,h4,p,address){ padding-left:var(--indent-start); text-wrap:balance }
-    .panel > p{ hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
-    .panel > :is(ul,ol){ margin:.6rem 0 1rem; padding-left:calc(var(--indent-start) + 1.1rem) }
-
+    /* Footer – wie index.html */
     footer{
       max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem;
       color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
     }
 
-    /* FAB & Sheet (mobiles Menü) */
+    /* FAB & Bottom-Sheet – identisch zur index.html */
     .fab{
       position:fixed; right:16px; bottom:16px; z-index:60;
       width:56px; height:56px; border-radius:50%;
@@ -137,20 +143,6 @@
       text-decoration:none; font-weight:600;
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-
-    /* Landscape Tweaks – wie gallery.html */
-    @media (orientation: landscape) and (max-height: 768px){
-      header{ padding:0.8rem 1rem 0.5rem }
-      .logo{ width:40px; height:40px }
-      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem) }
-      .crumbs{ padding:0 1rem 0.4rem }
-      main.hero{ padding:1rem }
-      .panel{ padding:1rem }
-    }
-    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
-      main.hero{ padding:0.8rem }
-      .panel{ padding:0.8rem }
-    }
   </style>
 </head>
 <body>
@@ -168,7 +160,6 @@
       <span class="nav-sep" aria-hidden="true"></span>
       <a class="nav-link" href="faq.html">FAQ</a>
       <a class="nav-link" href="kontakt.html">Kontakt</a>
-      <!-- Beide Menüpunkte verweisen auf diese Seite mit Anker -->
       <a class="nav-link active" href="impressum.html">Impressum</a>
     </nav>
   </header>
@@ -194,7 +185,7 @@
       </p>
     </section>
 
-    <!-- HAFTUNGSAUSSCHLUSS – eigenständiger neutraler Rahmen -->
+    <!-- HAFTUNGSAUSSCHLUSS -->
     <section class="panel panel--neutral" id="haftungsausschluss" aria-labelledby="haftungsausschluss-heading">
       <h2 id="haftungsausschluss-heading">Haftungsausschluss</h2>
 
@@ -261,7 +252,7 @@
       </ul>
 
       <h3 id="m3">Verantwortlicher</h3>
-      <p>Tobias Mitterdorfer<br>Konrad-Adenauer-Allee 40<br>93051 Regensbug<br>Deutschland</p>
+      <p>Tobias Mitterdorfer<br>Konrad-Adenauer-Allee 40<br>93051 Regensburg<br>Deutschland</p>
       <p>E-Mail-Adresse: <a href="mailto:info@startingpawn.com">info@startingpawn.com</a></p>
 
       <h3 id="mOverview">Übersicht der Verarbeitungen</h3>
@@ -301,8 +292,8 @@
       <p>Datenverarbeitung in Drittländern: Sofern wir Daten in ein Drittland (d.&nbsp;h. außerhalb der Europäischen Union (EU) oder des Europäischen Wirtschaftsraums (EWR)) übermitteln oder dies im Rahmen der Nutzung von Diensten Dritter oder der Offenlegung bzw. Übermittlung von Daten an andere Personen, Stellen oder Unternehmen geschieht (was erkennbar wird anhand der Postadresse des jeweiligen Anbieters oder wenn in der Datenschutzerklärung ausdrücklich auf den Datentransfer in Drittländer hingewiesen wird), erfolgt dies stets im Einklang mit den gesetzlichen Vorgaben.</p>
       <p>Für Datenübermittlungen in die USA stützen wir uns vorrangig auf das Data Privacy Framework (DPF), welches durch einen Angemessenheitsbeschluss der EU-Kommission vom 10.07.2023 als sicherer Rechtsrahmen anerkannt wurde. Zusätzlich haben wir mit den jeweiligen Anbietern Standardvertragsklauseln abgeschlossen, die den Vorgaben der EU-Kommission entsprechen und vertragliche Verpflichtungen zum Schutz Ihrer Daten festlegen.</p>
       <p>Diese zweifache Absicherung gewährleistet einen umfassenden Schutz Ihrer Daten: Das DPF bildet die primäre Schutzebene, während die Standardvertragsklauseln als zusätzliche Sicherheit dienen. Sollten sich Änderungen im Rahmen des DPF ergeben, greifen die Standardvertragsklauseln als zuverlässige Rückfalloption ein. So stellen wir sicher, dass Ihre Daten auch bei etwaigen politischen oder rechtlichen Veränderungen stets angemessen geschützt bleiben.</p>
-      <p>Bei den einzelnen Diensteanbietern informieren wir Sie darüber, ob sie nach dem DPF zertifiziert sind und ob Standardvertragsklauseln vorliegen. Weitere Informationen zum DPF und eine Liste der zertifizierten Unternehmen finden Sie auf der Website des US-Handelsministeriums unter <a href="https://www.dataprivacyframework.gov/" target="_blank">https://www.dataprivacyframework.gov/</a> (in englischer Sprache).</p>
-      <p>Für Datenübermittlungen in andere Drittländer gelten entsprechende Sicherheitsmaßnahmen, insbesondere Standardvertragsklauseln, ausdrückliche Einwilligungen oder gesetzlich erforderliche Übermittlungen. Informationen zu Drittlandtransfers und geltenden Angemessenheitsbeschlüssen können Sie dem Informationsangebot der EU-Kommission entnehmen: <a href="https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection_en?prefLang=de" target="_blank">https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection_en?prefLang=de.</a></p>
+      <p>Bei den einzelnen Diensteanbietern informieren wir Sie darüber, ob sie nach dem DPF zertifiziert sind und ob Standardvertragsklauseln vorliegen. Weitere Informationen zum DPF und eine Liste der zertifizierten Unternehmen finden Sie auf der Website des US-Handelsministeriums unter <a href="https://www.dataprivacyframework.gov/" target="_blank" rel="noopener">https://www.dataprivacyframework.gov/</a> (in englischer Sprache).</p>
+      <p>Für Datenübermittlungen in andere Drittländer gelten entsprechende Sicherheitsmaßnahmen, insbesondere Standardvertragsklauseln, ausdrückliche Einwilligungen oder gesetzlich erforderliche Übermittlungen. Informationen zu Drittlandtransfers und geltenden Angemessenheitsbeschlüssen können Sie dem Informationsangebot der EU-Kommission entnehmen: <a href="https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection_en?prefLang=de" target="_blank" rel="noopener">https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection_en?prefLang=de</a>.</p>
 
       <h3 id="m12">Allgemeine Informationen zur Datenspeicherung und Löschung</h3>
       <p>Wir löschen personenbezogene Daten, die wir verarbeiten, gemäß den gesetzlichen Bestimmungen, sobald die zugrundeliegenden Einwilligungen widerrufen werden oder keine weiteren rechtlichen Grundlagen für die Verarbeitung bestehen. Dies betrifft Fälle, in denen der ursprüngliche Verarbeitungszweck entfällt oder die Daten nicht mehr benötigt werden. Ausnahmen von dieser Regelung bestehen, wenn gesetzliche Pflichten oder besondere Interessen eine längere Aufbewahrung oder Archivierung der Daten erfordern.</p>
@@ -365,7 +356,7 @@
         <li><strong>Bereitstellung Onlineangebot auf gemietetem Speicherplatz: </strong>Für die Bereitstellung unseres Onlineangebotes nutzen wir Speicherplatz, Rechenkapazität und Software, die wir von einem entsprechenden Serveranbieter (auch "Webhoster" genannt) mieten oder anderweitig beziehen; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO).</span></li>
         <li><strong>Erhebung von Zugriffsdaten und Logfiles: </strong>Der Zugriff auf unser Onlineangebot wird in Form von sogenannten "Server-Logfiles" protokolliert. Zu den Serverlogfiles können die Adresse und der Name der abgerufenen Webseiten und Dateien, Datum und Uhrzeit des Abrufs, übertragene Datenmengen, Meldung über erfolgreichen Abruf, Browsertyp nebst Version, das Betriebssystem des Nutzers, Referrer URL (die zuvor besuchte Seite) und im Regelfall IP-Adressen und der anfragende Provider gehören. Die Serverlogfiles können zum einen zu Sicherheitszwecken eingesetzt werden, z.&nbsp;B. um eine Überlastung der Server zu vermeiden (insbesondere im Fall von missbräuchlichen Angriffen, sogenannten DDoS-Attacken), und zum anderen, um die Auslastung der Server und ihre Stabilität sicherzustellen; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO). </span><strong>Löschung von Daten:</strong> Logfile-Informationen werden für die Dauer von maximal 30 Tagen gespeichert und danach gelöscht oder anonymisiert. Daten, deren weitere Aufbewahrung zu Beweiszwecken erforderlich ist, sind bis zur endgültigen Klärung des jeweiligen Vorfalls von der Löschung ausgenommen.</li>
         <li><strong>E-Mail-Versand und -Hosting: </strong>Die von uns in Anspruch genommenen Webhosting-Leistungen umfassen ebenfalls den Versand, den Empfang sowie die Speicherung von E-Mails. Zu diesen Zwecken werden die Adressen der Empfänger sowie Absender als auch weitere Informationen betreffend den E-Mailversand (z.&nbsp;B. die beteiligten Provider) sowie die Inhalte der jeweiligen E-Mails verarbeitet. Die vorgenannten Daten können ferner zu Zwecken der Erkennung von SPAM verarbeitet werden. Wir bitten darum, zu beachten, dass E-Mails im Internet grundsätzlich nicht verschlüsselt versendet werden. Im Regelfall werden E-Mails zwar auf dem Transportweg verschlüsselt, aber (sofern kein sogenanntes Ende-zu-Ende-Verschlüsselungsverfahren eingesetzt wird) nicht auf den Servern, von denen sie abgesendet und empfangen werden. Wir können daher für den Übertragungsweg der E-Mails zwischen dem Absender und dem Empfang auf unserem Server keine Verantwortung übernehmen; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO).</span></li>
-        <li><strong>1&1 IONOS: </strong>Leistungen auf dem Gebiet der Bereitstellung von informationstechnischer Infrastruktur und verbundenen Dienstleistungen (z. B. Speicherplatz und/oder Rechenkapazitäten); <strong>Dienstanbieter:</strong> 1&1 IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, Deutschland; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO); </span><strong>Website:</strong> <a href="https://www.ionos.de" target="_blank">https://www.ionos.de</a>; <strong>Datenschutzerklärung:</strong> <a href="https://www.ionos.de/terms-gtc/terms-privacy" target="_blank">https://www.ionos.de/terms-gtc/terms-privacy</a>. <strong>Auftragsverarbeitungsvertrag:</strong> <a href="https://www.ionos.de/hilfe/datenschutz/allgemeine-informationen-zur-datenschutz-grundverordnung-dsgvo/vereinbarung-zur-auftragsverarbeitung-avv-mit-ionos-abschliessen/" target="_blank">https://www.ionos.de/hilfe/datenschutz/allgemeine-informationen-zur-datenschutz-grundverordnung-dsgvo/vereinbarung-zur-auftragsverarbeitung-avv-mit-ionos-abschliessen/</a>.</li>
+        <li><strong>1&1 IONOS: </strong>Leistungen auf dem Gebiet der Bereitstellung von informationstechnischer Infrastruktur und verbundenen Dienstleistungen (z. B. Speicherplatz und/oder Rechenkapazitäten); <strong>Dienstanbieter:</strong> 1&1 IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, Deutschland; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO); </span><strong>Website:</strong> <a href="https://www.ionos.de" target="_blank" rel="noopener">https://www.ionos.de</a>; <strong>Datenschutzerklärung:</strong> <a href="https://www.ionos.de/terms-gtc/terms-privacy" target="_blank" rel="noopener">https://www.ionos.de/terms-gtc/terms-privacy</a>. <strong>Auftragsverarbeitungsvertrag:</strong> <a href="https://www.ionos.de/hilfe/datenschutz/allgemeine-informationen-zur-datenschutz-grundverordnung-dsgvo/vereinbarung-zur-auftragsverarbeitung-avv-mit-ionos-abschliessen/" target="_blank" rel="noopener">https://www.ionos.de/hilfe/datenschutz/allgemeine-informationen-zur-datenschutz-grundverordnung-dsgvo/vereinbarung-zur-auftragsverarbeitung-avv-mit-ionos-abschliessen/</a>.</li>
       </ul>
 
       <h3 id="m134">Einsatz von Cookies</h3>
@@ -403,7 +394,7 @@
       </ul>
       <p><strong>Weitere Hinweise zu Verarbeitungsprozessen, Verfahren und Diensten:</strong></p>
       <ul class="m-elements">
-        <li><strong>Google Analytics: </strong>Wir verwenden Google Analytics zur Messung und Analyse der Nutzung unseres Onlineangebotes auf der Grundlage einer pseudonymen Nutzeridentifikationsnummer. Diese Identifikationsnummer enthält keine eindeutigen Daten, wie Namen oder E-Mail-Adressen. Sie dient dazu, Analyseinformationen einem Endgerät zuzuordnen, um zu erkennen, welche Inhalte die Nutzer innerhalb eines oder verschiedener Nutzungsvorgänge aufgerufen haben, welche Suchbegriffe sie verwendet haben, diese erneut aufgerufen haben oder mit unserem Onlineangebot interagiert haben. Ebenso werden der Zeitpunkt der Nutzung und deren Dauer gespeichert, sowie die Quellen der Nutzer, die auf unser Onlineangebot verweisen und technische Aspekte ihrer Endgeräte und Browser.<br>Dabei werden pseudonyme Profile von Nutzern mit Informationen aus der Nutzung verschiedener Geräte erstellt, wobei Cookies eingesetzt werden können. Google Analytics protokolliert und speichert keine individuellen IP-Adressen für EU-Nutzer. Analytics stellt jedoch grobe geografische Standortdaten bereit, indem es die folgenden Metadaten von IP-Adressen ableitet: Stadt (und der abgeleitete Breiten- und Längengrad der Stadt), Kontinent, Land, Region, Subkontinent (und ID-basierte Gegenstücke). Beim EU-Datenverkehr werden die IP-Adressdaten ausschließlich für diese Ableitung von Geolokalisierungsdaten verwendet, bevor sie sofort gelöscht werden. Sie werden nicht protokolliert, sind nicht zugänglich und werden nicht für weitere Verwendungszwecke genutzt. Wenn Google Analytics Messdaten sammelt, werden alle IP-Abfragen auf EU-basierten Servern durchgeführt, bevor der Verkehr zur Verarbeitung an Analytics-Server weitergeleitet wird; <strong>Dienstanbieter:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; <span class=""><strong>Rechtsgrundlagen:</strong> Einwilligung (Art. 6 Abs. 1 S. 1 lit. a) DSGVO); </span><strong>Website:</strong> <a href="https://marketingplatform.google.com/intl/de/about/analytics/" target="_blank">https://marketingplatform.google.com/intl/de/about/analytics/</a>; <strong>Sicherheitsmaßnahmen:</strong> IP-Masking (Pseudonymisierung der IP-Adresse); <strong>Datenschutzerklärung:</strong> <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a>; <strong>Auftragsverarbeitungsvertrag:</strong> <a href="https://business.safety.google/adsprocessorterms/" target="_blank">https://business.safety.google/adsprocessorterms/</a>; <strong>Grundlage Drittlandtransfers:</strong> Data Privacy Framework (DPF), Standardvertragsklauseln (<a href="https://business.safety.google/adsprocessorterms" target="_blank">https://business.safety.google/adsprocessorterms</a>); <strong>Widerspruchsmöglichkeit (Opt-Out):</strong> Opt-Out-Plugin: <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank">https://tools.google.com/dlpage/gaoptout?hl=de</a>,  Einstellungen für die Darstellung von Werbeeinblendungen: <a href="https://myadcenter.google.com/personalizationoff" target="_blank">https://myadcenter.google.com/personalizationoff</a>. <strong>Weitere Informationen:</strong> <a href="https://business.safety.google/adsservices/" target="_blank">https://business.safety.google/adsservices/</a> (Arten der Verarbeitung sowie der verarbeiteten Daten).</li>
+        <li><strong>Google Analytics: </strong>Wir verwenden Google Analytics zur Messung und Analyse der Nutzung unseres Onlineangebotes auf der Grundlage einer pseudonymen Nutzeridentifikationsnummer. Diese Identifikationsnummer enthält keine eindeutigen Daten, wie Namen oder E-Mail-Adressen. Sie dient dazu, Analyseinformationen einem Endgerät zuzuordnen, um zu erkennen, welche Inhalte die Nutzer innerhalb eines oder verschiedener Nutzungsvorgänge aufgerufen haben, welche Suchbegriffe sie verwendet haben, diese erneut aufgerufen haben oder mit unserem Onlineangebot interagiert haben. Ebenso werden der Zeitpunkt der Nutzung und deren Dauer gespeichert, sowie die Quellen der Nutzer, die auf unser Onlineangebot verweisen und technische Aspekte ihrer Endgeräte und Browser.<br>Dabei werden pseudonyme Profile von Nutzern mit Informationen aus der Nutzung verschiedener Geräte erstellt, wobei Cookies eingesetzt werden können. Google Analytics protokolliert und speichert keine individuellen IP-Adressen für EU-Nutzer. Analytics stellt jedoch grobe geografische Standortdaten bereit, indem es die folgenden Metadaten von IP-Adressen ableitet: Stadt (und der abgeleitete Breiten- und Längengrad der Stadt), Kontinent, Land, Region, Subkontinent (und ID-basierte Gegenstücke). Beim EU-Datenverkehr werden die IP-Adressdaten ausschließlich für diese Ableitung von Geolokalisierungsdaten verwendet, bevor sie sofort gelöscht werden. Sie werden nicht protokolliert, sind nicht zugänglich und werden nicht für weitere Verwendungszwecke genutzt. Wenn Google Analytics Messdaten sammelt, werden alle IP-Abfragen auf EU-basierten Servern durchgeführt, bevor der Verkehr zur Verarbeitung an Analytics-Server weitergeleitet wird; <strong>Dienstanbieter:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; <span class=""><strong>Rechtsgrundlagen:</strong> Einwilligung (Art. 6 Abs. 1 S. 1 lit. a) DSGVO); </span><strong>Website:</strong> <a href="https://marketingplatform.google.com/intl/de/about/analytics/" target="_blank" rel="noopener">https://marketingplatform.google.com/intl/de/about/analytics/</a>; <strong>Sicherheitsmaßnahmen:</strong> IP-Masking (Pseudonymisierung der IP-Adresse); <strong>Datenschutzerklärung:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>; <strong>Auftragsverarbeitungsvertrag:</strong> <a href="https://business.safety.google/adsprocessorterms/" target="_blank" rel="noopener">https://business.safety.google/adsprocessorterms/</a>; <strong>Grundlage Drittlandtransfers:</strong> Data Privacy Framework (DPF), Standardvertragsklauseln (<a href="https://business.safety.google/adsprocessorterms" target="_blank" rel="noopener">https://business.safety.google/adsprocessorterms</a>); <strong>Widerspruchsmöglichkeit (Opt-Out):</strong> Opt-Out-Plugin: <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener">https://tools.google.com/dlpage/gaoptout?hl=de</a>,  Einstellungen für die Darstellung von Werbeeinblendungen: <a href="https://myadcenter.google.com/personalizationoff" target="_blank" rel="noopener">https://myadcenter.google.com/personalizationoff</a>. <strong>Weitere Informationen:</strong> <a href="https://business.safety.google/adsservices/" target="_blank" rel="noopener">https://business.safety.google/adsservices/</a> (Arten der Verarbeitung sowie der verarbeiteten Daten).</li>
       </ul>
 
       <h3 id="m136">Präsenzen in sozialen Netzwerken (Social Media)</h3>
@@ -421,7 +412,7 @@
       </ul>
       <p><strong>Weitere Hinweise zu Verarbeitungsprozessen, Verfahren und Diensten:</strong></p>
       <ul class="m-elements">
-        <li><strong>Instagram: </strong>Soziales Netzwerk, ermöglicht das Teilen von Fotos und Videos, das Kommentieren und Favorisieren von Beiträgen, Nachrichtenversand, Abonnieren von Profilen und Seiten; <strong>Dienstanbieter:</strong> Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO); </span><strong>Website:</strong> <a href="https://www.instagram.com" target="_blank">https://www.instagram.com</a>; <strong>Datenschutzerklärung:</strong> <a href="https://privacycenter.instagram.com/policy/" target="_blank">https://privacycenter.instagram.com/policy/</a>. <strong>Grundlage Drittlandtransfers:</strong> Data Privacy Framework (DPF).</li>
+        <li><strong>Instagram: </strong>Soziales Netzwerk, ermöglicht das Teilen von Fotos und Videos, das Kommentieren und Favorisieren von Beiträgen, Nachrichtenversand, Abonnieren von Profilen und Seiten; <strong>Dienstanbieter:</strong> Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland; <span class=""><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO); </span><strong>Website:</strong> <a href="https://www.instagram.com" target="_blank" rel="noopener">https://www.instagram.com</a>; <strong>Datenschutzerklärung:</strong> <a href="https://privacycenter.instagram.com/policy/" target="_blank" rel="noopener">https://privacycenter.instagram.com/policy/</a>. <strong>Grundlage Drittlandtransfers:</strong> Data Privacy Framework (DPF).</li>
       </ul>
 
       <h3 id="m328">Plug-ins und eingebettete Funktionen sowie Inhalte</h3>
@@ -444,7 +435,7 @@
       <p>Wir bitten Sie, sich regelmäßig über den Inhalt unserer Datenschutzerklärung zu informieren. Wir passen die Datenschutzerklärung an, sobald die Änderungen der von uns durchgeführten Datenverarbeitungen dies erforderlich machen. Wir informieren Sie, sobald durch die Änderungen eine Mitwirkungshandlung Ihrerseits (z.&nbsp;B. Einwilligung) oder eine sonstige individuelle Benachrichtigung erforderlich wird.</p>
       <p>Sofern wir in dieser Datenschutzerklärung Adressen und Kontaktinformationen von Unternehmen und Organisationen angeben, bitten wir zu beachten, dass die Adressen sich über die Zeit ändern können und bitten die Angaben vor Kontaktaufnahme zu prüfen.</p>
 
-      <p class="seal"><a href="https://datenschutz-generator.de/" title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken." target="_blank" rel="noopener noreferrer nofollow">Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas Schwenke</a></p>
+      <p style="padding-left:var(--indent-start);"><a href="https://datenschutz-generator.de/" title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken." target="_blank" rel="noopener noreferrer nofollow">Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas Schwenke</a></p>
     </section>
   </main>
 
@@ -493,4 +484,3 @@
   </script>
 </body>
 </html>
-
