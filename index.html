@@ -663,7 +663,7 @@ var uspInterval = setInterval(checkIfUspIsReady, 6000);
     <div>&copy; 2025 Starting Pawn</div>
     <div class="footer-links">
       <a href="datenschutz.html">Datenschutz</a>
-      <span class="privacy-settings" onclick="window.__tcfapi('displayConsentUi', 2, function() {});">Cookie-Einstellungen</span>
+      <span class="privacy-settings" id="privacy-settings-btn">Cookie-Einstellungen</span>
     </div>
   </footer>
 
@@ -718,6 +718,30 @@ var uspInterval = setInterval(checkIfUspIsReady, 6000);
         if (e.key === 'Escape' && !sheet.hidden) close();
       });
     })();
+
+    // Cookie-Einstellungen Button Handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const privacyBtn = document.getElementById('privacy-settings-btn');
+      if (privacyBtn) {
+        privacyBtn.addEventListener('click', function() {
+          // Versuche die Consent UI anzuzeigen
+          if (typeof window.__tcfapi === 'function') {
+            window.__tcfapi('displayConsentUi', 2, function() {
+              console.log('Consent UI requested');
+            });
+          } else if (typeof window.displayConsentUi === 'function') {
+            // Fallback für InMobi direkte Funktion
+            window.displayConsentUi();
+          } else {
+            console.log('Consent Manager not available');
+            // Als letzter Fallback: Versuche InMobi spezifische Methode
+            if (window.quantcast && window.quantcast.showConsentManager) {
+              window.quantcast.showConsentManager();
+            }
+          }
+        });
+      }
+    });
   </script>
 
 </body>
