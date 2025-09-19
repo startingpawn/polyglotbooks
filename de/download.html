@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Download – Starting Pawn</title>
+  <meta name="description" content="Automatischer Download – 15-Sekunden-Countdown mit Animation, bevor die Datei startet." />
+  <link rel="icon" href="/assets/logo.png">
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+      /* NEU: Einrückung wie auf der Index.html */
+      --indent-start: 1.15rem;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      display:flex;
+      flex-direction:column;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* Header – sticky + leichtes Glas */
+    header{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      position:sticky; top:0; z-index:40;
+      border-bottom:1px solid rgba(43,50,64,.3);
+      background:rgba(11,12,16,.7);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:48px; height:48px; border-radius:50%;
+      background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
+    h1{margin:0; font-size:clamp(1.2rem,2vw,1.6rem); line-height:1.15}
+    .sub{color:var(--muted); font-size:.9rem}
+
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    /* Breadcrumbs */
+    .crumbs{
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem 1.6rem; color:#aeb3bf; font-size:.92rem;
+    }
+    .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
+
+    /* Main - OPTIMIERT für Breitformat */
+    main.hero{
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto;
+      padding:1.2rem 1rem 2.8rem;
+      display:grid; gap:1.2rem; grid-template-columns:1fr;
+      flex:1;
+      align-items:center; justify-items:center;
+    }
+    
+    /* LANDSCAPE OPTIMIERUNG - weniger Höhe, alles passt auf Bildschirm */
+    @media (orientation: landscape) and (max-height: 768px){
+      header{
+        padding:0.8rem 1rem 0.5rem;
+      }
+      .logo{
+        width:40px;
+        height:40px;
+      }
+      h1{
+        font-size:clamp(1.1rem,1.8vw,1.4rem);
+      }
+      .crumbs{
+        padding:0 1rem 0.8rem;
+      }
+      main.hero{
+        padding:1rem;
+      }
+      .panel{
+        padding:1rem;
+      }
+      .panel h2{
+        margin:0.1rem 0 0.8rem;
+        font-size:1.2rem;
+      }
+      .lead{
+        margin:0.1rem 0 0.8rem;
+      }
+      .ring{
+        width:100px !important;
+        height:100px !important;
+      }
+      .ring svg{
+        width:100px;
+        height:100px;
+      }
+      .ring .num{
+        font-size:1.6rem;
+      }
+      .timer h3{
+        font-size:0.95rem !important;
+      }
+      .timer p{
+        font-size:0.9rem;
+      }
+      .card-body{
+        padding:0.9rem 1rem;
+      }
+      .card-actions{
+        padding:0.7rem 1rem;
+      }
+      footer{
+        margin:0.5rem auto 1rem;
+      }
+    }
+    
+    /* Mobile Landscape (Smartphones) */
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      main.hero{
+        padding:0.8rem;
+      }
+      .panel{
+        padding:0.8rem;
+      }
+      .panel h2{
+        font-size:1.1rem;
+        margin:0 0 0.5rem;
+      }
+      .lead{
+        font-size:0.88rem;
+        margin:0 0 0.6rem;
+      }
+      .ring{
+        width:80px !important;
+        height:80px !important;
+      }
+      .ring svg{
+        width:80px;
+        height:80px;
+      }
+      .ring .num{
+        font-size:1.3rem;
+      }
+      .timer{
+        gap:0.7rem;
+      }
+      .timer h3{
+        font-size:0.88rem !important;
+        margin:0 0 0.15rem !important;
+      }
+      .timer p{
+        font-size:0.82rem;
+      }
+      .card-body{
+        padding:0.7rem 0.9rem;
+      }
+      .card-actions{
+        padding:0.6rem 0.9rem;
+      }
+      .support-note{
+        font-size:0.85rem;
+      }
+      .btn{
+        padding:0.45rem 0.7rem;
+        font-size:0.9rem;
+      }
+    }
+
+    /* Panel */
+    .panel{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box,
+        var(--panel);
+      padding:1.2rem 1.2rem 1.1rem;
+      max-width:760px; margin-inline:auto;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 1px 3px rgba(0,0,0,.2), 0 10px 40px rgba(229,9,20,.08);
+    }
+    .panel:hover{ transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,.3), 0 15px 50px rgba(229,9,20,.12) }
+    .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
+    .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
+
+    /* NEU: Typografie & Einrückung wie Index.html */
+    .panel > h2,
+    .panel > .lead,
+    .panel > p{
+      padding-left: var(--indent-start);
+      text-wrap: balance;
+    }
+    .lead,
+    .panel > p{
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+
+    /* Info-Card */
+    .info-card{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
+      overflow:hidden; transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
+    .card-body{ padding:1.1rem 1.2rem 1.2rem; color:#dfe1e7; line-height:1.55 }
+    .card-actions{
+      padding:.9rem 1.2rem; border-top:1px solid #1e2230;
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+      display:flex; gap:.6rem; justify-content:flex-end; align-items:center; flex-wrap:wrap;
+    }
+    .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
+
+    /* Countdown – Kreis + Zahl */
+    .timer{
+      display:grid; grid-template-columns: auto 1fr; gap:1rem; align-items:center;
+    }
+    .ring{
+      width:120px; height:120px; position:relative; display:grid; place-items:center;
+      filter:drop-shadow(0 8px 18px rgba(229,9,20,.18));
+    }
+    .ring svg{ transform:rotate(-90deg); display:block }
+    .ring .num{
+      position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
+      text-shadow:0 1px 0 rgba(0,0,0,.35);
+    }
+    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.55rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
+      transition:.12s ease;
+    }
+    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+    .btn-donate{
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; border:none; box-shadow:0 8px 18px rgba(229,9,20,.24);
+    }
+    .btn-donate:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+    .btn-donate::before{ content:"❤"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
+
+    /* Footer */
+    footer{
+      max-width:var(--max);
+      width:100%;
+      margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
+    }
+
+    /* FAB */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1; border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{ transform:translateY(-1px); box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16) }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width:799px){ .topnav{display:none} .fab{display:grid} .panel{max-width:100%} }
+
+    /* Bottom-Sheet Menü */
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+
+    /* Mobile Portrait Optimierung */
+    @media (max-width: 600px) and (orientation: portrait) {
+      .timer {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 1.5rem;
+      }
+      .ring { margin: 0 auto; }
+      .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
+      .timer p { text-align: left; font-size: 0.9rem; }
+      .card-actions { flex-direction: column; gap: 0.8rem; }
+      .support-note { margin-right: 0; text-align: center; font-size: 0.85rem; }
+      .btn-donate { width: 100%; justify-content: center; }
+    }
+
+    /* Sehr kleine Bildschirme (unter 380px Breite) */
+    @media (max-width: 380px) {
+      .ring { width: 100px !important; height: 100px !important; }
+      .ring svg { width: 100px; height: 100px; }
+      .ring .num { font-size: 1.6rem; }
+      .timer h3 { font-size: 0.85rem !important; white-space: normal; line-height: 1.4; }
+      .timer p { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Opening Books</h1>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
+      </div>
+    </div>
+    <nav class="topnav" aria-label="Hauptmenü">
+      <a class="nav-link" href="/de/">Home</a>
+      <a class="nav-link" href="/de/choose.html">Eröffnungen</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="/de/faq.html">FAQ</a>
+      <a class="nav-link" href="/de/contact.html">Kontakt</a>
+      <a class="nav-link" href="/de/impressum.html">Impressum</a>
+    </nav>
+  </header>
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/de/">Home</a> &nbsp;→&nbsp;
+    <a href="/de/choose.html">Auswahl</a> &nbsp;→&nbsp;
+    <strong>Download</strong>
+  </nav>
+
+  <main class="hero">
+    <section class="panel" aria-labelledby="dl">
+      <h2 id="dl">Download wird vorbereitet</h2>
+      <p class="lead">
+        Deine Datei: <strong id="fileLabel">elite-allbooks.bin</strong>
+      </p>
+
+      <article class="info-card" aria-label="Countdown">
+        <div class="card-body">
+          <div class="timer">
+            <div class="ring" aria-hidden="true">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/>
+                <circle id="progress" cx="60" cy="60" r="54" fill="none" stroke="url(#g)" stroke-width="10"
+                        stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="0"/>
+                <defs>
+                  <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(229,9,20,1)" />
+                    <stop offset="100%" stop-color="rgba(229,9,20,.7)" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="num" id="num">15</div>
+            </div>
+            <div>
+              <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">
+                Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
+              </h3>
+              <p id="status" aria-live="polite" style="line-height:1.7;">
+                Wie versprochen ist Starting Pawn absolut kostenlos!<br><br>
+                Wenn dir mein Projekt hilft, die richtigen Stellungen schneller zu erreichen, 
+                freue ich mich über deine Unterstützung.<br><br>
+                Schon ein <strong>kleiner&nbsp;Betrag</strong> hilft, <em>Server-, Domain- und Traffic-Kosten</em> 
+                zu decken und neue Books zu entwickeln.<br><br>
+                <span style="color:#e1e3e8;">Keine Paywall, keine Werbung – nur Schach.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <span class="support-note">Dein Beitrag fließt zu 100 % in den Betrieb & neue Inhalte.</span>
+          <a class="btn btn-donate" href="/de/donate.html" target="_blank" rel="noopener">Jetzt unterstützen</a>
+        </div>
+      </article>
+
+      <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem">
+        Der Download startet automatisch. Danke für deine Geduld!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <small>&copy; 2025 Starting Pawn</small>
+  </footer>
+
+  <!-- Mobiler + Button & Sheet -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
+      <nav>
+        <a href="/de/">Home</a>
+        <a href="/de/choose.html">Eröffnungen</a>
+        <a href="/de/faq.html">FAQ</a>
+        <a href="/de/contact.html">Kontakt</a>
+        <a href="/de/impressum.html">Impressum</a>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- Bottom-Sheet ---------- */
+    (function(){
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      const backdrop = sheet?.querySelector('.sheet-backdrop');
+      const panel = sheet?.querySelector('.sheet-panel');
+      const open = () => { if (!sheet) return; sheet.hidden = false; requestAnimationFrame(() => sheet.setAttribute('data-open','true')); fab?.setAttribute('aria-expanded','true'); };
+      const close = () => { if (!sheet) return; sheet.removeAttribute('data-open'); fab?.setAttribute('aria-expanded','false'); setTimeout(() => { sheet.hidden = true; }, 200); };
+      fab?.addEventListener('click', () => { sheet.hidden ? open() : close(); });
+      backdrop?.addEventListener('click', close);
+      panel?.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
+    })();
+
+    /* ---------- Download-Logik + Countdown ---------- */
+    (function(){
+      const DEFAULT_FILE = '/downloads/elite-allbooks.bin';
+      const qs = new URLSearchParams(location.search);
+      const raw = qs.get('file') ? decodeURIComponent(qs.get('file')) : DEFAULT_FILE;
+
+      // nur gleiche-Origin-Pfade (.bin/.zip) erlauben, Query/Hash ok
+      const isSameOriginPath = !/^(?:[a-z]+:)?\/\//i.test(raw);
+      const isAllowedExt = /\.(?:bin|zip)(?:[?#].*)?$/i.test(raw);
+
+      // Pfad säubern und root-absolut machen, '..' entfernen
+      let sanitized = (isSameOriginPath && isAllowedExt) ? raw : DEFAULT_FILE;
+      sanitized = sanitized.replace(/\\/g,'/');          // Backslashes → Slashes
+      sanitized = sanitized.replace(/\.\./g,'');         // keine Parent-Verweise
+      sanitized = sanitized.replace(/^\.(\/|\\)/,'/');   // './' entfernen
+      if (!sanitized.startsWith('/')) sanitized = '/' + sanitized;
+
+      const file = sanitized;
+
+      // Dateiname ohne Pfad/Query anzeigen
+      const fileLabel = document.getElementById('fileLabel');
+      const displayName = file.replace(/^.*[\\/]/, '').split('?')[0].split('#')[0];
+      fileLabel.textContent = displayName;
+
+      const SECS_TOTAL = 20;
+      let secs = SECS_TOTAL;
+      let timer = null;
+      let done = false;
+
+      const num = document.getElementById('num');
+      const txtSec = document.getElementById('txtSec');
+      const progress = document.getElementById('progress');
+
+      const CIRC = 2 * Math.PI * 54;
+      progress.setAttribute('stroke-dasharray', String(CIRC));
+      progress.setAttribute('stroke-dashoffset', '0');
+
+      function setProgress(s){
+        const p = (SECS_TOTAL - s) / SECS_TOTAL;
+        const off = CIRC * (1 - p);
+        progress.setAttribute('stroke-dashoffset', String(off));
+      }
+
+      function triggerDownload(){
+        if (done) return;
+        done = true;
+        const a = document.createElement('a');
+        a.href = file;
+        a.download = '';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 0);
+      }
+
+      function tick(){
+        secs--;
+        if (secs <= 0){
+          num.textContent = '0';
+          txtSec.textContent = '0';
+          setProgress(0);
+          clearInterval(timer);
+          triggerDownload();
+          return;
+        }
+        num.textContent = String(secs);
+        txtSec.textContent = String(secs);
+        setProgress(secs);
+      }
+
+      function start(){
+        num.textContent = String(secs);
+        txtSec.textContent = String(secs);
+        setProgress(secs);
+        setTimeout(() => { timer = setInterval(tick, 1000); }, 350);
+      }
+
+      start();
+    })();
+
+    /* ---------- Ko-fi Widget beim Klick auf "Jetzt unterstützen" ---------- */
+    (function(){
+      const btn = document.querySelector('.btn.btn-donate');
+      btn?.addEventListener('click', function(e){
+        e.preventDefault();
+        if (document.getElementById('kofiframe')) {
+          document.getElementById('kofiframe').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        const wrap = document.createElement('div');
+        const iframe = document.createElement('iframe');
+        iframe.id = 'kofiframe';
+        iframe.src = 'https://ko-fi.com/startingpawn/?hidefeed=true&widget=true&embed=true&preview=true';
+        iframe.style.border = 'none';
+        iframe.style.width = '100%';
+        iframe.style.padding = '4px';
+        iframe.style.background = '#f9f9f9';
+        iframe.height = '712';
+        iframe.title = 'startingpawn';
+        wrap.appendChild(iframe);
+        const panel = document.querySelector('section.panel');
+        panel?.appendChild(wrap);
+        wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        iframe.focus?.();
+      });
+    })();
+  </script>
+</body>
+</html>
