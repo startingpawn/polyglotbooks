@@ -36,12 +36,12 @@
       overflow-wrap:anywhere;
     }
 
-    /* Header + Topnav - Sticky & Glasmorphismus (wie gallery.html) */
+    /* Header + Topnav - Sticky & Glasmorphismus */
     header{
       max-width:var(--max);
       width:100%;
       margin:0 auto;
-      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem; /* angepasst */
+      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
@@ -52,7 +52,7 @@
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
       width:48px;height:48px;border-radius:50%;
-      background:#1a1517 url('assets/logo.png') center/80% no-repeat;
+      background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
       box-shadow:0 0 24px rgba(229,9,20,.35)
     }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
@@ -65,19 +65,19 @@
 
     /* Hero-Layout */
     .hero{
-      max-width:var(--max); 
+      max-width:var(--max);
       width:100%;
-      margin:0 auto; 
+      margin:0 auto;
       padding:1.2rem 1rem 2rem;
-      display:grid; 
+      display:grid;
       gap:1.2rem;
       grid-template-columns: 1fr;
       flex:1;
       align-items:center;
     }
     @media (min-width: 980px){
-      .hero{ 
-        grid-template-columns: 1.2fr .8fr; 
+      .hero{
+        grid-template-columns: 1.2fr .8fr;
         gap:2rem;
         padding:2rem 1rem;
       }
@@ -126,18 +126,18 @@
     .title{ font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
     .lead{ color:#cfd3db; font-size:1.02rem; }
 
-    /* Bullets: ganze Liste + Punkte eingerückt */
+    /* Bullets */
     .bullets{
       list-style:none;
       padding:0;
       display:grid;
       gap:.45rem;
       color:#d9dce4;
-      padding-left: var(--indent-start); /* verschiebt Liste inkl. Punkten */
+      padding-left: var(--indent-start);
     }
     .bullets li{
       position:relative;
-      padding-left: var(--bullet-gap);   /* Abstand Punkt -> Text */
+      padding-left: var(--bullet-gap);
       line-height:1.55;
     }
     .bullets li::before{
@@ -262,12 +262,12 @@
       </div>
     </div>
     <nav class="topnav" aria-label="Hauptmenü">
-      <a class="nav-link active" href="index.html">Home</a>
-      <a class="nav-link" href="choose.html">Eröffnungen</a>
+      <a class="nav-link active" href="/de/">Home</a>
+      <a class="nav-link" href="/de/choose.html">Eröffnungen</a>
       <span class="nav-sep" aria-hidden="true"></span>
-      <a class="nav-link" href="faq.html">FAQ</a>
-      <a class="nav-link" href="contact.html">Kontakt</a>
-      <a class="nav-link" href="impressum.html">Impressum</a>
+      <a class="nav-link" href="/de/faq.html">FAQ</a>
+      <a class="nav-link" href="/de/kontakt.html">Kontakt</a>
+      <a class="nav-link" href="/de/impressum.html">Impressum</a>
     </nav>
   </header>
 
@@ -287,12 +287,12 @@
       </ul>
 
       <div class="cta">
-        <a class="btn btn-primary" href="choose.html">Los geht´s!</a>
+        <a class="btn btn-primary" href="/de/choose.html">Los geht´s!</a>
       </div>
     </section>
 
     <aside class="visual" aria-hidden="true">
-      <img src="/assets/hero-board.png" alt="" onerror="this.src='assets/logo.png'">
+      <img src="/assets/hero-board.png" alt="" onerror="this.onerror=null; this.src='/assets/logo.png'">
     </aside>
   </main>
 
@@ -306,11 +306,11 @@
     <div class="sheet-backdrop" data-close></div>
     <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
       <nav>
-        <a href="index.html">Home</a>
-        <a href="choose.html">Eröffnungen</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Kontakt</a>
-        <a href="impressum.html">Impressum</a>
+        <a href="/de/">Home</a>
+        <a href="/de/choose.html">Eröffnungen</a>
+        <a href="/de/faq.html">FAQ</a>
+        <a href="/de/kontakt.html">Kontakt</a>
+        <a href="/de/impressum.html">Impressum</a>
       </nav>
     </div>
   </div>
