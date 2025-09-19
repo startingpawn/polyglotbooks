@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="x-default">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Sprache wählen · Choose language – Starting Pawn</title>
+  <meta name="description" content="Wähle deine Sprache · Choose your language." />
+  <link rel="icon" href="assets/logo.png">
+  <!-- SEO/Hreflang -->
+  <link rel="canonical" href="https://www.startingpawn.com/">
+  <link rel="alternate" href="https://www.startingpawn.com/de/" hreflang="de">
+  <link rel="alternate" href="https://www.startingpawn.com/en/" hreflang="en">
+  <link rel="alternate" href="https://www.startingpawn.com/"  hreflang="x-default">
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;background:var(--bg);color:var(--text);margin:0;font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"}
+    .wrap{min-height:100%;display:grid;place-items:center;padding:clamp(2rem,4vw,4rem)}
+    .panel{width:100%;max-width:700px;background:var(--panel);border:var(--border) solid rgba(255,255,255,.08);border-radius:var(--radius);padding:clamp(1.5rem,3vw,2.25rem);box-shadow:var(--ring)}
+    header{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+    header img{width:32px;height:32px;border-radius:8px}
+    h1{font-size:clamp(1.3rem,3.2vw,1.8rem);margin:.2rem 0 .4rem}
+    p{margin:.25rem 0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr;gap:var(--gap);margin-top:1rem}
+    @media (min-width:520px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    .card{display:block;background:#0f1016;border:var(--border) solid rgba(255,255,255,.08);border-radius:14px;padding:1rem;text-decoration:none;outline:0;transition:transform .12s ease, border-color .12s ease}
+    .card:hover{transform:translateY(-1px);border-color:rgba(229,9,20,.5)}
+    .flag{font-size:1.6rem}
+    .title{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .subtitle{color:var(--muted);font-size:.95rem;margin-top:.2rem}
+    .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:.7rem 1rem;border-radius:12px;border:var(--border) solid rgba(255,255,255,.12);text-decoration:none;color:var(--text)}
+    .btn.primary{background:var(--accent);border-color:transparent;color:white;font-weight:700}
+    .hint{font-size:.9rem;color:var(--muted);margin-top:.6rem}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media (prefers-reduced-motion:reduce){ .card{transition:none} }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="panel" aria-labelledby="lang-heading">
+      <header>
+        <img src="assets/logo.png" alt="" loading="lazy">
+        <div>
+          <h1 id="lang-heading">Sprache wählen · Choose language</h1>
+          <p>Bitte wähle deine Sprache. Your preferred language will be remembered on this device.</p>
+        </div>
+      </header>
+
+      <div class="grid" role="list">
+        <a role="listitem" class="card" href="/de/" data-lang="de" aria-label="Deutsch auswählen">
+          <div class="title"><span class="flag" aria-hidden="true">🇩🇪</span> Deutsch</div>
+          <div class="subtitle">Zur deutschen Version wechseln</div>
+        </a>
+
+        <a role="listitem" class="card" href="/en/" data-lang="en" aria-label="Select English">
+          <div class="title"><span class="flag" aria-hidden="true">🇬🇧</span> English</div>
+          <div class="subtitle">Go to the English version</div>
+        </a>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="/de/" data-lang="de" aria-label="Deutsch">Deutsch</a>
+        <a class="btn" href="/en/" data-lang="en" aria-label="English">English</a>
+      </div>
+
+      <p class="hint">Tipp: Füge <code>?choose=1</code> an die URL an, um diese Auswahlseite anzuzeigen, auch wenn bereits eine Sprache gespeichert ist.</p>
+      <p class="hint"><button id="resetPref" class="btn" type="button" aria-label="Sprachauswahl zurücksetzen">Sprachauswahl zurücksetzen</button></p>
+
+      <noscript>
+        <p class="hint">JavaScript ist deaktiviert. Die Sprachwahl wird nicht gespeichert; die Links oben funktionieren dennoch.</p>
+      </noscript>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      // Auto-Redirect nur wenn eine Präferenz existiert und der Nutzer NICHT explizit die Auswahlseite wollte.
+      var params = new URLSearchParams(location.search);
+      var skip = params.has('choose') && params.get('choose') !== '0';
+      var pref = localStorage.getItem('langPref');
+
+      if (!skip && (pref === 'de' || pref === 'en')) {
+        location.replace('/' + pref + '/');
+        return;
+      }
+
+      // Klicks abfangen: Auswahl merken und dann navigieren
+      function handlePick(e) {
+        var link = e.currentTarget;
+        var lang = link.getAttribute('data-lang');
+        if (!lang) return;
+        try { localStorage.setItem('langPref', lang); } catch (err) {}
+        // Direkt zur Zielsprache
+        location.href = '/' + lang + '/';
+        e.preventDefault();
+      }
+
+      document.querySelectorAll('[data-lang]').forEach(function (el) {
+        el.addEventListener('click', handlePick);
+      });
+
+      // Reset-Button
+      var resetBtn = document.getElementById('resetPref');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          try { localStorage.removeItem('langPref'); } catch (err) {}
+          alert('Sprachauswahl zurückgesetzt. Diese Seite bleibt als Auswahlseite aktiv.');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
