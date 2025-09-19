@@ -33,10 +33,6 @@
     .flag{font-size:1.6rem}
     .title{display:flex;align-items:center;gap:.6rem;font-weight:700}
     .subtitle{color:var(--muted);font-size:.95rem;margin-top:.2rem}
-    .actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:.7rem 1rem;border-radius:12px;border:var(--border) solid rgba(255,255,255,.12);text-decoration:none;color:var(--text)}
-    .btn.primary{background:var(--accent);border-color:transparent;color:white;font-weight:700}
-    .hint{font-size:.9rem;color:var(--muted);margin-top:.6rem}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     @media (prefers-reduced-motion:reduce){ .card{transition:none} }
   </style>
@@ -64,14 +60,6 @@
         </a>
       </div>
 
-      <div class="actions">
-        <a class="btn primary" href="/de/" data-lang="de" aria-label="Deutsch">Deutsch</a>
-        <a class="btn" href="/en/" data-lang="en" aria-label="English">English</a>
-      </div>
-
-      <p class="hint">Tipp: Füge <code>?choose=1</code> an die URL an, um diese Auswahlseite anzuzeigen, auch wenn bereits eine Sprache gespeichert ist.</p>
-      <p class="hint"><button id="resetPref" class="btn" type="button" aria-label="Sprachauswahl zurücksetzen">Sprachauswahl zurücksetzen</button></p>
-
       <noscript>
         <p class="hint">JavaScript ist deaktiviert. Die Sprachwahl wird nicht gespeichert; die Links oben funktionieren dennoch.</p>
       </noscript>
@@ -96,7 +84,6 @@
         var lang = link.getAttribute('data-lang');
         if (!lang) return;
         try { localStorage.setItem('langPref', lang); } catch (err) {}
-        // Direkt zur Zielsprache
         location.href = '/' + lang + '/';
         e.preventDefault();
       }
@@ -104,15 +91,6 @@
       document.querySelectorAll('[data-lang]').forEach(function (el) {
         el.addEventListener('click', handlePick);
       });
-
-      // Reset-Button
-      var resetBtn = document.getElementById('resetPref');
-      if (resetBtn) {
-        resetBtn.addEventListener('click', function () {
-          try { localStorage.removeItem('langPref'); } catch (err) {}
-          alert('Sprachauswahl zurückgesetzt. Diese Seite bleibt als Auswahlseite aktiv.');
-        });
-      }
     })();
   </script>
 </body>
