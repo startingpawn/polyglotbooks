@@ -12,6 +12,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+      /* Einrückung wie auf der Index.html */
+      --indent-start: 1.15rem;
     }
     *{ box-sizing:border-box }
     html,body{ height:100% }
@@ -25,6 +27,7 @@
     a{ color:inherit; text-decoration:none; }
     a:focus-visible{ outline:2px solid rgba(229,9,20,.6); outline-offset:2px; border-radius:6px; }
 
+    /* Header – identisch zu gallery.html */
     header{
       max-width:var(--max); width:100%; margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
@@ -76,21 +79,26 @@
 
     /* Neutrale Variante ohne rote Akzente */
     .panel--neutral{
-      background: var(--panel) !important;              /* keine roten Gradients */
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);            /* neutraler Schatten */
-      border-color: #2b3240;                            /* neutraler Rahmen */
+      background: var(--panel) !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      border-color: #2b3240;
     }
 
     /* Inhaltsverzeichnis & Aufzählungen */
-    .index{ list-style:none; padding:0; margin:.5rem 0 1rem; display:grid; gap:.35rem }
+    .index{ list-style:none; padding-left:var(--indent-start); margin:.5rem 0 1rem; display:grid; gap:.35rem }
     .index-link{ display:inline-block; padding:.25rem .4rem; border-radius:8px; border:1px solid #2b3240 }
     .index-link:hover{ background:rgba(229,9,20,.08) }
-    .m-elements{ margin:.6rem 0 1rem 1.2rem }
+    .m-elements{ margin:.6rem 0 1rem; padding-left:calc(var(--indent-start) + 1.1rem) }
     .m-elements li{ margin:.25rem 0 }
 
     /* Datenschutz-Generator Siegel */
-    .seal{ margin-top:1.2rem }
+    .seal{ margin-top:1.2rem; padding-left:var(--indent-start) }
     .seal a{ color:#cfd3db; text-decoration:underline dotted }
+
+    /* Einrückung & Typografie wie auf der Index.html */
+    .panel > :is(h2,h3,h4,p,address){ padding-left:var(--indent-start); text-wrap:balance }
+    .panel > p{ hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
+    .panel > :is(ul,ol){ margin:.6rem 0 1rem; padding-left:calc(var(--indent-start) + 1.1rem) }
 
     footer{
       max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem;
@@ -130,7 +138,7 @@
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
 
-    /* Landscape Tweaks */
+    /* Landscape Tweaks – wie gallery.html */
     @media (orientation: landscape) and (max-height: 768px){
       header{ padding:0.8rem 1rem 0.5rem }
       .logo{ width:40px; height:40px }
@@ -151,18 +159,17 @@
       <div class="logo" aria-hidden="true"></div>
       <div>
         <h1>Polyglot Opening Books</h1>
-        <div class="sub"><em>Starting Pawn – Theory that gets to the board.</em></div>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
       </div>
     </div>
     <nav class="topnav" aria-label="Hauptmenü">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="choose.html">Eröffnungen</a>
       <span class="nav-sep" aria-hidden="true"></span>
-      <a class="nav-link" href="kontakt.html">Kontakt</a>
       <a class="nav-link" href="faq.html">FAQ</a>
+      <a class="nav-link" href="kontakt.html">Kontakt</a>
       <!-- Beide Menüpunkte verweisen auf diese Seite mit Anker -->
-      <a class="nav-link active" href="rechtliches.html#impressum">Impressum</a>
-      <a class="nav-link" href="rechtliches.html#datenschutz">Datenschutz</a>
+      <a class="nav-link active" href="impressum.html">Impressum</a>
     </nav>
   </header>
 
@@ -332,11 +339,9 @@
       <nav>
         <a href="index.html">Home</a>
         <a href="choose.html">Eröffnungen</a>
-        <a href="kontakt.html">Kontakt</a>
         <a href="faq.html">FAQ</a>
-        <a href="rechtliches.html#impressum">Impressum</a>
-        <a href="rechtliches.html#haftungsausschluss">Haftungsausschluss</a>
-        <a href="rechtliches.html#datenschutz">Datenschutz</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
       </nav>
     </div>
   </div>
