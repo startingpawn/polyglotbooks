@@ -1,93 +1,338 @@
 <!doctype html>
+
 <html lang="de">
 <head>
-  <!-- InMobi Choice (robust: www->apex + UI zeigen bei Erstbesuch) -->
-  <script>
-  (function() {
-    // Host normalisieren: www.startingpawn.com -> startingpawn.com
-    var host = (location.hostname || 'startingpawn.com').replace(/^www\./,'');
-    var element = document.createElement('script');
-    var firstScript = document.getElementsByTagName('script')[0];
-    var url = 'https://cmp.inmobi.com/choice/Ub9d_8mHntEp-/' + host + '/choice.js?tag_version=V3';
+  <!-- InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
+<script type="text/javascript" async=true>
+(function() {
+  var host = 'startingpawn.com';
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://cmp.inmobi.com'
+    .concat('/choice/', 'Ub9d_8mHntEp-', '/', host, '/choice.js?tag_version=V3');
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
 
-    element.async = true;
-    element.type  = 'text/javascript';
-    element.src   = url;
+firstScript.parentNode.insertBefore(element, firstScript);
 
-    // UI anzeigen, falls noch keine Entscheidung gespeichert ist
-    element.onload = function () {
-      if (typeof window.__tcfapi !== 'function') return;
-      __tcfapi('getTCData', 2, function(tc){
-        if (!tc || !tc.tcString) {
-          __tcfapi('displayConsentUi', 2, function(){});
-        }
-      });
+function makeStub() {
+var TCF_LOCATOR_NAME = ‘__tcfapiLocator’;
+var queue = [];
+var win = window;
+var cmpFrame;
+
+```
+function addFrame() {
+  var doc = win.document;
+  var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+  if (!otherCMP) {
+    if (doc.body) {
+      var iframe = doc.createElement('iframe');
+
+      iframe.style.cssText = 'display:none';
+      iframe.name = TCF_LOCATOR_NAME;
+      doc.body.appendChild(iframe);
+    } else {
+      setTimeout(addFrame, 5);
+    }
+  }
+  return !otherCMP;
+}
+
+function tcfAPIHandler() {
+  var gdprApplies;
+  var args = arguments;
+
+  if (!args.length) {
+    return queue;
+  } else if (args[0] === 'setGdprApplies') {
+    if (
+      args.length > 3 &&
+      args[2] === 2 &&
+      typeof args[3] === 'boolean'
+    ) {
+      gdprApplies = args[3];
+      if (typeof args[2] === 'function') {
+        args[2]('set', true);
+      }
+    }
+  } else if (args[0] === 'ping') {
+    var retr = {
+      gdprApplies: gdprApplies,
+      cmpLoaded: false,
+      cmpStatus: 'stub'
     };
 
-    // Vor das erste Script einfügen (wie von InMobi vorgesehen)
-    if (firstScript && firstScript.parentNode) {
-      firstScript.parentNode.insertBefore(element, firstScript);
+    if (typeof args[2] === 'function') {
+      args[2](retr);
+    }
+  } else {
+    if(args[0] === 'init' && typeof args[3] === 'object') {
+      args[3] = Object.assign(args[3], { tag_version: 'V3' });
+    }
+    queue.push(args);
+  }
+}
+
+function postMessageEventHandler(event) {
+  var msgIsString = typeof event.data === 'string';
+  var json = {};
+
+  try {
+    if (msgIsString) {
+      json = JSON.parse(event.data);
     } else {
-      document.head.appendChild(element);
+      json = event.data;
     }
+  } catch (ignore) {}
 
-    /* ==== InMobi Stubs (unverändert) ==== */
-    function makeStub() {
-      var TCF_LOCATOR_NAME='__tcfapiLocator', queue=[], win=window, cmpFrame;
-      function addFrame(){var doc=win.document,otherCMP=!!(win.frames[TCF_LOCATOR_NAME]);
-        if(!otherCMP){ if(doc.body){var iframe=doc.createElement('iframe'); iframe.style.cssText='display:none'; iframe.name=TCF_LOCATOR_NAME; doc.body.appendChild(iframe);} else {setTimeout(addFrame,5);} }
-        return !otherCMP;}
-      function tcfAPIHandler(){var gdprApplies; var args=arguments;
-        if(!args.length){return queue;}
-        else if(args[0]==='setGdprApplies'){ if(args.length>3 && args[2]===2 && typeof args[3]==='boolean'){ gdprApplies=args[3]; if(typeof args[2]==='function'){ args[2]('set',true); } } }
-        else if(args[0]==='ping'){ var retr={gdprApplies:gdprApplies, cmpLoaded:false, cmpStatus:'stub'}; if(typeof args[2]==='function'){ args[2](retr);} }
-        else { if(args[0]==='init' && typeof args[3]==='object'){ args[3]=Object.assign(args[3],{tag_version:'V3'});} queue.push(args); } }
-      function postMessageEventHandler(event){var msgIsString=typeof event.data==='string', json={};
-        try{ json = msgIsString ? JSON.parse(event.data) : event.data; }catch(ignore){}
-        var payload=json.__tcfapiCall;
-        if(payload){ window.__tcfapi(payload.command, payload.version, function(retValue,success){
-            var returnMsg={ __tcfapiReturn:{ returnValue:retValue, success:success, callId:payload.callId } };
-            if(msgIsString){ returnMsg=JSON.stringify(returnMsg); }
-            if(event && event.source && event.source.postMessage){ event.source.postMessage(returnMsg,'*'); }
-          }, payload.parameter);
-        }}
-      while(win){ try{ if(win.frames[TCF_LOCATOR_NAME]){ cmpFrame=win; break; } }catch(ignore){}
-        if(win===window.top){ break; } win=win.parent; }
-      if(!cmpFrame){ addFrame(); win.__tcfapi=tcfAPIHandler; win.addEventListener('message', postMessageEventHandler,false); }
+  var payload = json.__tcfapiCall;
+
+  if (payload) {
+    window.__tcfapi(
+      payload.command,
+      payload.version,
+      function(retValue, success) {
+        var returnMsg = {
+          __tcfapiReturn: {
+            returnValue: retValue,
+            success: success,
+            callId: payload.callId
+          }
+        };
+        if (msgIsString) {
+          returnMsg = JSON.stringify(returnMsg);
+        }
+        if (event && event.source && event.source.postMessage) {
+          event.source.postMessage(returnMsg, '*');
+        }
+      },
+      payload.parameter
+    );
+  }
+}
+
+while (win) {
+  try {
+    if (win.frames[TCF_LOCATOR_NAME]) {
+      cmpFrame = win;
+      break;
     }
-    makeStub();
+  } catch (ignore) {}
 
-    function makeGppStub(){ const CMP_ID=10, SUPPORTED_APIS=['2:tcfeuv2','6:uspv1','7:usnatv1','8:usca','9:usvav1','10:uscov1','11:usutv1','12:usctv1'];
-      window.__gpp_addFrame=function(n){ if(!window.frames[n]){ if(document.body){ var i=document.createElement('iframe'); i.style.cssText='display:none'; i.name=n; document.body.appendChild(i);} else { window.setTimeout(window.__gpp_addFrame,10,n); } } };
-      window.__gpp_stub=function(){ var b=arguments; __gpp.queue=__gpp.queue||[]; __gpp.events=__gpp.events||[];
-        if(!b.length || (b.length==1 && b[0]=='queue')) return __gpp.queue;
-        if(b.length==1 && b[0]=='events') return __gpp.events;
-        var cmd=b[0], clb=b.length>1?b[1]:null, par=b.length>2?b[2]:null;
-        if(cmd==='ping'){ clb({ gppVersion:'1.1', cmpStatus:'stub', cmpDisplayStatus:'hidden', signalStatus:'not ready', supportedAPIs:SUPPORTED_APIS, cmpId:CMP_ID, sectionList:[], applicableSections:[-1], gppString:'', parsedSections:{} }, true); }
-        else if(cmd==='addEventListener'){ if(!('lastId' in __gpp)) __gpp.lastId=0; __gpp.lastId++; var lnr=__gpp.lastId; __gpp.events.push({id:lnr,callback:clb,parameter:par});
-          clb({ eventName:'listenerRegistered', listenerId:lnr, data:true, pingData:{ gppVersion:'1.1', cmpStatus:'stub', cmpDisplayStatus:'hidden', signalStatus:'not ready', supportedAPIs:SUPPORTED_APIS, cmpId:CMP_ID, sectionList:[], applicableSections:[-1], gppString:'', parsedSections:{} } }, true); }
-        else if(cmd==='removeEventListener'){ var success=false; for(var i=0;i<__gpp.events.length;i++){ if(__gpp.events[i].id==par){ __gpp.events.splice(i,1); success=true; break; } }
-          clb({ eventName:'listenerRemoved', listenerId:par, data:success, pingData:{ gppVersion:'1.1', cmpStatus:'stub', cmpDisplayStatus:'hidden', signalStatus:'not ready', supportedAPIs:SUPPORTED_APIS, cmpId:CMP_ID, sectionList:[], applicableSections:[-1], gppString:'', parsedSections:{} } }, true); }
-        else if(cmd==='hasSection'){ clb(false,true); }
-        else if(cmd==='getSection' || cmd==='getField'){ clb(null,true); }
-        else { __gpp.queue.push([].slice.apply(b)); }
-      };
-      window.__gpp_msghandler=function(event){ var msgIsString=typeof event.data==='string', json=null; try{ json=msgIsString?JSON.parse(event.data):event.data; }catch(e){}
-        if(typeof json==='object' && json!==null && '__gppCall' in json){ var i=json.__gppCall;
-          window.__gpp(i.command, function(ret,success){ var returnMsg={ __gppReturn:{ returnValue:ret, success:success, callId:i.callId } };
-            event.source.postMessage(msgIsString?JSON.stringify(returnMsg):returnMsg,'*'); }, 'parameter' in i?i.parameter:null, 'version' in i?i.version:'1.1');
-        } };
-      if(!('__gpp' in window) || typeof window.__gpp!=='function'){ window.__gpp=window.__gpp_stub; window.addEventListener('message', window.__gpp_msghandler,false); window.__gpp_addFrame('__gppLocator'); }
+  if (win === window.top) {
+    break;
+  }
+  win = win.parent;
+}
+if (!cmpFrame) {
+  addFrame();
+  win.__tcfapi = tcfAPIHandler;
+  win.addEventListener('message', postMessageEventHandler, false);
+}
+```
+
+};
+
+makeStub();
+
+function makeGppStub() {
+const CMP_ID = 10;
+const SUPPORTED_APIS = [
+‘2:tcfeuv2’,
+‘6:uspv1’,
+‘7:usnatv1’,
+‘8:usca’,
+‘9:usvav1’,
+‘10:uscov1’,
+‘11:usutv1’,
+‘12:usctv1’
+];
+
+```
+window.__gpp_addFrame = function (n) {
+  if (!window.frames[n]) {
+    if (document.body) {
+      var i = document.createElement("iframe");
+      i.style.cssText = "display:none";
+      i.name = n;
+      document.body.appendChild(i);
+    } else {
+      window.setTimeout(window.__gpp_addFrame, 10, n);
     }
-    makeGppStub();
+  }
+};
+window.__gpp_stub = function () {
+  var b = arguments;
+  __gpp.queue = __gpp.queue || [];
+  __gpp.events = __gpp.events || [];
 
-    var uspStubFunction=function(){ var arg=arguments; if(typeof window.__uspapi!==uspStubFunction){ setTimeout(function(){ if(typeof window.__uspapi!=='undefined'){ window.__uspapi.apply(window.__uspapi,arg); } },500); } };
-    var uspTries=0, uspTriesLimit=3;
-    function checkIfUspIsReady(){ uspTries++; if(window.__uspapi===uspStubFunction && uspTries<uspTriesLimit){ console.warn('USP is not accessible'); } else { clearInterval(uspInterval); } }
-    if(typeof window.__uspapi==='undefined'){ window.__uspapi=uspStubFunction; var uspInterval=setInterval(checkIfUspIsReady,6000); }
-  })();
-  </script>
-  <!-- End InMobi Choice -->
+  if (!b.length || (b.length == 1 && b[0] == "queue")) {
+    return __gpp.queue;
+  }
+
+  if (b.length == 1 && b[0] == "events") {
+    return __gpp.events;
+  }
+
+  var cmd = b[0];
+  var clb = b.length > 1 ? b[1] : null;
+  var par = b.length > 2 ? b[2] : null;
+  if (cmd === "ping") {
+    clb(
+      {
+        gppVersion: "1.1", // must be "Version.Subversion", current: "1.1"
+        cmpStatus: "stub", // possible values: stub, loading, loaded, error
+        cmpDisplayStatus: "hidden", // possible values: hidden, visible, disabled
+        signalStatus: "not ready", // possible values: not ready, ready
+        supportedAPIs: SUPPORTED_APIS, // list of supported APIs
+        cmpId: CMP_ID, // IAB assigned CMP ID, may be 0 during stub/loading
+        sectionList: [],
+        applicableSections: [-1],
+        gppString: "",
+        parsedSections: {},
+      },
+      true
+    );
+  } else if (cmd === "addEventListener") {
+    if (!("lastId" in __gpp)) {
+      __gpp.lastId = 0;
+    }
+    __gpp.lastId++;
+    var lnr = __gpp.lastId;
+    __gpp.events.push({
+      id: lnr,
+      callback: clb,
+      parameter: par,
+    });
+    clb(
+      {
+        eventName: "listenerRegistered",
+        listenerId: lnr, // Registered ID of the listener
+        data: true, // positive signal
+        pingData: {
+          gppVersion: "1.1", // must be "Version.Subversion", current: "1.1"
+          cmpStatus: "stub", // possible values: stub, loading, loaded, error
+          cmpDisplayStatus: "hidden", // possible values: hidden, visible, disabled
+          signalStatus: "not ready", // possible values: not ready, ready
+          supportedAPIs: SUPPORTED_APIS, // list of supported APIs
+          cmpId: CMP_ID, // list of supported APIs
+          sectionList: [],
+          applicableSections: [-1],
+          gppString: "",
+          parsedSections: {},
+        },
+      },
+      true
+    );
+  } else if (cmd === "removeEventListener") {
+    var success = false;
+    for (var i = 0; i < __gpp.events.length; i++) {
+      if (__gpp.events[i].id == par) {
+        __gpp.events.splice(i, 1);
+        success = true;
+        break;
+      }
+    }
+    clb(
+      {
+        eventName: "listenerRemoved",
+        listenerId: par, // Registered ID of the listener
+        data: success, // status info
+        pingData: {
+          gppVersion: "1.1", // must be "Version.Subversion", current: "1.1"
+          cmpStatus: "stub", // possible values: stub, loading, loaded, error
+          cmpDisplayStatus: "hidden", // possible values: hidden, visible, disabled
+          signalStatus: "not ready", // possible values: not ready, ready
+          supportedAPIs: SUPPORTED_APIS, // list of supported APIs
+          cmpId: CMP_ID, // CMP ID
+          sectionList: [],
+          applicableSections: [-1],
+          gppString: "",
+          parsedSections: {},
+        },
+      },
+      true
+    );
+  } else if (cmd === "hasSection") {
+    clb(false, true);
+  } else if (cmd === "getSection" || cmd === "getField") {
+    clb(null, true);
+  }
+  //queue all other commands
+  else {
+    __gpp.queue.push([].slice.apply(b));
+  }
+};
+window.__gpp_msghandler = function (event) {
+  var msgIsString = typeof event.data === "string";
+  try {
+    var json = msgIsString ? JSON.parse(event.data) : event.data;
+  } catch (e) {
+    var json = null;
+  }
+  if (typeof json === "object" && json !== null && "__gppCall" in json) {
+    var i = json.__gppCall;
+    window.__gpp(
+      i.command,
+      function (retValue, success) {
+        var returnMsg = {
+          __gppReturn: {
+            returnValue: retValue,
+            success: success,
+            callId: i.callId,
+          },
+        };
+        event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, "*");
+      },
+      "parameter" in i ? i.parameter : null,
+      "version" in i ? i.version : "1.1"
+    );
+  }
+};
+if (!("__gpp" in window) || typeof window.__gpp !== "function") {
+  window.__gpp = window.__gpp_stub;
+  window.addEventListener("message", window.__gpp_msghandler, false);
+  window.__gpp_addFrame("__gppLocator");
+}
+```
+
+};
+
+makeGppStub();
+
+var uspStubFunction = function() {
+var arg = arguments;
+if (typeof window.__uspapi !== uspStubFunction) {
+setTimeout(function() {
+if (typeof window.__uspapi !== ‘undefined’) {
+window.__uspapi.apply(window.__uspapi, arg);
+}
+}, 500);
+}
+};
+
+var checkIfUspIsReady = function() {
+uspTries++;
+if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+console.warn(‘USP is not accessible’);
+} else {
+clearInterval(uspInterval);
+}
+};
+
+if (typeof window.__uspapi === ‘undefined’) {
+window.__uspapi = uspStubFunction;
+var uspInterval = setInterval(checkIfUspIsReady, 6000);
+}
+})();
+</script>
+
+<!-- End InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
@@ -100,8 +345,8 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      --indent-start: 1.15rem;
-      --bullet-gap: 1rem;
+      --indent-start: 1.15rem;  /* Startkante für Titel, Lead, Bullets & CTA */
+      --bullet-gap: 1rem;       /* Abstand zwischen Punkt und Text */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -110,20 +355,31 @@
       background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
       color:var(--text);
       font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
-      display:flex; flex-direction:column;
+      display:flex;
+      flex-direction:column;
     }
     a{color:inherit; text-decoration:none}
+
+    /* Typografie-Verbesserungen */
     .title, .lead, .bullets { text-wrap: balance; }
     .nowrap{ white-space:nowrap; }
-    .lead, .bullets li{ hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
+    .lead, .bullets li{
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
 
+    /* Header + Topnav - Sticky & Glasmorphismus (wie gallery.html) */
     header{
-      max-width:var(--max); width:100%; margin:0 auto;
-      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem; /* angepasst */
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
-      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
       background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
@@ -140,13 +396,24 @@
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
+    /* Hero-Layout */
     .hero{
-      max-width:var(--max); width:100%; margin:0 auto;
-      padding:1.2rem 1rem 2rem; display:grid; gap:1.2rem; grid-template-columns: 1fr;
-      flex:1; align-items:center;
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto; 
+      padding:1.2rem 1rem 2rem;
+      display:grid; 
+      gap:1.2rem;
+      grid-template-columns: 1fr;
+      flex:1;
+      align-items:center;
     }
     @media (min-width: 980px){
-      .hero{ grid-template-columns: 1.2fr .8fr; gap:2rem; padding:2rem 1rem; }
+      .hero{ 
+        grid-template-columns: 1.2fr .8fr; 
+        gap:2rem;
+        padding:2rem 1rem;
+      }
     }
     @media (orientation: landscape) and (max-height: 768px){
       header{ padding:0.8rem 1rem 0.5rem; }
@@ -178,6 +445,7 @@
       .hero{ padding-top:2rem; padding-bottom:2rem; }
     }
 
+    /* Panel + Abstände */
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
@@ -191,13 +459,37 @@
     .title{ font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
     .lead{ color:#cfd3db; font-size:1.02rem; }
 
-    .bullets{ list-style:none; padding:0; display:grid; gap:.45rem; color:#d9dce4; padding-left: var(--indent-start); }
-    .bullets li{ position:relative; padding-left: var(--bullet-gap); line-height:1.55; }
-    .bullets li::before{ content:"•"; position:absolute; left:0; top:0; line-height:1.55; font-weight:700; color:#ff5f6d; }
+    /* Bullets: ganze Liste + Punkte eingerückt */
+    .bullets{
+      list-style:none;
+      padding:0;
+      display:grid;
+      gap:.45rem;
+      color:#d9dce4;
+      padding-left: var(--indent-start); /* verschiebt Liste inkl. Punkten */
+    }
+    .bullets li{
+      position:relative;
+      padding-left: var(--bullet-gap);   /* Abstand Punkt -> Text */
+      line-height:1.55;
+    }
+    .bullets li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      line-height:1.55;
+      font-weight:700;
+      color:#ff5f6d;
+    }
     .bullets code{
       font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:.92em; background:#0f1117; border:1px solid #2b3240; border-radius:6px;
-      padding:.05em .35em; color:#e9eaee;
+      font-size:.92em;
+      background:#0f1117;
+      border:1px solid #2b3240;
+      border-radius:6px;
+      padding:.05em .35em;
+      color:#e9eaee;
     }
 
     .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
@@ -213,22 +505,95 @@
     }
     .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
 
+    /* Visual */
     .visual{
-      border:var(--border) solid #222737; border-radius:var(--radius);
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
       background:
         radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.22), transparent 65%),
         linear-gradient(135deg, #0f1117 0%, #141822 100%);
-      padding:1rem; display:flex; align-items:center; justify-content:center; min-height:320px;
+      padding:1rem;
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      min-height:320px;
     }
-    .visual img{ max-width:85%; height:auto; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,.45)); opacity:0.95; transition:transform 0.3s ease; }
+    .visual img{ 
+      max-width:85%;
+      height:auto; 
+      display:block; 
+      filter:drop-shadow(0 8px 24px rgba(0,0,0,.45));
+      opacity:0.95;
+      transition:transform 0.3s ease;
+    }
     .visual:hover img { transform:scale(1.05); }
 
+    /* Footer */
     footer{
-      max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem;
-      color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
+      max-width:var(--max);
+      width:100%;
+      margin:1.2rem auto 2.4rem;
+      color:#a2a6b2;
+      font-size:.92rem;
+      padding:0 1rem;
+      text-align:center;
     }
-    .footer-links a{ text-decoration:underline; }
+    footer .privacy-link{
+      color:#cfd3db;
+      text-decoration:underline;
+      cursor:pointer;
+      margin-left:0.5rem;
+    }
+    footer .privacy-link:hover{
+      color:var(--accent);
+    }
+
+    /* FAB & Sheet (mobil) */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:
+        0 0 0 2px rgba(229,9,20,.22),
+        0 14px 32px rgba(0,0,0,.45),
+        0 0 18px rgba(229,9,20,.16);
+    }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
+
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
   </style>
+
 </head>
 <body>
   <header>
@@ -258,35 +623,33 @@
         klar aufgebaut, praxisnah und direkt am Brett.
       </p>
 
-      <ul class="bullets">
-        <li><span class="nowrap">100% kostenlos</span></li>
-        <li>Varianten nach ECO-Struktur</li>
-        <li>Komplette Eröffnungspacks</li>
-      </ul>
+```
+  <ul class="bullets">
+    <li><span class="nowrap">100% kostenlos</span></li>
+    <li>Varianten nach ECO-Struktur</li>
+    <li>Komplette Eröffnungspacks</li>
+  </ul>
 
-      <div class="cta">
-        <a class="btn btn-primary" href="choose.html">Los geht´s!</a>
-      </div>
-    </section>
+  <div class="cta">
+    <a class="btn btn-primary" href="choose.html">Los geht´s!</a>
+  </div>
+</section>
 
-    <aside class="visual" aria-hidden="true">
-      <img src="assets/hero-board.png" alt="" onerror="this.src='assets/logo.png'">
-    </aside>
+<aside class="visual" aria-hidden="true">
+  <img src="assets/hero-board.png" alt="" onerror="this.src='assets/logo.png'">
+</aside>
+```
+
   </main>
 
   <footer>
-    <small>&copy; 2025 Starting Pawn</small>
-    <div class="footer-links" style="margin-top:.5rem">
-      <a href="#" id="cookie-settings">Cookie-Einstellungen</a>
-      <span aria-hidden="true"> • </span>
-      <a href="#" id="us-privacy">Your US Privacy Choices</a>
-      <span aria-hidden="true"> • </span>
-      <a href="impressum.html">Impressum/Datenschutz</a>
-    </div>
+    <small>&copy; 2025 Starting Pawn<span class="privacy-link" onclick="showPrivacySettings()">Cookie-Einstellungen</span></small>
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
-  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+
+<button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+
   <div class="sheet" id="sheet" hidden>
     <div class="sheet-backdrop" data-close></div>
     <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
@@ -301,6 +664,7 @@
   </div>
 
   <!-- Mobiler + Button (Bottom-Sheet) -->
+
   <script>
     (function(){
       const fab = document.getElementById('fab');
@@ -321,23 +685,26 @@
         setTimeout(() => { sheet.hidden = true; }, 200);
       };
 
-      fab?.addEventListener('click', () => { if (sheet.hidden) open(); else close(); });
+      fab?.addEventListener('click', () => {
+        if (sheet.hidden) open(); else close();
+      });
       backdrop?.addEventListener('click', close);
-      panel?.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
+      panel?.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sheet.hidden) close();
+      });
     })();
+
+    // Privacy Settings funktionen
+    function showPrivacySettings() {
+      // Zeigt das CMP (Consent Management Platform) erneut an
+      if (typeof window.__tcfapi === 'function') {
+        window.__tcfapi('displayConsentUi', 2, function() {});
+      }
+    }
   </script>
 
-  <!-- Footer-Handler: Links öffnen die CMP-UI -->
-  <script>
-    (function(){
-      function openCMP(e){
-        e.preventDefault();
-        if (window.__tcfapi) { __tcfapi('displayConsentUi', 2, function(){}); }
-      }
-      document.getElementById('cookie-settings')?.addEventListener('click', openCMP);
-      document.getElementById('us-privacy')?.addEventListener('click', openCMP);
-    })();
-  </script>
 </body>
 </html>
