@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Eröffnungen – Überblick</title>
+  <meta name="description" content="Überblick: Hauptkategorien (Offen, Halboffen, Geschlossen, Indisch, Flanken) mit verlinkten Eröffnungen." />
+  <link rel="icon" href="/assets/logo.png">
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      display:flex;
+      flex-direction:column;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* Header – OPTIMIERT mit Sticky & Glasmorphismus */
+    header{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      position:sticky; top:0; z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
+
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    /* Breadcrumbs – mehr Abstand nach unten */
+    .crumbs{
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem 1.2rem;
+      color:#aeb3bf; font-size:.92rem
+    }
+    .crumbs a{color:#cfd3db}
+    .crumbs a:hover{color:#fff;text-decoration:underline}
+
+    /* Main – OPTIMIERT für Breitformat */
+    main{
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto;
+      padding:clamp(3rem, 10vh, 6rem) 1rem clamp(3rem, 10vh, 6rem);
+      flex:1;
+    }
+    
+    /* LANDSCAPE OPTIMIERUNG */
+    @media (orientation: landscape) and (max-height: 768px){
+      header{ padding:0.8rem 1rem 0.5rem; }
+      .logo{ width:40px; height:40px; }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
+      .crumbs{ padding:0 1rem 0.6rem; }
+      main{ padding:1.5rem 1rem; }
+      .cat{ padding:1rem; margin:0 0 1.2rem; }
+      .cat h3{ margin:0 0 0.7rem; font-size:1rem; }
+      .item{ padding:0.6rem 0.8rem; }
+      footer{ margin:0.5rem auto 1rem; }
+    }
+    /* Mobile Landscape */
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      main{ padding:1rem; }
+      .cat{ padding:0.8rem; margin:0 0 0.8rem; }
+      .cat h3{ margin:0 0 0.5rem; font-size:0.95rem; }
+      .open-list{ gap:0.4rem; }
+      .item{ padding:0.5rem 0.7rem; font-size:0.9rem; }
+      .meta{ font-size:0.8rem; padding:0.15rem 0.4rem; }
+    }
+
+    /* Kategorien-Liste */
+    .cat{
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.10), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.04), transparent 120px) padding-box, 
+        var(--panel);
+      padding:1.2rem 1.3rem; 
+      margin:0 0 1.8rem;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.06);
+    }
+    .cat:hover{
+      transform:translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.10);
+    }
+    .cat--offen{ max-width:760px; margin-inline:auto; margin-bottom:1.8rem; }
+
+    .cat h3{
+      margin:.1rem 0 1rem;
+      font-size:1.08rem; 
+      letter-spacing:.02em;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .cat h3 .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.65));
+      box-shadow:0 0 0 2px rgba(229,9,20,.18);
+    }
+
+    .open-list{
+      list-style:none; padding:0; margin:0;
+      display:grid; gap:.5rem;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:900px){
+      .open-list{ grid-template-columns:repeat(2, 1fr); gap:.55rem .9rem; }
+    }
+
+    .item{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between; gap:.8rem;
+      padding:.7rem .9rem; border-radius:12px; border:1px solid #2b3240; 
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
+      transition:.15s ease;
+    }
+    .item:hover{ 
+      box-shadow:var(--ring), 0 8px 22px rgba(229,9,20,.16); 
+      transform:translateY(-1px);
+      background:linear-gradient(135deg, #111319 0%, #141623 100%);
+    }
+    .left{ display:flex; align-items:center; gap:.55rem }
+    .name{ font-weight:650 }
+    .meta{
+      color:#c5c9d4; font-size:.86rem; padding:.2rem .5rem; border:1px solid #2b3240; border-radius:999px;
+      background:#121521; white-space:nowrap;
+    }
+    .chev{ opacity:.8; transition:.15s ease; margin-left:.3rem; }
+    .item:hover .chev{ transform:translateX(2px); opacity:1 }
+
+    /* Footer – wie index.html */
+    footer{
+      max-width:var(--max);
+      width:100%;
+      margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem;
+      padding:0 1rem; text-align:center;
+    }
+
+    /* Mobiler FAB */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
+    }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
+
+    /* Bottom-Sheet Menü */
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Opening Books</h1>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board.</em></div>
+      </div>
+    </div>
+    <nav class="topnav" aria-label="Hauptmenü">
+      <a class="nav-link" href="/de/">Home</a>
+      <a class="nav-link active" href="/de/choose.html">Eröffnungen</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="/de/faq.html">FAQ</a>
+      <a class="nav-link" href="/de/contact.html">Kontakt</a>
+      <a class="nav-link" href="/de/impressum.html">Impressum</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumbs: Home → Auswahl → Einzel-Eröffnungen -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/de/">Home</a> &nbsp;→&nbsp;
+    <a href="/de/choose.html">Auswahl</a> &nbsp;→&nbsp;
+    <strong>Einzel-Eröffnungen</strong>
+  </nav>
+
+  <main id="app" aria-live="polite">
+    <!-- Kategorien werden per JS gerendert -->
+    <section id="lists" aria-label="Eröffnungen nach Kategorien"></section>
+  </main>
+
+  <footer>
+    <small>&copy; 2025 Starting Pawn</small>
+  </footer>
+
+  <!-- Mobiler + Button & Sheet -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
+      <nav>
+        <a href="/de/">Home</a>
+        <a href="/de/choose.html">Eröffnungen</a>
+        <a href="/de/faq.html">FAQ</a>
+        <a href="/de/contact.html">Kontakt</a>
+        <a href="/de/impressum.html">Impressum</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Listen-Renderer -->
+  <script>
+    // Nur existierende Seiten eintragen (alle Pfade root-absolut unter /de/)
+    const EXISTING = {
+      '/de/italian.html': { cat: 'Offen', name: 'Italienische Partie', eco: 'C50–C59' },
+      // Beispiele für spätere Ergänzungen:
+      // '/de/spanish.html': { cat: 'Offen', name: 'Spanisch', eco: 'C60–C99' },
+      // '/de/sicilian.html': { cat: 'Halboffen', name: 'Sizilianisch', eco: 'B20–B99' },
+    };
+
+    const ORDER = ['Offen','Halboffen','Geschlossen','Indisch','Flanken'];
+
+    function groupByCategory(entries){
+      const map = new Map();
+      for (const k of ORDER) map.set(k, []);
+      Object.entries(entries).forEach(([href, it]) => {
+        const cat = it.cat || 'Sonstiges';
+        if (!map.has(cat)) map.set(cat, []);
+        map.get(cat).push({ href, name: it.name, eco: it.eco||'' });
+      });
+      for (const [cat, arr] of map){
+        arr.sort((a,b)=>String(a.name).localeCompare(String(b.name),'de'));
+      }
+      return map;
+    }
+
+    const slug = s => String(s||'')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'');
+
+    function renderLists(){
+      const root = document.getElementById('lists');
+      if (!root) return;
+      const grouped = groupByCategory(EXISTING);
+
+      const html = ORDER.map(cat => {
+        const arr = grouped.get(cat) || [];
+        if (!arr.length) return '';
+        const items = arr.map(it => `
+          <li>
+            <a class="item" href="${it.href}">
+              <span class="left">
+                ${it.eco ? `<span class="meta" aria-label="ECO">${it.eco}</span>` : ``}
+                <span class="name">${it.name}</span>
+              </span>
+              <span class="right">
+                <span class="chev" aria-hidden="true">›</span>
+              </span>
+            </a>
+          </li>
+        `).join('');
+        const cls = `cat cat--${slug(cat)}`;
+        return `
+          <section class="${cls}" aria-labelledby="h-${encodeURIComponent(cat)}">
+            <h3 id="h-${encodeURIComponent(cat)}"><span class="dot" aria-hidden="true"></span>${cat}</h3>
+            <ul class="open-list" role="list">
+              ${items}
+            </ul>
+          </section>
+        `;
+      }).join('');
+
+      root.innerHTML = html || '<p style="opacity:.85">Noch keine Eröffnungen veröffentlicht.</p>';
+    }
+    renderLists();
+  </script>
+
+  <!-- Mobiler + Button (Bottom-Sheet) -->
+  <script>
+    (function(){
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      const backdrop = sheet?.querySelector('.sheet-backdrop');
+      const panel = sheet?.querySelector('.sheet-panel');
+
+      const open = () => {
+        if (!sheet) return;
+        sheet.hidden = false;
+        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
+        fab?.setAttribute('aria-expanded','true');
+      };
+      const close = () => {
+        if (!sheet) return;
+        sheet.removeAttribute('data-open');
+        fab?.setAttribute('aria-expanded','false');
+        setTimeout(() => { sheet.hidden = true; }, 200);
+      };
+
+      fab?.addEventListener('click', () => {
+        if (sheet.hidden) open(); else close();
+      });
+      backdrop?.addEventListener('click', close);
+      panel?.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sheet.hidden) close();
+      });
+    })();
+  </script>
+</body>
+</html>
