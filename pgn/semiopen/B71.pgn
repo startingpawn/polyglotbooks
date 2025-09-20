@@ -1,0 +1,13 @@
+[Event "ECO B71 – Levenfish Attack"]
+[Site "Starting Pawn"]
+[Date "2025.09.20"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "B71"]
+[Opening "Sicilian Defense"]
+[Variation "Levenfish Attack"]
+[OpeningDe "Levenfish-Angriff"]
+
+1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.f4 *
