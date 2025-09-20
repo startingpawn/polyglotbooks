@@ -464,6 +464,28 @@
       return null;
     }
 
+    /* --- NEU: Namen kommen aus italian.json --- */
+    let ITA_NAME_BY_ECO = Object.create(null);
+
+    function buildItalianNameMap(italianJson){
+      const map = Object.create(null);
+      const add = (it) => {
+        const eco = String(it?.eco || '').toUpperCase();
+        const nm = it?.name || it?.name_de || it?.name_en;
+        if (withinItalianEco(eco) && nm) map[eco] = nm;
+      };
+      if (Array.isArray(italianJson)) {
+        for (const sec of italianJson) {
+          if (Array.isArray(sec.items)) sec.items.forEach(add);
+          if (Array.isArray(sec.groups)) sec.groups.forEach(g => {
+            if (Array.isArray(g.items)) g.items.forEach(add);
+          });
+        }
+      }
+      return map;
+    }
+    /* --- ENDE neu --- */
+
     const ECO_NAMES = {
       C50: 'Italienische Partie',
       C51: 'Evans-Gambit',
@@ -482,8 +504,9 @@
       const img = fixPath(it.image || '/assets/logo.png');
       const hasBoard = (it.pgn || it.pgnFile);
       const eco = String(it.eco||'').toUpperCase();
-      const displayName =
-        (!it.name || looksGenericItalian(it.name)) ? (ECO_NAMES[eco] || it.name || 'Variante') : it.name;
+
+      /* geändert: Name ausschließlich aus italian.json (Fallback ECO_NAMES) */
+      const displayName = ITA_NAME_BY_ECO[eco] || ECO_NAMES[eco] || 'Variante';
 
       const media = hasBoard
         ? `<div class="auto-board not-initialized"
@@ -585,15 +608,29 @@
 
     (async () => {
       const root = document.getElementById('app');
-      const url = '/data/openings.json?v=' + Date.now();
+
+      const urlOpenings = '/data/openings.json?v=' + Date.now();
+      const urlItalian  = '/data/italian.json?v=' + Date.now(); /* NEU: Quelle für Variantennamen */
+
       try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
-        const text = await res.text();
-        const json = JSON.parse(text);
-        renderItalian(json);
+        const [resOpen, resIt] = await Promise.all([
+          fetch(urlOpenings, { cache: 'no-store' }),
+          fetch(urlItalian,  { cache: 'no-store' })
+        ]);
+
+        if (!resOpen.ok) throw new Error(`${urlOpenings} → HTTP ${resOpen.status}`);
+        if (!resIt.ok)   throw new Error(`${urlItalian} → HTTP ${resIt.status}`);
+
+        const [txtOpen, txtIt] = await Promise.all([resOpen.text(), resIt.text()]);
+        const jsonOpen = JSON.parse(txtOpen);
+        const jsonIt   = JSON.parse(txtIt);
+
+        /* Namen-Map aus italian.json bauen */
+        ITA_NAME_BY_ECO = buildItalianNameMap(jsonIt);
+
+        renderItalian(jsonOpen);
       } catch (e) {
-        root.insertAdjacentHTML('beforeend', `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`);
+        root.insertAdjacentHTML('beforeend', `<p>Konnte Daten nicht laden:<br><small>${String(e)}</small></p>`);
       }
     })();
   </script>
