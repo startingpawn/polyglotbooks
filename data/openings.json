@@ -116,5 +116,33 @@
         ]
       }
     ]
+  },
+  {
+    "id": "semiopen",
+    "title": "Halboffene Spiele",
+    "desc": "1.e4 – alles außer 1...e5.",
+    "groups": [
+      {
+        "title": "Sizilianisch (B20–B99)",
+        "desc": "Großfamilie nach 1.e4 c5. Screenshots je ECO, ein gemeinsamer .bin-Download.",
+        "bundle": {
+          "file": "books/semiopen/b20-b99-sicilian.zip",
+          "size": "28.4 MB",
+          "label": "Alle B20–B99 (.bin)"
+        },
+        "items": [
+          {
+            "eco": "B20",
+            "name": "Sizilianisch – Grundstellung",
+            "name_en": "Sicilian Defense – starting position",
+            "image": "images/semiopen/B20.png",
+            "file": "books/semiopen/B20.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5",
+            "pgnFile": "pgn/semiopen/B20.pgn"
+          }
+        ]
+      }
+    ]
   }
 ]
