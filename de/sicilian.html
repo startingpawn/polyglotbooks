@@ -35,18 +35,22 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* Header */
+    /* Header - OPTIMIERT mit Sticky & Glasmorphismus */
     header{
-      max-width:var(--max); width:100%; margin:0 auto;
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
-      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
       background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{ width:48px;height:48px;border-radius:50%;
+    .logo{
+      width:48px;height:48px;border-radius:50%;
       background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
       box-shadow:0 0 24px rgba(229,9,20,.35)
     }
@@ -61,13 +65,22 @@
 
     /* Breadcrumbs */
     .crumbs{
-      max-width:var(--max); width:100%; margin:0 auto; padding:0 1rem .8rem;
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem .8rem;
       color:#aeb3bf;font-size:.92rem
     }
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
 
-    main{ max-width:var(--max); width:100%; margin:0 auto; padding:0 1rem 3rem; flex:1; }
-
+    main{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem 3rem;
+      flex:1;
+    }
+    
     /* LANDSCAPE OPTIMIERUNG */
     @media (orientation: landscape) and (max-height: 768px){
       header{ padding:0.8rem 1rem 0.5rem; }
@@ -84,6 +97,8 @@
       .ctr{ width:40px; height:40px; }
       footer{ margin:0.5rem auto 1rem; }
     }
+    
+    /* Mobile Landscape (Smartphones) */
     @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
       main{ padding:0 0.8rem 1.5rem; }
       .top-head{ margin:0.3rem 0 0.8rem; padding:0.8rem; }
@@ -101,26 +116,53 @@
 
     /* Header über den Boards */
     .top-head{
-      margin:.6rem 0 2rem; padding:1.2rem 1.3rem;
-      border:var(--border) solid #222737; border-radius:var(--radius);
+      margin:.6rem 0 2rem;
+      padding:1.2rem 1.3rem;
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
       background:
         radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
         linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, 
         var(--panel);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+      display:flex; 
+      align-items:flex-start; 
+      justify-content:space-between; 
+      gap:1rem; 
+      flex-wrap:wrap;
       transition:transform .2s ease, box-shadow .2s ease;
       box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
     }
-    .top-head:hover{ transform:translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12); }
-    .top-title{ margin:.1rem 0 .8rem; font-size:1.2rem; padding-left:1.15rem; text-wrap:balance; }
-    .top-desc{ margin:.1rem 0 0; color:#c9cbd3; padding-left:1.15rem; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
-    .top-head .dl-btn{ align-self:flex-start; margin-left:1.15rem; }
+    .top-head:hover{ 
+      transform:translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12);
+    }
+    .top-title{ 
+      margin:.1rem 0 .8rem;
+      font-size:1.2rem;
+      padding-left:1.15rem;          /* Einrückung wie Startseite */
+      text-wrap:balance;
+    }
+    .top-desc{ 
+      margin:.1rem 0 0; 
+      color:#c9cbd3;
+      padding-left:1.15rem;          /* Einrückung wie Startseite */
+      text-wrap:balance;
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+    /* Button ebenfalls einrücken (wenn er unter den Text umbricht) */
+    .top-head .dl-btn{
+      align-self:flex-start;
+      margin-left:1.15rem;
+    }
 
     .dl-btn{
       display:inline-flex; align-items:center; gap:.45rem;
-      padding:.5rem .75rem; border-radius:12px; font-weight:700; font-size:.95rem;
+      padding:.5rem .75rem;
+      border-radius:12px; font-weight:700; font-size:.95rem;
       background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; border:none; white-space:nowrap; text-decoration:none;
+      color:#fff; border:none; text-decoration:none; white-space:nowrap;
       box-shadow:0 8px 18px rgba(229,9,20,.24);
       transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
@@ -128,8 +170,14 @@
     .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
 
     /* Grid */
-    .cards-grid{ display:grid; gap:1.5rem; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); }
-    @media (min-width: 980px){ .cards-grid{ grid-template-columns:repeat(3, 1fr); gap:1.8rem; } }
+    .cards-grid{
+      display:grid; 
+      gap:1.5rem;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    }
+    @media (min-width: 980px){
+      .cards-grid{ grid-template-columns:repeat(3, 1fr); gap:1.8rem; }
+    }
 
     /* Karte */
     .eco-card{
@@ -140,24 +188,43 @@
       transition:.15s ease;
       box-shadow: 0 1px 3px rgba(0,0,0,0.15), 0 8px 20px rgba(229,9,20,0.04);
     }
-    .eco-card:hover{ box-shadow:var(--ring), 0 10px 30px rgba(229,9,20,.20); transform:translateY(-2px); background:linear-gradient(135deg, #111319 0%, #141623 100%); }
-    .thumb{ width:100%; aspect-ratio:16/10; background:#121420; display:flex; align-items:center; justify-content:center; border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box }
+    .eco-card:hover{ 
+      box-shadow:var(--ring), 0 10px 30px rgba(229,9,20,.20); 
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, #111319 0%, #141623 100%);
+    }
+    .thumb{
+      width:100%;
+      aspect-ratio:16/10; background:#121420;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box
+    }
     .thumb-board{ aspect-ratio:auto; padding:0 }
     .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
     .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
 
     /* Board */
     .auto-board{ width:100%; display:block; cursor:default }
-    .auto-board chess-board{ display:block; width:100%; aspect-ratio:1 / 1; min-height:180px; }
+    .auto-board chess-board{
+      display:block;
+      width:100%;
+      aspect-ratio:1 / 1;
+      min-height:180px;
+    }
     .auto-board.not-initialized { opacity: 0.7; }
     .auto-board.initialized { opacity: 1; transition: opacity 0.3s ease; }
 
     /* Player */
-    .player{ border-top:1px solid #1e2230; background:linear-gradient(180deg, #0f1117, #0d0f14); padding:.7rem .85rem .75rem; }
+    .player{ 
+      border-top:1px solid #1e2230; 
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+      padding:.7rem .85rem .75rem;
+    }
     .controls{ display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
     .ctrls-left{ display:flex; gap:.45rem; align-items:center; flex-wrap:wrap }
     .ctr{
-      width:44px; height:44px; border-radius:12px; border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
+      width:44px; height:44px; border-radius:12px;
+      border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
       font-size:0; line-height:0; display:inline-grid; place-items:center;
     }
     .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
@@ -171,36 +238,66 @@
     .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
     .chip.error{background:#d32f2f; border:none}
 
-    .info{ padding:.8rem 1rem 1rem; color:#dfe1e7; border-top:1px solid #1e2230; display:flex; flex-direction:column; gap:.35rem; background:linear-gradient(180deg, #0f1117, #0d0f14); }
+    .info{ 
+      padding:.8rem 1rem 1rem;
+      color:#dfe1e7;
+      border-top:1px solid #1e2230; 
+      display:flex; flex-direction:column; gap:.35rem;
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+    }
     .name{font-weight:650}
     .line{color:#b6bac6;font-size:.92rem}
 
     /* Footer */
-    footer{ max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem; color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center; }
+    footer{
+      max-width:var(--max);
+      width:100%;
+      margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem; padding:0 1rem;
+      text-align:center;
+    }
 
-    /* FAB + Sheet */
+    /* MOBILER + BUTTON */
     .fab{
-      position:fixed; right:16px; bottom:16px; z-index:60; width:56px; height:56px; border-radius:50%;
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
       display:none; place-items:center; user-select:none; cursor:pointer;
-      background:linear-gradient(180deg, #1b2230, #121a26); color:#e9eaee; font-size:34px; line-height:1;
-      border:1px solid #2b3240; box-shadow:0 6px 16px rgba(0,0,0,.35);
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
-    .fab:hover{ transform:translateY(-1px); box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16); }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
+    }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
-    @media (max-width: 979px){ .topnav{ display:none } .fab{ display:grid } }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
 
+    /* Bottom-Sheet Menü */
     .sheet{ position:fixed; inset:0; z-index:55; }
     .sheet[hidden]{ display:none }
-    .sheet-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease; backdrop-filter:blur(2px); }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
     .sheet-panel{
-      position:absolute; left:0; right:0; bottom:0; background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
-      padding:1rem; transform:translateY(100%); transition:transform .2s ease; box-shadow:0 -12px 30px rgba(0,0,0,.5);
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
     }
     .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
     .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
     .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
-    .sheet-panel a{ padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee; text-decoration:none; font-weight:600; }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
   </style>
 
@@ -277,6 +374,7 @@
     document.getElementById('fab')?.addEventListener('click', function() {
       const sheet = document.getElementById('sheet');
       const isOpen = sheet.dataset.open === 'true';
+      
       if (isOpen) {
         sheet.dataset.open = 'false';
         this.setAttribute('aria-expanded', 'false');
@@ -299,210 +397,238 @@
     });
   </script>
 
-  <!-- JSON-Loader + Render: Namen/Zugfolgen jetzt aus sicilian.json -->
+  <!-- JSON-Loader + Render (Sizilianisch B20–B99) -->
   <script>
-    // Hilfsfunktionen
-    const fixPath = p => (typeof p === 'string' ? (p.startsWith('/') ? p : '/' + p.trim()) : p);
+    const qs = new URLSearchParams(location.search);
+    const Q_ID = (qs.get('id') || 'sicilian').toLowerCase();
+    const Q_TXT = (qs.get('q') || 'sizilian').toLowerCase(); // deutsch/engl. Erkennung unten
+
+    // Immer root-absolute Pfade erzeugen
+    const fixPath = p => {
+      if (typeof p !== 'string') return p;
+      p = p.trim();
+      return p.startsWith('/') ? p : '/' + p;
+    };
+
     const withinSicilianEco = (eco) => {
       const m = String(eco||'').trim().toUpperCase().match(/^B(\d{2})$/);
       if (!m) return false;
       const n = parseInt(m[1], 10);
-      return n >= 20 && n <= 99;
+      return n >= 20 && n <= 99; // B20–B99
     };
-    const ECO_NAME_DEFAULT = 'Sizilianische Verteidigung';
-    const looksGenericSicilian = (s='') => /(sizilian|sicilian)/i.test(s);
-
-    // Erzeuge vollständige ECO-Liste B20..B99
-    const ECO_RANGE = Array.from({length: 80}, (_, i) => `B${String(i + 20).padStart(2,'0')}`);
 
     function flattenItemsWithBundle(op){
       const items = [];
-      if (Array.isArray(op?.items)) items.push(...op.items);
-      if (Array.isArray(op?.groups)) {
+      if (Array.isArray(op.items)) items.push(...op.items);
+      if (Array.isArray(op.groups)) {
         for (const g of op.groups) {
           const gItems = Array.isArray(g.items) ? g.items : [];
           const bundleFile = g?.bundle?.file || g?.file || null;
-          for (const it of gItems) items.push({ ...it, file: it.file || bundleFile || it.file });
+          for (const it of gItems) {
+            items.push({ ...it, file: it.file || bundleFile || it.file });
+          }
         }
       }
       return items;
     }
 
     function pickSicilian(openings){
-      // finde den "Sizilianisch"-Block für Bundle-Metadaten (optional)
+      // 1) nach id
+      let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
+      if (op) return op;
+      // 2) nach Text (de/en)
       const rx = /(sizilian|sicilian)/i;
-      return openings.find(o => rx.test(o?.title||'') || rx.test(o?.desc||'') ||
-                                flattenItemsWithBundle(o).some(it => withinSicilianEco(it.eco))) || null;
+      op = openings.find(o => rx.test(o.title||'') || rx.test(o.desc||''));
+      if (op) return op;
+      // 3) nach ECO-Bereich B20–B99
+      op = openings.find(o => flattenItemsWithBundle(o).some(it => withinSicilianEco(it.eco)));
+      return op || null;
     }
 
-    function flattenSicil(sicil){
-      // sicilian.json kann entweder ein Objekt mit items/groups oder ein Array davon sein
-      const out = [];
-      const collect = (node) => {
-        if (!node) return;
-        if (Array.isArray(node.items)) out.push(...node.items);
-        if (Array.isArray(node.groups)) node.groups.forEach(collect);
-      };
-      if (Array.isArray(sicil)) sicil.forEach(collect);
-      else collect(sicil);
-      return out;
+    function filterStrictSicilian(op){
+      const clone = JSON.parse(JSON.stringify(op||{}));
+      if (Array.isArray(clone.items)) {
+        clone.items = clone.items.filter(it => withinSicilianEco(it.eco));
+      }
+      if (Array.isArray(clone.groups)) {
+        clone.groups = clone.groups.map(g => {
+          const g2 = { ...g };
+          g2.items = Array.isArray(g.items) ? g.items.filter(it => withinSicilianEco(it.eco)) : [];
+          return g2;
+        }).filter(g => Array.isArray(g.items) && g.items.length > 0);
+      }
+      return clone;
     }
 
-    function buildItems(openings, sicil){
-      // Öffnungsdaten (nur für Bundle & evtl. Bilder)
-      const op = pickSicilian(openings || []);
-      const metaOpen = new Map();
-      if (op){
-        for (const it of flattenItemsWithBundle(op)){
-          const eco = String(it.eco||'').toUpperCase();
-          if (withinSicilianEco(eco)) metaOpen.set(eco, it);
-        }
-      }
-
-      // Namen & Zugfolgen jetzt aus sicilian.json
-      const metaSicil = new Map();
-      for (const it of flattenSicil(sicil || [])){
-        const eco = String(it.eco||'').toUpperCase();
-        if (withinSicilianEco(eco)) metaSicil.set(eco, it);
-      }
-
-      // Für JEDEN ECO einen Player mit PGN aus /semiopen/<ECO>.pgn
-      const items = ECO_RANGE.map(eco => {
-        const s = metaSicil.get(eco) || {};
-        const o = metaOpen.get(eco) || {};
-        const name = (!s.name || looksGenericSicilian(s.name)) ? (o.name && !looksGenericSicilian(o.name) ? o.name : ECO_NAME_DEFAULT) : s.name;
-        return {
-          eco,
-          name,
-          line: s.line || o.line || '',
-          image: o.image || s.image || '',
-          // Wichtig: PGNs liegen im Ordner "semiopen"
-          pgnFile: `/pgn/semiopen/${eco}.pgn`,
-          pgnIndex: Number.isInteger(s.pgnIndex) ? s.pgnIndex : (Number.isInteger(o.pgnIndex) ? o.pgnIndex : 0)
-        };
-      });
-
-      // Bundle-Datei optional weiterhin aus openings.json
-      let bundle = null;
+    function pickBundle(op){
       if (op?.bundle?.file) {
-        bundle = { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle B20–B99 (.bin)' };
-      } else if (Array.isArray(op?.groups)) {
+        return { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle B20–B99 (.bin)' };
+      }
+      if (Array.isArray(op?.groups)) {
         for (const g of op.groups) {
           const file = g?.bundle?.file || g?.file || '';
-          if (file) { bundle = { file: fixPath(file), label: g?.bundle?.label || g?.label || 'Alle B20–B99 (.bin)' }; break; }
+          if (file) return { file: fixPath(file), label: g?.bundle?.label || g?.label || 'Alle B20–B99 (.bin)' };
         }
       }
-      return { items, bundle };
+      return null;
     }
 
+    // Fallback-Namen: wenn in data/openings.json kein Name gesetzt ist
+    const ECO_NAME_DEFAULT = 'Sizilianische Verteidigung';
+    const ECO_NAMES = {
+      B20: ECO_NAME_DEFAULT
+      // Optional später feinere Zuordnungen ergänzen (B21 Grand-Prix, B22–B26 Alapin, usw.)
+    };
+    const looksGenericSicilian = (s='') => /(sizilian|sicilian)/i.test(s);
+
     function card(it){
-      const eco = String(it.eco||'').toUpperCase();
       const img = fixPath(it.image || '/assets/logo.png');
-      const displayName = it.name || ECO_NAME_DEFAULT;
+      const eco = String(it.eco||'').toUpperCase();
 
-      const media = `
-        <div class="auto-board not-initialized"
-             data-pgnfile="${encodeURIComponent(it.pgnFile)}"
-             ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : '' }
+      // PGNs liegen im Ordner /pgn/semiopen – automatisch nach ECO-Dateinamen suchen
+      const pgnAutoFile = `/pgn/semiopen/${eco}.pgn`;
+      const pgnFile = it.pgnFile ? fixPath(it.pgnFile) : pgnAutoFile;
+      const hasBoard = !!(it.pgn || eco); // wir versuchen für jedes ECO eine PGN zu laden
+
+      const displayName =
+        (!it.name || looksGenericSicilian(it.name)) ? (ECO_NAMES[eco] || ECO_NAME_DEFAULT) : it.name;
+
+      const media = hasBoard
+        ? `<div class="auto-board not-initialized"
+             ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : `data-pgnfile="${encodeURIComponent(pgnFile)}"`}
+             ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
              title="Züge abspielen">
-          <chess-board class="cb-mini"></chess-board>
-        </div>`;
+             <chess-board class="cb-mini"></chess-board>
+           </div>`
+        : `<div class="thumb">
+             <img loading="lazy" src="${img}" alt="Screenshot ${eco}: ${displayName}"
+                  onerror="this.onerror=null; this.src='/assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+           </div>`;
 
-      const player = `
+      const player = hasBoard ? `
         <div class="player" data-player>
           <div class="controls">
             <div class="ctrls-left">
               <button class="ctr" data-first title="Zum Anfang" aria-label="Zum Anfang">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
+                </svg>
               </button>
               <button class="ctr" data-prev title="Zug zurück" aria-label="Zug zurück">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
               </button>
               <button class="ctr" data-play title="Abspielen" aria-label="Abspielen">
-                <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
               </button>
               <button class="ctr" data-next title="Zug vor" aria-label="Zug vor">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                </svg>
               </button>
               <button class="ctr" data-last title="Zum Ende" aria-label="Zum Ende">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
+                </svg>
               </button>
             </div>
             <div class="ctrls-right"><span class="counter" data-counter>0/0</span></div>
           </div>
-        </div>`;
+        </div>` : '';
+
+      const tagOpen  = `<div class="eco-card" data-eco="${eco}" tabindex="0" title="${displayName}">`;
+      const tagClose = `</div>`;
 
       return `
-        <div class="eco-card" data-eco="${eco}" tabindex="0" title="${displayName}">
-          <div class="thumb thumb-board">${media}</div>
+        ${tagOpen}
+          ${hasBoard ? `<div class="thumb thumb-board">${media}</div>` : media}
           ${player}
           <div class="badges">
-            <span class="chip eco">${eco}</span>
+            ${eco ? `<span class="chip eco">${eco}</span>` : ''}
           </div>
           <div class="info">
             <div class="name">${displayName}</div>
             ${it.line ? `<div class="line">${it.line}</div>` : ''}
           </div>
-        </div>`;
+        ${tagClose}`;
     }
 
-    function renderAll(openings, sicil){
+    function renderSicilian(openings){
       const root = document.getElementById('app');
-      const { items, bundle } = buildItems(Array.isArray(openings) ? openings : [], sicil);
+      if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
+
+      const opRaw = pickSicilian(openings);
+      if (!opRaw){
+        const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Ohne Titel'}`).join('<br>');
+        root.innerHTML = `<p>Keine sizilianische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
+        return;
+      }
+
+      const op = filterStrictSicilian(opRaw);
+      const bundle = pickBundle(op);
+      let items = flattenItemsWithBundle(op).filter(it => withinSicilianEco(it.eco));
 
       let html = '';
       html += `<section class="top-head">
         <div>
           <h2 class="top-title">Sizilianisch (B20–B99)</h2>
-          <p class="top-desc">Dynamisch, asymmetrisch und der populärste Gegenangriff auf 1.e4.</p>
+          <p class="top-desc">1.e4 c5 – dynamisch, asymmetrisch und der populärste Gegenangriff auf 1.e4.</p>
         </div>
         ${bundle && bundle.file ? `<a class="dl-btn" href="/de/download.html?file=${encodeURIComponent(bundle.file)}">Download (.zip)</a>` : ``}
       </section>`;
 
-      html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
+      if (!items.length){
+        html += `<p>Für Sizilianisch (B20–B99) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>/data/openings.json</code>.</p>`;
+      } else {
+        html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
+      }
       root.innerHTML = html;
 
       document.dispatchEvent(new Event('openings-rendered'));
     }
 
     (async () => {
-      // Öffnungsdaten werden weiterhin optional für Bundle genutzt (openings.json),
-      // Namen & Zugfolgen kommen jetzt aus sicilian.json.
-      let openings = [];
-      let sicil = null;
-
-      // openings.json (optional, für Bundle/Bilder)
+      const root = document.getElementById('app');
+      const url = '/data/openings.json?v=' + Date.now();
       try {
-        const urlOpen = '/data/openings.json?v=' + Date.now();
-        const resOpen = await fetch(urlOpen, { cache: 'no-store' });
-        if (resOpen.ok) openings = JSON.parse(await resOpen.text());
-      } catch (_) {}
-
-      // sicilian.json (verbindlich für Namen & Linien, wenn vorhanden)
-      try {
-        const urlSic = '/data/sicilian.json?v=' + Date.now();
-        const resSic = await fetch(urlSic, { cache: 'no-store' });
-        if (!resSic.ok) throw new Error(`${urlSic} → HTTP ${resSic.status}`);
-        sicil = JSON.parse(await resSic.text());
-      } catch (_) {
-        sicil = null; // Fallback: ohne Namen/Linien
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
+        const text = await res.text();
+        const json = JSON.parse(text);
+        renderSicilian(json);
+      } catch (e) {
+        root.insertAdjacentHTML('beforeend', `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`);
       }
-
-      renderAll(openings, sicil);
     })();
   </script>
 
   <!-- Optimized Board & Player Module -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
+
     const INTERVAL = 1800;
+    
     const activeTimers = new Set();
     const boardControllers = new WeakMap();
 
     const sfx = (() => {
       const a = new Audio('/assets/sfx/move.mp3');
-      a.preload = 'auto'; a.volume = 0.35;
-      return { enabled:true, play(){ try{ if(this.enabled){ a.currentTime=0; a.play().catch(()=>{});} }catch(_){} } };
+      a.preload = 'auto';
+      a.volume = 0.35;
+      return { 
+        enabled: true, 
+        play() { 
+          try { 
+            if (this.enabled) {
+              a.currentTime = 0;
+              a.play().catch(() => {});
+            }
+          } catch(_) {} 
+        } 
+      };
     })();
 
     window.addEventListener('beforeunload', () => {
@@ -684,7 +810,6 @@
       if (!board || !card) return;
       wrap.classList.add('initializing');
 
-      // warten bis Größe bekannt
       let sized = false;
       for (let i = 0; i < 20; i++) {
         const w = board.getBoundingClientRect().width;
@@ -693,7 +818,6 @@
       }
       if (!sized) { wrap.classList.remove('initializing'); return; }
 
-      // PGN laden
       let pgn = '';
       const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
       const pgnFile = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
