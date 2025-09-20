@@ -482,9 +482,7 @@
       const img = fixPath(it.image || '/assets/logo.png');
       const hasBoard = (it.pgn || it.pgnFile);
       const eco = String(it.eco||'').toUpperCase();
-      const displayName =
-        (!it.name || looksGenericItalian(it.name)) ? (ECO_NAMES[eco] || it.name || 'Variante') : it.name;
-
+      const displayName = it.name || ECO_NAMES[eco] || 'Variante';
       const media = hasBoard
         ? `<div class="auto-board not-initialized"
              ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
