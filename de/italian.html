@@ -428,11 +428,11 @@
     }
 
     function pickItalian(openings){
-      let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
+      let op = italian.find(o => (o.id||'').toLowerCase() === Q_ID);
       if (op) return op;
-      op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
+      op = italian.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
-      op = openings.find(o => flattenItemsWithBundle(o).some(it => withinItalianEco(it.eco)));
+      op = italian.find(o => flattenItemsWithBundle(o).some(it => withinItalianEco(it.eco)));
       return op || null;
     }
 
