@@ -140,6 +140,796 @@
             "size": "1.2 MB",
             "line": "1.e4 c5",
             "pgnFile": "pgn/semiopen/B20.pgn"
+          },
+          {
+            "eco": "B21",
+            "name": "Smith–Morra-Gambit",
+            "name_en": "Smith–Morra Gambit",
+            "image": "images/semiopen/B21.png",
+            "file": "books/semiopen/B21.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.d4 cxd4 3.c3",
+            "pgnFile": "pgn/semiopen/B21.pgn"
+          },
+          {
+            "eco": "B22",
+            "name": "Alapin-Variante",
+            "name_en": "Alapin Variation",
+            "image": "images/semiopen/B22.png",
+            "file": "books/semiopen/B22.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.c3",
+            "pgnFile": "pgn/semiopen/B22.pgn"
+          },
+          {
+            "eco": "B23",
+            "name": "Geschlossene Sizilianisch",
+            "name_en": "Closed Sicilian",
+            "image": "images/semiopen/B23.png",
+            "file": "books/semiopen/B23.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nc3",
+            "pgnFile": "pgn/semiopen/B23.pgn"
+          },
+          {
+            "eco": "B24",
+            "name": "Geschlossene Sizilianisch – 3.g3",
+            "name_en": "Closed Sicilian – 3.g3",
+            "image": "images/semiopen/B24.png",
+            "file": "books/semiopen/B24.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nc3 Nc6 3.g3",
+            "pgnFile": "pgn/semiopen/B24.pgn"
+          },
+          {
+            "eco": "B25",
+            "name": "Geschlossene Sizilianisch – Botwinnik-System",
+            "name_en": "Closed Sicilian – Botvinnik System",
+            "image": "images/semiopen/B25.png",
+            "file": "books/semiopen/B25.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.d3 d6",
+            "pgnFile": "pgn/semiopen/B25.pgn"
+          },
+          {
+            "eco": "B26",
+            "name": "Geschlossene Sizilianisch – 6.Be3",
+            "name_en": "Closed Sicilian – 6.Be3",
+            "image": "images/semiopen/B26.png",
+            "file": "books/semiopen/B26.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.d3 d6 6.Be3",
+            "pgnFile": "pgn/semiopen/B26.pgn"
+          },
+          {
+            "eco": "B27",
+            "name": "Quinteros-Variante",
+            "name_en": "Quinteros Variation",
+            "image": "images/semiopen/B27.png",
+            "file": "books/semiopen/B27.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Qc7",
+            "pgnFile": "pgn/semiopen/B27.pgn"
+          },
+          {
+            "eco": "B28",
+            "name": "O’Kelly-Variante",
+            "name_en": "O'Kelly Variation",
+            "image": "images/semiopen/B28.png",
+            "file": "books/semiopen/B28.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 a6",
+            "pgnFile": "pgn/semiopen/B28.pgn"
+          },
+          {
+            "eco": "B29",
+            "name": "Nimzowitsch–Rubinstein-Variante",
+            "name_en": "Nimzowitsch–Rubinstein Variation",
+            "image": "images/semiopen/B29.png",
+            "file": "books/semiopen/B29.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nf6",
+            "pgnFile": "pgn/semiopen/B29.pgn"
+          },
+          {
+            "eco": "B30",
+            "name": "Rossolimo-Angriff (ohne …d6)",
+            "name_en": "Nyezhmetdinov–Rossolimo Attack (without …d6)",
+            "image": "images/semiopen/B30.png",
+            "file": "books/semiopen/B30.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.Bb5",
+            "pgnFile": "pgn/semiopen/B30.pgn"
+          },
+          {
+            "eco": "B31",
+            "name": "Rossolimo – mit …g6",
+            "name_en": "Rossolimo – with …g6",
+            "image": "images/semiopen/B31.png",
+            "file": "books/semiopen/B31.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.Bb5 g6",
+            "pgnFile": "pgn/semiopen/B31.pgn"
+          },
+          {
+            "eco": "B32",
+            "name": "Löwenthal-/Kalashnikov-Variante",
+            "name_en": "Labourdonnais–Loewenthal (Kalashnikov) Variation",
+            "image": "images/semiopen/B32.png",
+            "file": "books/semiopen/B32.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 e5",
+            "pgnFile": "pgn/semiopen/B32.pgn"
+          },
+          {
+            "eco": "B33",
+            "name": "Sveshnikov (Pelikan)",
+            "name_en": "Sveshnikov (Pelikan) Variation",
+            "image": "images/semiopen/B33.png",
+            "file": "books/semiopen/B33.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e5",
+            "pgnFile": "pgn/semiopen/B33.pgn"
+          },
+          {
+            "eco": "B34",
+            "name": "Beschleunigter Drache",
+            "name_en": "Accelerated Dragon",
+            "image": "images/semiopen/B34.png",
+            "file": "books/semiopen/B34.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6",
+            "pgnFile": "pgn/semiopen/B34.pgn"
+          },
+          {
+            "eco": "B35",
+            "name": "Beschleunigter Drache – 7.Bc4",
+            "name_en": "Accelerated Dragon – 7.Bc4",
+            "image": "images/semiopen/B35.png",
+            "file": "books/semiopen/B35.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6 5.Nc3 Bg7 6.Be3 Nf6 7.Bc4",
+            "pgnFile": "pgn/semiopen/B35.pgn"
+          },
+          {
+            "eco": "B36",
+            "name": "Beschleunigter Drache – Maroczy-Bind",
+            "name_en": "Accelerated Dragon – Maróczy Bind",
+            "image": "images/semiopen/B36.png",
+            "file": "books/semiopen/B36.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6 5.c4",
+            "pgnFile": "pgn/semiopen/B36.pgn"
+          },
+          {
+            "eco": "B37",
+            "name": "Beschleunigter Drache – Maroczy-Bind",
+            "name_en": "Accelerated Dragon – Maróczy Bind",
+            "image": "images/semiopen/B37.png",
+            "file": "books/semiopen/B37.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6 5.c4 Bg7",
+            "pgnFile": "pgn/semiopen/B37.pgn"
+          },
+          {
+            "eco": "B38",
+            "name": "Beschleunigter Drache – Maroczy-Bind",
+            "name_en": "Accelerated Dragon – Maróczy Bind",
+            "image": "images/semiopen/B38.png",
+            "file": "books/semiopen/B38.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6 5.c4 Bg7 6.Be3",
+            "pgnFile": "pgn/semiopen/B38.pgn"
+          },
+          {
+            "eco": "B39",
+            "name": "Beschleunigter Drache – Maroczy-Bind",
+            "name_en": "Accelerated Dragon – Maróczy Bind",
+            "image": "images/semiopen/B39.png",
+            "file": "books/semiopen/B39.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6 5.c4 Bg7 6.Be3 Nf6 7.Nc3 Ng4",
+            "pgnFile": "pgn/semiopen/B39.pgn"
+          },
+          {
+            "eco": "B40",
+            "name": "Sizilianisch mit 2…e6",
+            "name_en": "Sicilian with 2…e6",
+            "image": "images/semiopen/B40.png",
+            "file": "books/semiopen/B40.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6",
+            "pgnFile": "pgn/semiopen/B40.pgn"
+          },
+          {
+            "eco": "B41",
+            "name": "Kan-Variante",
+            "name_en": "Kan Variation",
+            "image": "images/semiopen/B41.png",
+            "file": "books/semiopen/B41.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 a6",
+            "pgnFile": "pgn/semiopen/B41.pgn"
+          },
+          {
+            "eco": "B42",
+            "name": "Kan-Variante – 5.Bd3",
+            "name_en": "Kan Variation – 5.Bd3",
+            "image": "images/semiopen/B42.png",
+            "file": "books/semiopen/B42.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 a6 5.Bd3",
+            "pgnFile": "pgn/semiopen/B42.pgn"
+          },
+          {
+            "eco": "B43",
+            "name": "Kan-Variante – 5.Nc3",
+            "name_en": "Kan Variation – 5.Nc3",
+            "image": "images/semiopen/B43.png",
+            "file": "books/semiopen/B43.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 a6 5.Nc3",
+            "pgnFile": "pgn/semiopen/B43.pgn"
+          },
+          {
+            "eco": "B44",
+            "name": "Paulsen/Taimanov-Variante",
+            "name_en": "Paulsen/Taimanov Variation",
+            "image": "images/semiopen/B44.png",
+            "file": "books/semiopen/B44.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6",
+            "pgnFile": "pgn/semiopen/B44.pgn"
+          },
+          {
+            "eco": "B45",
+            "name": "Paulsen/Taimanov-Variante – 5.Nc3",
+            "name_en": "Paulsen/Taimanov Variation – 5.Nc3",
+            "image": "images/semiopen/B45.png",
+            "file": "books/semiopen/B45.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6 5.Nc3",
+            "pgnFile": "pgn/semiopen/B45.pgn"
+          },
+          {
+            "eco": "B46",
+            "name": "Paulsen/Taimanov-Variante – …a6",
+            "name_en": "Paulsen/Taimanov Variation – …a6",
+            "image": "images/semiopen/B46.png",
+            "file": "books/semiopen/B46.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6 5.Nc3 a6",
+            "pgnFile": "pgn/semiopen/B46.pgn"
+          },
+          {
+            "eco": "B47",
+            "name": "Paulsen/Taimanov-Variante – …Qc7",
+            "name_en": "Paulsen/Taimanov Variation – …Qc7",
+            "image": "images/semiopen/B47.png",
+            "file": "books/semiopen/B47.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6 5.Nc3 Qc7",
+            "pgnFile": "pgn/semiopen/B47.pgn"
+          },
+          {
+            "eco": "B48",
+            "name": "Paulsen/Taimanov-Variante – 6.Be3",
+            "name_en": "Paulsen/Taimanov Variation – 6.Be3",
+            "image": "images/semiopen/B48.png",
+            "file": "books/semiopen/B48.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6 5.Nc3 Qc7 6.Be3",
+            "pgnFile": "pgn/semiopen/B48.pgn"
+          },
+          {
+            "eco": "B49",
+            "name": "Paulsen/Taimanov-Variante – 6.Be3 a6 7.Be2",
+            "name_en": "Paulsen/Taimanov Variation – 6.Be3 a6 7.Be2",
+            "image": "images/semiopen/B49.png",
+            "file": "books/semiopen/B49.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6 5.Nc3 Qc7 6.Be3 a6 7.Be2",
+            "pgnFile": "pgn/semiopen/B49.pgn"
+          },
+          {
+            "eco": "B50",
+            "name": "Sizilianisch mit 2…d6",
+            "name_en": "Sicilian with 2…d6",
+            "image": "images/semiopen/B50.png",
+            "file": "books/semiopen/B50.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6",
+            "pgnFile": "pgn/semiopen/B50.pgn"
+          },
+          {
+            "eco": "B51",
+            "name": "Moskauer Variante",
+            "name_en": "Moscow Variation",
+            "image": "images/semiopen/B51.png",
+            "file": "books/semiopen/B51.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.Bb5+",
+            "pgnFile": "pgn/semiopen/B51.pgn"
+          },
+          {
+            "eco": "B52",
+            "name": "Moskauer Variante – 3…Bd7",
+            "name_en": "Moscow Variation – 3…Bd7",
+            "image": "images/semiopen/B52.png",
+            "file": "books/semiopen/B52.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.Bb5+ Bd7",
+            "pgnFile": "pgn/semiopen/B52.pgn"
+          },
+          {
+            "eco": "B53",
+            "name": "Chekhover-Variante",
+            "name_en": "Chekhover Variation",
+            "image": "images/semiopen/B53.png",
+            "file": "books/semiopen/B53.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Qxd4",
+            "pgnFile": "pgn/semiopen/B53.pgn"
+          },
+          {
+            "eco": "B54",
+            "name": "Sizilianisch – offen",
+            "name_en": "Sicilian – Open",
+            "image": "images/semiopen/B54.png",
+            "file": "books/semiopen/B54.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4",
+            "pgnFile": "pgn/semiopen/B54.pgn"
+          },
+          {
+            "eco": "B55",
+            "name": "Sizilianisch – 5.f3 e5 6.Bb5",
+            "name_en": "Sicilian – 5.f3 e5 6.Bb5",
+            "image": "images/semiopen/B55.png",
+            "file": "books/semiopen/B55.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.f3 e5 6.Bb5",
+            "pgnFile": "pgn/semiopen/B55.pgn"
+          },
+          {
+            "eco": "B56",
+            "name": "Sizilianisch – 5.Nc3",
+            "name_en": "Sicilian – 5.Nc3",
+            "image": "images/semiopen/B56.png",
+            "file": "books/semiopen/B56.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3",
+            "pgnFile": "pgn/semiopen/B56.pgn"
+          },
+          {
+            "eco": "B57",
+            "name": "Sozin-Variante",
+            "name_en": "Sozin Variation",
+            "image": "images/semiopen/B57.png",
+            "file": "books/semiopen/B57.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bc4",
+            "pgnFile": "pgn/semiopen/B57.pgn"
+          },
+          {
+            "eco": "B58",
+            "name": "Sizilianisch – 6.Be2",
+            "name_en": "Sicilian – 6.Be2",
+            "image": "images/semiopen/B58.png",
+            "file": "books/semiopen/B58.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Be2",
+            "pgnFile": "pgn/semiopen/B58.pgn"
+          },
+          {
+            "eco": "B59",
+            "name": "Boleslavsky-Variante",
+            "name_en": "Boleslavsky Variation",
+            "image": "images/semiopen/B59.png",
+            "file": "books/semiopen/B59.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Be2 e5 7.Nb3",
+            "pgnFile": "pgn/semiopen/B59.pgn"
+          },
+          {
+            "eco": "B60",
+            "name": "Richter–Rauzer-Angriff",
+            "name_en": "Richter–Rauzer Attack",
+            "image": "images/semiopen/B60.png",
+            "file": "books/semiopen/B60.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5",
+            "pgnFile": "pgn/semiopen/B60.pgn"
+          },
+          {
+            "eco": "B61",
+            "name": "Richter–Rauzer – …Bd7 7.Qd2",
+            "name_en": "Richter–Rauzer – …Bd7 7.Qd2",
+            "image": "images/semiopen/B61.png",
+            "file": "books/semiopen/B61.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 Bd7 7.Qd2",
+            "pgnFile": "pgn/semiopen/B61.pgn"
+          },
+          {
+            "eco": "B62",
+            "name": "Richter–Rauzer – …e6",
+            "name_en": "Richter–Rauzer – …e6",
+            "image": "images/semiopen/B62.png",
+            "file": "books/semiopen/B62.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6",
+            "pgnFile": "pgn/semiopen/B62.pgn"
+          },
+          {
+            "eco": "B63",
+            "name": "Richter–Rauzer – …e6 7.Qd2",
+            "name_en": "Richter–Rauzer – …e6 7.Qd2",
+            "image": "images/semiopen/B63.png",
+            "file": "books/semiopen/B63.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2",
+            "pgnFile": "pgn/semiopen/B63.pgn"
+          },
+          {
+            "eco": "B64",
+            "name": "Richter–Rauzer – 9.f4",
+            "name_en": "Richter–Rauzer – 9.f4",
+            "image": "images/semiopen/B64.png",
+            "file": "books/semiopen/B64.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 Be7 8.O-O-O O-O 9.f4",
+            "pgnFile": "pgn/semiopen/B64.pgn"
+          },
+          {
+            "eco": "B65",
+            "name": "Richter–Rauzer – …Nd4 10.Qxd4",
+            "name_en": "Richter–Rauzer – …Nd4 10.Qxd4",
+            "image": "images/semiopen/B65.png",
+            "file": "books/semiopen/B65.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 Be7 8.O-O-O O-O 9.f4 Nd4 10.Qxd4",
+            "pgnFile": "pgn/semiopen/B65.pgn"
+          },
+          {
+            "eco": "B66",
+            "name": "Richter–Rauzer – …a6",
+            "name_en": "Richter–Rauzer – …a6",
+            "image": "images/semiopen/B66.png",
+            "file": "books/semiopen/B66.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 a6",
+            "pgnFile": "pgn/semiopen/B66.pgn"
+          },
+          {
+            "eco": "B67",
+            "name": "Richter–Rauzer – …Bd7",
+            "name_en": "Richter–Rauzer – …Bd7",
+            "image": "images/semiopen/B67.png",
+            "file": "books/semiopen/B67.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 a6 8.O-O-O Bd7",
+            "pgnFile": "pgn/semiopen/B67.pgn"
+          },
+          {
+            "eco": "B68",
+            "name": "Richter–Rauzer – 9.f4 Be7",
+            "name_en": "Richter–Rauzer – 9.f4 Be7",
+            "image": "images/semiopen/B68.png",
+            "file": "books/semiopen/B68.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 a6 8.O-O-O Bd7 9.f4 Be7",
+            "pgnFile": "pgn/semiopen/B68.pgn"
+          },
+          {
+            "eco": "B69",
+            "name": "Richter–Rauzer – lange Hauptvariante",
+            "name_en": "Richter–Rauzer – main line",
+            "image": "images/semiopen/B69.png",
+            "file": "books/semiopen/B69.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 Nc6 6.Bg5 e6 7.Qd2 a6 8.O-O-O Bd7 9.f4 Be7 10.Nf3 b5 11.Bxf6",
+            "pgnFile": "pgn/semiopen/B69.pgn"
+          },
+          {
+            "eco": "B70",
+            "name": "Drachenvariante – Grundstellung",
+            "name_en": "Dragon Variation – base",
+            "image": "images/semiopen/B70.png",
+            "file": "books/semiopen/B70.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6",
+            "pgnFile": "pgn/semiopen/B70.pgn"
+          },
+          {
+            "eco": "B71",
+            "name": "Drachen – Levenfish",
+            "name_en": "Dragon – Levenfish",
+            "image": "images/semiopen/B71.png",
+            "file": "books/semiopen/B71.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.f4",
+            "pgnFile": "pgn/semiopen/B71.pgn"
+          },
+          {
+            "eco": "B72",
+            "name": "Drachen – 6.Be3",
+            "name_en": "Dragon – 6.Be3",
+            "image": "images/semiopen/B72.png",
+            "file": "books/semiopen/B72.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3",
+            "pgnFile": "pgn/semiopen/B72.pgn"
+          },
+          {
+            "eco": "B73",
+            "name": "Drachen – Klassische Variante",
+            "name_en": "Dragon – Classical",
+            "image": "images/semiopen/B73.png",
+            "file": "books/semiopen/B73.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.Be2 Nc6 8.O-O",
+            "pgnFile": "pgn/semiopen/B73.pgn"
+          },
+          {
+            "eco": "B74",
+            "name": "Drachen – Klassische Variante …O-O",
+            "name_en": "Dragon – Classical …O-O",
+            "image": "images/semiopen/B74.png",
+            "file": "books/semiopen/B74.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.Be2 Nc6 8.O-O O-O 9.Nb3",
+            "pgnFile": "pgn/semiopen/B74.pgn"
+          },
+          {
+            "eco": "B75",
+            "name": "Drachen – Jugoslawischer Angriff",
+            "name_en": "Dragon – Yugoslav Attack",
+            "image": "images/semiopen/B75.png",
+            "file": "books/semiopen/B75.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.f3",
+            "pgnFile": "pgn/semiopen/B75.pgn"
+          },
+          {
+            "eco": "B76",
+            "name": "Drachen – Jugoslawischer Angriff …O-O",
+            "name_en": "Dragon – Yugoslav Attack …O-O",
+            "image": "images/semiopen/B76.png",
+            "file": "books/semiopen/B76.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.f3 O-O",
+            "pgnFile": "pgn/semiopen/B76.pgn"
+          },
+          {
+            "eco": "B77",
+            "name": "Drachen – Jugoslawischer Angriff mit 9.Bc4",
+            "name_en": "Dragon – Yugoslav Attack with 9.Bc4",
+            "image": "images/semiopen/B77.png",
+            "file": "books/semiopen/B77.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.f3 O-O 8.Qd2 Nc6 9.Bc4",
+            "pgnFile": "pgn/semiopen/B77.pgn"
+          },
+          {
+            "eco": "B78",
+            "name": "Drachen – Jugoslawischer Angriff 10.O-O-O",
+            "name_en": "Dragon – Yugoslav Attack 10.O-O-O",
+            "image": "images/semiopen/B78.png",
+            "file": "books/semiopen/B78.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.f3 O-O 8.Qd2 Nc6 9.Bc4 Bd7 10.O-O-O",
+            "pgnFile": "pgn/semiopen/B78.pgn"
+          },
+          {
+            "eco": "B79",
+            "name": "Drachen – Jugoslawischer Angriff (lange Folge)",
+            "name_en": "Dragon – Yugoslav Attack (main line)",
+            "image": "images/semiopen/B79.png",
+            "file": "books/semiopen/B79.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 Bg7 7.f3 O-O 8.Qd2 Nc6 9.Bc4 Bd7 10.O-O-O Qa5 11.Bb3 Rfc8 12.h4",
+            "pgnFile": "pgn/semiopen/B79.pgn"
+          },
+          {
+            "eco": "B80",
+            "name": "Scheveninger Variante – Grundstellung",
+            "name_en": "Scheveningen Variation – base",
+            "image": "images/semiopen/B80.png",
+            "file": "books/semiopen/B80.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6",
+            "pgnFile": "pgn/semiopen/B80.pgn"
+          },
+          {
+            "eco": "B81",
+            "name": "Scheveningen – Keres-Angriff",
+            "name_en": "Scheveningen – Keres Attack",
+            "image": "images/semiopen/B81.png",
+            "file": "books/semiopen/B81.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.g4",
+            "pgnFile": "pgn/semiopen/B81.pgn"
+          },
+          {
+            "eco": "B82",
+            "name": "Scheveningen – 6.f4",
+            "name_en": "Scheveningen – 6.f4",
+            "image": "images/semiopen/B82.png",
+            "file": "books/semiopen/B82.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.f4",
+            "pgnFile": "pgn/semiopen/B82.pgn"
+          },
+          {
+            "eco": "B83",
+            "name": "Scheveningen – Klassisches System",
+            "name_en": "Scheveningen – Classical System",
+            "image": "images/semiopen/B83.png",
+            "file": "books/semiopen/B83.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Be2",
+            "pgnFile": "pgn/semiopen/B83.pgn"
+          },
+          {
+            "eco": "B84",
+            "name": "Scheveningen – Klassisches System …a6",
+            "name_en": "Scheveningen – Classical …a6",
+            "image": "images/semiopen/B84.png",
+            "file": "books/semiopen/B84.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Be2 a6",
+            "pgnFile": "pgn/semiopen/B84.pgn"
+          },
+          {
+            "eco": "B85",
+            "name": "Scheveningen – …Qc7 Nc6",
+            "name_en": "Scheveningen – …Qc7 Nc6",
+            "image": "images/semiopen/B85.png",
+            "file": "books/semiopen/B85.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Be2 a6 7.O-O Qc7 8.f4 Nc6",
+            "pgnFile": "pgn/semiopen/B85.pgn"
+          },
+          {
+            "eco": "B86",
+            "name": "Scheveningen – 6.Bc4",
+            "name_en": "Scheveningen – 6.Bc4",
+            "image": "images/semiopen/B86.png",
+            "file": "books/semiopen/B86.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Bc4",
+            "pgnFile": "pgn/semiopen/B86.pgn"
+          },
+          {
+            "eco": "B87",
+            "name": "Scheveningen – (Najdorf-Überleitung)",
+            "name_en": "Scheveningen – (Najdorf transposition)",
+            "image": "images/semiopen/B87.png",
+            "file": "books/semiopen/B87.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Bc4 a6 7.Bb3 b5",
+            "pgnFile": "pgn/semiopen/B87.pgn"
+          },
+          {
+            "eco": "B88",
+            "name": "Scheveningen – (Najdorf-Überleitung)",
+            "name_en": "Scheveningen – (Najdorf transposition)",
+            "image": "images/semiopen/B88.png",
+            "file": "books/semiopen/B88.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Bc4 Nc6",
+            "pgnFile": "pgn/semiopen/B88.pgn"
+          },
+          {
+            "eco": "B89",
+            "name": "Scheveningen – (Najdorf-Überleitung) 7.Be3",
+            "name_en": "Scheveningen – (Najdorf transposition) 7.Be3",
+            "image": "images/semiopen/B89.png",
+            "file": "books/semiopen/B89.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e6 6.Bc4 Nc6 7.Be3",
+            "pgnFile": "pgn/semiopen/B89.pgn"
+          },
+          {
+            "eco": "B90",
+            "name": "Najdorf-Variante – Grundstellung",
+            "name_en": "Najdorf Variation – base",
+            "image": "images/semiopen/B90.png",
+            "file": "books/semiopen/B90.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6",
+            "pgnFile": "pgn/semiopen/B90.pgn"
+          },
+          {
+            "eco": "B91",
+            "name": "Najdorf – 6.g3",
+            "name_en": "Najdorf – 6.g3",
+            "image": "images/semiopen/B91.png",
+            "file": "books/semiopen/B91.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.g3",
+            "pgnFile": "pgn/semiopen/B91.pgn"
+          },
+          {
+            "eco": "B92",
+            "name": "Najdorf – 6.Be2",
+            "name_en": "Najdorf – 6.Be2",
+            "image": "images/semiopen/B92.png",
+            "file": "books/semiopen/B92.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be2",
+            "pgnFile": "pgn/semiopen/B92.pgn"
+          },
+          {
+            "eco": "B93",
+            "name": "Najdorf – 6.f4",
+            "name_en": "Najdorf – 6.f4",
+            "image": "images/semiopen/B93.png",
+            "file": "books/semiopen/B93.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.f4",
+            "pgnFile": "pgn/semiopen/B93.pgn"
+          },
+          {
+            "eco": "B94",
+            "name": "Najdorf – 6.Bg5",
+            "name_en": "Najdorf – 6.Bg5",
+            "image": "images/semiopen/B94.png",
+            "file": "books/semiopen/B94.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5",
+            "pgnFile": "pgn/semiopen/B94.pgn"
+          },
+          {
+            "eco": "B95",
+            "name": "Najdorf – 6.Bg5 …e6",
+            "name_en": "Najdorf – 6.Bg5 …e6",
+            "image": "images/semiopen/B95.png",
+            "file": "books/semiopen/B95.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6",
+            "pgnFile": "pgn/semiopen/B95.pgn"
+          },
+          {
+            "eco": "B96",
+            "name": "Najdorf – 7.f4",
+            "name_en": "Najdorf – 7.f4",
+            "image": "images/semiopen/B96.png",
+            "file": "books/semiopen/B96.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6 7.f4",
+            "pgnFile": "pgn/semiopen/B96.pgn"
+          },
+          {
+            "eco": "B97",
+            "name": "Najdorf – Vergifteter Bauer",
+            "name_en": "Najdorf – Poisoned Pawn",
+            "image": "images/semiopen/B97.png",
+            "file": "books/semiopen/B97.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6 7.f4 Qb6",
+            "pgnFile": "pgn/semiopen/B97.pgn"
+          },
+          {
+            "eco": "B98",
+            "name": "Najdorf – …Be7",
+            "name_en": "Najdorf – …Be7",
+            "image": "images/semiopen/B98.png",
+            "file": "books/semiopen/B98.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6 7.f4 Be7",
+            "pgnFile": "pgn/semiopen/B98.pgn"
+          },
+          {
+            "eco": "B99",
+            "name": "Najdorf – Hauptvariante",
+            "name_en": "Najdorf – Main Line",
+            "image": "images/semiopen/B99.png",
+            "file": "books/semiopen/B99.bin",
+            "size": "1.2 MB",
+            "line": "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6 7.f4 Be7 8.Qf3 Qc7 9.O-O-O Nbd7",
+            "pgnFile": "pgn/semiopen/B99.pgn"
           }
         ]
       }
