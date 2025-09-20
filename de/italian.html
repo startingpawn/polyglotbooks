@@ -427,7 +427,7 @@
       return items;
     }
 
-    function pickItalian(openings){
+    function pickItalian(italian){
       let op = italian.find(o => (o.id||'').toLowerCase() === Q_ID);
       if (op) return op;
       op = italian.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
