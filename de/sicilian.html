@@ -299,7 +299,7 @@
     });
   </script>
 
-  <!-- JSON-Loader + Render: immer Board-Player für B20–B99 -->
+  <!-- JSON-Loader + Render: Namen/Zugfolgen jetzt aus sicilian.json -->
   <script>
     // Hilfsfunktionen
     const fixPath = p => (typeof p === 'string' ? (p.startsWith('/') ? p : '/' + p.trim()) : p);
@@ -335,31 +335,54 @@
                                 flattenItemsWithBundle(o).some(it => withinSicilianEco(it.eco))) || null;
     }
 
-    function buildItems(openings){
-      // Öffnungsdaten (falls vorhanden) für Namen/Linien/Images mergen
+    function flattenSicil(sicil){
+      // sicilian.json kann entweder ein Objekt mit items/groups oder ein Array davon sein
+      const out = [];
+      const collect = (node) => {
+        if (!node) return;
+        if (Array.isArray(node.items)) out.push(...node.items);
+        if (Array.isArray(node.groups)) node.groups.forEach(collect);
+      };
+      if (Array.isArray(sicil)) sicil.forEach(collect);
+      else collect(sicil);
+      return out;
+    }
+
+    function buildItems(openings, sicil){
+      // Öffnungsdaten (nur für Bundle & evtl. Bilder)
       const op = pickSicilian(openings || []);
-      const metaByEco = new Map();
+      const metaOpen = new Map();
       if (op){
         for (const it of flattenItemsWithBundle(op)){
           const eco = String(it.eco||'').toUpperCase();
-          if (withinSicilianEco(eco)) metaByEco.set(eco, it);
+          if (withinSicilianEco(eco)) metaOpen.set(eco, it);
         }
       }
+
+      // Namen & Zugfolgen jetzt aus sicilian.json
+      const metaSicil = new Map();
+      for (const it of flattenSicil(sicil || [])){
+        const eco = String(it.eco||'').toUpperCase();
+        if (withinSicilianEco(eco)) metaSicil.set(eco, it);
+      }
+
       // Für JEDEN ECO einen Player mit PGN aus /semiopen/<ECO>.pgn
       const items = ECO_RANGE.map(eco => {
-        const m = metaByEco.get(eco) || {};
-        const name = (!m.name || looksGenericSicilian(m.name)) ? (ECO_NAME_DEFAULT) : m.name;
+        const s = metaSicil.get(eco) || {};
+        const o = metaOpen.get(eco) || {};
+        const name = (!s.name || looksGenericSicilian(s.name)) ? (o.name && !looksGenericSicilian(o.name) ? o.name : ECO_NAME_DEFAULT) : s.name;
         return {
           eco,
           name,
-          line: m.line || '',
-          image: m.image || '',
+          line: s.line || o.line || '',
+          image: o.image || s.image || '',
           // Wichtig: PGNs liegen im Ordner "semiopen"
           pgnFile: `/pgn/semiopen/${eco}.pgn`,
-          pgnIndex: Number.isInteger(m.pgnIndex) ? m.pgnIndex : 0
+          pgnIndex: Number.isInteger(s.pgnIndex) ? s.pgnIndex : (Number.isInteger(o.pgnIndex) ? o.pgnIndex : 0)
         };
       });
-      // Bundle-Datei optional
+
+      // Bundle-Datei optional weiterhin aus openings.json
       let bundle = null;
       if (op?.bundle?.file) {
         bundle = { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle B20–B99 (.bin)' };
@@ -423,9 +446,9 @@
         </div>`;
     }
 
-    function renderAll(openings){
+    function renderAll(openings, sicil){
       const root = document.getElementById('app');
-      const { items, bundle } = buildItems(Array.isArray(openings) ? openings : []);
+      const { items, bundle } = buildItems(Array.isArray(openings) ? openings : [], sicil);
 
       let html = '';
       html += `<section class="top-head">
@@ -443,18 +466,29 @@
     }
 
     (async () => {
-      // Öffnungsdaten sind optional – werden nur gemerged, um Namen/Linien zu verbessern
-      const url = '/data/openings.json?v=' + Date.now();
+      // Öffnungsdaten werden weiterhin optional für Bundle genutzt (openings.json),
+      // Namen & Zugfolgen kommen jetzt aus sicilian.json.
+      let openings = [];
+      let sicil = null;
+
+      // openings.json (optional, für Bundle/Bilder)
       try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
-        const text = await res.text();
-        const json = JSON.parse(text);
-        renderAll(json);
+        const urlOpen = '/data/openings.json?v=' + Date.now();
+        const resOpen = await fetch(urlOpen, { cache: 'no-store' });
+        if (resOpen.ok) openings = JSON.parse(await resOpen.text());
+      } catch (_) {}
+
+      // sicilian.json (verbindlich für Namen & Linien, wenn vorhanden)
+      try {
+        const urlSic = '/data/sicilian.json?v=' + Date.now();
+        const resSic = await fetch(urlSic, { cache: 'no-store' });
+        if (!resSic.ok) throw new Error(`${urlSic} → HTTP ${resSic.status}`);
+        sicil = JSON.parse(await resSic.text());
       } catch (_) {
-        // Fallback: rendere trotzdem ALLE B20–B99
-        renderAll([]);
+        sicil = null; // Fallback: ohne Namen/Linien
       }
+
+      renderAll(openings, sicil);
     })();
   </script>
 
