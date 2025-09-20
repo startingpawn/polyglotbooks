@@ -398,243 +398,149 @@
   </script>
 
   <!-- JSON-Loader + Render -->
-  <script>
-    const qs = new URLSearchParams(location.search);
-    const Q_ID = (qs.get('id') || 'italian').toLowerCase();
-    const Q_TXT = (qs.get('q') || 'italien').toLowerCase();
+<script>
+  const qs = new URLSearchParams(location.search);
+  const Q_ID = (qs.get('id') || 'italian').toLowerCase();
+  
+  // Immer root-absolute Pfade erzeugen
+  const fixPath = p => {
+    if (typeof p !== 'string') return p;
+    p = p.trim();
+    return p.startsWith('/') ? p : '/' + p;
+  };
 
-    // Immer root-absolute Pfade erzeugen
-    const fixPath = p => {
-      if (typeof p !== 'string') return p;
-      p = p.trim();
-      return p.startsWith('/') ? p : '/' + p;
-    };
+  const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
 
-    const withinItalianEco = (eco) => /^C5[0-9]$/i.test(String(eco||'').trim());
+  function card(it){
+    const img = fixPath(it.image || '/assets/logo.png');
+    const hasBoard = (it.pgn || it.pgnFile);
+    const eco = String(it.eco||'').toUpperCase();
+    
+    // Verwende name direkt aus der JSON (deutsche Version)
+    const displayName = it.name || 'Variante';
 
-    function flattenItemsWithBundle(op){
-      const items = [];
-      if (Array.isArray(op.items)) items.push(...op.items);
-      if (Array.isArray(op.groups)) {
-        for (const g of op.groups) {
-          const gItems = Array.isArray(g.items) ? g.items : [];
-          const bundleFile = g?.bundle?.file || g?.file || null;
-          for (const it of gItems) {
-            items.push({ ...it, file: it.file || bundleFile || it.file });
-          }
-        }
-      }
-      return items;
-    }
+    const media = hasBoard
+      ? `<div class="auto-board not-initialized"
+           ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
+           ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(fixPath(it.pgnFile))}"` : ''}
+           ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
+           title="Züge abspielen">
+           <chess-board class="cb-mini"></chess-board>
+         </div>`
+      : `<div class="thumb">
+           <img loading="lazy" src="${img}" alt="Screenshot ${eco}: ${displayName}"
+                onerror="this.onerror=null; this.src='/assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+         </div>`;
 
-    function pickItalian(italian){
-      let op = italian.find(o => (o.id||'').toLowerCase() === Q_ID);
-      if (op) return op;
-      op = italian.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
-      if (op) return op;
-      op = italian.find(o => flattenItemsWithBundle(o).some(it => withinItalianEco(it.eco)));
-      return op || null;
-    }
-
-    function filterStrictItalian(op){
-      const clone = JSON.parse(JSON.stringify(op||{}));
-      if (Array.isArray(clone.items)) {
-        clone.items = clone.items.filter(it => withinItalianEco(it.eco));
-      }
-      if (Array.isArray(clone.groups)) {
-        clone.groups = clone.groups.map(g => {
-          const g2 = { ...g };
-          g2.items = Array.isArray(g.items) ? g.items.filter(it => withinItalianEco(it.eco)) : [];
-          return g2;
-        }).filter(g => Array.isArray(g.items) && g.items.length > 0);
-      }
-      return clone;
-    }
-
-    function pickBundle(op){
-      if (op?.bundle?.file) {
-        return { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle C50–C59 (.bin)' };
-      }
-      if (Array.isArray(op?.groups)) {
-        for (const g of op.groups) {
-          const file = g?.bundle?.file || g?.file || '';
-          if (file) return { file: fixPath(file), label: g?.bundle?.label || g?.label || 'Alle C50–C59 (.bin)' };
-        }
-      }
-      return null;
-    }
-
-    /* --- NEU: Namen kommen aus italian.json --- */
-    let ITA_NAME_BY_ECO = Object.create(null);
-
-    function buildItalianNameMap(italianJson){
-      const map = Object.create(null);
-      const add = (it) => {
-        const eco = String(it?.eco || '').toUpperCase();
-        const nm = it?.name || it?.name_de || it?.name_en;
-        if (withinItalianEco(eco) && nm) map[eco] = nm;
-      };
-      if (Array.isArray(italianJson)) {
-        for (const sec of italianJson) {
-          if (Array.isArray(sec.items)) sec.items.forEach(add);
-          if (Array.isArray(sec.groups)) sec.groups.forEach(g => {
-            if (Array.isArray(g.items)) g.items.forEach(add);
-          });
-        }
-      }
-      return map;
-    }
-    /* --- ENDE neu --- */
-
-    const ECO_NAMES = {
-      C50: 'Italienische Partie',
-      C51: 'Evans-Gambit',
-      C52: 'Evans-Gambit',
-      C53: 'Giuoco Piano',
-      C54: 'Giuoco Piano',
-      C55: 'Zweispringerspiel',
-      C56: 'Zweispringerspiel',
-      C57: 'Zweispringerspiel – Angriff auf f7',
-      C58: 'Zweispringerspiel',
-      C59: 'Zweispringerspiel'
-    };
-    const looksGenericItalian = (s='') => /italien/i.test(s);
-
-    function card(it){
-      const img = fixPath(it.image || '/assets/logo.png');
-      const hasBoard = (it.pgn || it.pgnFile);
-      const eco = String(it.eco||'').toUpperCase();
-
-      /* geändert: Name ausschließlich aus italian.json (Fallback ECO_NAMES) */
-      const displayName = ITA_NAME_BY_ECO[eco] || ECO_NAMES[eco] || 'Variante';
-
-      const media = hasBoard
-        ? `<div class="auto-board not-initialized"
-             ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
-             ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(fixPath(it.pgnFile))}"` : ''}
-             ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
-             title="Züge abspielen">
-             <chess-board class="cb-mini"></chess-board>
-           </div>`
-        : `<div class="thumb">
-             <img loading="lazy" src="${img}" alt="Screenshot ${eco}: ${displayName}"
-                  onerror="this.onerror=null; this.src='/assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
-           </div>`;
-
-      const player = hasBoard ? `
-        <div class="player" data-player>
-          <div class="controls">
-            <div class="ctrls-left">
-              <button class="ctr" data-first title="Zum Anfang" aria-label="Zum Anfang">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
-                </svg>
-              </button>
-              <button class="ctr" data-prev title="Zug zurück" aria-label="Zug zurück">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-              </button>
-              <button class="ctr" data-play title="Abspielen" aria-label="Abspielen">
-                <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </button>
-              <button class="ctr" data-next title="Zug vor" aria-label="Zug vor">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-                </svg>
-              </button>
-              <button class="ctr" data-last title="Zum Ende" aria-label="Zum Ende">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
-                </svg>
-              </button>
-            </div>
-            <div class="ctrls-right"><span class="counter" data-counter>0/0</span></div>
+    const player = hasBoard ? `
+      <div class="player" data-player>
+        <div class="controls">
+          <div class="ctrls-left">
+            <button class="ctr" data-first title="Zum Anfang" aria-label="Zum Anfang">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
+              </svg>
+            </button>
+            <button class="ctr" data-prev title="Zug zurück" aria-label="Zug zurück">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+              </svg>
+            </button>
+            <button class="ctr" data-play title="Abspielen" aria-label="Abspielen">
+              <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+            <button class="ctr" data-next title="Zug vor" aria-label="Zug vor">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+              </svg>
+            </button>
+            <button class="ctr" data-last title="Zum Ende" aria-label="Zum Ende">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
+              </svg>
+            </button>
           </div>
-        </div>` : '';
-
-      const tagOpen  = `<div class="eco-card" data-eco="${eco}" tabindex="0" title="${displayName}">`;
-      const tagClose = `</div>`;
-
-      return `
-        ${tagOpen}
-          ${hasBoard ? `<div class="thumb thumb-board">${media}</div>` : media}
-          ${player}
-          <div class="badges">
-            ${eco ? `<span class="chip eco">${eco}</span>` : ''}
-          </div>
-          <div class="info">
-            <div class="name">${displayName}</div>
-            ${it.line ? `<div class="line">${it.line}</div>` : ''}
-          </div>
-        ${tagClose}`;
-    }
-
-    function renderItalian(openings){
-      const root = document.getElementById('app');
-      if(!Array.isArray(openings)){ root.innerHTML = 'openings.json ist kein Array.'; return; }
-
-      const opRaw = pickItalian(openings);
-      if (!opRaw){
-        const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Ohne Titel'}`).join('<br>');
-        root.innerHTML = `<p>Keine italienische Eröffnung gefunden.</p><p><strong>Verfügbare Einträge:</strong><br>${list}</p>`;
-        return;
-      }
-
-      const op = filterStrictItalian(opRaw);
-      const bundle = pickBundle(op);
-      let items = flattenItemsWithBundle(op).filter(it => withinItalianEco(it.eco));
-
-      let html = '';
-      html += `<section class="top-head">
-        <div>
-          <h2 class="top-title">Italienisch (C50–C59)</h2>
-          <p class="top-desc">Klassisch, schnelle Entwicklung und Zentrumskontrolle.</p>
+          <div class="ctrls-right"><span class="counter" data-counter>0/0</span></div>
         </div>
-        ${bundle && bundle.file ? `<a class="dl-btn" href="/de/download.html?file=${encodeURIComponent(bundle.file)}">Download (.zip)</a>` : ``}
-      </section>`;
+      </div>` : '';
 
-      if (!items.length){
-        html += `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>/data/openings.json</code>.</p>`;
-      } else {
-        html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
-      }
-      root.innerHTML = html;
+    const tagOpen  = `<div class="eco-card" data-eco="${eco}" tabindex="0" title="${displayName}">`;
+    const tagClose = `</div>`;
 
-      document.dispatchEvent(new Event('openings-rendered'));
+    return `
+      ${tagOpen}
+        ${hasBoard ? `<div class="thumb thumb-board">${media}</div>` : media}
+        ${player}
+        <div class="badges">
+          ${eco ? `<span class="chip eco">${eco}</span>` : ''}
+        </div>
+        <div class="info">
+          <div class="name">${displayName}</div>
+          ${it.line ? `<div class="line">${it.line}</div>` : ''}
+        </div>
+      ${tagClose}`;
+  }
+
+  function renderItalian(data){
+    const root = document.getElementById('app');
+    
+    // Prüfe ob die Daten das erwartete Format haben
+    if (!data || !Array.isArray(data.groups)) {
+      root.innerHTML = '<p>Datenformat nicht korrekt.</p>';
+      return;
     }
 
-    (async () => {
-      const root = document.getElementById('app');
+    // Finde die italienische Gruppe
+    const italianGroup = data.groups.find(g => 
+      g.title && g.title.includes('Italienisch') && 
+      Array.isArray(g.items) && 
+      g.items.length > 0
+    );
 
-      const urlOpenings = '/data/openings.json?v=' + Date.now();
-      const urlItalian  = '/data/italian.json?v=' + Date.now(); /* NEU: Quelle für Variantennamen */
+    if (!italianGroup) {
+      root.innerHTML = '<p>Keine italienische Eröffnung gefunden.</p>';
+      return;
+    }
 
-      try {
-        const [resOpen, resIt] = await Promise.all([
-          fetch(urlOpenings, { cache: 'no-store' }),
-          fetch(urlItalian,  { cache: 'no-store' })
-        ]);
+    const items = italianGroup.items.filter(it => withinItalianEco(it.eco));
+    const bundle = italianGroup.bundle;
 
-        if (!resOpen.ok) throw new Error(`${urlOpenings} → HTTP ${resOpen.status}`);
-        if (!resIt.ok)   throw new Error(`${urlItalian} → HTTP ${resIt.status}`);
+    let html = '';
+    html += `<section class="top-head">
+      <div>
+        <h2 class="top-title">${italianGroup.title}</h2>
+        <p class="top-desc">${italianGroup.desc || 'Klassisch, schnelle Entwicklung und Zentrumskontrolle.'}</p>
+      </div>
+      ${bundle && bundle.file ? `<a class="dl-btn" href="/de/download.html?file=${encodeURIComponent(fixPath(bundle.file))}">Download (.zip)</a>` : ``}
+    </section>`;
 
-        const [txtOpen, txtIt] = await Promise.all([resOpen.text(), resIt.text()]);
-        const jsonOpen = JSON.parse(txtOpen);
-        const jsonIt   = JSON.parse(txtIt);
+    if (!items.length){
+      html += `<p>Für Italienisch (C50–C59) wurden keine passenden Einträge gefunden.</p>`;
+    } else {
+      html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
+    }
+    root.innerHTML = html;
 
-        /* Namen-Map aus italian.json bauen */
-        ITA_NAME_BY_ECO = buildItalianNameMap(jsonIt);
+    document.dispatchEvent(new Event('openings-rendered'));
+  }
 
-        renderItalian(jsonOpen);
-      } catch (e) {
-        root.insertAdjacentHTML('beforeend', `<p>Konnte Daten nicht laden:<br><small>${String(e)}</small></p>`);
-      }
-    })();
-  </script>
-
+  (async () => {
+    const root = document.getElementById('app');
+    const url = '/data/italian.json?v=' + Date.now();
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
+      const text = await res.text();
+      const json = JSON.parse(text);
+      renderItalian(json);
+    } catch (e) {
+      root.insertAdjacentHTML('beforeend', `<p>Konnte <code>${url}</code> nicht laden:<br><small>${String(e)}</small></p>`);
+    }
+  })();
+</script>
+  
   <!-- Optimized Board & Player Module -->
   <script type="module">
     import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
