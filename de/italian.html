@@ -804,15 +804,19 @@
       boards.forEach(board => { boardObserver.observe(board); });
     }
 
-    Promise.all([
-      customElements.whenDefined('chess-board'),
-      new Promise(resolve => {
-        if (document.querySelector('.cards-grid')) resolve();
-        else document.addEventListener('openings-rendered', resolve);
-      })
-    ]).then(setupBoards).catch(err => {
-      console.error('Board initialization failed:', err);
-    });
-  </script>
+Promise.all([
+  customElements.whenDefined('chess-board'),
+  new Promise(resolve => {
+    // Warte auf das Event, das nach dem Rendern der Boards gefeuert wird
+    document.addEventListener('openings-rendered', resolve);
+    // Falls das Event bereits gefeuert wurde, prüfe ob Boards existieren
+    setTimeout(() => {
+      if (document.querySelector('.auto-board')) resolve();
+    }, 100);
+  })
+]).then(setupBoards).catch(err => {
+  console.error('Board initialization failed:', err);
+});
+</script>
 </body>
 </html>
