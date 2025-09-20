@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Starting Pawn – Polyglot Opening Books</title>
-  <meta name="description" content="Polyglot-Eröffnungsbücher für Schach – entwickelt für das Spielen am physischen Brett. 100% kostenlos.">
+  <title>Impressum & Datenschutz – Starting Pawn</title>
+  <meta name="description" content="Impressum & Datenschutzerklärung von Starting Pawn: Anbieterangaben gemäß § 5 DDG und Informationen zur Verarbeitung personenbezogener Daten (DSGVO).">
   <link rel="icon" href="/assets/logo.png">
 
   <style>
@@ -12,234 +12,95 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      --indent-start: 1.15rem;  /* Startkante für Titel, Lead, Bullets & CTA */
-      --bullet-gap: 1rem;       /* Abstand zwischen Punkt und Text */
+      --indent-start: 1.15rem;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
     body{
       margin:0;
       background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
       color:var(--text);
       font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
-      display:flex;
-      flex-direction:column;
+      display:flex; flex-direction:column;
     }
-    a{color:inherit; text-decoration:none}
+    a{ color:inherit; text-decoration:none; }
+    a:focus-visible{ outline:2px solid rgba(229,9,20,.6); outline-offset:2px; border-radius:6px; }
 
-    /* Typografie-Verbesserungen */
-    .title, .lead, .bullets { text-wrap: balance; }
-    .nowrap{ white-space:nowrap; }
-    .lead, .bullets li{
-      hyphens:auto;
-      -webkit-hyphens:auto;
-      overflow-wrap:anywhere;
-    }
-
-    /* Header + Topnav - Sticky & Glasmorphismus */
     header{
-      max-width:var(--max);
-      width:100%;
-      margin:0 auto;
+      max-width:var(--max); width:100%; margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
       background:rgba(11, 12, 16, 0.7);
     }
-    .brand{display:flex; align-items:center; gap:1rem}
+    .brand{ display:flex; align-items:center; gap:1rem }
     .logo{
-      width:48px;height:48px;border-radius:50%;
+      width:48px; height:48px; border-radius:50%;
       background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
-      box-shadow:0 0 24px rgba(229,9,20,.35)
+      box-shadow:0 0 24px rgba(229,9,20,.35);
     }
-    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
-    .sub{color:var(--muted);font-size:.9rem}
+    h1{ margin:0; font-size:clamp(1.2rem,2vw,1.6rem); line-height:1.15 }
+    .sub{ color:var(--muted); font-size:.9rem }
+
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
     .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
     .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
     .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
 
-    /* Hero-Layout */
-    .hero{
-      max-width:var(--max);
-      width:100%;
-      margin:0 auto;
-      padding:1.2rem 1rem 2rem;
-      display:grid;
-      gap:1.2rem;
-      grid-template-columns: 1fr;
-      flex:1;
-      align-items:center;
+    .crumbs{
+      max-width:var(--max); width:100%; margin:0 auto; padding:0 1rem .8rem;
+      color:#aeb3bf; font-size:.92rem;
     }
-    @media (min-width: 980px){
-      .hero{
-        grid-template-columns: 1.2fr .8fr;
-        gap:2rem;
-        padding:2rem 1rem;
-      }
-    }
-    @media (orientation: landscape) and (max-height: 768px){
-      header{ padding:0.8rem 1rem 0.5rem; }
-      .logo{ width:40px; height:40px; }
-      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
-      .hero{ padding:1rem; gap:1.5rem; }
-      .panel{ padding:1rem; }
-      .panel .title{ margin:0 0 0.8rem; font-size:clamp(1.2rem,2.5vw,1.7rem); }
-      .panel .lead{ margin:0 0 1rem; font-size:0.95rem; }
-      .panel .bullets{ margin:1rem 0; font-size:0.92rem; }
-      .panel .cta{ margin-top:1rem; }
-      .visual{ min-height:240px; }
-      footer{ margin:0.5rem auto 1rem; }
-    }
-    @media (orientation: landscape) and (min-width: 1400px){
-      .hero{ grid-template-columns: 1fr 0.7fr; max-width:1400px; }
-    }
-    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
-      .hero{ grid-template-columns: 1.2fr 0.8fr; padding:0.8rem; gap:1rem; }
-      .panel{ padding:0.8rem; }
-      .panel .title{ font-size:1.1rem; margin:0 0 0.5rem; }
-      .panel .lead{ font-size:0.88rem; margin:0 0 0.7rem; }
-      .panel .bullets{ margin:0.7rem 0; font-size:0.85rem; gap:0.3rem; }
-      .panel .cta{ margin-top:0.8rem; }
-      .btn{ padding:0.5rem 0.75rem; font-size:0.9rem; }
-      .visual{ min-height:180px; padding:0.5rem; }
-    }
-    @media (max-width: 979px) and (orientation: portrait){
-      .hero{ padding-top:2rem; padding-bottom:2rem; }
-    }
+    .crumbs a{ color:#cfd3db }
+    .crumbs a:hover{ color:#fff; text-decoration:underline }
 
-    /* Panel + Abstände */
+    main.hero{
+      max-width:var(--max); width:100%; margin:0 auto; padding:1.2rem 1rem 2rem;
+      display:grid; gap:1.2rem; grid-template-columns:1fr; flex:1; align-items:start;
+    }
     .panel{
       border:var(--border) solid #222737; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, var(--panel);
-      padding:1.2rem 1.2rem 1.1rem;
-    }
-    .panel .title { margin:.25rem 0 1.5rem; padding-left: var(--indent-start); }
-    .panel .lead { margin:.25rem 0 1.8rem; padding-left: var(--indent-start); }
-    .panel .bullets { margin:1.2rem 0 1.8rem; }
-    .panel .cta { margin-top:1.2rem; padding-left: var(--indent-start); }
-
-    .title{ font-size:clamp(1.3rem,3.2vw,2rem); line-height:1.15 }
-    .lead{ color:#cfd3db; font-size:1.02rem; }
-
-    /* Bullets */
-    .bullets{
-      list-style:none;
-      padding:0;
-      display:grid;
-      gap:.45rem;
-      color:#d9dce4;
-      padding-left: var(--indent-start);
-    }
-    .bullets li{
-      position:relative;
-      padding-left: var(--bullet-gap);
-      line-height:1.55;
-    }
-    .bullets li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      line-height:1.55;
-      font-weight:700;
-      color:#ff5f6d;
-    }
-    .bullets code{
-      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:.92em;
-      background:#0f1117;
-      border:1px solid #2b3240;
-      border-radius:6px;
-      padding:.05em .35em;
-      color:#e9eaee;
-    }
-
-    .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
-    .btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.6rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
-      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
-    }
-    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-    .btn-primary{
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none;
-      box-shadow:0 8px 18px rgba(229,9,20,.24); transition:transform .12s ease, box-shadow .12s ease;
-    }
-    .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-
-    /* Visual */
-    .visual{
-      border:var(--border) solid #222737; 
-      border-radius:var(--radius);
       background:
-        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.22), transparent 65%),
-        linear-gradient(135deg, #0f1117 0%, #141822 100%);
-      padding:1rem;
-      display:flex; 
-      align-items:center; 
-      justify-content:center;
-      min-height:320px;
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box,
+        var(--panel);
+      padding:1.2rem 1.2rem 1.1rem;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
     }
-    .visual img{ 
-      max-width:85%;
-      height:auto; 
-      display:block; 
-      filter:drop-shadow(0 8px 24px rgba(0,0,0,.45));
-      opacity:0.95;
-      transition:transform 0.3s ease;
-    }
-    .visual:hover img { transform:scale(1.05); }
+    .panel:hover{ transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12) }
 
-    /* Footer */
+    /* Lesbarkeit & automatische Umbrüche */
+    .panel > :is(h2,h3,h4,p,address){ padding-left:var(--indent-start); text-wrap:balance }
+    .panel p{ line-height:1.6; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; word-break:normal; }
+    .panel :is(ul,ol){ margin:.6rem 0 1rem; padding-left:calc(var(--indent-start) + 1.1rem) }
+
     footer{
-      max-width:var(--max);
-      width:100%;
-      margin:1.2rem auto 2.4rem;
-      color:#a2a6b2;
-      font-size:.92rem;
-      padding:0 1rem;
-      text-align:center;
+      max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
     }
 
-    /* FAB & Sheet (mobil) */
+    /* (Optional) Mobiles Menü – unverändert */
     .fab{
       position:fixed; right:16px; bottom:16px; z-index:60;
       width:56px; height:56px; border-radius:50%;
       display:none; place-items:center; user-select:none; cursor:pointer;
       background:linear-gradient(180deg, #1b2230, #121a26);
       color:#e9eaee; font-size:34px; line-height:1;
-      border:1px solid #2b3240;
-      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      border:1px solid #2b3240; box-shadow:0 6px 16px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
-    .fab:hover{
-      transform:translateY(-1px);
-      box-shadow:
-        0 0 0 2px rgba(229,9,20,.22),
-        0 14px 32px rgba(0,0,0,.45),
-        0 0 18px rgba(229,9,20,.16);
-    }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
-    @media (max-width: 979px){
-      .topnav{ display:none }
-      .fab{ display:grid }
-    }
-
+    @media (max-width: 979px){ .topnav{ display:none } .fab{ display:grid } }
     .sheet{ position:fixed; inset:0; z-index:55; }
     .sheet[hidden]{ display:none }
-    .sheet-backdrop{
-      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
-      backdrop-filter:blur(2px);
-    }
+    .sheet-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease; backdrop-filter:blur(2px); }
     .sheet-panel{
-      position:absolute; left:0; right:0; bottom:0;
-      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
-      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      position:absolute; left:0; right:0; bottom:0; background:#12131a; border-top:1px solid #2b3240;
+      border-radius:16px 16px 0 0; padding:1rem; transform:translateY(100%); transition:transform .2s ease;
       box-shadow:0 -12px 30px rgba(0,0,0,.5);
     }
     .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
@@ -249,7 +110,18 @@
       padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
       text-decoration:none; font-weight:600;
     }
-    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+
+    /* ▼ Zusatz: Header-Größen exakt wie auf index.html ▼ */
+    @media (orientation: landscape) and (max-height: 768px){
+      header{ padding:0.8rem 1rem 0.5rem; }
+      .logo{ width:40px; height:40px; }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
+    }
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      .logo{ width:40px; height:40px; }
+      h1{ font-size:1.1rem; }
+    }
+    /* ▲ Ende Header-Angleichung ▲ */
   </style>
 </head>
 <body>
@@ -262,46 +134,104 @@
       </div>
     </div>
     <nav class="topnav" aria-label="Hauptmenü">
-      <a class="nav-link active" href="/de/">Home</a>
+      <a class="nav-link" href="/de/">Home</a>
       <a class="nav-link" href="/de/choose.html">Eröffnungen</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <a class="nav-link" href="/de/faq.html">FAQ</a>
       <a class="nav-link" href="/de/contact.html">Kontakt</a>
-      <a class="nav-link" href="/de/impressum.html">Impressum</a>
+      <a class="nav-link active" href="/de/impressum.html">Impressum</a>
     </nav>
   </header>
 
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/de/">Home</a> &nbsp;→&nbsp; <strong>Impressum</strong>
+  </nav>
+
   <main class="hero">
-    <section class="panel">
-      <h2 class="title">Willkommen bei meinem Projekt der Schach Eröffnungen</h2>
-      <p class="lead">
-        Ich bin <strong>Tobias</strong>. Diese Polyglot-Eröffnungen wurden dafür entwickelt, um mit
-        <strong>elektronischen Schachbrettern</strong> die Welt der Eröffnungen strukturiert zu erkunden, zu lernen und zu meistern –
-        klar aufgebaut, praxisnah und direkt am Brett.
+    <!-- 1) IMPRESSUM – eigener Rahmen -->
+    <section class="panel" id="impressum">
+      <h2>Impressum</h2>
+      <p>Angaben gemäß § 5 DDG</p>
+      <p>
+        Tobias Mitterdorfer<br>
+        Konrad-Adenauer-Allee 40<br>
+        93051 Regensburg
       </p>
-
-      <ul class="bullets">
-        <li><span class="nowrap">100% kostenlos</span></li>
-        <li>Varianten nach ECO-Struktur</li>
-        <li>Komplette Eröffnungspacks</li>
-      </ul>
-
-      <div class="cta">
-        <a class="btn btn-primary" href="/de/choose.html">Los geht´s!</a>
-      </div>
+      <p>
+        <strong>Kontakt:</strong><br>
+        E-Mail: <a href="mailto:info@startingpawn.com">info@startingpawn.com</a>
+      </p>
     </section>
 
-    <aside class="visual" aria-hidden="true">
-      <img src="/assets/hero-board.png" alt="" onerror="this.onerror=null; this.src='/assets/logo.png'">
-    </aside>
+    <!-- 2) HAFTUNGSAUSSCHLUSS – eigener Rahmen -->
+    <section class="panel" id="haftungsausschluss">
+      <h2>Haftungsausschluss</h2>
+
+      <h3>Haftung für Inhalte</h3>
+      <p>
+        Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte
+        können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten
+        nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet,
+        übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+        Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen
+        bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten
+        Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+      </p>
+
+      <h3>Haftung für Links</h3>
+      <p>
+        Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese
+        fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber
+        der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft.
+        Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten
+        ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir
+        derartige Links umgehend entfernen.
+      </p>
+
+      <h3>Urheberrecht</h3>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die
+        Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der
+        schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten,
+        nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die
+        Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine
+        Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen
+        werden wir derartige Inhalte umgehend entfernen.
+      </p>
+    </section>
+
+    <!-- 3) DATENSCHUTZ – eigener Rahmen -->
+    <section class="panel" id="datenschutz">
+      <h2>Datenschutz</h2>
+      <p>
+        Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene
+        Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis.
+        Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+      </p>
+      <p>
+        Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann.
+        Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+      </p>
+      <p>
+        Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich
+        angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich
+        ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+      </p>
+
+      <p class="seal">
+        Erstellt mit <a href="https://impressum-generator.de" rel="dofollow">Impressum-Generator.de</a>, dem Tool für Impressum und
+        <a href="https://impressum-generator.de/datenschutz-generator" rel="dofollow">Datenschutz-Erklärung</a>. Nach einer Vorlage der
+        <a href="https://www.kanzlei-hasselbach.de/" rel="dofollow">Kanzlei Hasselbach</a>.
+      </p>
+    </section>
   </main>
 
   <footer>
-    <small>&copy; 2025 Starting Pawn</small>
+    <small>&copy; 2025 Starting Pawn</small><br>
   </footer>
 
-  <!-- Mobiler + Button & Sheet -->
-  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+  <!-- Optional: Mobiles Menü (ausblendbar) -->
+  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü" hidden>+</button>
   <div class="sheet" id="sheet" hidden>
     <div class="sheet-backdrop" data-close></div>
     <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
@@ -315,37 +245,27 @@
     </div>
   </div>
 
-  <!-- Mobiler + Button (Bottom-Sheet) -->
   <script>
     (function(){
       const fab = document.getElementById('fab');
       const sheet = document.getElementById('sheet');
       const backdrop = sheet?.querySelector('.sheet-backdrop');
       const panel = sheet?.querySelector('.sheet-panel');
-
+      if(!fab) return;
       const open = () => {
-        if (!sheet) return;
         sheet.hidden = false;
         requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
-        fab?.setAttribute('aria-expanded','true');
+        fab.setAttribute('aria-expanded','true');
       };
       const close = () => {
-        if (!sheet) return;
         sheet.removeAttribute('data-open');
-        fab?.setAttribute('aria-expanded','false');
+        fab.setAttribute('aria-expanded','false');
         setTimeout(() => { sheet.hidden = true; }, 200);
       };
-
-      fab?.addEventListener('click', () => {
-        if (sheet.hidden) open(); else close();
-      });
+      fab.addEventListener('click', () => { if (sheet.hidden) open(); else close(); });
       backdrop?.addEventListener('click', close);
-      panel?.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') close();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !sheet.hidden) close();
-      });
+      panel?.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
     })();
   </script>
 </body>
