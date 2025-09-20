@@ -348,7 +348,7 @@
       // Für JEDEN ECO einen Player mit PGN aus /semiopen/<ECO>.pgn
       const items = ECO_RANGE.map(eco => {
         const m = metaByEco.get(eco) || {};
-        const name = m.name || ECO_NAME_DEFAULT;
+        const name = m.name_en || ECO_NAME_DEFAULT;
         return {
           eco,
           name,
