@@ -331,13 +331,13 @@
     function pickSicilian(openings){
       // finde den "Sizilianisch"-Block für Bundle-Metadaten (optional)
       const rx = /(sizilian|sicilian)/i;
-      return openings.find(o => rx.test(o?.title||'') || rx.test(o?.desc||'') ||
+      return sicilian.find(o => rx.test(o?.title||'') || rx.test(o?.desc||'') ||
                                 flattenItemsWithBundle(o).some(it => withinSicilianEco(it.eco))) || null;
     }
 
     function buildItems(openings){
       // Öffnungsdaten (falls vorhanden) für Namen/Linien/Images mergen
-      const op = pickSicilian(openings || []);
+      const op = pickSicilian(sicilian || []);
       const metaByEco = new Map();
       if (op){
         for (const it of flattenItemsWithBundle(op)){
