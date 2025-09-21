@@ -231,7 +231,7 @@
   <nav class="crumbs" aria-label="Breadcrumb">
     <a href="/en/">Home</a> &nbsp;→&nbsp;
     <a href="/en/choose.html">Selection</a> &nbsp;→&nbsp;
-    <strong>Single Openings</strong>
+    <strong>Individual Openings</strong>
   </nav>
 
   <main id="app" aria-live="polite">
@@ -260,22 +260,22 @@
 
   <!-- Listen-Renderer -->
   <script>
-    // Only list existing pages (all paths root-absolute under /en/)
+    // Nur existierende Seiten eintragen (alle Pfade root-absolut unter /de/)
     const EXISTING = {
       '/en/italian.html': { cat: 'Open', name: 'Italian Game', eco: 'C50–C59' },
-      '/en/sicilian.html':  { cat: 'Semiopen', name: 'Sicilian Defense', eco: 'B20–B99' }
-      // Examples for future additions:
-      // '/en/spanish.html': { cat: 'Open', name: 'Ruy Lopez', eco: 'C60–C99' },
-      // '/en/sicilian.html': { cat: 'Semi-open', name: 'Sicilian', eco: 'B20–B99' },
+      '/en/sicilian.html': { cat: 'Semi-open', name: 'Sicilian Defense', eco: 'B20-B99' },
+      '/en/queensgambit.html': { cat: 'Closed', name: "Queen's Gambit", eco: 'D20-D69' }
+      // Beispiele für spätere Ergänzungen:
+      // '/en/spanish.html': { cat: 'Open', name: 'Spanish', eco: 'C60–C99' },
     };
 
-    const ORDER = ['Open','Semiopen','Closed','Indian','Flank'];
+    const ORDER = ['Open','Semi-open','Closed','Indian','Flank'];
 
     function groupByCategory(entries){
       const map = new Map();
       for (const k of ORDER) map.set(k, []);
       Object.entries(entries).forEach(([href, it]) => {
-        const cat = it.cat || 'Misc';
+        const cat = it.cat || 'Other';
         if (!map.has(cat)) map.set(cat, []);
         map.get(cat).push({ href, name: it.name, eco: it.eco||'' });
       });
