@@ -3,20 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Sicilian – Opening</title>
-  <meta name="description" content="Sicilian Defense (B20–B99): Variations with mini boards, moves, and BIN downloads – flat grid with header." />
-  <link rel="icon" href="/assets/logo.png">
 
-  <!-- Netzwerk-Optimierung für externe Module -->
+  <title>Sicilian – Opening</title>
+  <meta name="description" content="Sicilian Defense (B20–B99): variations with mini boards, moves, and BIN downloads — flat grid with header." />
+  <link rel="icon" href="/assets/logo.png" />
+
+  <!-- Network hints (kept) -->
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
-  <!-- chessboard-element (Web Component) -->
-  <script type="module">
-    import 'https://unpkg.com/chessboard-element?module';
+  <!-- Canonical + Hreflang -->
+  <link rel="canonical" href="https://startingpawn.com/en/sicilian.html" />
+  <!-- Optional: nur behalten, wenn es die DE-Seite gibt -->
+  <link rel="alternate" href="https://startingpawn.com/de/sicilian.html" hreflang="de" />
+  <link rel="alternate" href="https://startingpawn.com/en/sicilian.html" hreflang="en" />
+  <link rel="alternate" href="https://startingpawn.com/en/sicilian.html" hreflang="x-default" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Starting Pawn" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:title" content="Sicilian – Opening" />
+  <meta property="og:description" content="Sicilian Defense (B20–B99): variations with mini boards, moves, and BIN downloads." />
+  <meta property="og:url" content="https://startingpawn.com/en/sicilian.html" />
+  <meta property="og:image" content="https://startingpawn.com/assets/hero-board.png" />
+  <meta property="og:image:alt" content="Starting Pawn mini chess boards for Sicilian Defense variations" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sicilian – Opening" />
+  <meta name="twitter:description" content="Sicilian Defense (B20–B99): variations with mini boards, moves, and BIN downloads." />
+  <meta name="twitter:image" content="https://startingpawn.com/assets/hero-board.png" />
+
+  <!-- PWA/Chrome UI color -->
+  <meta name="theme-color" content="#0b0c10" />
+
+  <!-- Structured Data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Starting Pawn",
+    "url": "https://startingpawn.com/",
+    "inLanguage": "en"
+  }
   </script>
+
+  <!-- Structured Data: WebPage (CollectionPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["WebPage","CollectionPage"],
+    "name": "Sicilian – Opening",
+    "description": "Sicilian Defense (B20–B99): variations with mini boards, moves, and BIN downloads.",
+    "url": "https://startingpawn.com/en/sicilian.html",
+    "isPartOf": { "@type": "WebSite", "name": "Starting Pawn", "url": "https://startingpawn.com/" },
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- Structured Data: Breadcrumbs (spiegelt deine UI: Home → Choose → Single Openings → Sicilian) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      { "@type":"ListItem", "position":1, "name":"Home", "item":"https://startingpawn.com/en/" },
+      { "@type":"ListItem", "position":2, "name":"Choose", "item":"https://startingpawn.com/en/choose.html" },
+      { "@type":"ListItem", "position":3, "name":"Single Openings", "item":"https://startingpawn.com/en/single.html" },
+      { "@type":"ListItem", "position":4, "name":"Sicilian", "item":"https://startingpawn.com/en/sicilian.html" }
+    ]
+  }
+  </script>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
 
   <style>
     :root{
