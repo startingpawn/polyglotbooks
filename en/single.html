@@ -3,9 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Openings – Overview</title>
-  <meta name="description" content="Overview: main categories (Open, Semi-open, Closed, Indian, Flank) with linked openings." />
-  <link rel="icon" href="/assets/logo.png">
+
+  <title>Openings – Overview | Starting Pawn</title>
+  <meta name="description" content="Overview of individual chess openings by family — Open, Semi-open, Closed, Indian and Flank — with links to mini-board pages and Polyglot BIN downloads." />
+  <link rel="icon" href="/assets/logo.png" />
+
+  <!-- Canonical + Hreflang -->
+  <link rel="canonical" href="https://startingpawn.com/en/single.html" />
+  <link rel="alternate" href="https://startingpawn.com/en/single.html" hreflang="en" />
+  <link rel="alternate" href="https://startingpawn.com/en/single.html" hreflang="x-default" />
+  <!-- Optional: nur einfügen, wenn es eine DE-Version gibt -->
+  <!-- <link rel="alternate" href="https://startingpawn.com/de/single.html" hreflang="de" /> -->
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Starting Pawn" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Openings – Overview" />
+  <meta property="og:description" content="Browse individual openings by family and jump to mini-board pages with Polyglot downloads." />
+  <meta property="og:url" content="https://startingpawn.com/en/single.html" />
+  <meta property="og:image" content="https://startingpawn.com/assets/hero-board.png" />
+  <meta property="og:image:alt" content="Starting Pawn openings overview with links to mini chess boards" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Openings – Overview" />
+  <meta name="twitter:description" content="Browse openings by family and jump to mini-board pages with Polyglot downloads." />
+  <meta name="twitter:image" content="https://startingpawn.com/assets/hero-board.png" />
+
+  <!-- UI color -->
+  <meta name="theme-color" content="#0b0c10" />
+
+  <!-- Structured Data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Starting Pawn",
+    "url":"https://startingpawn.com/",
+    "inLanguage":"en"
+  }
+  </script>
+
+  <!-- Structured Data: WebPage (CollectionPage) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":["WebPage","CollectionPage"],
+    "name":"Openings – Overview",
+    "description":"Overview of individual chess openings by family — Open, Semi-open, Closed, Indian and Flank — with links to mini-board pages and Polyglot BIN downloads.",
+    "url":"https://startingpawn.com/en/single.html",
+    "isPartOf":{"@type":"WebSite","name":"Starting Pawn","url":"https://startingpawn.com/"},
+    "inLanguage":"en"
+  }
+  </script>
+
+  <!-- Structured Data: Breadcrumbs (Home → Selection → Individual Openings) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://startingpawn.com/en/"},
+      {"@type":"ListItem","position":2,"name":"Selection","item":"https://startingpawn.com/en/choose.html"},
+      {"@type":"ListItem","position":3,"name":"Individual Openings","item":"https://startingpawn.com/en/single.html"}
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: ItemList der verlinkten Einzel-Seiten -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "name":"Individual Openings",
+    "itemListOrder":"http://schema.org/ItemListOrderAscending",
+    "numberOfItems":3,
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"url":"https://startingpawn.com/en/italian.html","name":"Italian Game (C50–C59)"},
+      {"@type":"ListItem","position":2,"url":"https://startingpawn.com/en/sicilian.html","name":"Sicilian Defense (B20–B99)"},
+      {"@type":"ListItem","position":3,"url":"https://startingpawn.com/en/queensgambit.html","name":"Queen's Gambit (D20–D69)"}
+    ]
+  }
+  </script>
 
   <style>
     :root{
