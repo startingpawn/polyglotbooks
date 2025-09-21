@@ -1,1 +1,364 @@
-
+[
+  {
+    "id": "qg",
+    "title": "Damengambit (D20–D69)",
+    "desc": "1.d4 d5 2.c4 – umfasst angenommen (…dxc4) und abgelehnt (…e6).",
+    "bundle": {
+      "file": "books/closed/d20-d69-qg.zip",
+      "size": "35.0 MB",
+      "label": "Alle D20–D69 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "D20",
+        "name": "Angenommenes Damengambit – Grundstellung",
+        "name_en": "Queen's Gambit Accepted – base",
+        "line": "1.d4 d5 2.c4 dxc4",
+        "pgnFile": "pgn/closed/D20.pgn"
+      },
+      {
+        "eco": "D21",
+        "name": "Angenommenes Damengambit, 3.Sf3",
+        "name_en": "QGA, 3.Nf3",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3",
+        "pgnFile": "pgn/closed/D21.pgn"
+      },
+      {
+        "eco": "D22",
+        "name": "Angenommenes Damengambit, Aljechin-Variante (…a6)",
+        "name_en": "QGA, Alekhine Variation (…a6)",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 a6",
+        "pgnFile": "pgn/closed/D22.pgn"
+      },
+      {
+        "eco": "D23",
+        "name": "Angenommenes Damengambit, 3.Sf3 …Sf6",
+        "name_en": "QGA, 3.Nf3 …Nf6",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6",
+        "pgnFile": "pgn/closed/D23.pgn"
+      },
+      {
+        "eco": "D24",
+        "name": "Angenommenes Damengambit, 4.Sc3",
+        "name_en": "QGA, 4.Nc3",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6 4.Nc3",
+        "pgnFile": "pgn/closed/D24.pgn"
+      },
+      {
+        "eco": "D25",
+        "name": "Angenommenes Damengambit, 4.e3",
+        "name_en": "QGA, 4.e3",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6 4.e3",
+        "pgnFile": "pgn/closed/D25.pgn"
+      },
+      {
+        "eco": "D26",
+        "name": "Angenommenes Damengambit, Klassische Variante",
+        "name_en": "QGA, Classical Variation",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6 4.e3 e6 5.Bxc4 c5",
+        "pgnFile": "pgn/closed/D26.pgn"
+      },
+      {
+        "eco": "D27",
+        "name": "Angenommenes Damengambit, Klassisch (…a6-System)",
+        "name_en": "QGA, Classical (…a6)",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6 4.e3 e6 5.Bxc4 c5 6.O-O a6",
+        "pgnFile": "pgn/closed/D27.pgn"
+      },
+      {
+        "eco": "D28",
+        "name": "Angenommenes Damengambit, Klassisch (7.De2)",
+        "name_en": "QGA, Classical (7.Qe2)",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6 4.e3 e6 5.Bxc4 c5 6.O-O a6 7.Qe2",
+        "pgnFile": "pgn/closed/D28.pgn"
+      },
+      {
+        "eco": "D29",
+        "name": "Angenommenes Damengambit, Klassisch (…Lb7-System)",
+        "name_en": "QGA, Classical (…Bb7)",
+        "line": "1.d4 d5 2.c4 dxc4 3.Nf3 Nf6 4.e3 e6 5.Bxc4 c5 6.O-O a6 7.Qe2 b5 8.Bb3 Bb7",
+        "pgnFile": "pgn/closed/D29.pgn"
+      },
+      {
+        "eco": "D30",
+        "name": "Abgelehntes Damengambit – Grundstellung",
+        "name_en": "Queen's Gambit Declined – base",
+        "line": "1.d4 d5 2.c4 e6",
+        "pgnFile": "pgn/closed/D30.pgn"
+      },
+      {
+        "eco": "D31",
+        "name": "Abgelehntes Damengambit, 3.Sc3 Sf6 4.Lg5",
+        "name_en": "QGD, 3.Nc3 Nf6 4.Bg5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5",
+        "pgnFile": "pgn/closed/D31.pgn"
+      },
+      {
+        "eco": "D32",
+        "name": "Tarrasch-Verteidigung",
+        "name_en": "Tarrasch Defence",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 c5",
+        "pgnFile": "pgn/closed/D32.pgn"
+      },
+      {
+        "eco": "D33",
+        "name": "Tarrasch, 6.g3-System",
+        "name_en": "Tarrasch, 6.g3 System",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 c5 4.cxd5 exd5 5.Nf3 Nc6 6.g3",
+        "pgnFile": "pgn/closed/D33.pgn"
+      },
+      {
+        "eco": "D34",
+        "name": "Tarrasch – Hauptvarianten",
+        "name_en": "Tarrasch – Main Lines",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 c5 4.cxd5 exd5 5.Nf3 Nc6 6.g3 Nf6",
+        "pgnFile": "pgn/closed/D34.pgn"
+      },
+      {
+        "eco": "D35",
+        "name": "Abgelehntes Damengambit, 3…Sf6 (allgemein)",
+        "name_en": "QGD, 3…Nf6 (general)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6",
+        "pgnFile": "pgn/closed/D35.pgn"
+      },
+      {
+        "eco": "D36",
+        "name": "Abgelehntes Damengambit, Abtauschvariante (6.Dc2)",
+        "name_en": "QGD, Exchange Variation (6.Qc2)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.cxd5 exd5 5.Bg5 c6 6.Qc2",
+        "pgnFile": "pgn/closed/D36.pgn"
+      },
+      {
+        "eco": "D37",
+        "name": "Abgelehntes Damengambit, Klassisch (5.Lf4)",
+        "name_en": "QGD, Classical (5.Bf4)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 Be7 5.Bf4",
+        "pgnFile": "pgn/closed/D37.pgn"
+      },
+      {
+        "eco": "D38",
+        "name": "Ragosin-Variante",
+        "name_en": "Ragozin Variation",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 Bb4",
+        "pgnFile": "pgn/closed/D38.pgn"
+      },
+      {
+        "eco": "D39",
+        "name": "Ragosin – 5.Lg5 dxc4",
+        "name_en": "Ragozin – 5.Bg5 dxc4",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 Bb4 5.Bg5 dxc4",
+        "pgnFile": "pgn/closed/D39.pgn"
+      },
+      {
+        "eco": "D40",
+        "name": "Halb-Tarrasch-Verteidigung",
+        "name_en": "Semi-Tarrasch Defence",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c5",
+        "pgnFile": "pgn/closed/D40.pgn"
+      },
+      {
+        "eco": "D41",
+        "name": "Halb-Tarrasch, 5.cxd5 Sxd5",
+        "name_en": "Semi-Tarrasch, 5.cxd5 Nxd5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c5 5.cxd5 Nxd5",
+        "pgnFile": "pgn/closed/D41.pgn"
+      },
+      {
+        "eco": "D42",
+        "name": "Halb-Tarrasch – Hauptvariante",
+        "name_en": "Semi-Tarrasch – Main Line",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c5 5.cxd5 Nxd5 6.e3 Nc6 7.Bd3",
+        "pgnFile": "pgn/closed/D42.pgn"
+      },
+      {
+        "eco": "D43",
+        "name": "Halbslawisch – Grundstellung",
+        "name_en": "Semi-Slav – base",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6",
+        "pgnFile": "pgn/closed/D43.pgn"
+      },
+      {
+        "eco": "D44",
+        "name": "Halbslawisch, Botwinnik-Variante",
+        "name_en": "Semi-Slav, Botvinnik Variation",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6 5.Bg5 dxc4 6.e4 b5 7.e5 h6 8.Bh4 g5 9.Nxg5",
+        "pgnFile": "pgn/closed/D44.pgn"
+      },
+      {
+        "eco": "D45",
+        "name": "Halbslawisch, 5.e3",
+        "name_en": "Semi-Slav, 5.e3",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6 5.e3",
+        "pgnFile": "pgn/closed/D45.pgn"
+      },
+      {
+        "eco": "D46",
+        "name": "Halbslawisch, 5.e3 Sbd7 6.Ld3",
+        "name_en": "Semi-Slav, 5.e3 Nbd7 6.Bd3",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6 5.e3 Nbd7 6.Bd3",
+        "pgnFile": "pgn/closed/D46.pgn"
+      },
+      {
+        "eco": "D47",
+        "name": "Halbslawisch, Meraner System (Nebenwege)",
+        "name_en": "Semi-Slav, Meran (sidelines)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6 5.e3 Nbd7 6.Bd3 dxc4 7.Bxc4",
+        "pgnFile": "pgn/closed/D47.pgn"
+      },
+      {
+        "eco": "D48",
+        "name": "Halbslawisch, Meran ohne frühes …c5",
+        "name_en": "Semi-Slav, Meran without early …c5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6 5.e3 Nbd7 6.Bd3 dxc4 7.Bxc4 b5 8.Bd3 a6 9.O-O",
+        "pgnFile": "pgn/closed/D48.pgn"
+      },
+      {
+        "eco": "D49",
+        "name": "Halbslawisch, Meran – Hauptvariante",
+        "name_en": "Semi-Slav, Meran – Main Line",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Nf3 c6 5.e3 Nbd7 6.Bd3 dxc4 7.Bxc4 b5 8.Bd3 a6 9.e4 c5 10.e5",
+        "pgnFile": "pgn/closed/D49.pgn"
+      },
+      {
+        "eco": "D50",
+        "name": "Abgelehntes Damengambit, 4.Lg5",
+        "name_en": "QGD, 4.Bg5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5",
+        "pgnFile": "pgn/closed/D50.pgn"
+      },
+      {
+        "eco": "D51",
+        "name": "Abgelehntes Damengambit, 4.Lg5 …Sbd7",
+        "name_en": "QGD, 4.Bg5 …Nbd7",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Nbd7",
+        "pgnFile": "pgn/closed/D51.pgn"
+      },
+      {
+        "eco": "D52",
+        "name": "Cambridge-Springs-Variante",
+        "name_en": "Cambridge Springs Variation",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Nbd7 5.e3 c6 6.Nf3 Qa5",
+        "pgnFile": "pgn/closed/D52.pgn"
+      },
+      {
+        "eco": "D53",
+        "name": "Orthodoxe Verteidigung – frühe Abspiele",
+        "name_en": "Orthodox Defence – early deviations",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7",
+        "pgnFile": "pgn/closed/D53.pgn"
+      },
+      {
+        "eco": "D54",
+        "name": "Orthodox – ohne Sf3 (…Tc1-Ideen)",
+        "name_en": "Orthodox – without Nf3 (…Rc1 ideas)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Rc1",
+        "pgnFile": "pgn/closed/D54.pgn"
+      },
+      {
+        "eco": "D55",
+        "name": "Orthodox – mit 6.Sf3",
+        "name_en": "Orthodox – with 6.Nf3",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3",
+        "pgnFile": "pgn/closed/D55.pgn"
+      },
+      {
+        "eco": "D56",
+        "name": "Lasker-Verteidigung (Nebenwege)",
+        "name_en": "Lasker Defence (sidelines)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 h6 7.Bh4 Ne4",
+        "pgnFile": "pgn/closed/D56.pgn"
+      },
+      {
+        "eco": "D57",
+        "name": "Lasker-Verteidigung – Hauptvariante",
+        "name_en": "Lasker Defence – Main Line",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 h6 7.Bh4 Ne4 8.Bxe7 Qxe7 9.cxd5 exd5",
+        "pgnFile": "pgn/closed/D57.pgn"
+      },
+      {
+        "eco": "D58",
+        "name": "Tartakower-(Makogonow-Bondarewski) – Nebenwege",
+        "name_en": "Tartakower (TMB) – sidelines",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 h6 7.Bh4 b6",
+        "pgnFile": "pgn/closed/D58.pgn"
+      },
+      {
+        "eco": "D59",
+        "name": "Tartakower-(Makogonow-Bondarewski) – Hauptvariante",
+        "name_en": "Tartakower (TMB) – Main Line",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 h6 7.Bh4 b6 8.cxd5 Nxd5",
+        "pgnFile": "pgn/closed/D59.pgn"
+      },
+      {
+        "eco": "D60",
+        "name": "Orthodoxe Verteidigung – Grundaufbau",
+        "name_en": "Orthodox Defence – basic setup",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3",
+        "pgnFile": "pgn/closed/D60.pgn"
+      },
+      {
+        "eco": "D61",
+        "name": "Rubinstein-Variante (7.Dc2)",
+        "name_en": "Rubinstein Variation (7.Qc2)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Qc2",
+        "pgnFile": "pgn/closed/D61.pgn"
+      },
+      {
+        "eco": "D62",
+        "name": "Rubinstein – …c5 8.cxd5",
+        "name_en": "Rubinstein – …c5 8.cxd5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Qc2 c5 8.cxd5",
+        "pgnFile": "pgn/closed/D62.pgn"
+      },
+      {
+        "eco": "D63",
+        "name": "Klassisch, 7.Tc1",
+        "name_en": "Classical, 7.Rc1",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1",
+        "pgnFile": "pgn/closed/D63.pgn"
+      },
+      {
+        "eco": "D64",
+        "name": "Klassisch, 7.Tc1 c6 8.Dc2",
+        "name_en": "Classical, 7.Rc1 c6 8.Qc2",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Qc2",
+        "pgnFile": "pgn/closed/D64.pgn"
+      },
+      {
+        "eco": "D65",
+        "name": "Klassisch, …a6 9.cxd5",
+        "name_en": "Classical, …a6 9.cxd5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Qc2 a6 9.cxd5",
+        "pgnFile": "pgn/closed/D65.pgn"
+      },
+      {
+        "eco": "D66",
+        "name": "Klassische Hauptvariante (8.Ld3)",
+        "name_en": "Classical Main Line (8.Bd3)",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Bd3",
+        "pgnFile": "pgn/closed/D66.pgn"
+      },
+      {
+        "eco": "D67",
+        "name": "Klassisch, …dxc4 9…Sd5",
+        "name_en": "Classical, …dxc4 9…Nd5",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Bd3 dxc4 9.Bxc4 Nd5",
+        "pgnFile": "pgn/closed/D67.pgn"
+      },
+      {
+        "eco": "D68",
+        "name": "Capablancas Befreiungsmanöver",
+        "name_en": "Capablanca’s Freeing Manoeuvre",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Bd3 dxc4 9.Bxc4 Nd5 10.Bxe7 Qxe7 11.O-O Nxc3 12.Rxc3 e5",
+        "pgnFile": "pgn/closed/D68.pgn"
+      },
+      {
+        "eco": "D69",
+        "name": "Capablanca-Manöver – Hauptvariante",
+        "name_en": "Capablanca Manoeuvre – Main Line",
+        "line": "1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Bd3 dxc4 9.Bxc4 Nd5 10.Bxe7 Qxe7 11.O-O Nxc3 12.Rxc3 e5 13.dxe5",
+        "pgnFile": "pgn/closed/D69.pgn"
+      }
+    ]
+  }
+]
