@@ -3,9 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Damengambit – Eröffnung</title>
-  <meta name="description" content="Damengambit (D20–D69): Varianten mit Mini-Boards, Zügen und BIN-Downloads – flaches Grid mit Header." />
-  <link rel="icon" href="/assets/logo.png">
+
+  <!-- Title & Description -->
+  <title>Damengambit (D20–D69) – Varianten & Polyglot .bin · Starting Pawn</title>
+  <meta name="description" content="Damengambit (ECO D20–D69): Varianten mit Mini-Boards, Zügen und Polyglot-Eröffnungsbüchern (.bin). PGN-basiert, optimiert fürs e-Board. Kostenlos.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://www.startingpawn.com/de/queensgambit.html">
+  <link rel="alternate" href="https://www.startingpawn.com/de/queensgambit.html" hreflang="de">
+  <link rel="alternate" href="https://www.startingpawn.com/en/queensgambit.html" hreflang="en">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.startingpawn.com/de/queensgambit.html">
+  <meta property="og:title" content="Damengambit (D20–D69) – Varianten & Polyglot .bin">
+  <meta property="og:description" content="Varianten mit Mini-Boards & Zügen, PGN-basiert. Polyglot-Eröffnungsbücher (.bin) für e-Boards.">
+  <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
+  <meta property="og:image:alt" content="Starting Pawn – chess opening books (Polyglot .bin)">
+  <meta property="og:site_name" content="Starting Pawn">
+  <meta property="og:locale" content="de_DE">
 
   <!-- Netzwerk-Optimierung für externe Module -->
   <link rel="preconnect" href="https://unpkg.com">
@@ -16,6 +35,40 @@
   <!-- chessboard-element (Web Component) -->
   <script type="module">
     import 'https://unpkg.com/chessboard-element?module';
+  </script>
+
+  <!-- Strukturierte Daten: Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.startingpawn.com/de/"},
+      {"@type":"ListItem","position":2,"name":"Auswahl","item":"https://www.startingpawn.com/de/choose.html"},
+      {"@type":"ListItem","position":3,"name":"Einzel-Eröffnungen","item":"https://www.startingpawn.com/de/single.html"},
+      {"@type":"ListItem","position":4,"name":"Damengambit (D20–D69)","item":"https://www.startingpawn.com/de/queensgambit.html"}
+    ]
+  }
+  </script>
+
+  <!-- Strukturierte Daten: CollectionPage (Damengambit D20–D69) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "inLanguage":"de",
+    "name":"Damengambit (D20–D69)",
+    "description":"Varianten des Damengambits (ECO D20–D69) mit Mini-Boards und Zügen; Polyglot-Bücher (.bin) – PGN-basiert.",
+    "isPartOf":{"@type":"WebSite","name":"Starting Pawn","url":"https://www.startingpawn.com/"},
+    "about":["Damengambit","ECO D20–D69"],
+    "hasPart":[
+      {"@type":"CreativeWork","name":"D20–D29 – Angenommenes Damengambit"},
+      {"@type":"CreativeWork","name":"D30–D39 – Abgelehntes Damengambit"},
+      {"@type":"CreativeWork","name":"D40–D49 – Halbslawisch"},
+      {"@type":"CreativeWork","name":"D50–D59 – Abgelehnt/Orthodox"},
+      {"@type":"CreativeWork","name":"D60–D69 – Orthodoxe Verteidigung"}
+    ]
+  }
   </script>
 
   <style>
