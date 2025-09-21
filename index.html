@@ -109,7 +109,7 @@
       background:#0f1016;
       border:var(--border) solid rgba(255,255,255,.08);
       border-radius:12px; 
-      padding:1.8rem 1.2rem;
+      padding:1.5rem 1.2rem;
       text-decoration:none; 
       outline:0;
       transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
@@ -122,16 +122,16 @@
     }
     
     .flag{ 
-      font-size:2rem;
+      font-size:1.8rem;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,.2));
     }
     
     .title{ 
       display:flex; 
       align-items:center; 
-      gap:.8rem; 
+      gap:.7rem; 
       font-weight:700;
-      font-size:1.15rem;
+      font-size:1.05rem;
     }
 
     @media (min-width:980px){ 
@@ -172,6 +172,14 @@
     @media (max-width:479px){
       .panel{ padding:2rem 1.5rem 1.8rem; }
       header{ margin-bottom:2rem; }
+      h1{ 
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      h1 .separator {
+        display: none;
+      }
     }
 
     footer{
@@ -207,7 +215,7 @@
              fetchpriority="high" decoding="async">
         <div>
           <h1 id="lang-heading">
-            <span lang="de">Sprache wählen</span> · <span lang="en">Choose language</span>
+            <span lang="de">Sprache wählen</span><span class="separator"> · </span><span lang="en">Choose language</span>
           </h1>
         </div>
       </header>
