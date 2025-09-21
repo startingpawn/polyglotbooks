@@ -3,20 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Queen's Gambit – Opening</title>
-  <meta name="description" content="Queen's Gambit (D20–D69): variations with mini-boards, moves, and BIN downloads – flat grid with header." />
-  <link rel="icon" href="/assets/logo.png">
 
-  <!-- Netzwerk-Optimierung für externe Module -->
+  <title>Queen’s Gambit – Opening</title>
+  <meta name="description" content="Queen’s Gambit (D20–D69): variations with mini-boards, moves, and BIN downloads – flat grid with header." />
+  <link rel="icon" href="/assets/logo.png" />
+
+  <!-- Network hints for external modules (kept from your page) -->
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
-  <!-- chessboard-element (Web Component) -->
-  <script type="module">
-    import 'https://unpkg.com/chessboard-element?module';
+  <!-- Canonical + Hreflang -->
+  <link rel="canonical" href="https://startingpawn.com/en/queensgambit.html" />
+  <!-- Optional: only keep if the DE page exists -->
+  <link rel="alternate" href="https://startingpawn.com/de/queensgambit.html" hreflang="de" />
+  <link rel="alternate" href="https://startingpawn.com/en/queensgambit.html" hreflang="en" />
+  <link rel="alternate" href="https://startingpawn.com/en/queensgambit.html" hreflang="x-default" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="Starting Pawn" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:title" content="Queen’s Gambit – Opening" />
+  <meta property="og:description" content="Queen’s Gambit (D20–D69): variations with mini-boards, moves, and BIN downloads." />
+  <meta property="og:url" content="https://startingpawn.com/en/queensgambit.html" />
+  <meta property="og:image" content="https://startingpawn.com/assets/hero-board.png" />
+  <meta property="og:image:alt" content="Starting Pawn mini chess boards for Queen’s Gambit variations" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Queen’s Gambit – Opening" />
+  <meta name="twitter:description" content="Queen’s Gambit (D20–D69): variations with mini-boards, moves, and BIN downloads." />
+  <meta name="twitter:image" content="https://startingpawn.com/assets/hero-board.png" />
+
+  <!-- PWA/Chrome UI color -->
+  <meta name="theme-color" content="#0b0c10" />
+
+  <!-- Structured Data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Starting Pawn",
+    "url": "https://startingpawn.com/",
+    "inLanguage": "en"
+  }
   </script>
+
+  <!-- Structured Data: WebPage (CollectionPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["WebPage","CollectionPage"],
+    "name": "Queen’s Gambit – Opening",
+    "description": "Queen’s Gambit (D20–D69): variations with mini-boards, moves, and BIN downloads.",
+    "url": "https://startingpawn.com/en/queensgambit.html",
+    "isPartOf": { "@type": "WebSite", "name": "Starting Pawn", "url": "https://startingpawn.com/" },
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- Structured Data: Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      { "@type":"ListItem", "position":1, "name":"Home", "item":"https://startingpawn.com/en/" },
+      { "@type":"ListItem", "position":2, "name":"Selection", "item":"https://startingpawn.com/en/choose.html" },
+      { "@type":"ListItem", "position":3, "name":"Single Openings", "item":"https://startingpawn.com/en/single.html" },
+      { "@type":"ListItem", "position":4, "name":"Queen’s Gambit", "item":"https://startingpawn.com/en/queensgambit.html" }
+    ]
+  }
+  </script>
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
 
   <style>
     :root{
