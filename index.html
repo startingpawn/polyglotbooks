@@ -206,47 +206,6 @@
       padding-top: 1.5rem;
       border-top: 1px solid rgba(255,255,255,.08);
     }
-
-    /* ===== Mobile/Tablet Optimierungen: volle Höhe ohne Scroll ===== */
-    @media (max-width: 1024px){
-      /* Body auf Mobil/Tablet nicht mittig strecken, damit wir unten Platz für Footer haben */
-      body{ justify-content:flex-start; align-items:stretch; padding:0; }
-
-      /* Wrap füllt den sichtbaren Bereich (sichere Viewport-Höhe) */
-      .wrap{
-        min-height:100vh;         /* Fallback */
-        min-height:100dvh;        /* dynamische Höhe */
-        min-height:100svh;        /* sichere Höhe – vermeidet Scroll durch Browserleisten */
-        padding:clamp(0.6rem, 2.5vw, 1.2rem);
-        gap:clamp(1rem, 3vh, 1.6rem);
-        justify-content:center;   /* Panel bleibt schön mittig */
-      }
-
-      /* Panel kompakter machen */
-      .panel{
-        max-width:560px;
-        padding:clamp(0.9rem, 2.8vh, 1.2rem);
-      }
-
-      header{
-        margin-bottom:clamp(0.6rem, 2vh, 1rem);
-        gap:clamp(0.45rem, 1.4vh, 0.8rem);
-      }
-      header img{ width:clamp(36px, 6vh, 48px); height:clamp(36px, 6vh, 48px); }
-      h1{ font-size:clamp(1.15rem, 2.8vh, 1.6rem); }
-
-      .grid{ gap:clamp(0.6rem, 2vh, 1rem); }
-      .card{ padding:clamp(0.85rem, 2.2vh, 1.1rem); }
-      .title{ font-size:clamp(0.98rem, 2.1vh, 1.05rem); }
-      .flag{ font-size:clamp(1.4rem, 3.4vh, 1.8rem); }
-
-      /* Footer etwas größer und immer am unteren Rand der Wrap-Spalte */
-      .wrap > footer{
-        margin-top:auto;
-        margin-bottom:clamp(0.9rem, 2.6vh, 1.4rem); /* mehr Abstand wie gewünscht */
-        padding:0 .5rem;
-      }
-    }
   </style>
 </head>
 <body>
