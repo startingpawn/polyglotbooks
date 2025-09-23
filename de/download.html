@@ -13,7 +13,7 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      /* Einrückung wie auf der Index.html */
+      /* NEU: Einrückung wie auf der Index.html */
       --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
@@ -198,7 +198,7 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
 
-    /* Typografie & Einrückung wie Index.html */
+    /* NEU: Typografie & Einrückung wie Index.html */
     .panel > h2,
     .panel > .lead,
     .panel > p{
@@ -227,17 +227,9 @@
     }
     .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
-    /* Countdown – Ring + Text
-       -> Block horizontal MITTIG im Card-Body
-       -> Text bleibt LINKS bündig */
+    /* Countdown – Kreis + Zahl */
     .timer{
-      display:grid;
-      grid-template-columns: auto max-content;
-      gap:1.25rem;
-      align-items:center;
-      justify-items:start;     /* Inhalte in ihren Zellen linksbündig */
-      width:max-content;       /* nur so breit wie nötig */
-      margin-inline:auto;      /* gesamten Block horizontal zentrieren */
+      display:grid; grid-template-columns: auto 1fr; gap:1rem; align-items:center;
     }
     .ring{
       width:120px; height:120px; position:relative; display:grid; place-items:center;
@@ -247,12 +239,6 @@
     .ring .num{
       position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
       text-shadow:0 1px 0 rgba(0,0,0,.35);
-    }
-    /* Textspalte: linksbündig, angenehme Zeilenlänge */
-    .timer > :not(.ring){
-      text-align:left;
-      max-width:56ch;
-      margin:0;
     }
     .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
 
@@ -315,25 +301,24 @@
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
 
-    /* Status-Text: LINKS (nicht mehr forciert zentriert) */
-    #status{
-      text-align:left;
-      margin:0;
-    }
-
     /* Mobile Portrait Optimierung */
     @media (max-width: 600px) and (orientation: portrait) {
       .timer {
-        grid-template-columns: 1fr !important; /* untereinander */
-        justify-items:start !important;       /* linksbündig */
-        width:100%;
-        margin-inline:0;                      /* kein Auto-Center im Vollbreite-Layout */
+        grid-template-columns: 1fr !important;
+        text-align: center;
         gap: 1.5rem;
+        /* NEU: Elemente im Grid mittig ausrichten */
+        justify-items: center;
       }
-      .ring { margin: 0; }
-      .timer h3 { text-align: left; white-space: nowrap; font-size: 0.95rem !important; }
+      .ring { margin: 0 auto; }
+      .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
       .timer p { font-size: 0.9rem; }
-      #status { text-align:left !important; margin:0; }
+
+      /* NEU: Spenden-/Infotext mittig zentrieren */
+      #status { 
+        text-align: center !important; 
+        margin: 0 auto; 
+      }
 
       .card-actions { flex-direction: column; gap: 0.8rem; }
       .support-note { margin-right: 0; text-align: center; font-size: 0.85rem; }
