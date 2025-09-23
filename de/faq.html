@@ -4,12 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <!-- Title & Description -->
-  <title>FAQ – Polyglot Schach-Eröffnungsbücher (.bin) · Starting Pawn</title>
-  <meta name="description" content="Häufige Fragen zu Starting Pawn: Polyglot-Eröffnungsbücher (.bin) aus PGN-Daten, Nutzung auf e-Boards, unterstützte Apps/Geräte, Kosten & Kontakt.">
+  <!-- Title & Description (optimiert) -->
+  <title>FAQ – Häufige Fragen zu Polyglot Schach-Eröffnungsbüchern | Starting Pawn</title>
+  <meta name="description" content="Häufige Fragen zu Starting Pawn: Was sind Polyglot-Eröffnungsbücher (.bin)? Wie nutze ich sie auf DGT, Millennium, Chessnut & Co? Welche Apps werden unterstützt? Alle Antworten hier.">
 
-  <!-- Favicon -->
+  <!-- Favicon & Theme -->
   <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
+  <meta name="theme-color" content="#e50914" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0b0c10" media="(prefers-color-scheme: light)">
 
   <!-- Canonical & hreflang -->
   <link rel="canonical" href="https://www.startingpawn.com/de/faq.html">
@@ -20,80 +22,93 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.startingpawn.com/de/faq.html">
-  <meta property="og:title" content="FAQ – Starting Pawn">
-  <meta property="og:description" content="Antworten zu Polyglot-Books (.bin), e-Boards, unterstützten Apps/Geräten und Kontakt.">
+  <meta property="og:title" content="FAQ – Starting Pawn Polyglot-Eröffnungsbücher">
+  <meta property="og:description" content="Antworten zu Polyglot-Books (.bin), E-Boards, unterstützten Apps/Geräten und mehr.">
   <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
-  <meta property="og:image:alt" content="Starting Pawn – kostenlose chess opening books (Polyglot .bin)">
+  <meta property="og:image:alt" content="Starting Pawn – kostenlose Schach-Eröffnungsbücher">
   <meta property="og:site_name" content="Starting Pawn">
   <meta property="og:locale" content="de_DE">
 
   <!-- Strukturierte Daten: Breadcrumb + FAQPage -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.startingpawn.com/de/"},
-      {"@type":"ListItem","position":2,"name":"FAQ","item":"https://www.startingpawn.com/de/faq.html"}
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.startingpawn.com/de/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "FAQ",
+        "item": "https://www.startingpawn.com/de/faq.html"
+      }
     ]
   }
   </script>
+
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
       {
-        "@type":"Question",
-        "name":"Was sind Polyglot-„.bin“-Eröffnungsbücher?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Polyglot-Eröffnungsbücher sind kompakte Bibliotheken von Eröffnungszügen im binären .bin-Format. Viele GUIs, Engines und Apps unterstützen dieses Format. Ein Buch enthält tausende bewährte Züge und Varianten; in der Eröffnungsphase werden diese Züge automatisch aus dem Buch gespielt oder vorgeschlagen."
+        "@type": "Question",
+        "name": "Was sind Polyglot-„.bin"-Eröffnungsbücher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Polyglot-Eröffnungsbücher sind kompakte digitale Bibliotheken von Eröffnungszügen im .bin-Format. Viele Schach-Programme (GUIs, Engines und Apps) unterstützen dieses Format. Ein Buch enthält tausende bewährte Züge und Varianten; in der Eröffnungsphase werden diese Züge automatisch aus dem Buch gespielt oder vorgeschlagen, bis die Theorie endet."
         }
       },
       {
-        "@type":"Question",
-        "name":"Wie nutze ich die (.bin)-Dateien auf meinem e-Board?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Lade das gewünschte Book herunter und entpacke es, importiere die .bin-Datei in die Software/App deines Bretts und aktiviere die Buchfunktion. Beim Start einer Partie werden Züge aus dem Buch verwendet, bis die Theorie endet."
+        "@type": "Question",
+        "name": "Wie nutze ich die (.bin)-Dateien auf meinem e-Board?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lade das gewünschte Eröffnungsbuch herunter und entpacke es. Importiere die .bin-Datei in die Software/App deines Bretts und aktiviere die Buchfunktion. Beim Start einer Partie werden Züge aus dem Buch verwendet, bis die Theorie endet."
         }
       },
       {
-        "@type":"Question",
-        "name":"Welche Geräte/Apps werden unterstützt?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Kompatibilität (.bin / Polyglot): Unsere Eröffnungsbücher im Polyglot-Format (.bin) funktionieren über kompatible Schach-Software. E-Boards (Beispiele): DGT e-Boards, Millennium (ChessLink/eONE), Chessnut (Air/Pro/Evo/Go/Move), Certabo, Square Off Pro, TabuTronic, iChessOne, DGT Pegasus. Software (Beispiele): BearChess (Windows/macOS/Linux), Lucas Chess (Windows/Linux), Arena + PolyGlot-Adapter, PicoChess (DGT), Acid Ape Chess (Android + DGT). Hinweis: Die .bin-Bücher werden von der Software geladen, nicht vom Brett. Rechtlicher Hinweis: Alle Marken gehören ihren jeweiligen Inhabern; keine Partnerschaft oder Empfehlung impliziert. Stand: 23.09.2025."
+        "@type": "Question",
+        "name": "Welche Geräte/Apps werden unterstützt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "E-Boards: DGT e-Boards, Millennium (ChessLink/eONE), Chessnut (Air/Pro/Evo/Go/Move), Certabo, Square Off Pro, TabuTronic, iChessOne, DGT Pegasus. Software: BearChess (Windows/macOS/Linux), Lucas Chess (Windows/Linux), Arena + PolyGlot-Adapter, PicoChess (DGT), Acid Ape Chess (Android + DGT). Die .bin-Bücher werden von der Software geladen, nicht vom Brett."
         }
       },
       {
-        "@type":"Question",
-        "name":"Ist das Angebot wirklich kostenlos?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Ja. Alle Eröffnungsbücher auf Starting Pawn sind frei zugänglich und kostenlos nutzbar."
+        "@type": "Question",
+        "name": "Ist das Angebot wirklich kostenlos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, absolut. Alle Eröffnungsbücher auf Starting Pawn sind kostenlos und frei zugänglich."
         }
       },
       {
-        "@type":"Question",
-        "name":"Wie bleibe ich über neue Packs informiert?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Neue Pakete erscheinen im Bereich „Eröffnungen“ und in den Kategorie-Listen. Regelmäßig vorbeischauen – so verpasst du keine Updates."
+        "@type": "Question",
+        "name": "Wie bleibe ich über neue Packs informiert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Neue Pakete erscheinen im Bereich 'Eröffnungen' und in den Kategorie-Listen. Schau regelmäßig vorbei, um keine Updates zu verpassen."
         }
       },
       {
-        "@type":"Question",
-        "name":"Wo kann ich Feedback geben oder Fehler melden?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Am besten per E-Mail an info@startingpawn.com. Hinweise und Vorschläge helfen, Starting Pawn zu verbessern."
+        "@type": "Question",
+        "name": "Wo kann ich Feedback geben oder Fehler melden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Am besten per E-Mail an info@startingpawn.com. Hinweise und Vorschläge helfen, Starting Pawn zu verbessern."
         }
       }
     ]
   }
   </script>
+
+  <style>
 
   <style>
     :root{
