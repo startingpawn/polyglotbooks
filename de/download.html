@@ -219,7 +219,11 @@
       overflow:hidden; transition:transform .15s ease, box-shadow .15s ease;
     }
     .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
-    .card-body{ padding:1.1rem 1.2rem 1.2rem; color:#dfe1e7; line-height:1.55 }
+    .card-body{ 
+      padding:1.1rem 1.2rem 1.2rem; 
+      color:#dfe1e7; 
+      line-height:1.55;
+    }
     .card-actions{
       padding:.9rem 1.2rem; border-top:1px solid #1e2230;
       background:linear-gradient(180deg, #0f1117, #0d0f14);
@@ -227,10 +231,27 @@
     }
     .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
-    /* Countdown – Kreis + Zahl */
+    /* Countdown – ZENTRIERT für größere Displays */
     .timer{
-      display:grid; grid-template-columns: auto 1fr; gap:1rem; align-items:center;
+      display:grid; 
+      grid-template-columns: auto 1fr; 
+      gap:1rem; 
+      align-items:center;
+      justify-content:center;
+      max-width:600px;
+      margin:0 auto;
     }
+    
+    /* Für größere Displays: Timer-Inhalt zentriert */
+    @media (min-width: 800px) {
+      .timer {
+        gap: 2rem;
+      }
+      .card-body {
+        padding: 1.5rem 2rem;
+      }
+    }
+    
     .ring{
       width:120px; height:120px; position:relative; display:grid; place-items:center;
       filter:drop-shadow(0 8px 18px rgba(229,9,20,.18));
@@ -240,7 +261,14 @@
       position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
       text-shadow:0 1px 0 rgba(0,0,0,.35);
     }
-    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
+    .timer p{ 
+      margin:.2rem 0 0; 
+      color:#c7cbd6; 
+      text-wrap:balance; 
+      hyphens:auto; 
+      -webkit-hyphens:auto; 
+      overflow-wrap:anywhere;
+    }
 
     /* Buttons */
     .btn{
@@ -307,14 +335,13 @@
         grid-template-columns: 1fr !important;
         text-align: center;
         gap: 1.5rem;
-        /* NEU: Elemente im Grid mittig ausrichten */
         justify-items: center;
+        max-width: 100%;
       }
       .ring { margin: 0 auto; }
       .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
-      .timer p { font-size: 0.9rem; }
+      .timer p { font-size: 0.9rem; text-align: center; }
 
-      /* NEU: Spenden-/Infotext mittig zentrieren */
       #status { 
         text-align: center !important; 
         margin: 0 auto; 
