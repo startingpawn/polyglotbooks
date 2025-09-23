@@ -307,10 +307,19 @@
         grid-template-columns: 1fr !important;
         text-align: center;
         gap: 1.5rem;
+        /* NEU: Elemente im Grid mittig ausrichten */
+        justify-items: center;
       }
       .ring { margin: 0 auto; }
       .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
-      .timer p { text-align: left; font-size: 0.9rem; }
+      .timer p { font-size: 0.9rem; }
+
+      /* NEU: Spenden-/Infotext mittig zentrieren */
+      #status { 
+        text-align: center !important; 
+        margin: 0 auto; 
+      }
+
       .card-actions { flex-direction: column; gap: 0.8rem; }
       .support-note { margin-right: 0; text-align: center; font-size: 0.85rem; }
       .btn-donate { width: 100%; justify-content: center; }
