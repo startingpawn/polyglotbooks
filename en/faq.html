@@ -3,102 +3,120 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>FAQ – Starting Pawn</title>
-  <meta name="description" content="Frequently asked questions about Starting Pawn: Polyglot opening books, using the .bin files, supported boards, licensing and contact." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0b0c10" />
-  <link rel="icon" href="/assets/logo.png" />
-  <link rel="apple-touch-icon" href="/assets/logo.png" />
+
+  <!-- Title & Description (optimiert) -->
+  <title>FAQ – Frequently Asked Questions about Polyglot Chess Opening Books | Starting Pawn</title>
+  <meta name="description" content="Frequently asked questions about Starting Pawn: What are Polyglot opening books (.bin)? How to use them on DGT, Millennium, Chessnut & Co? Which apps are supported? All answers here.">
+
+  <!-- Favicon & Theme -->
+  <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
+  <link rel="apple-touch-icon" href="https://www.startingpawn.com/assets/logo.png">
+  <meta name="theme-color" content="#e50914" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0b0c10" media="(prefers-color-scheme: light)">
 
   <!-- Canonical & hreflang -->
-  <link rel="canonical" href="https://www.startingpawn.com/en/faq.html" />
-  <link rel="alternate" hreflang="en" href="https://www.startingpawn.com/en/faq.html" />
-  <link rel="alternate" hreflang="de" href="https://www.startingpawn.com/de/faq.html" />
-  <link rel="alternate" hreflang="x-default" href="https://www.startingpawn.com/en/faq.html" />
+  <link rel="canonical" href="https://www.startingpawn.com/en/faq.html">
+  <link rel="alternate" href="https://www.startingpawn.com/en/faq.html" hreflang="en">
+  <link rel="alternate" href="https://www.startingpawn.com/de/faq.html" hreflang="de">
+  <link rel="alternate" href="https://www.startingpawn.com/en/faq.html" hreflang="x-default">
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.startingpawn.com/en/faq.html" />
-  <meta property="og:title" content="FAQ – Starting Pawn" />
-  <meta property="og:site_name" content="Starting Pawn" />
-  <meta property="og:description" content="Answers to common questions about our free Polyglot opening books: how to use .bin files, supported boards, and more." />
-  <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png" />
-  <meta property="og:image:alt" content="Starting Pawn – free Polyglot opening books" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="de_DE" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="FAQ – Starting Pawn" />
-  <meta name="twitter:description" content="Answers to common questions about our free Polyglot opening books." />
-  <meta name="twitter:image" content="https://www.startingpawn.com/assets/og-cover.png" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.startingpawn.com/en/faq.html">
+  <meta property="og:title" content="FAQ – Starting Pawn Polyglot Opening Books">
+  <meta property="og:description" content="Answers to Polyglot books (.bin), e-boards, supported apps/devices and more.">
+  <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
+  <meta property="og:image:alt" content="Starting Pawn – free chess opening books">
+  <meta property="og:site_name" content="Starting Pawn">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
 
-  <!-- Structured Data: Breadcrumbs -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQ – Starting Pawn">
+  <meta name="twitter:description" content="Answers to common questions about our free Polyglot opening books.">
+  <meta name="twitter:image" content="https://www.startingpawn.com/assets/og-cover.png">
+
+  <!-- Structured Data: Breadcrumb -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.startingpawn.com/en/"},
-      {"@type":"ListItem","position":2,"name":"FAQ","item":"https://www.startingpawn.com/en/faq.html"}
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.startingpawn.com/en/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "FAQ",
+        "item": "https://www.startingpawn.com/en/faq.html"
+      }
     ]
   }
   </script>
-  <!-- Structured Data: FAQ -->
+
+  <!-- Structured Data: FAQPage -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
       {
-        "@type":"Question",
-        "name":"What are Polyglot “.bin” opening books?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Polyglot opening books are compact digital libraries of opening moves in the .bin format. This binary format was originally developed for the PolyGlot program and is widely supported by chess GUIs, engines and apps. A .bin book stores thousands of opening moves and complete lines. When used, the early moves of a game are played from the book or suggested to you, saving engine time until the game is out of book."
+        "@type": "Question",
+        "name": "What are Polyglot \".bin\" opening books?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Polyglot opening books are compact digital libraries of opening moves in the .bin format. Many chess programs (GUIs, engines and apps) support this format. A book stores thousands of proven moves and complete lines; in the opening phase these moves are played automatically from the book or suggested to you, until the theory ends."
         }
       },
       {
-        "@type":"Question",
-        "name":"How do I use the (.bin) files on my e-board?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Download the desired pack and extract the .bin file from the ZIP. In your board's software/app import the .bin as an opening book (or place it in the expected folder). Enable the book in settings and start a new game. While positions remain in the book, moves will be played or suggested from the book; once out of book, normal engine play resumes."
+        "@type": "Question",
+        "name": "How do I use the (.bin) files on my e-board?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Download the desired opening book and extract it. Import the .bin file into your board's software/app and enable the book function. When you start a game, moves will be used from the book until the theory ends."
         }
       },
       {
-        "@type":"Question",
-        "name":"Which devices/apps are supported?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Compatibility (.bin / Polyglot): Our Polyglot (.bin) opening books work with popular e-boards via compatible chess software. E-boards (examples): DGT e-Boards, Millennium (ChessLink/eONE), Chessnut (Air/Pro/Evo/Go/Move), Certabo, Square Off Pro, TabuTronic, iChessOne, DGT Pegasus. Software (examples): BearChess (Windows/macOS/Linux), Lucas Chess (Windows/Linux), Arena + PolyGlot adapter, PicoChess (DGT), Acid Ape Chess (Android + DGT). Note: The .bin books are loaded by the software, not by the board. Legal notice: All trademarks are the property of their respective owners. Names are used for identification only; no affiliation or endorsement implied. Information provided “as is”. As of: 2025-09-23."
+        "@type": "Question",
+        "name": "Which devices/apps are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "E-boards: DGT e-Boards, Millennium (ChessLink/eONE), Chessnut (Air/Pro/Evo/Go/Move), Certabo, Square Off Pro, TabuTronic, iChessOne, DGT Pegasus. Software: BearChess (Windows/macOS/Linux), Lucas Chess (Windows/Linux), Arena + PolyGlot adapter, PicoChess (DGT), Acid Ape Chess (Android + DGT). The .bin books are loaded by the software, not by the board."
         }
       },
       {
-        "@type":"Question",
-        "name":"Is it really free?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Yes. All opening books on Starting Pawn are free to download and use. The goal is to provide high-quality opening data to all chess enthusiasts."
+        "@type": "Question",
+        "name": "Is it really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes—absolutely. All opening books on Starting Pawn are free and publicly accessible."
         }
       },
       {
-        "@type":"Question",
-        "name":"How do I stay informed about new packs?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"New releases appear in the Openings section and related category pages. The easiest way is to check the site regularly so you don’t miss updates."
+        "@type": "Question",
+        "name": "How do I stay informed about new packs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "New releases appear in the Openings section and related category pages. Check the site regularly to not miss updates."
         }
       },
       {
-        "@type":"Question",
-        "name":"Where can I send feedback or report issues?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"Email info@startingpawn.com or use the contact page at /en/contact.html to share feedback, bug reports or suggestions."
+        "@type": "Question",
+        "name": "Where can I send feedback or report issues?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Email info@startingpawn.com. Notes and suggestions help make Starting Pawn better."
         }
       }
     ]
   }
   </script>
+
 
   <style>
     :root{
