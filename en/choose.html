@@ -3,12 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Choose Openings & Packs – Starting Pawn</title>
-  <meta name="description" content="Pick a single opening with ECO variations or download complete Polyglot opening packs. Designed for electronic boards. 100% free." />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0b0c10" />
-  <link rel="icon" href="/assets/logo.png">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
+
+  <!-- Title & Description (optimiert) -->
+  <title>Choose Openings: Single or Complete Packs | Starting Pawn</title>
+  <meta name="description" content="Choose between single ECO openings with board player or complete Polyglot packs (.bin) for DGT, Millennium, Chessnut, Certabo & more. Free download.">
+
+  <!-- Favicon & Theme -->
+  <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
+  <link rel="apple-touch-icon" href="https://www.startingpawn.com/assets/logo.png">
+  <meta name="theme-color" content="#e50914" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0b0c10" media="(prefers-color-scheme: light)">
 
   <!-- Canonical & hreflang -->
   <link rel="canonical" href="https://www.startingpawn.com/en/choose.html">
@@ -16,42 +20,65 @@
   <link rel="alternate" href="https://www.startingpawn.com/de/choose.html" hreflang="de">
   <link rel="alternate" href="https://www.startingpawn.com/en/choose.html" hreflang="x-default">
 
-  <!-- Social (Open Graph + Twitter) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.startingpawn.com/en/choose.html">
-  <meta property="og:title" content="Choose Openings & Packs – Starting Pawn">
-  <meta property="og:description" content="Pick a single opening with ECO variations or download complete opening packs. Free Polyglot books for electronic boards.">
+  <meta property="og:title" content="Chess Openings: Single or Complete Packs">
+  <meta property="og:description" content="Single openings (ECO) with board player or complete packs – free Polyglot books (.bin) for electronic chess boards.">
   <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
-  <meta property="og:image:alt" content="Starting Pawn – chess opening books (Polyglot .bin)">
+  <meta property="og:image:alt" content="Starting Pawn – Chess Opening Downloads">
   <meta property="og:site_name" content="Starting Pawn">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_DE">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Choose Openings & Packs – Starting Pawn">
   <meta name="twitter:description" content="Free Polyglot opening books for electronic boards. Single openings by ECO and complete packs.">
   <meta name="twitter:image" content="https://www.startingpawn.com/assets/og-cover.png">
 
-  <!-- Structured Data -->
+  <!-- Structured Data: Breadcrumb -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.startingpawn.com/en/"},
-      {"@type":"ListItem","position":2,"name":"Selection","item":"https://www.startingpawn.com/en/choose.html"}
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.startingpawn.com/en/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Choose Openings",
+        "item": "https://www.startingpawn.com/en/choose.html"
+      }
     ]
   }
   </script>
+
+  <!-- Structured Data: ItemList -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"CollectionPage",
-    "name":"Selection – Openings & Packs",
-    "inLanguage":"en",
-    "url":"https://www.startingpawn.com/en/choose.html",
-    "hasPart":[
-      {"@type":"WebPage","name":"Single Openings","url":"https://www.startingpawn.com/en/single.html"},
-      {"@type":"WebPage","name":"Complete Packs","url":"https://www.startingpawn.com/en/packs.html"}
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Chess Opening Selection Options",
+    "description": "Choose between single ECO openings or complete packs",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Single Openings (ECO)",
+        "url": "https://www.startingpawn.com/en/single.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Complete Packs",
+        "url": "https://www.startingpawn.com/en/packs.html"
+      }
     ]
   }
   </script>
