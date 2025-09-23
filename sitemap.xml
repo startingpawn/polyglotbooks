@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Root: Sprachwahl / Language chooser -->
+  <url>
+    <loc>https://startingpawn.com/</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://startingpawn.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/"/>
+  </url>
+
+  <!-- Home EN/DE -->
+  <url>
+    <loc>https://startingpawn.com/en/</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://startingpawn.com/"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://startingpawn.com/"/>
+  </url>
+
+  <!-- Auswahl / Choose -->
+  <url>
+    <loc>https://startingpawn.com/en/choose.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/choose.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/choose.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/choose.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/choose.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/choose.html"/>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://startingpawn.com/en/faq.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/faq.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/faq.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/faq.html"/>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://startingpawn.com/en/contact.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/contact.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/contact.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/contact.html"/>
+  </url>
+
+  <!-- Überblick Einzel-Eröffnungen / Overview -->
+  <url>
+    <loc>https://startingpawn.com/en/single.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/single.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/single.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/single.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/single.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/single.html"/>
+  </url>
+
+  <!-- Italian -->
+  <url>
+    <loc>https://startingpawn.com/en/italian.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/italian.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/italian.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/italian.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/italian.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/italian.html"/>
+  </url>
+
+  <!-- Sicilian -->
+  <url>
+    <loc>https://startingpawn.com/en/sicilian.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/sicilian.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/sicilian.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/sicilian.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/sicilian.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/sicilian.html"/>
+  </url>
+
+  <!-- Queen's Gambit -->
+  <url>
+    <loc>https://startingpawn.com/en/queensgambit.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/queensgambit.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/queensgambit.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/queensgambit.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/queensgambit.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/queensgambit.html"/>
+  </url>
+
+  <!-- Packs (EN + DE) -->
+  <url>
+    <loc>https://startingpawn.com/en/packs.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/packs.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/packs.html"/>
+  </url>
+  <url>
+    <loc>https://startingpawn.com/de/packs.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://startingpawn.com/en/packs.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://startingpawn.com/de/packs.html"/>
+  </url>
+
+</urlset>
