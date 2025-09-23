@@ -227,18 +227,31 @@
     }
     .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
-    /* Countdown – Kreis + Zahl */
+    /* Countdown – Kreis + Zahl
+       ZENTRIERUNG (NEU): gesamte Timer-Gruppe mittig, symmetrische Ränder */
     .timer{
-      display:grid; grid-template-columns: auto 1fr; gap:1rem; align-items:center;
+      display:grid;
+      grid-template-columns: auto max-content; /* statt auto 1fr */
+      gap:1.25rem;
+      align-items:center;
+      justify-content:center;   /* zentriert den 2-Spalten-Block horizontal */
+      justify-items:center;     /* zentriert Inhalte innerhalb der Zellen */
     }
     .ring{
       width:120px; height:120px; position:relative; display:grid; place-items:center;
       filter:drop-shadow(0 8px 18px rgba(229,9,20,.18));
+      margin:0 auto;            /* Sicherheit: Ring selbst mittig */
     }
     .ring svg{ transform:rotate(-90deg); display:block }
     .ring .num{
       position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
       text-shadow:0 1px 0 rgba(0,0,0,.35);
+    }
+    /* Textspalte des Timers begrenzen & mittig ausrichten */
+    .timer > :not(.ring){
+      text-align:center;
+      max-width:56ch;
+      margin:0 auto;
     }
     .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere }
 
@@ -300,6 +313,12 @@
       text-decoration:none; font-weight:600;
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+
+    /* Allgemein: Status-Text auch auf Desktop mittig */
+    #status{
+      text-align:center !important;
+      margin:0 auto;
+    }
 
     /* Mobile Portrait Optimierung */
     @media (max-width: 600px) and (orientation: portrait) {
