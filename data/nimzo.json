@@ -1,0 +1,294 @@
+[
+  {
+    "id": "nimzo",
+    "title": "Nimzo-Indisch (E20–E59)",
+    "desc": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 – umfasst Leningrader (4.Bg5), Klassisch/Capablanca (4.Qc2), Sämisch (4.a3) und Rubinstein (4.e3).",
+    "bundle": {
+      "file": "books/indian/e20-e59-nimzo.zip",
+      "size": "—",
+      "label": "Alle E20–E59 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "E20",
+        "name": "Nimzo-Indisch – allgemein (ohne 3…Lb4)",
+        "name_en": "Nimzo-Indian – general (without 3…Bb4)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3",
+        "pgnFile": "pgn/indian/E20.pgn"
+      },
+      {
+        "eco": "E21",
+        "name": "Drei-Springer-Variante (4.Sf3)",
+        "name_en": "Three Knights Variation (4.Nf3)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Nf3",
+        "pgnFile": "pgn/indian/E21.pgn"
+      },
+      {
+        "eco": "E22",
+        "name": "Spielmann-Variante (4.Db3)",
+        "name_en": "Spielmann Variation (4.Qb3)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qb3",
+        "pgnFile": "pgn/indian/E22.pgn"
+      },
+      {
+        "eco": "E23",
+        "name": "Spielmann – …c5",
+        "name_en": "Spielmann – …c5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qb3 c5",
+        "pgnFile": "pgn/indian/E23.pgn"
+      },
+      {
+        "eco": "E24",
+        "name": "Sämisch-Variante (4.a3)",
+        "name_en": "Saemisch Variation (4.a3)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3",
+        "pgnFile": "pgn/indian/E24.pgn"
+      },
+      {
+        "eco": "E25",
+        "name": "Sämisch – …Bxc3+ …c5",
+        "name_en": "Saemisch – …Bxc3+ …c5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 c5",
+        "pgnFile": "pgn/indian/E25.pgn"
+      },
+      {
+        "eco": "E26",
+        "name": "Sämisch – …c5 6.e3",
+        "name_en": "Saemisch – …c5 6.e3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 c5 6.e3",
+        "pgnFile": "pgn/indian/E26.pgn"
+      },
+      {
+        "eco": "E27",
+        "name": "Sämisch – …O-O",
+        "name_en": "Saemisch – …O-O",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 O-O",
+        "pgnFile": "pgn/indian/E27.pgn"
+      },
+      {
+        "eco": "E28",
+        "name": "Sämisch – …O-O 6.e3",
+        "name_en": "Saemisch – …O-O 6.e3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 O-O 6.e3",
+        "pgnFile": "pgn/indian/E28.pgn"
+      },
+      {
+        "eco": "E29",
+        "name": "Sämisch – …O-O 6.e3 …c5",
+        "name_en": "Saemisch – …O-O 6.e3 …c5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 O-O 6.e3 c5",
+        "pgnFile": "pgn/indian/E29.pgn"
+      },
+      {
+        "eco": "E30",
+        "name": "Leningrader Variante (4.Lg5)",
+        "name_en": "Leningrad Variation (4.Bg5)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Bg5",
+        "pgnFile": "pgn/indian/E30.pgn"
+      },
+      {
+        "eco": "E31",
+        "name": "Leningrader Hauptvariante",
+        "name_en": "Leningrad Main Line",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Bg5 h6 5.Bh4 c5 6.d5 d6",
+        "pgnFile": "pgn/indian/E31.pgn"
+      },
+      {
+        "eco": "E32",
+        "name": "Klassisch/Capablanca (4.Dc2)",
+        "name_en": "Classical/Capablanca (4.Qc2)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2",
+        "pgnFile": "pgn/indian/E32.pgn"
+      },
+      {
+        "eco": "E33",
+        "name": "Klassisch – Zürich/Milner-Barry (…Sc6)",
+        "name_en": "Classical – Zurich/Milner-Barry (…Nc6)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 Nc6",
+        "pgnFile": "pgn/indian/E33.pgn"
+      },
+      {
+        "eco": "E34",
+        "name": "Klassisch – …d5",
+        "name_en": "Classical – …d5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5",
+        "pgnFile": "pgn/indian/E34.pgn"
+      },
+      {
+        "eco": "E35",
+        "name": "Klassisch – …d5 5.cxd5 exd5",
+        "name_en": "Classical – …d5 5.cxd5 exd5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5 5.cxd5 exd5",
+        "pgnFile": "pgn/indian/E35.pgn"
+      },
+      {
+        "eco": "E36",
+        "name": "Klassisch – …d5 5.a3",
+        "name_en": "Classical – …d5 5.a3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5 5.a3",
+        "pgnFile": "pgn/indian/E36.pgn"
+      },
+      {
+        "eco": "E37",
+        "name": "Klassisch – …d5 5.a3 Bxc3+ 6.Dxc3 Se4",
+        "name_en": "Classical – …d5 5.a3 Bxc3+ 6.Qxc3 Ne4",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5 5.a3 Bxc3+ 6.Qxc3 Ne4",
+        "pgnFile": "pgn/indian/E37.pgn"
+      },
+      {
+        "eco": "E38",
+        "name": "Klassisch – …c5",
+        "name_en": "Classical – …c5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 c5",
+        "pgnFile": "pgn/indian/E38.pgn"
+      },
+      {
+        "eco": "E39",
+        "name": "Klassisch – …c5 5.dxc5 O-O",
+        "name_en": "Classical – …c5 5.dxc5 O-O",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 c5 5.dxc5 O-O",
+        "pgnFile": "pgn/indian/E39.pgn"
+      },
+      {
+        "eco": "E40",
+        "name": "Rubinstein-System (4.e3)",
+        "name_en": "Rubinstein System (4.e3)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3",
+        "pgnFile": "pgn/indian/E40.pgn"
+      },
+      {
+        "eco": "E41",
+        "name": "Rubinstein – Hübner-Variante (…c5)",
+        "name_en": "Rubinstein – Huebner Variation (…c5)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 c5",
+        "pgnFile": "pgn/indian/E41.pgn"
+      },
+      {
+        "eco": "E42",
+        "name": "Rubinstein – 5.Se2",
+        "name_en": "Rubinstein – 5.Ne2 (Rubinstein Variation)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 c5 5.Ne2",
+        "pgnFile": "pgn/indian/E42.pgn"
+      },
+      {
+        "eco": "E43",
+        "name": "Rubinstein – …b6 (Fianchetto-Idee)",
+        "name_en": "Rubinstein – …b6 (fianchetto idea)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 b6",
+        "pgnFile": "pgn/indian/E43.pgn"
+      },
+      {
+        "eco": "E44",
+        "name": "Rubinstein – …b6 5.Se2",
+        "name_en": "Rubinstein – …b6 5.Ne2",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 b6 5.Ne2",
+        "pgnFile": "pgn/indian/E44.pgn"
+      },
+      {
+        "eco": "E45",
+        "name": "Rubinstein – Fischer-Variante",
+        "name_en": "Rubinstein – Fischer Variation",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 b6 5.Ne2 Ba6",
+        "pgnFile": "pgn/indian/E45.pgn"
+      },
+      {
+        "eco": "E46",
+        "name": "Rubinstein – …O-O",
+        "name_en": "Rubinstein – …O-O",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O",
+        "pgnFile": "pgn/indian/E46.pgn"
+      },
+      {
+        "eco": "E47",
+        "name": "Rubinstein – …O-O 5.Ld3",
+        "name_en": "Rubinstein – …O-O 5.Bd3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3",
+        "pgnFile": "pgn/indian/E47.pgn"
+      },
+      {
+        "eco": "E48",
+        "name": "Rubinstein – …O-O 5.Ld3 d5",
+        "name_en": "Rubinstein – …O-O 5.Bd3 d5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5",
+        "pgnFile": "pgn/indian/E48.pgn"
+      },
+      {
+        "eco": "E49",
+        "name": "Botwinnik-System",
+        "name_en": "Botvinnik System",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.a3 Bxc3+ 7.bxc3",
+        "pgnFile": "pgn/indian/E49.pgn"
+      },
+      {
+        "eco": "E50",
+        "name": "Rubinstein – …O-O 5.Sf3",
+        "name_en": "Rubinstein – …O-O 5.Nf3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3",
+        "pgnFile": "pgn/indian/E50.pgn"
+      },
+      {
+        "eco": "E51",
+        "name": "Rubinstein – …O-O 5.Sf3 d5",
+        "name_en": "Rubinstein – …O-O 5.Nf3 d5",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5",
+        "pgnFile": "pgn/indian/E51.pgn"
+      },
+      {
+        "eco": "E52",
+        "name": "Klassisches Fianchetto / Tal-Variante",
+        "name_en": "Classical Fianchetto / Tal Variation",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5 6.Bd3 b6",
+        "pgnFile": "pgn/indian/E52.pgn"
+      },
+      {
+        "eco": "E53",
+        "name": "Gligorić-System (…c5)",
+        "name_en": "Gligorić System (…c5)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5",
+        "pgnFile": "pgn/indian/E53.pgn"
+      },
+      {
+        "eco": "E54",
+        "name": "Gligorić – 7.O-O dxc4 8.Lxc4",
+        "name_en": "Gligorić – 7.O-O dxc4 8.Bxc4",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 7.O-O dxc4 8.Bxc4",
+        "pgnFile": "pgn/indian/E54.pgn"
+      },
+      {
+        "eco": "E55",
+        "name": "Parma-Variante",
+        "name_en": "Parma Variation",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Nf3 d5 6.Bd3 c5 7.O-O dxc4 8.Bxc4 Nbd7",
+        "pgnFile": "pgn/indian/E55.pgn"
+      },
+      {
+        "eco": "E56",
+        "name": "…Sc6 (Larsen-Idee)",
+        "name_en": "…Nc6 (Larsen idea)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 7.O-O Nc6",
+        "pgnFile": "pgn/indian/E56.pgn"
+      },
+      {
+        "eco": "E57",
+        "name": "Hauptlinie mit …Sc6; 8.a3 dxc4 9.Lxc4 cxd4",
+        "name_en": "Main line with …Nc6; 8.a3 dxc4 9.Bxc4 cxd4",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 7.O-O Nc6 8.a3 dxc4 9.Bxc4 cxd4",
+        "pgnFile": "pgn/indian/E57.pgn"
+      },
+      {
+        "eco": "E58",
+        "name": "…Bxc3; Khasin-Variante",
+        "name_en": "…Bxc3; Khasin Variation",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 7.O-O Nc6 8.a3 Bxc3 9.bxc3",
+        "pgnFile": "pgn/indian/E58.pgn"
+      },
+      {
+        "eco": "E59",
+        "name": "Hauptvariante",
+        "name_en": "Main Variation",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 7.O-O Nc6 8.a3 Bxc3 9.bxc3 dxc4 10.Bxc4",
+        "pgnFile": "pgn/indian/E59.pgn"
+      }
+    ]
+  }
+]
