@@ -92,6 +92,13 @@
         "name": "Queen's Gambit (D20–D69)",
         "url": "https://www.startingpawn.com/en/queensgambit.html",
         "description": "Queen's Gambit variations with interactive boards and Polyglot downloads"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Nimzo-Indian Defense (E20–E59)",
+        "url": "https://www.startingpawn.com/en/nimzo.html",
+        "description": "Nimzo-Indian Defense variations with interactive boards and Polyglot downloads"
       }
     ]
   }
@@ -350,11 +357,12 @@
 
   <!-- Listen-Renderer -->
   <script>
-    // Nur existierende Seiten eintragen (alle Pfade root-absolut unter /de/)
+    // Nur existierende Seiten eintragen (alle Pfade root-absolut unter /en/)
     const EXISTING = {
       '/en/italian.html': { cat: 'Open', name: 'Italian Game', eco: 'C50–C59' },
       '/en/sicilian.html': { cat: 'Semi-open', name: 'Sicilian Defense', eco: 'B20-B99' },
-      '/en/queensgambit.html': { cat: 'Closed', name: "Queen's Gambit", eco: 'D20-D69' }
+      '/en/queensgambit.html': { cat: 'Closed', name: "Queen's Gambit", eco: 'D20-D69' },
+      '/en/nimzo.html': { cat: 'Indian', name: 'Nimzo-Indian Defense', eco: 'E20-E59' }
       // Beispiele für spätere Ergänzungen:
       // '/en/spanish.html': { cat: 'Open', name: 'Spanish', eco: 'C60–C99' },
     };
@@ -370,7 +378,7 @@
         map.get(cat).push({ href, name: it.name, eco: it.eco||'' });
       });
       for (const [cat, arr] of map){
-        arr.sort((a,b)=>String(a.name).localeCompare(String(b.name),'de'));
+        arr.sort((a,b)=>String(a.name).localeCompare(String(b.name),'en'));
       }
       return map;
     }
