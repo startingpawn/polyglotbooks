@@ -1,0 +1,12 @@
+[Event "Nimzo-Indian – E57"]
+[Site "StartingPawn.com"]
+[Date "2025.09.24"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "E57"]
+[Opening "Main line with …Nc6; 8.a3 dxc4 9.Bxc4 cxd4"]
+[OpeningDE "Hauptlinie mit …Sc6; 8.a3 dxc4 9.Lxc4 cxd4"]
+
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.Bd3 d5 6.Nf3 c5 7.O-O Nc6 8.a3 dxc4 9.Bxc4 cxd4 *
