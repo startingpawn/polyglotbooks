@@ -1,0 +1,224 @@
+[
+  {
+    "id": "english",
+    "title": "Englisch (A10–A39)",
+    "desc": "1.c4 – umfasst Königsenglisch (1…e5), Symmetrisch (1…c5), Anglo-Indisch (1…Sf6), Agincourt (…e6) u. a.",
+    "bundle": {
+      "file": "books/flank/a10-a39-english.zip",
+      "size": "—",
+      "label": "Alle A10–A39 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "A10",
+        "name": "Englisch – allgemein",
+        "name_en": "English Opening – general",
+        "line": "1.c4",
+        "pgnFile": "pgn/flank/A10.pgn"
+      },
+      {
+        "eco": "A11",
+        "name": "Englisch, Caro-Kann-Aufbau",
+        "name_en": "English, Caro-Kann Defensive System",
+        "line": "1.c4 c6",
+        "pgnFile": "pgn/flank/A11.pgn"
+      },
+      {
+        "eco": "A12",
+        "name": "Englisch, Caro-Kann-Aufbau: Bogoljubow-Variante (3.b3)",
+        "name_en": "English, Caro-Kann Defensive System: Bogoljubov Variation (3.b3)",
+        "line": "1.c4 c6 2.Nf3 d5 3.b3",
+        "pgnFile": "pgn/flank/A12.pgn"
+      },
+      {
+        "eco": "A13",
+        "name": "Agincourt-Verteidigung",
+        "name_en": "Agincourt Defense",
+        "line": "1.c4 e6",
+        "pgnFile": "pgn/flank/A13.pgn"
+      },
+      {
+        "eco": "A14",
+        "name": "Agincourt – Neo-Katalanisch (abgelehnt)",
+        "name_en": "Agincourt Defense – Neo-Catalan Declined",
+        "line": "1.c4 e6 2.Nf3 d5 3.g3 Nf6 4.Bg2 Be7 5.O-O",
+        "pgnFile": "pgn/flank/A14.pgn"
+      },
+      {
+        "eco": "A15",
+        "name": "Anglo-Indische Verteidigung",
+        "name_en": "Anglo-Indian Defense",
+        "line": "1.c4 Nf6",
+        "pgnFile": "pgn/flank/A15.pgn"
+      },
+      {
+        "eco": "A16",
+        "name": "Anglo-Indisch, Damenspringer-Variante",
+        "name_en": "Anglo-Indian, Queen’s Knight Variation",
+        "line": "1.c4 Nf6 2.Nc3",
+        "pgnFile": "pgn/flank/A16.pgn"
+      },
+      {
+        "eco": "A17",
+        "name": "Damenspringer-Variante, Igel-System",
+        "name_en": "Queen’s Knight Variation, Hedgehog System",
+        "line": "1.c4 Nf6 2.Nc3 e6",
+        "pgnFile": "pgn/flank/A17.pgn"
+      },
+      {
+        "eco": "A18",
+        "name": "Mikėnas–Carls-Variante",
+        "name_en": "Mikėnas–Carls Variation",
+        "line": "1.c4 Nf6 2.Nc3 e6 3.e4",
+        "pgnFile": "pgn/flank/A18.pgn"
+      },
+      {
+        "eco": "A19",
+        "name": "Mikėnas–Carls, Sizilianische Fortsetzung",
+        "name_en": "Mikėnas–Carls, Sicilian Variation",
+        "line": "1.c4 Nf6 2.Nc3 e6 3.e4 c5",
+        "pgnFile": "pgn/flank/A19.pgn"
+      },
+      {
+        "eco": "A20",
+        "name": "Königsenglisch",
+        "name_en": "King’s English Variation",
+        "line": "1.c4 e5",
+        "pgnFile": "pgn/flank/A20.pgn"
+      },
+      {
+        "eco": "A21",
+        "name": "Umgekehrtes Sizilianisch",
+        "name_en": "Reversed Sicilian",
+        "line": "1.c4 e5 2.Nc3",
+        "pgnFile": "pgn/flank/A21.pgn"
+      },
+      {
+        "eco": "A22",
+        "name": "Königsenglisch, Zwei-Springer-Variante",
+        "name_en": "King’s English, Two Knights Variation",
+        "line": "1.c4 e5 2.Nc3 Nf6",
+        "pgnFile": "pgn/flank/A22.pgn"
+      },
+      {
+        "eco": "A23",
+        "name": "Bremen-System, Keres-Variante",
+        "name_en": "Bremen System, Keres Variation",
+        "line": "1.c4 e5 2.Nc3 Nf6 3.g3 c6",
+        "pgnFile": "pgn/flank/A23.pgn"
+      },
+      {
+        "eco": "A24",
+        "name": "Bremen-System mit …g6 (Fianchetto)",
+        "name_en": "Bremen System with …g6 (Fianchetto Line)",
+        "line": "1.c4 e5 2.Nc3 Nf6 3.g3 g6",
+        "pgnFile": "pgn/flank/A24.pgn"
+      },
+      {
+        "eco": "A25",
+        "name": "Umgekehrtes Sizilianisch",
+        "name_en": "Sicilian Reversed",
+        "line": "1.c4 e5 2.Nc3 Nc6",
+        "pgnFile": "pgn/flank/A25.pgn"
+      },
+      {
+        "eco": "A26",
+        "name": "Geschlossenes System – Vollsymmetrische Linie",
+        "name_en": "Closed System – Full Symmetry Line",
+        "line": "1.c4 e5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.d3 d6",
+        "pgnFile": "pgn/flank/A26.pgn"
+      },
+      {
+        "eco": "A27",
+        "name": "Drei-Springer-System",
+        "name_en": "Three Knights System",
+        "line": "1.c4 e5 2.Nc3 Nc6 3.Nf3",
+        "pgnFile": "pgn/flank/A27.pgn"
+      },
+      {
+        "eco": "A28",
+        "name": "Vier-Springer-Variante",
+        "name_en": "Four Knights Variation",
+        "line": "1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6",
+        "pgnFile": "pgn/flank/A28.pgn"
+      },
+      {
+        "eco": "A29",
+        "name": "Vier Springer, Königsfianchetto",
+        "name_en": "Four Knights, Kingside Fianchetto",
+        "line": "1.c4 e5 2.Nc3 Nc6 3.Nf3 Nf6 4.g3",
+        "pgnFile": "pgn/flank/A29.pgn"
+      },
+      {
+        "eco": "A30",
+        "name": "Symmetrische Variante",
+        "name_en": "Symmetrical Variation",
+        "line": "1.c4 c5",
+        "pgnFile": "pgn/flank/A30.pgn"
+      },
+      {
+        "eco": "A31",
+        "name": "Symmetrisch, Benoni-Aufbau (Anti-Benoni)",
+        "name_en": "Symmetrical, Benoni Formation (Anti-Benoni)",
+        "line": "1.c4 c5 2.Nf3 Nf6 3.d4",
+        "pgnFile": "pgn/flank/A31.pgn"
+      },
+      {
+        "eco": "A32",
+        "name": "Symmetrisch (Anti-Benoni), Spielmann-Verteidigung",
+        "name_en": "Symmetrical (Anti-Benoni), Spielmann Defense",
+        "line": "1.c4 c5 2.Nf3 Nf6 3.d4 cxd4 4.Nxd4 e6",
+        "pgnFile": "pgn/flank/A32.pgn"
+      },
+      {
+        "eco": "A33",
+        "name": "Symmetrisch – 5.Nc3 Nc6",
+        "name_en": "Symmetrical – 5.Nc3 Nc6",
+        "line": "1.c4 c5 2.Nf3 Nf6 3.d4 cxd4 4.Nxd4 e6 5.Nc3 Nc6",
+        "pgnFile": "pgn/flank/A33.pgn"
+      },
+      {
+        "eco": "A34",
+        "name": "Symmetrisch – Normalvariante",
+        "name_en": "Symmetrical – Normal Variation",
+        "line": "1.c4 c5 2.Nc3",
+        "pgnFile": "pgn/flank/A34.pgn"
+      },
+      {
+        "eco": "A35",
+        "name": "Symmetrisch – Zwei Springer",
+        "name_en": "Symmetrical – Two Knights",
+        "line": "1.c4 c5 2.Nc3 Nc6",
+        "pgnFile": "pgn/flank/A35.pgn"
+      },
+      {
+        "eco": "A36",
+        "name": "Symmetrisch – Fianchetto-Variante",
+        "name_en": "Symmetrical – Fianchetto Variation",
+        "line": "1.c4 c5 2.Nc3 Nc6 3.g3",
+        "pgnFile": "pgn/flank/A36.pgn"
+      },
+      {
+        "eco": "A37",
+        "name": "Symmetrisch – Zwei-Springer-Linie",
+        "name_en": "Symmetrical – Two Knights Line",
+        "line": "1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3",
+        "pgnFile": "pgn/flank/A37.pgn"
+      },
+      {
+        "eco": "A38",
+        "name": "Symmetrisch – Vollsymmetrische Linie",
+        "name_en": "Symmetrical – Full Symmetry Line",
+        "line": "1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 Nf6",
+        "pgnFile": "pgn/flank/A38.pgn"
+      },
+      {
+        "eco": "A39",
+        "name": "Mecking-Variante",
+        "name_en": "Mecking Variation",
+        "line": "1.c4 c5 2.Nc3 Nc6 3.g3 g6 4.Bg2 Bg7 5.Nf3 Nf6 6.O-O O-O 7.d4",
+        "pgnFile": "pgn/flank/A39.pgn"
+      }
+    ]
+  }
+]
