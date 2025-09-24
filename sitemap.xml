@@ -139,6 +139,22 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://www.startingpawn.com/de/nimzo.html"/>
   </url>
 
+
+  <!-- English Opening -->
+  <url>
+    <loc>https://www.startingpawn.com/en/english.html</loc>
+    <lastmod>2025-09-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startingpawn.com/en/english.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startingpawn.com/de/english.html"/>
+  </url>
+  <url>
+    <loc>https://www.startingpawn.com/de/english.html</loc>
+    <lastmod>2025-09-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startingpawn.com/en/english.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startingpawn.com/de/english.html"/>
+  </url>
+
+
   <!-- Packs (EN + DE) -->
   <url>
     <loc>https://www.startingpawn.com/en/packs.html</loc>
