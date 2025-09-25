@@ -1,0 +1,294 @@
+[
+  {
+    "id": "spanish",
+    "title": "Spanische Partie (C60–C99)",
+    "desc": "1.e4 e5 2.Nf3 Nc6 3.Bb5 – umfasst Berliner Verteidigung, Offene Verteidigung, Moderne/Verbesserte Steinitz-Systeme, Geschlossene Systeme (Breyer, Tschigorin, Saizew), Marshall-Angriff u. a.",
+    "bundle": {
+      "file": "books/open/c60-c99-spanish.zip",
+      "size": "—",
+      "label": "Alle C60–C99 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "C60",
+        "name": "Spanisch – seltene Varianten",
+        "name_en": "Ruy Lopez – rare lines",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5",
+        "pgnFile": "pgn/open/C60.pgn"
+      },
+      {
+        "eco": "C61",
+        "name": "Bird-Verteidigung",
+        "name_en": "Bird's Defence",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nd4",
+        "pgnFile": "pgn/open/C61.pgn"
+      },
+      {
+        "eco": "C62",
+        "name": "Steinitz-Verteidigung",
+        "name_en": "Old Steinitz Defence",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 d6",
+        "pgnFile": "pgn/open/C62.pgn"
+      },
+      {
+        "eco": "C63",
+        "name": "Jänisch-Gambit",
+        "name_en": "Schliemann (Jaenisch) Gambit",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 f5",
+        "pgnFile": "pgn/open/C63.pgn"
+      },
+      {
+        "eco": "C64",
+        "name": "Cordel-Verteidigung (Klassisch)",
+        "name_en": "Classical Defence (Cordel)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Bc5",
+        "pgnFile": "pgn/open/C64.pgn"
+      },
+      {
+        "eco": "C65",
+        "name": "Berliner Verteidigung",
+        "name_en": "Berlin Defence",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6",
+        "pgnFile": "pgn/open/C65.pgn"
+      },
+      {
+        "eco": "C66",
+        "name": "Berliner Verteidigung – 4.O-O d6",
+        "name_en": "Berlin Defence – 4.O-O d6",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.O-O d6",
+        "pgnFile": "pgn/open/C66.pgn"
+      },
+      {
+        "eco": "C67",
+        "name": "Rio-de-Janeiro-Variante (Minckwitz)",
+        "name_en": "Rio de Janeiro Variation",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.O-O Nxe4",
+        "pgnFile": "pgn/open/C67.pgn"
+      },
+      {
+        "eco": "C68",
+        "name": "Abtauschvariante (4.Bxc6)",
+        "name_en": "Exchange Variation (4.Bxc6)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Bxc6",
+        "pgnFile": "pgn/open/C68.pgn"
+      },
+      {
+        "eco": "C69",
+        "name": "Abtauschvariante (…dxc6 5.O-O f6)",
+        "name_en": "Exchange Variation (Gligoric), …dxc6 5.O-O f6",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Bxc6 dxc6 5.O-O f6",
+        "pgnFile": "pgn/open/C69.pgn"
+      },
+      {
+        "eco": "C70",
+        "name": "Morphy-Verteidigung – 4.Ba4",
+        "name_en": "Morphy Defence – 4.Ba4",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4",
+        "pgnFile": "pgn/open/C70.pgn"
+      },
+      {
+        "eco": "C71",
+        "name": "Moderne Steinitz-Verteidigung",
+        "name_en": "Modern Steinitz Defence",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 d6",
+        "pgnFile": "pgn/open/C71.pgn"
+      },
+      {
+        "eco": "C72",
+        "name": "Moderne Steinitz, 5.O-O",
+        "name_en": "Modern Steinitz, 5.O-O",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 d6 5.O-O",
+        "pgnFile": "pgn/open/C72.pgn"
+      },
+      {
+        "eco": "C73",
+        "name": "Moderne Steinitz, 5.Bxc6+ bxc6",
+        "name_en": "Modern Steinitz, 5.Bxc6+ bxc6",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 d6 5.Bxc6+ bxc6",
+        "pgnFile": "pgn/open/C73.pgn"
+      },
+      {
+        "eco": "C74",
+        "name": "Moderne Steinitz, 5.c3",
+        "name_en": "Modern Steinitz, 5.c3",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 d6 5.c3",
+        "pgnFile": "pgn/open/C74.pgn"
+      },
+      {
+        "eco": "C75",
+        "name": "Moderne Steinitz, 5.c3 Ld7",
+        "name_en": "Modern Steinitz, 5.c3 Bd7",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 d6 5.c3 Bd7",
+        "pgnFile": "pgn/open/C75.pgn"
+      },
+      {
+        "eco": "C76",
+        "name": "Moderne Steinitz, 5.c3 Ld7 6.d4 g6",
+        "name_en": "Modern Steinitz, 5.c3 Bd7 6.d4 g6",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 d6 5.c3 Bd7 6.d4 g6",
+        "pgnFile": "pgn/open/C76.pgn"
+      },
+      {
+        "eco": "C77",
+        "name": "Anderssen-Variante",
+        "name_en": "Anderssen Variation",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.d3",
+        "pgnFile": "pgn/open/C77.pgn"
+      },
+      {
+        "eco": "C78",
+        "name": "Spanisch – 5.O-O (Archangelsk/Möller)",
+        "name_en": "Ruy Lopez – 5.O-O (Archangelsk/Moeller)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O",
+        "pgnFile": "pgn/open/C78.pgn"
+      },
+      {
+        "eco": "C79",
+        "name": "Steinitz-Verteidigung (verzögert) – Russische Variante",
+        "name_en": "Steinitz Defence Deferred (Russian Defence)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O d6",
+        "pgnFile": "pgn/open/C79.pgn"
+      },
+      {
+        "eco": "C80",
+        "name": "Offene Verteidigung",
+        "name_en": "Open Defence",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Nxe4",
+        "pgnFile": "pgn/open/C80.pgn"
+      },
+      {
+        "eco": "C81",
+        "name": "Howell-Angriff (Offene Verteidigung)",
+        "name_en": "Howell Attack (Open Defence)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Nxe4 6.d4 b5 7.Bb3 d5 8.dxe5 Be6 9.Qe2",
+        "pgnFile": "pgn/open/C81.pgn"
+      },
+      {
+        "eco": "C82",
+        "name": "Italienische Variante (Offene Verteidigung)",
+        "name_en": "Italian Variation (Open Defence)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Nxe4 6.d4 b5 7.Bb3 d5 8.dxe5 Be6 9.c3 Bc5",
+        "pgnFile": "pgn/open/C82.pgn"
+      },
+      {
+        "eco": "C83",
+        "name": "Offene Verteidigung, 9...Le7",
+        "name_en": "Open Defence, 9...Be7",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Nxe4 6.d4 b5 7.Bb3 d5 8.dxe5 Be6 9.c3 Be7",
+        "pgnFile": "pgn/open/C83.pgn"
+      },
+      {
+        "eco": "C84",
+        "name": "Geschlossene Verteidigung – Zentrumsangriff",
+        "name_en": "Closed Defence – Centre Attack",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.d4",
+        "pgnFile": "pgn/open/C84.pgn"
+      },
+      {
+        "eco": "C85",
+        "name": "Geschlossene Verteidigung, 6.Bxc6",
+        "name_en": "Closed Defence, 6.Bxc6",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Bxc6",
+        "pgnFile": "pgn/open/C85.pgn"
+      },
+      {
+        "eco": "C86",
+        "name": "Worrall-Angriff",
+        "name_en": "Worrall Attack",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Qe2",
+        "pgnFile": "pgn/open/C86.pgn"
+      },
+      {
+        "eco": "C87",
+        "name": "Awerbach-Variante (Geschlossen)",
+        "name_en": "Averbakh Variation (Closed)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 d6",
+        "pgnFile": "pgn/open/C87.pgn"
+      },
+      {
+        "eco": "C88",
+        "name": "Geschlossene Verteidigung",
+        "name_en": "Closed Defence",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3",
+        "pgnFile": "pgn/open/C88.pgn"
+      },
+      {
+        "eco": "C89",
+        "name": "Marshall-Angriff",
+        "name_en": "Marshall Attack",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d5",
+        "pgnFile": "pgn/open/C89.pgn"
+      },
+      {
+        "eco": "C90",
+        "name": "Geschlossen, Pilnik-Variante",
+        "name_en": "Closed, Pilnik Variation",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.d3",
+        "pgnFile": "pgn/open/C90.pgn"
+      },
+      {
+        "eco": "C91",
+        "name": "Bogoljubow-Variante",
+        "name_en": "Bogolyubov Variation",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.d4 Bg4",
+        "pgnFile": "pgn/open/C91.pgn"
+      },
+      {
+        "eco": "C92",
+        "name": "Geschlossen, 9.h3 (Saizew/Karpow/Cholmov)",
+        "name_en": "Closed, 9.h3 (Zaitsev/Karpov/Cholmov)",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3",
+        "pgnFile": "pgn/open/C92.pgn"
+      },
+      {
+        "eco": "C93",
+        "name": "Smyslow-Variante",
+        "name_en": "Smyslov Variation",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 h6",
+        "pgnFile": "pgn/open/C93.pgn"
+      },
+      {
+        "eco": "C94",
+        "name": "Breyer-System",
+        "name_en": "Breyer System",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Nb8",
+        "pgnFile": "pgn/open/C94.pgn"
+      },
+      {
+        "eco": "C95",
+        "name": "Breyer-System, 10.d4",
+        "name_en": "Breyer System, 10.d4",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Nb8 10.d4",
+        "pgnFile": "pgn/open/C95.pgn"
+      },
+      {
+        "eco": "C96",
+        "name": "Tschigorin-System",
+        "name_en": "Chigorin System",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Na5",
+        "pgnFile": "pgn/open/C96.pgn"
+      },
+      {
+        "eco": "C97",
+        "name": "Tschigorin – 10.Bc2 c5 11.d4 Qc7",
+        "name_en": "Chigorin – 10.Bc2 c5 11.d4 Qc7",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Na5 10.Bc2 c5 11.d4 Qc7",
+        "pgnFile": "pgn/open/C97.pgn"
+      },
+      {
+        "eco": "C98",
+        "name": "Tschigorin – 12.Nbd2 Nc6",
+        "name_en": "Chigorin – 12.Nbd2 Nc6",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Na5 10.Bc2 c5 11.d4 Qc7 12.Nbd2 Nc6",
+        "pgnFile": "pgn/open/C98.pgn"
+      },
+      {
+        "eco": "C99",
+        "name": "Tschigorin – 12...cxd4 13.cxd4",
+        "name_en": "Chigorin – 12...cxd4 13.cxd4",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Na5 10.Bc2 c5 11.d4 Qc7 12.Nbd2 cxd4 13.cxd4",
+        "pgnFile": "pgn/open/C99.pgn"
+      }
+    ]
+  }
+]
