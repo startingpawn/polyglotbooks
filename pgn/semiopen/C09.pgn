@@ -1,0 +1,12 @@
+[Event "ECO C09 – Tarrasch, Offenes System (5.Sgf3 …Sc6)"]
+[Site "Starting Pawn"]
+[Date "2025.09.25"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "C09"]
+[Opening "French Defence"]
+[Variation "Tarrasch, Open System (5.Ngf3 …Nc6)"]
+
+1.e4 e6 2.d4 d5 3.Nd2 c5 4.exd5 exd5 5.Ngf3 Nc6 *

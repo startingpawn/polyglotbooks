@@ -1,0 +1,12 @@
+[Event "ECO C06 – Tarrasch, geschlossen (4.e5 …Sfd7 5.Ld3)"]
+[Site "Starting Pawn"]
+[Date "2025.09.25"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "C06"]
+[Opening "French Defence"]
+[Variation "Tarrasch, Closed (4.e5 …Nfd7 5.Bd3)"]
+
+1.e4 e6 2.d4 d5 3.Nd2 Nf6 4.e5 Nfd7 5.Bd3 *
