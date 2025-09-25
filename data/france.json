@@ -1,0 +1,154 @@
+[
+  {
+    "id": "france",
+    "title": "Französisch (C00–C19)",
+    "desc": "1.e4 e6 – umfasst Vorstoß (3.e5), Austausch (3.exd5), Tarrasch (3.Sd2), Rubinstein (…dxe4), Klassisch/Steinitz (3.Sc3 …Sf6 4.e5), McCutcheon (…Lb4) und Winawer (3…Lb4).",
+    "bundle": {
+      "file": "books/semiopen/c00-c19-france.zip",
+      "size": "—",
+      "label": "Alle C00–C19 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "C00",
+        "name": "Französisch – seltene Varianten",
+        "name_en": "French Defence – rare lines",
+        "line": "1.e4 e6",
+        "pgnFile": "pgn/semiopen/C00.pgn"
+      },
+      {
+        "eco": "C01",
+        "name": "Französisch, Austauschvariante",
+        "name_en": "French, Exchange Variation",
+        "line": "1.e4 e6 2.d4 d5 3.exd5 exd5",
+        "pgnFile": "pgn/semiopen/C01.pgn"
+      },
+      {
+        "eco": "C02",
+        "name": "Französisch, Vorstoßvariante",
+        "name_en": "French, Advance Variation",
+        "line": "1.e4 e6 2.d4 d5 3.e5",
+        "pgnFile": "pgn/semiopen/C02.pgn"
+      },
+      {
+        "eco": "C03",
+        "name": "Tarrasch-Variante",
+        "name_en": "Tarrasch Variation",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2",
+        "pgnFile": "pgn/semiopen/C03.pgn"
+      },
+      {
+        "eco": "C04",
+        "name": "Tarrasch, Guimard-Variante (3…Sc6)",
+        "name_en": "Tarrasch, Guimard Variation (3...Nc6)",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2 Nc6",
+        "pgnFile": "pgn/semiopen/C04.pgn"
+      },
+      {
+        "eco": "C05",
+        "name": "Tarrasch, 3…Sf6",
+        "name_en": "Tarrasch, 3...Nf6",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2 Nf6",
+        "pgnFile": "pgn/semiopen/C05.pgn"
+      },
+      {
+        "eco": "C06",
+        "name": "Tarrasch, geschlossen (4.e5 …Sfd7 5.Ld3)",
+        "name_en": "Tarrasch, Closed (4.e5 …Nfd7 5.Bd3)",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2 Nf6 4.e5 Nfd7 5.Bd3",
+        "pgnFile": "pgn/semiopen/C06.pgn"
+      },
+      {
+        "eco": "C07",
+        "name": "Tarrasch, 3…c5",
+        "name_en": "Tarrasch, 3...c5",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2 c5",
+        "pgnFile": "pgn/semiopen/C07.pgn"
+      },
+      {
+        "eco": "C08",
+        "name": "Tarrasch, 3…c5 4.exd5 exd5",
+        "name_en": "Tarrasch, 3...c5 4.exd5 exd5",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2 c5 4.exd5 exd5",
+        "pgnFile": "pgn/semiopen/C08.pgn"
+      },
+      {
+        "eco": "C09",
+        "name": "Tarrasch, Offenes System (5.Sgf3 …Sc6)",
+        "name_en": "Tarrasch, Open System (5.Ngf3 …Nc6)",
+        "line": "1.e4 e6 2.d4 d5 3.Nd2 c5 4.exd5 exd5 5.Ngf3 Nc6",
+        "pgnFile": "pgn/semiopen/C09.pgn"
+      },
+      {
+        "eco": "C10",
+        "name": "Rubinstein-Variante",
+        "name_en": "Rubinstein Variation",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 dxe4",
+        "pgnFile": "pgn/semiopen/C10.pgn"
+      },
+      {
+        "eco": "C11",
+        "name": "Steinitz-Variante (4.e5 …Sd7)",
+        "name_en": "Steinitz Variation (4.e5 …Nfd7)",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.e5 Nfd7",
+        "pgnFile": "pgn/semiopen/C11.pgn"
+      },
+      {
+        "eco": "C12",
+        "name": "McCutcheon-Variante (4…Lb4)",
+        "name_en": "McCutcheon Variation (4...Bb4)",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4",
+        "pgnFile": "pgn/semiopen/C12.pgn"
+      },
+      {
+        "eco": "C13",
+        "name": "Burn-Variante (4…dxe4)",
+        "name_en": "Burn Variation (4...dxe4)",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 dxe4",
+        "pgnFile": "pgn/semiopen/C13.pgn"
+      },
+      {
+        "eco": "C14",
+        "name": "Klassisch, 4…Le7",
+        "name_en": "Classical, 4...Be7",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Be7",
+        "pgnFile": "pgn/semiopen/C14.pgn"
+      },
+      {
+        "eco": "C15",
+        "name": "Winawer-Variante (3…Lb4)",
+        "name_en": "Winawer Variation (3...Bb4)",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Bb4",
+        "pgnFile": "pgn/semiopen/C15.pgn"
+      },
+      {
+        "eco": "C16",
+        "name": "Winawer, 4.e5",
+        "name_en": "Winawer, 4.e5",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5",
+        "pgnFile": "pgn/semiopen/C16.pgn"
+      },
+      {
+        "eco": "C17",
+        "name": "Winawer, 4.e5 …c5",
+        "name_en": "Winawer, 4.e5 …c5",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5",
+        "pgnFile": "pgn/semiopen/C17.pgn"
+      },
+      {
+        "eco": "C18",
+        "name": "Winawer, 5.a3 Lxc3+ 6.bxc3",
+        "name_en": "Winawer, 5.a3 Bxc3+ 6.bxc3",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3",
+        "pgnFile": "pgn/semiopen/C18.pgn"
+      },
+      {
+        "eco": "C19",
+        "name": "Winawer – Hauptvariante (…Se7 7.Dg4 …Dc7)",
+        "name_en": "Winawer – Main Line (…Ne7 7.Qg4 …Qc7)",
+        "line": "1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 5.a3 Bxc3+ 6.bxc3 Ne7 7.Qg4 Qc7",
+        "pgnFile": "pgn/semiopen/C19.pgn"
+      }
+    ]
+  }
+]
