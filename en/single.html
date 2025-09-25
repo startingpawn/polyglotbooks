@@ -340,7 +340,7 @@
     </nav>
   </header>
 
-  <!-- Breadcrumbs: Home → Auswahl → Einzel-Eröffnungen -->
+  <!-- Breadcrumbs: Home → Selection → Single Openings -->
 
   <nav class="crumbs" aria-label="Breadcrumb">
     <a href="/en/">Home</a> &nbsp;→&nbsp;
@@ -349,7 +349,7 @@
   </nav>
 
   <main id="app" aria-live="polite">
-    <!-- Kategorien werden per JS gerendert -->
+    <!-- Categories rendered via JS -->
     <section id="lists" aria-label="Openings by category"></section>
   </main>
 
@@ -357,7 +357,7 @@
     <small>&copy; 2025 Starting Pawn</small>
   </footer>
 
-  <!-- Mobiler + Button & Sheet -->
+  <!-- Mobile + Button & Sheet -->
 
 <button class="fab" id="fab" aria-label="Open menu" aria-expanded="false" title="Menu">+</button>
 
@@ -374,18 +374,17 @@
     </div>
   </div>
 
-  <!-- Listen-Renderer -->
+  <!-- List Renderer -->
 
   <script>
-    // Nur existierende Seiten eintragen (alle Pfade root-absolut unter /en/)
+    // Only add existing pages (all paths root-absolute under /en/)
     const EXISTING = {
       '/en/italian.html': { cat: 'Open', name: 'Italian Game', eco: 'C50–C59' },
+      '/en/spanish.html': { cat: 'Open', name: 'Ruy Lopez', eco: 'C60–C99' },
       '/en/sicilian.html': { cat: 'Semi-open', name: 'Sicilian Defense', eco: 'B20-B99' },
       '/en/queensgambit.html': { cat: 'Closed', name: "Queen's Gambit", eco: 'D20-D69' },
       '/en/nimzo.html': { cat: 'Indian', name: 'Nimzo-Indian Defense', eco: 'E20-E59' },
       '/en/english.html': { cat: 'Flank', name: 'English Opening', eco: 'A10-A39' }
-      // Beispiele für spätere Ergänzungen:
-      // '/en/spanish.html': { cat: 'Open', name: 'Spanish', eco: 'C60–C99' },
     };
 
     const ORDER = ['Open','Semi-open','Closed','Indian','Flank'];
@@ -447,7 +446,7 @@
     renderLists();
   </script>
 
-  <!-- Mobiler + Button (Bottom-Sheet) -->
+  <!-- Mobile + Button (Bottom-Sheet) -->
 
   <script>
     (function(){
