@@ -1,23 +1,28 @@
 <!doctype html>
+
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
   <!-- Title & Description (optimiert) -->
+
   <title>Einzel-Eröffnungen nach ECO – Übersicht aller Varianten | Starting Pawn</title>
   <meta name="description" content="Übersicht aller Einzel-Eröffnungen nach ECO-Kategorien (Offen, Halboffen, Geschlossen, Indisch, Flanken) mit kostenlosen Polyglot-Books (.bin) für DGT, Millennium, Chessnut & mehr.">
 
   <!-- Favicon & Theme -->
+
   <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
 
   <!-- Canonical & hreflang -->
+
   <link rel="canonical" href="https://www.startingpawn.com/de/single.html">
   <link rel="alternate" href="https://www.startingpawn.com/de/single.html" hreflang="de">
   <link rel="alternate" href="https://www.startingpawn.com/en/single.html" hreflang="en">
   <link rel="alternate" href="https://www.startingpawn.com/" hreflang="x-default">
 
   <!-- Open Graph -->
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.startingpawn.com/de/single.html">
   <meta property="og:title" content="Einzel-Eröffnungen nach ECO – Übersicht & Downloads">
@@ -28,6 +33,7 @@
   <meta property="og:locale" content="de_DE">
 
   <!-- Strukturierte Daten: Breadcrumb -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,6 +62,7 @@
   </script>
 
   <!-- Strukturierte Daten: ItemList -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -86,10 +93,17 @@
         "position": 4,
         "name": "Nimzowitsch-Indische Verteidigung (E20–E59)",
         "url": "https://www.startingpawn.com/de/nimzo.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Englische Eröffnung (A10–A39)",
+        "url": "https://www.startingpawn.com/de/english.html"
       }
     ]
   }
   </script>
+
   <style>
     :root{
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
@@ -290,6 +304,7 @@
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
   </style>
+
 </head>
 <body>
   <header>
@@ -311,6 +326,7 @@
   </header>
 
   <!-- Breadcrumbs: Home → Auswahl → Einzel-Eröffnungen -->
+
   <nav class="crumbs" aria-label="Breadcrumb">
     <a href="/de/">Home</a> &nbsp;→&nbsp;
     <a href="/de/choose.html">Auswahl</a> &nbsp;→&nbsp;
@@ -327,7 +343,9 @@
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
-  <button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+
+<button class="fab" id="fab" aria-label="Menü öffnen" aria-expanded="false" title="Menü">+</button>
+
   <div class="sheet" id="sheet" hidden>
     <div class="sheet-backdrop" data-close></div>
     <div class="sheet-panel" role="dialog" aria-label="Mobiles Menü">
@@ -342,13 +360,15 @@
   </div>
 
   <!-- Listen-Renderer -->
+
   <script>
     // Nur existierende Seiten eintragen (alle Pfade root-absolut unter /de/)
     const EXISTING = {
       '/de/italian.html': { cat: 'Offen', name: 'Italienische Partie', eco: 'C50–C59' },
       '/de/sicilian.html': { cat: 'Halboffen', name: 'Sizilianische Verteidigung', eco: 'B20-B99' },
       '/de/queensgambit.html': { cat: 'Geschlossen', name: 'Damengambit', eco: 'D20-D69' },
-      '/de/nimzo.html': { cat: 'Indisch', name: 'Nimzo-Indische Verteidigung', eco: 'E20-E59' }
+      '/de/nimzo.html': { cat: 'Indisch', name: 'Nimzo-Indische Verteidigung', eco: 'E20-E59' },
+      '/de/english.html': { cat: 'Flanken', name: 'Englische Eröffnung', eco: 'A10-A39' }
       // Beispiele für spätere Ergänzungen:
       // '/de/spanish.html': { cat: 'Offen', name: 'Spanisch', eco: 'C60–C99' },
     };
@@ -413,6 +433,7 @@
   </script>
 
   <!-- Mobiler + Button (Bottom-Sheet) -->
+
   <script>
     (function(){
       const fab = document.getElementById('fab');
@@ -445,5 +466,6 @@
       });
     })();
   </script>
+
 </body>
 </html>
