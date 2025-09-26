@@ -1,0 +1,42 @@
+[
+  {
+    "id": "london",
+    "title": "London-System (D00, D02, A46, A48)",
+    "desc": "1.d4 ohne 2.c4 mit frühem Lf4 – Londoner System gegen …d5 (D02) und gegen …Nf6-Aufbauten (A46, A48); plus Mason-Zugfolge (D00), die häufig ins London transponiert.",
+    "bundle": {
+      "file": "books/systems/d00-d02-a46-a48-london.zip",
+      "size": "—",
+      "label": "Alle D00, D02, A46, A48 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "A46",
+        "name": "Damenbauernspiel: Londoner System (…Nf6/…e6)",
+        "name_en": "Queen's Pawn Game: London System (…Nf6/…e6)",
+        "line": "1.d4 Nf6 2.Nf3 e6 3.Bf4",
+        "pgnFile": "pgn/closed/A46.pgn"
+      },
+      {
+        "eco": "A48",
+        "name": "Königsindisch: Londoner System",
+        "name_en": "King's Indian: London System",
+        "line": "1.d4 Nf6 2.Nf3 g6 3.Bf4",
+        "pgnFile": "pgn/closed/A48.pgn"
+      },
+      {
+        "eco": "D00",
+        "name": "Damenbauernspiel: Mason-Variante (London-Familie)",
+        "name_en": "Queen's Pawn Game: Mason Variation (London family)",
+        "line": "1.d4 d5 2.Bf4",
+        "pgnFile": "pgn/closed/D00.pgn"
+      },
+      {
+        "eco": "D02",
+        "name": "Damenbauernspiel: Londoner System",
+        "name_en": "Queen's Pawn Game: London System",
+        "line": "1.d4 d5 2.Nf3 Nf6 3.Bf4",
+        "pgnFile": "pgn/closed/D02.pgn"
+      }
+    ]
+  }
+]
