@@ -4,7 +4,7 @@
     "title": "London-System (D00, D02, A46, A48)",
     "desc": "1.d4 ohne 2.c4 mit frühem Lf4 – Londoner System gegen …d5 (D02) und gegen …Nf6-Aufbauten (A46, A48); plus Mason-Zugfolge (D00), die häufig ins London transponiert.",
     "bundle": {
-      "file": "books/systems/d00-d02-a46-a48-london.zip",
+      "file": "books/closed/d00-d02-a46-a48-london.zip",
       "size": "—",
       "label": "Alle D00, D02, A46, A48 (.bin)"
     },
