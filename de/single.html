@@ -370,6 +370,7 @@
       '/de/sicilian.html': { cat: 'Halboffen', name: 'Sizilianische Verteidigung', eco: 'B20-B99' },
       '/de/queensgambit.html': { cat: 'Geschlossen', name: 'Damengambit', eco: 'D20-D69' },
       '/de/london.html': { cat: 'Geschlossen', name: 'Londoner System', eco: 'A45-A48' },
+      '/de/queensindian.html': { cat: 'Indisch', name: 'Damenindisch', eco: 'E12-E19' },
       '/de/nimzo.html': { cat: 'Indisch', name: 'Nimzo-Indische Verteidigung', eco: 'E20-E59' },
       '/de/english.html': { cat: 'Flanken', name: 'Englische Eröffnung', eco: 'A10-A39' }
     };
@@ -384,8 +385,16 @@
         if (!map.has(cat)) map.set(cat, []);
         map.get(cat).push({ href, name: it.name, eco: it.eco||'' });
       });
+      // Sortierung nach ECO-Code innerhalb jeder Kategorie
       for (const [cat, arr] of map){
-        arr.sort((a,b)=>String(a.name).localeCompare(String(b.name),'de'));
+        arr.sort((a,b) => {
+          // Extrahiere den ersten Buchstaben und die erste Zahl aus dem ECO-Code
+          const getEcoSort = (eco) => {
+            const match = eco.match(/^([A-E])(\d+)/);
+            return match ? match[1] + match[2].padStart(2, '0') : eco;
+          };
+          return getEcoSort(a.eco).localeCompare(getEcoSort(b.eco));
+        });
       }
       return map;
     }
