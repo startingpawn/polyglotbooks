@@ -385,6 +385,7 @@
       '/en/sicilian.html': { cat: 'Semi-open', name: 'Sicilian Defense', eco: 'B20-B99' },
       '/en/queensgambit.html': { cat: 'Closed', name: "Queen's Gambit", eco: 'D20-D69' },
       '/en/london.html': { cat: 'Closed', name: 'London System', eco: 'A45-A48' },
+      '/en/queensindian.html': { cat: 'Indian', name: "Queen's Indian", eco: 'E12-E19' },
       '/en/nimzo.html': { cat: 'Indian', name: 'Nimzo-Indian Defense', eco: 'E20-E59' },
       '/en/english.html': { cat: 'Flank', name: 'English Opening', eco: 'A10-A39' }
     };
@@ -399,8 +400,18 @@
         if (!map.has(cat)) map.set(cat, []);
         map.get(cat).push({ href, name: it.name, eco: it.eco||'' });
       });
+      // Sort by ECO code
       for (const [cat, arr] of map){
-        arr.sort((a,b)=>String(a.name).localeCompare(String(b.name),'en'));
+        arr.sort((a,b) => {
+          // Extract first ECO code letter and number for comparison
+          const getEcoValue = (eco) => {
+            if (!eco) return 'ZZ99';
+            const match = eco.match(/([A-Z])(\d+)/);
+            if (!match) return eco;
+            return match[1] + match[2].padStart(2, '0');
+          };
+          return getEcoValue(a.eco).localeCompare(getEcoValue(b.eco));
+        });
       }
       return map;
     }
