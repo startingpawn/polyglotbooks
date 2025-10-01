@@ -1,0 +1,14 @@
+[Event "Queen's Indian Lines (E12–E19)"]
+[Site "StartingPawn"]
+[Date "2025.10.01"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "E19"]
+[Opening "Queen's Indian"]
+[Variation "Old Main Line (…Ne4 8.Qc2)"]
+
+{DE: Damenindisch, Alte Hauptvariante (…Se4 8.Dc2) | EN: Queen's Indian, Old Main Line (…Ne4 8.Qc2)}
+
+1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.Nc3 Ne4 8.Qc2 *
