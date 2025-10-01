@@ -1,0 +1,70 @@
+[
+  {
+    "id": "queensindian",
+    "title": "Damenindisch (E12–E19)",
+    "desc": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 – umfasst 4.g3 (…Ba6/…Bb7), 4.e3, 4.Nc3 u. a.",
+    "bundle": {
+      "file": "books/indian/e12-e19-queensindian.zip",
+      "size": "—",
+      "label": "Alle E12–E19 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "E12",
+        "name": "Damenindisch – Grundstellung",
+        "name_en": "Queen's Indian Defense – base",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6",
+        "pgnFile": "pgn/indian/E12.pgn"
+      },
+      {
+        "eco": "E13",
+        "name": "Damenindisch, 4.Sc3 – Hauptvariante (…Lb7 5.Lg5)",
+        "name_en": "Queen's Indian, 4.Nc3 – Main Line (…Bb7 5.Bg5)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.Nc3 Bb7 5.Bg5",
+        "pgnFile": "pgn/indian/E13.pgn"
+      },
+      {
+        "eco": "E14",
+        "name": "Damenindisch, 4.e3",
+        "name_en": "Queen's Indian, 4.e3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.e3",
+        "pgnFile": "pgn/indian/E14.pgn"
+      },
+      {
+        "eco": "E15",
+        "name": "Damenindisch, 4.g3",
+        "name_en": "Queen's Indian, 4.g3",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3",
+        "pgnFile": "pgn/indian/E15.pgn"
+      },
+      {
+        "eco": "E16",
+        "name": "Damenindisch, Capablanca-Variante (…Lb4+)",
+        "name_en": "Queen's Indian, Capablanca Variation (…Bb4+)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Bb4+",
+        "pgnFile": "pgn/indian/E16.pgn"
+      },
+      {
+        "eco": "E17",
+        "name": "Damenindisch, 5.Lg2 …Le7",
+        "name_en": "Queen's Indian, 5.Bg2 …Be7",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7",
+        "pgnFile": "pgn/indian/E17.pgn"
+      },
+      {
+        "eco": "E18",
+        "name": "Damenindisch, 7.Sc3 (Hauptlinie)",
+        "name_en": "Queen's Indian, 7.Nc3 (Main Line)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.Nc3",
+        "pgnFile": "pgn/indian/E18.pgn"
+      },
+      {
+        "eco": "E19",
+        "name": "Damenindisch, Alte Hauptvariante (…Se4 8.Dc2)",
+        "name_en": "Queen's Indian, Old Main Line (…Ne4 8.Qc2)",
+        "line": "1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.Nc3 Ne4 8.Qc2",
+        "pgnFile": "pgn/indian/E19.pgn"
+      }
+    ]
+  }
+]
