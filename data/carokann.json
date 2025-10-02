@@ -1,0 +1,84 @@
+[
+  {
+    "id": "carokann",
+    "title": "Caro-Kann (B10–B19)",
+    "desc": "1.e4 c6 – umfasst Vorstoß (3.e5), Abtausch (3.exd5), Panow-Botwinnik (4.c4), 3.Sc3 mit Bronstein–Larsen, Steinitz, Klassisch u. a.",
+    "bundle": {
+      "file": "books/semiopen/b10-b19-carokann.zip",
+      "size": "—",
+      "label": "Alle B10–B19 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "B10",
+        "name": "Caro-Kann – Grundstellung",
+        "name_en": "Caro–Kann Defence – base",
+        "line": "1.e4 c6",
+        "pgnFile": "pgn/semiopen/B10.pgn"
+      },
+      {
+        "eco": "B11",
+        "name": "Zweispringer-Variante, 3…Lg4",
+        "name_en": "Two Knights Variation, 3…Bg4",
+        "line": "1.e4 c6 2.Nf3 d5 3.Nc3 Bg4",
+        "pgnFile": "pgn/semiopen/B11.pgn"
+      },
+      {
+        "eco": "B12",
+        "name": "Vorstoßvariante – Grundstellung",
+        "name_en": "Advance Variation – base",
+        "line": "1.e4 c6 2.d4 d5 3.e5",
+        "pgnFile": "pgn/semiopen/B12.pgn"
+      },
+      {
+        "eco": "B13",
+        "name": "Abtauschvariante – Grundstellung",
+        "name_en": "Exchange Variation – base",
+        "line": "1.e4 c6 2.d4 d5 3.exd5 cxd5",
+        "pgnFile": "pgn/semiopen/B13.pgn"
+      },
+      {
+        "eco": "B14",
+        "name": "Panow-Botwinnik-Angriff",
+        "name_en": "Panov–Botvinnik Attack",
+        "line": "1.e4 c6 2.d4 d5 3.exd5 cxd5 4.c4 Nf6 5.Nc3 e6",
+        "pgnFile": "pgn/semiopen/B14.pgn"
+      },
+      {
+        "eco": "B15",
+        "name": "3.Sc3 – verschiedene Systeme",
+        "name_en": "3.Nc3 – miscellaneous lines",
+        "line": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4",
+        "pgnFile": "pgn/semiopen/B15.pgn"
+      },
+      {
+        "eco": "B16",
+        "name": "Bronstein-Larsen-Variante (…gxf6)",
+        "name_en": "Bronstein–Larsen Variation (…gxf6)",
+        "line": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nf6 5.Nxf6+ gxf6",
+        "pgnFile": "pgn/semiopen/B16.pgn"
+      },
+      {
+        "eco": "B17",
+        "name": "Steinitz-Variante (…Sd7)",
+        "name_en": "Steinitz Variation (…Nd7)",
+        "line": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nd7",
+        "pgnFile": "pgn/semiopen/B17.pgn"
+      },
+      {
+        "eco": "B18",
+        "name": "Klassische Variante (…Lf5)",
+        "name_en": "Classical Variation (…Bf5)",
+        "line": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5",
+        "pgnFile": "pgn/semiopen/B18.pgn"
+      },
+      {
+        "eco": "B19",
+        "name": "Klassische Variante, 7…Sd7",
+        "name_en": "Classical, 7…Nd7",
+        "line": "1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 5.Ng3 Bg6 6.h4 h6 7.Nf3 Nd7",
+        "pgnFile": "pgn/semiopen/B19.pgn"
+      }
+    ]
+  }
+]
