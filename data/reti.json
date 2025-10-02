@@ -1,0 +1,56 @@
+[
+  {
+    "id": "reti",
+    "title": "Réti (A04–A09)",
+    "desc": "1.Nf3 – umfasst 1…Sf6 (A05), 1…d5 (A06), Königsindischen Angriff (A07–A08) sowie 1…d5 2.c4 (A09).",
+    "bundle": {
+      "file": "books/flank/a04-a09-reti.zip",
+      "size": "—",
+      "label": "Alle A04–A09 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "A04",
+        "name": "Zukertort-Eröffnung – Grundstellung",
+        "name_en": "Zukertort Opening – base",
+        "line": "1.Nf3",
+        "pgnFile": "pgn/flank/A04.pgn"
+      },
+      {
+        "eco": "A05",
+        "name": "Réti, 1…Sf6",
+        "name_en": "Réti, 1…Nf6",
+        "line": "1.Nf3 Nf6",
+        "pgnFile": "pgn/flank/A05.pgn"
+      },
+      {
+        "eco": "A06",
+        "name": "Réti, 1…d5",
+        "name_en": "Réti, 1…d5",
+        "line": "1.Nf3 d5",
+        "pgnFile": "pgn/flank/A06.pgn"
+      },
+      {
+        "eco": "A07",
+        "name": "Königsindischer Angriff (Barcza-System)",
+        "name_en": "King's Indian Attack (Barcza System)",
+        "line": "1.Nf3 d5 2.g3",
+        "pgnFile": "pgn/flank/A07.pgn"
+      },
+      {
+        "eco": "A08",
+        "name": "Königsindischer Angriff – Französische Variante",
+        "name_en": "King's Indian Attack – French Variation",
+        "line": "1.Nf3 d5 2.g3 c5 3.Bg2",
+        "pgnFile": "pgn/flank/A08.pgn"
+      },
+      {
+        "eco": "A09",
+        "name": "Réti – 2.c4 (allgemein)",
+        "name_en": "Réti – 2.c4 (general)",
+        "line": "1.Nf3 d5 2.c4",
+        "pgnFile": "pgn/flank/A09.pgn"
+      }
+    ]
+  }
+]
