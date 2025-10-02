@@ -1,0 +1,15 @@
+[Event "Caro-Kann — ECO B18"]
+[Site "Starting Pawn"]
+[Date "2025.10.02"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "B18"]
+[Opening "Caro–Kann Defence"]
+[Variation "Classical (...Bf5)"]
+[Annotator "Starting Pawn"]
+[OpeningDE "Klassische Variante (…Lf5)"]
+[OpeningEN "Classical Variation (…Bf5)"]
+
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Bf5 *

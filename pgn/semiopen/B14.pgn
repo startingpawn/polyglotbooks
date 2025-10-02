@@ -1,0 +1,15 @@
+[Event "Caro-Kann — ECO B14"]
+[Site "Starting Pawn"]
+[Date "2025.10.02"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "B14"]
+[Opening "Caro–Kann Defence"]
+[Variation "Panov–Botvinnik Attack"]
+[Annotator "Starting Pawn"]
+[OpeningDE "Panow-Botwinnik-Angriff"]
+[OpeningEN "Panov–Botvinnik Attack"]
+
+1.e4 c6 2.d4 d5 3.exd5 cxd5 4.c4 Nf6 5.Nc3 e6 *

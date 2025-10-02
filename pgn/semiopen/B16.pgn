@@ -1,0 +1,15 @@
+[Event "Caro-Kann — ECO B16"]
+[Site "Starting Pawn"]
+[Date "2025.10.02"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "B16"]
+[Opening "Caro–Kann Defence"]
+[Variation "Bronstein–Larsen (...gxf6)"]
+[Annotator "Starting Pawn"]
+[OpeningDE "Bronstein-Larsen-Variante (…gxf6)"]
+[OpeningEN "Bronstein–Larsen Variation (…gxf6)"]
+
+1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nf6 5.Nxf6+ gxf6 *
