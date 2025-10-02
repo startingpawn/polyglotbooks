@@ -1,0 +1,28 @@
+[
+  {
+    "id": "scotch",
+    "title": "Schottisch (C44–C45)",
+    "desc": "1.e4 e5 2.Nf3 Nc6 3.d4 – umfasst Scotch Gambit (4.Bc4), Göring-Gambit (4.c3) und die Hauptvariante 4.Nxd4.",
+    "bundle": {
+      "file": "books/open/c44-c45-scotch.zip",
+      "size": "—",
+      "label": "Alle C44–C45 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "C44",
+        "name": "Schottisches Gambit – Grundstellung",
+        "name_en": "Scotch Gambit – base",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Bc4",
+        "pgnFile": "pgn/open/C44.pgn"
+      },
+      {
+        "eco": "C45",
+        "name": "Schottische Partie – Grundstellung",
+        "name_en": "Scotch Game – base",
+        "line": "1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4",
+        "pgnFile": "pgn/open/C45.pgn"
+      }
+    ]
+  }
+]
