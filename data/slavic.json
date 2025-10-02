@@ -1,0 +1,84 @@
+[
+  {
+    "id": "slav",
+    "title": "Slawische Verteidigung (D10–D19)",
+    "desc": "1.d4 d5 2.c4 c6 – umfasst Abtauschvariante, Tschebanenko (…a6), Angenommen (…dxc4) und Hauptvarianten.",
+    "bundle": {
+      "file": "books/closed/d10-d19-slav.zip",
+      "size": "—",
+      "label": "Alle D10–D19 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "D10",
+        "name": "Slawische Verteidigung – Grundstellung",
+        "name_en": "Slav Defence – base",
+        "line": "1.d4 d5 2.c4 c6",
+        "pgnFile": "pgn/closed/D10.pgn"
+      },
+      {
+        "eco": "D11",
+        "name": "Slawisch, 3.Sf3",
+        "name_en": "Slav, 3.Nf3",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3",
+        "pgnFile": "pgn/closed/D11.pgn"
+      },
+      {
+        "eco": "D12",
+        "name": "Slawisch, 4.e3 …Lf5 (Landau-Variante)",
+        "name_en": "Slav, 4.e3 …Bf5 (Landau Variation)",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.e3 Bf5",
+        "pgnFile": "pgn/closed/D12.pgn"
+      },
+      {
+        "eco": "D13",
+        "name": "Slawisch, Abtauschvariante",
+        "name_en": "Slav Exchange Variation",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.cxd5 cxd5",
+        "pgnFile": "pgn/closed/D13.pgn"
+      },
+      {
+        "eco": "D14",
+        "name": "Slawisch, Abtausch, 6.Lf4 …Lf5 (Trifunovic-Variante)",
+        "name_en": "Slav Exchange, 6.Bf4 …Bf5 (Trifunovic Variation)",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.cxd5 cxd5 5.Nc3 Nc6 6.Bf4 Bf5",
+        "pgnFile": "pgn/closed/D14.pgn"
+      },
+      {
+        "eco": "D15",
+        "name": "Slawisch, 4.Sc3",
+        "name_en": "Slav, 4.Nc3",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3",
+        "pgnFile": "pgn/closed/D15.pgn"
+      },
+      {
+        "eco": "D16",
+        "name": "Slawisch, Angenommen (…dxc4) – Alapin-Variante",
+        "name_en": "Slav Accepted (…dxc4) – Alapin Variation",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 dxc4 5.a4",
+        "pgnFile": "pgn/closed/D16.pgn"
+      },
+      {
+        "eco": "D17",
+        "name": "Slawisch, Tschechische Verteidigung (Krause-Angriff)",
+        "name_en": "Slav, Czech Defence (Krause Attack)",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 dxc4 5.a4 Bf5 6.Ne5",
+        "pgnFile": "pgn/closed/D17.pgn"
+      },
+      {
+        "eco": "D18",
+        "name": "Slawisch, 5.a4 Lf5 (Dutch-Variante)",
+        "name_en": "Slav, 5.a4 Bf5 (Dutch Variation)",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 dxc4 5.a4 Bf5 6.e3",
+        "pgnFile": "pgn/closed/D18.pgn"
+      },
+      {
+        "eco": "D19",
+        "name": "Slawisch, Hauptvariante",
+        "name_en": "Slav Main Line",
+        "line": "1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 dxc4 5.a4 Bf5 6.e3 e6 7.Bxc4 Bb4",
+        "pgnFile": "pgn/closed/D19.pgn"
+      }
+    ]
+  }
+]
