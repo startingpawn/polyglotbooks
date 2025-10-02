@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
   <!-- Title & Description (optimiert) -->
-  <title>Réti-Eröffnung (A04–A05) – Varianten & Polyglot-Downloads | Starting Pawn</title>
-  <meta name="description" content="Réti-Eröffnung (ECO A04–A05): Alle Varianten mit interaktiven Boards, Zügen und kostenlosen Polyglot-Eröffnungsbüchern (.bin) für DGT, Millennium, Chessnut & mehr.">
+  <title>Réti-Eröffnung (A04–A09) – Varianten & Polyglot-Downloads | Starting Pawn</title>
+  <meta name="description" content="Réti-Eröffnung (ECO A04–A09): Alle Varianten mit interaktiven Boards, Zügen und kostenlosen Polyglot-Eröffnungsbüchern (.bin) für DGT, Millennium, Chessnut & mehr.">
 
   <!-- Favicon & Theme -->
   <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
@@ -20,7 +20,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.startingpawn.com/de/reti.html">
-  <meta property="og:title" content="Réti-Eröffnung (A04–A05) – Polyglot-Eröffnungsbücher">
+  <meta property="og:title" content="Réti-Eröffnung (A04–A09) – Polyglot-Eröffnungsbücher">
   <meta property="og:description" content="Alle Varianten der Réti-Eröffnung mit interaktiven Boards & kostenlosen Polyglot-Books (.bin) für elektronische Schachbretter.">
   <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
   <meta property="og:image:alt" content="Starting Pawn – Réti-Eröffnung Eröffnungsbücher">
@@ -65,7 +65,7 @@
       {
         "@type": "ListItem",
         "position": 4,
-        "name": "Réti-Eröffnung (A04–A05)",
+        "name": "Réti-Eröffnung (A04–A09)",
         "item": "https://www.startingpawn.com/de/reti.html"
       }
     ]
@@ -78,17 +78,21 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "inLanguage": "de",
-    "name": "Réti-Eröffnung (A04–A05)",
-    "description": "Varianten der Réti-Eröffnung (ECO A04–A05) mit interaktiven Boards und kostenlosen Polyglot-Büchern (.bin)",
+    "name": "Réti-Eröffnung (A04–A09)",
+    "description": "Varianten der Réti-Eröffnung (ECO A04–A09) mit interaktiven Boards und kostenlosen Polyglot-Büchern (.bin)",
     "isPartOf": {
       "@type": "WebSite",
       "name": "Starting Pawn",
       "url": "https://www.startingpawn.com/"
     },
-    "about": ["Réti-Eröffnung", "ECO A04–A05"],
+    "about": ["Réti-Eröffnung", "ECO A04–A09"],
     "hasPart": [
       {"@type": "CreativeWork", "name": "A04 – Réti-Eröffnung"},
-      {"@type": "CreativeWork", "name": "A05 – Réti mit 2...Sf6"}
+      {"@type": "CreativeWork", "name": "A05 – Réti mit 2...Sf6"},
+      {"@type": "CreativeWork", "name": "A06 – Réti mit 2...d5"},
+      {"@type": "CreativeWork", "name": "A07 – Königsindischer Aufbau"},
+      {"@type": "CreativeWork", "name": "A08 – Réti mit 2...c5"},
+      {"@type": "CreativeWork", "name": "A09 – Réti-Gambit"}
     ]
   }
   </script>
@@ -485,7 +489,7 @@
       return p.startsWith('/') ? p : '/' + p;
     };
 
-    const withinRetiEco = (eco) => /^A0[45]$/i.test(String(eco||'').trim());
+    const withinRetiEco = (eco) => /^A0[4-9]$/i.test(String(eco||'').trim());
 
     function flattenItemsWithBundle(op){
       const items = [];
@@ -528,12 +532,12 @@
 
     function pickBundle(op){
       if (op?.bundle?.file) {
-        return { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle A04–A05 (.bin)' };
+        return { file: fixPath(op.bundle.file), label: op.bundle.label || 'Alle A04–A09 (.bin)' };
       }
       if (Array.isArray(op?.groups)) {
         for (const g of op.groups) {
           const file = g?.bundle?.file || g?.file || '';
-          if (file) return { file: fixPath(file), label: g?.bundle?.label || g?.label || 'Alle A04–A05 (.bin)' };
+          if (file) return { file: fixPath(file), label: g?.bundle?.label || g?.label || 'Alle A04–A09 (.bin)' };
         }
       }
       return null;
@@ -633,14 +637,14 @@
       let html = '';
       html += `<section class="top-head">
         <div>
-          <h2 class="top-title">Réti-Eröffnung (A04–A05)</h2>
+          <h2 class="top-title">Réti-Eröffnung (A04–A09)</h2>
           <p class="top-desc">Flexible Eröffnung mit 1.Sf3, die das Zentrum zunächst umgeht</p>
         </div>
         ${bundle && bundle.file ? `<a class="dl-btn" href="/de/download.html?file=${encodeURIComponent(bundle.file)}">Download (.zip)</a>` : ``}
       </section>`;
 
       if (!items.length){
-        html += `<p>Für Réti-Eröffnung (A04–A05) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>/data/reti.json</code>.</p>`;
+        html += `<p>Für Réti-Eröffnung (A04–A09) wurden keine passenden Einträge gefunden. Prüfe die ECO-Codes in <code>/data/reti.json</code>.</p>`;
       } else {
         html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
       }
