@@ -1,0 +1,14 @@
+[Event "Grünfeld-Indische Verteidigung (D70–D99)"]
+[Site "?"]
+[Date "2025.10.02"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "D75"]
+[Opening "Neo-Grünfeld, …c5 8.Nc3"]
+[Variation "Neo-Grünfeld, …c5 8.Sc3"]
+[OpeningDe "Neo-Grünfeld, …c5 8.Sc3"]
+[OpeningEn "Neo-Grünfeld, …c5 8.Nc3"]
+
+1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O c5 8.Nc3 *

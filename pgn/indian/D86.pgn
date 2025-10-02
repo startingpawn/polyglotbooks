@@ -1,0 +1,14 @@
+[Event "Grünfeld-Indische Verteidigung (D70–D99)"]
+[Site "?"]
+[Date "2025.10.02"]
+[Round "-"]
+[White "White"]
+[Black "Black"]
+[Result "*"]
+[ECO "D86"]
+[Opening "Exchange – Classical (7.Bc4)"]
+[Variation "Austausch – Klassische Variante (7.Lc4)"]
+[OpeningDe "Austausch – Klassische Variante (7.Lc4)"]
+[OpeningEn "Exchange – Classical (7.Bc4)"]
+
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 *
