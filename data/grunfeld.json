@@ -1,0 +1,224 @@
+[
+  {
+    "id": "grunfeld",
+    "title": "Grünfeld-Indische Verteidigung (D70–D99)",
+    "desc": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 – umfasst Neo-Grünfeld (D70–D79) und die Hauptsysteme (D80–D99).",
+    "bundle": {
+      "file": "books/indian/d70-d99-grunfeld.zip",
+      "size": "30.0 MB",
+      "label": "Alle D70–D99 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "D70",
+        "name": "Neo-Grünfeld – Grundstellung",
+        "name_en": "Neo-Grünfeld Defence – base",
+        "line": "1.d4 Nf6 2.c4 g6 3.f3 d5",
+        "pgnFile": "pgn/indian/D70.pgn"
+      },
+      {
+        "eco": "D71",
+        "name": "Neo-Grünfeld, 5.cxd5",
+        "name_en": "Neo-Grünfeld, 5.cxd5",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.cxd5 Nxd5",
+        "pgnFile": "pgn/indian/D71.pgn"
+      },
+      {
+        "eco": "D72",
+        "name": "Neo-Grünfeld, 5.cxd5 – Hauptvariante",
+        "name_en": "Neo-Grünfeld, 5.cxd5 – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.cxd5 Nxd5 6.e4 Nb6 7.Ne2",
+        "pgnFile": "pgn/indian/D72.pgn"
+      },
+      {
+        "eco": "D73",
+        "name": "Neo-Grünfeld, 5.Sf3",
+        "name_en": "Neo-Grünfeld, 5.Nf3",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3",
+        "pgnFile": "pgn/indian/D73.pgn"
+      },
+      {
+        "eco": "D74",
+        "name": "Neo-Grünfeld, 6.cxd5 Sxd5 7.O-O",
+        "name_en": "Neo-Grünfeld, 6.cxd5 Nxd5 7.O-O",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O",
+        "pgnFile": "pgn/indian/D74.pgn"
+      },
+      {
+        "eco": "D75",
+        "name": "Neo-Grünfeld, …c5 8.Sc3",
+        "name_en": "Neo-Grünfeld, …c5 8.Nc3",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O c5 8.Nc3",
+        "pgnFile": "pgn/indian/D75.pgn"
+      },
+      {
+        "eco": "D76",
+        "name": "Neo-Grünfeld, …Nb6",
+        "name_en": "Neo-Grünfeld, …Nb6",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.cxd5 Nxd5 7.O-O Nb6",
+        "pgnFile": "pgn/indian/D76.pgn"
+      },
+      {
+        "eco": "D77",
+        "name": "Neo-Grünfeld, 6.O-O",
+        "name_en": "Neo-Grünfeld, 6.O-O",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.O-O",
+        "pgnFile": "pgn/indian/D77.pgn"
+      },
+      {
+        "eco": "D78",
+        "name": "Neo-Grünfeld, 6.O-O c6",
+        "name_en": "Neo-Grünfeld, 6.O-O c6",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.O-O c6",
+        "pgnFile": "pgn/indian/D78.pgn"
+      },
+      {
+        "eco": "D79",
+        "name": "Neo-Grünfeld, 6.O-O – Hauptvariante",
+        "name_en": "Neo-Grünfeld, 6.O-O – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.g3 d5 4.Bg2 Bg7 5.Nf3 O-O 6.O-O c6 7.cxd5 cxd5",
+        "pgnFile": "pgn/indian/D79.pgn"
+      },
+      {
+        "eco": "D80",
+        "name": "Grünfeld-Indische – Grundstellung",
+        "name_en": "Grünfeld Defence – base",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5",
+        "pgnFile": "pgn/indian/D80.pgn"
+      },
+      {
+        "eco": "D81",
+        "name": "Russisches System (4.Qb3)",
+        "name_en": "Russian Variation (4.Qb3)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Qb3",
+        "pgnFile": "pgn/indian/D81.pgn"
+      },
+      {
+        "eco": "D82",
+        "name": "Grünfeld, 4.Lf4",
+        "name_en": "Grünfeld, 4.Bf4",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Bf4",
+        "pgnFile": "pgn/indian/D82.pgn"
+      },
+      {
+        "eco": "D83",
+        "name": "Grünfeld-Gambit",
+        "name_en": "Grünfeld Gambit",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Bf4 Bg7 5.e3 O-O",
+        "pgnFile": "pgn/indian/D83.pgn"
+      },
+      {
+        "eco": "D84",
+        "name": "Grünfeld-Gambit – angenommen",
+        "name_en": "Grünfeld Gambit – accepted",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Bf4 Bg7 5.e3 O-O 6.cxd5 Nxd5 7.Nxd5 Qxd5 8.Bxc7",
+        "pgnFile": "pgn/indian/D84.pgn"
+      },
+      {
+        "eco": "D85",
+        "name": "Austauschvariante – Grundstellung",
+        "name_en": "Exchange Variation – base",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5",
+        "pgnFile": "pgn/indian/D85.pgn"
+      },
+      {
+        "eco": "D86",
+        "name": "Austausch – Klassische Variante (7.Lc4)",
+        "name_en": "Exchange – Classical (7.Bc4)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4",
+        "pgnFile": "pgn/indian/D86.pgn"
+      },
+      {
+        "eco": "D87",
+        "name": "Austausch – Spassky/Sevilla-Variante (…c5)",
+        "name_en": "Exchange – Spassky/Seville Variation (…c5)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 O-O 8.Ne2 c5",
+        "pgnFile": "pgn/indian/D87.pgn"
+      },
+      {
+        "eco": "D88",
+        "name": "Spassky-Variante – Hauptlinie (10…cxd4 11.cxd4)",
+        "name_en": "Spassky Variation – Main Line (10…cxd4 11.cxd4)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 O-O 8.Ne2 c5 9.O-O Nc6 10.Be3 cxd4 11.cxd4",
+        "pgnFile": "pgn/indian/D88.pgn"
+      },
+      {
+        "eco": "D89",
+        "name": "Austausch – Sokolsky-Variante",
+        "name_en": "Exchange – Sokolsky Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 O-O 8.Ne2 c5 9.O-O Nc6 10.Be3 cxd4 11.cxd4 Bg4 12.f3 Na5 13.Bd3",
+        "pgnFile": "pgn/indian/D89.pgn"
+      },
+      {
+        "eco": "D90",
+        "name": "Drei-Springer (Flohr-Variante 5.Da4+)",
+        "name_en": "Three Knights (Flohr Variation 5.Qa4+)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qa4+",
+        "pgnFile": "pgn/indian/D90.pgn"
+      },
+      {
+        "eco": "D91",
+        "name": "Grünfeld, 5.Lg5",
+        "name_en": "Grünfeld, 5.Bg5",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bg5",
+        "pgnFile": "pgn/indian/D91.pgn"
+      },
+      {
+        "eco": "D92",
+        "name": "Grünfeld, 5.Lf4",
+        "name_en": "Grünfeld, 5.Bf4",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bf4",
+        "pgnFile": "pgn/indian/D92.pgn"
+      },
+      {
+        "eco": "D93",
+        "name": "Grünfeld mit Lf4 & e3",
+        "name_en": "Grünfeld with Bf4 & e3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Bf4 O-O 6.e3",
+        "pgnFile": "pgn/indian/D93.pgn"
+      },
+      {
+        "eco": "D94",
+        "name": "Grünfeld, 5.e3",
+        "name_en": "Grünfeld, 5.e3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3",
+        "pgnFile": "pgn/indian/D94.pgn"
+      },
+      {
+        "eco": "D95",
+        "name": "Grünfeld – mit e3 & Qb3",
+        "name_en": "Grünfeld – with e3 & Qb3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.e3 O-O 6.Qb3",
+        "pgnFile": "pgn/indian/D95.pgn"
+      },
+      {
+        "eco": "D96",
+        "name": "Russisches System – Grundstellung",
+        "name_en": "Russian System – base",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3",
+        "pgnFile": "pgn/indian/D96.pgn"
+      },
+      {
+        "eco": "D97",
+        "name": "Russisches System – mit 7.e4",
+        "name_en": "Russian System – with 7.e4",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3 dxc4 6.Qxc4 O-O 7.e4",
+        "pgnFile": "pgn/indian/D97.pgn"
+      },
+      {
+        "eco": "D98",
+        "name": "Russisches System, Smyslow-Variante (…Lg4)",
+        "name_en": "Russian System, Smyslov Variation (…Bg4)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3 dxc4 6.Qxc4 O-O 7.e4 Bg4",
+        "pgnFile": "pgn/indian/D98.pgn"
+      },
+      {
+        "eco": "D99",
+        "name": "Russisches System, Smyslow – Hauptvariante",
+        "name_en": "Russian System, Smyslov – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3 dxc4 6.Qxc4 O-O 7.e4 Bg4 8.Be3 Nfd7 9.Qb3",
+        "pgnFile": "pgn/indian/D99.pgn"
+      }
+    ]
+  }
+]
