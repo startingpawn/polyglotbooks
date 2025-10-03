@@ -1,0 +1,28 @@
+[
+  {
+    "id": "bird",
+    "title": "Bird (A02–A03)",
+    "desc": "1.f4 – umfasst Froms Gambit (…e5) und 1…d5-Aufbauten.",
+    "bundle": {
+      "file": "books/flank/a02-a03-bird.zip",
+      "size": "—",
+      "label": "Alle A02–A03 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "A02",
+        "name": "Bird-Eröffnung – Grundstellung",
+        "name_en": "Bird's Opening – base",
+        "line": "1.f4",
+        "pgnFile": "pgn/flank/A02.pgn"
+      },
+      {
+        "eco": "A03",
+        "name": "Bird-Eröffnung, 1…d5",
+        "name_en": "Bird's Opening, 1…d5",
+        "line": "1.f4 d5",
+        "pgnFile": "pgn/flank/A03.pgn"
+      }
+    ]
+  }
+]
