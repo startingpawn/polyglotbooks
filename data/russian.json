@@ -1,0 +1,28 @@
+[
+  {
+    "id": "russian",
+    "title": "Russische Verteidigung (C42–C43)",
+    "desc": "1.e4 e5 2.Nf3 Nf6 – umfasst Klassischer Angriff (3.Sxe5) und Moderner Angriff (Steinitz-Variante, 3.d4).",
+    "bundle": {
+      "file": "books/open/c42-c43-russian.zip",
+      "size": "—",
+      "label": "Alle C42–C43 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "C42",
+        "name": "Russische Verteidigung, Klassischer Angriff (3.Sxe5)",
+        "name_en": "Petrov's Defence, Classical Attack (3.Nxe5)",
+        "line": "1.e4 e5 2.Nf3 Nf6 3.Nxe5",
+        "pgnFile": "pgn/open/C42.pgn"
+      },
+      {
+        "eco": "C43",
+        "name": "Russische Verteidigung, Moderner Angriff (Steinitz-Variante) (3.d4)",
+        "name_en": "Petrov's Defence, Modern Attack (Steinitz Variation) (3.d4)",
+        "line": "1.e4 e5 2.Nf3 Nf6 3.d4",
+        "pgnFile": "pgn/open/C43.pgn"
+      }
+    ]
+  }
+]
