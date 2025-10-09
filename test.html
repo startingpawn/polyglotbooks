@@ -18,6 +18,7 @@
   <link rel="alternate" href="https://www.startingpawn.com/" hreflang="x-default">
 
   <!-- InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
+  <!-- Lädt die CMP und stellt __tcfapi / __gpp Stubs bereit -->
   <script type="text/javascript" async=true>
   (function() {
     var host = window.location.hostname;
@@ -46,7 +47,6 @@
         if (!otherCMP) {
           if (doc.body) {
             var iframe = doc.createElement('iframe');
-
             iframe.style.cssText = 'display:none';
             iframe.name = TCF_LOCATOR_NAME;
             doc.body.appendChild(iframe);
@@ -80,7 +80,6 @@
             cmpLoaded: false,
             cmpStatus: 'stub'
           };
-
           if (typeof args[2] === 'function') {
             args[2](retr);
           }
@@ -95,17 +94,8 @@
       function postMessageEventHandler(event) {
         var msgIsString = typeof event.data === 'string';
         var json = {};
-
-        try {
-          if (msgIsString) {
-            json = JSON.parse(event.data);
-          } else {
-            json = event.data;
-          }
-        } catch (ignore) {}
-
+        try { json = msgIsString ? JSON.parse(event.data) : event.data; } catch (ignore) {}
         var payload = json.__tcfapiCall;
-
         if (payload) {
           window.__tcfapi(
             payload.command,
@@ -118,9 +108,7 @@
                   callId: payload.callId
                 }
               };
-              if (msgIsString) {
-                returnMsg = JSON.stringify(returnMsg);
-              }
+              if (msgIsString) { returnMsg = JSON.stringify(returnMsg); }
               if (event && event.source && event.source.postMessage) {
                 event.source.postMessage(returnMsg, '*');
               }
@@ -132,15 +120,9 @@
 
       while (win) {
         try {
-          if (win.frames[TCF_LOCATOR_NAME]) {
-            cmpFrame = win;
-            break;
-          }
+          if (win.frames[TCF_LOCATOR_NAME]) { cmpFrame = win; break; }
         } catch (ignore) {}
-
-        if (win === window.top) {
-          break;
-        }
+        if (win === window.top) { break; }
         win = win.parent;
       }
       if (!cmpFrame) {
@@ -182,13 +164,8 @@
         __gpp.queue = __gpp.queue || [];
         __gpp.events = __gpp.events || [];
 
-        if (!b.length || (b.length == 1 && b[0] == "queue")) {
-          return __gpp.queue;
-        }
-
-        if (b.length == 1 && b[0] == "events") {
-          return __gpp.events;
-        }
+        if (!b.length || (b.length == 1 && b[0] == "queue")) { return __gpp.queue; }
+        if (b.length == 1 && b[0] == "events") { return __gpp.events; }
 
         var cmd = b[0];
         var clb = b.length > 1 ? b[1] : null;
@@ -210,16 +187,10 @@
             true
           );
         } else if (cmd === "addEventListener") {
-          if (!("lastId" in __gpp)) {
-            __gpp.lastId = 0;
-          }
+          if (!("lastId" in __gpp)) { __gpp.lastId = 0; }
           __gpp.lastId++;
           var lnr = __gpp.lastId;
-          __gpp.events.push({
-            id: lnr,
-            callback: clb,
-            parameter: par,
-          });
+          __gpp.events.push({ id: lnr, callback: clb, parameter: par });
           clb(
             {
               eventName: "listenerRegistered",
@@ -243,11 +214,7 @@
         } else if (cmd === "removeEventListener") {
           var success = false;
           for (var i = 0; i < __gpp.events.length; i++) {
-            if (__gpp.events[i].id == par) {
-              __gpp.events.splice(i, 1);
-              success = true;
-              break;
-            }
+            if (__gpp.events[i].id == par) { __gpp.events.splice(i, 1); success = true; break; }
           }
           clb(
             {
@@ -269,13 +236,9 @@
             },
             true
           );
-        } else if (cmd === "hasSection") {
-          clb(false, true);
-        } else if (cmd === "getSection" || cmd === "getField") {
-          clb(null, true);
-        } else {
-          __gpp.queue.push([].slice.apply(b));
-        }
+        } else if (cmd === "hasSection") { clb(false, true); }
+        else if (cmd === "getSection" || cmd === "getField") { clb(null, true); }
+        else { __gpp.queue.push([].slice.apply(b)); }
       };
       window.__gpp_msghandler = function (event) {
         var msgIsString = typeof event.data === "string";
@@ -339,7 +302,7 @@
 
   <!-- === Consent Mode v2 Defaults (VOR allem, was Cookies setzen könnte) === -->
   <script>
-    // Alles zunächst untersagen; spätere Updates per TCF/GPP.
+    // Zuerst alles untersagen; spätere Updates per TCF/GPP und User-Entscheidung.
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('consent', 'default', {
@@ -350,11 +313,11 @@
     });
   </script>
 
-  <!-- === EU (TCF 2.2): P1+P8 nötig | US/RoW: Analytics erlauben === -->
+  <!-- === GA4 + TCF/GPP-Logik: EU wartet auf P1+P8; US/RoW erlaubt Analytics ohne Ads === -->
   <script>
   (function(){
     var GA_ID = 'G-NBE0CNNFK7';      // ← deine GA4-ID
-    var REQUIRE_P9_P10 = true;       // ← auf true setzen, wenn du P9 & P10 auch voraussetzen willst
+    var REQUIRE_P9_P10 = false;       // ← auf true setzen, wenn P9/P10 zusätzlich nötig sein sollen
 
     function loadGA(){
       if (window.__gaLoaded) return;
@@ -403,8 +366,8 @@
         window.__tcfapi('ping', 2, function(ping){
           // gdprApplies === false ⇒ kein EU-Kontext (z. B. USA)
           if (ping && ping.gdprApplies === false) {
-            // Optionaler GPP-Ping (wir nutzen nur Analytics, keine Ads)
             if (typeof window.__gpp === 'function') {
+              // Optionaler GPP-Ping; wir erlauben Analytics ohne Ads
               window.__gpp('ping', function(){ grantAnalytics(); });
             } else {
               grantAnalytics();
@@ -602,7 +565,8 @@
 
     /* Visual */
     .visual{
-      border:var(--border) solid #222737; border-radius:var(--radius);
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
       background:
         radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.22), transparent 65%),
         linear-gradient(135deg, #0f1117 0%, #141822 100%);
@@ -615,6 +579,18 @@
     footer{
       max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem;
       color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
+    }
+    /* CMP: Footer-Link Styling */
+    footer .privacy-link{
+      margin-left:.6rem;
+      text-decoration:underline;
+      white-space:nowrap;
+    }
+    footer .privacy-link:hover{ text-decoration:none; }
+    #cmp-footer-link a{
+      margin-left:.6rem;
+      text-decoration:underline;
+      white-space:nowrap;
     }
 
     /* FAB & Sheet (mobil) */
@@ -629,7 +605,10 @@
     }
     .fab:hover{
       transform:translateY(-1px);
-      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
+      box-shadow:
+        0 0 0 2px rgba(229,9,20,.22),
+        0 14px 32px rgba(0,0,0,.45),
+        0 0 18px rgba(229,9,20,.16);
     }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
     @media (max-width: 979px){ .topnav{ display:none } .fab{ display:grid } }
@@ -695,21 +674,22 @@
     </aside>
   </main>
 
+  <!-- Starting Pawn Footer -->
   <footer>
     <small>&copy; 2025 Starting Pawn</small>
-    <!-- Platzhalter: Hier setzt InMobi den "Your Privacy Choices" / Opt-out-Link ein -->
+
+    <!-- InMobi injiziert hier (falls konfiguriert) den US-Opt-out-Link
+         → In der InMobi-Einstellung als HTML ID: cmp-footer-link -->
     <span id="cmp-footer-link"></span>
 
-    <!-- Eigener Link, öffnet die CMP-UI (EU) bzw. klickt den US-Link an -->
+    <!-- Eigener Link, öffnet die CMP-UI (EU) bzw. triggert US-Opt-out-Dialog -->
     <a id="privacy-settings"
-      href="#"
-      class="privacy-link"
-      role="button"
-      aria-label="Datenschutz-Einstellungen öffnen">
-    ·  Datenschutz-Einstellungen
+       href="#"
+       class="privacy-link"
+       role="button"
+       aria-label="Datenschutz-Einstellungen öffnen">
+      · Datenschutz-Einstellungen
     </a>
-
-    
   </footer>
 
   <!-- Mobiler + Button & Sheet -->
@@ -748,17 +728,66 @@
         setTimeout(() => { sheet.hidden = true; }, 200);
       };
 
-      fab?.addEventListener('click', () => {
-        if (sheet.hidden) open(); else close();
-      });
+      fab?.addEventListener('click', () => { if (sheet.hidden) open(); else close(); });
       backdrop?.addEventListener('click', close);
-      panel?.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') close();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !sheet.hidden) close();
-      });
+      panel?.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
     })();
+  </script>
+
+  <!-- CMP: Footer-Link öffnet Consent-UI -->
+  <script>
+  (function(){
+    function openPrivacyUI(){
+      var opened = false;
+
+      // 1) EU/TCF: falls GDPR gilt, TCF-UI öffnen
+      try {
+        if (typeof window.__tcfapi === 'function') {
+          window.__tcfapi('ping', 2, function(ping, ok){
+            if (!ok || !ping) return;
+
+            if (ping.gdprApplies === true) {
+              window.__tcfapi('displayConsentUi', 2, function(){});
+              opened = true;
+            } else {
+              // 2) Nicht-EU (z. B. USA): versuche den US-Opt-out-Link zu triggern
+              var usLink = document.querySelector('#cmp-footer-link a');
+              if (usLink) {
+                usLink.click();
+                opened = true;
+              } else {
+                // Fallback: TCF-UI öffnen
+                window.__tcfapi('displayConsentUi', 2, function(){});
+                opened = true;
+              }
+            }
+          });
+        }
+      } catch(e){}
+
+      // 3) Harte Fallbacks, falls __tcfapi nicht verfügbar/noch nicht geladen
+      setTimeout(function(){
+        if (opened) return;
+        var usLink = document.querySelector('#cmp-footer-link a');
+        if (usLink) {
+          usLink.click();
+        } else if (typeof window.__tcfapi === 'function') {
+          window.__tcfapi('displayConsentUi', 2, function(){});
+        } else {
+          console.warn('CMP-UI noch nicht verfügbar.');
+        }
+      }, 150);
+    }
+
+    var link = document.getElementById('privacy-settings');
+    if (link) {
+      link.addEventListener('click', function(e){ e.preventDefault(); openPrivacyUI(); });
+      link.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPrivacyUI(); }
+      });
+    }
+  })();
   </script>
 </body>
 </html>
