@@ -342,6 +342,93 @@
   </script>
   <!-- End InMobi Choice. Consent Manager Tag v3.0 (for TCF 2.2) -->
 
+  <!-- === Consent Mode v2 Defaults (VOR allem, was Cookies setzen könnte) === -->
+  <script>
+    // GA/Ads dürfen NICHT automatisch laden – erst nach Consent.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    // Standard: alles verweigern; wird später durch TCF-Status überschrieben.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+  </script>
+
+  <!-- === TCF -> Consent Mode Bridge + GA4 nur bei P1 & P8 (P9/P10 optional) === -->
+  <script>
+  (function(){
+    // ▼▼ Deine GA4-ID hier eintragen (aktuell: aus deinem Snippet)
+    var GA_ID = 'G-NBE0CNNFK7';
+
+    // GA4 laden (nur einmal)
+    function loadGA(){
+      if (window.__gaLoaded) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+
+      // Grundkonfiguration – ohne Google Signals
+      gtag('js', new Date());
+      gtag('config', GA_ID, {
+        anonymize_ip: true,          // GA4 anonymisiert IP ohnehin; explizit ist ok
+        allow_google_signals: false  // keine geräteübergreifenden Signals ohne ausdrückliche Freigabe
+      });
+
+      window.__gaLoaded = true;
+    }
+
+    // Auf CMP-Events hören (TCF 2.2)
+    function onTCF(tcData){
+      var consents = (tcData && tcData.purpose && tcData.purpose.consents) || {};
+
+      // Pflicht: P1 + P8; P9/P10 sind optional (togglebar)
+      var REQUIRE_P9_P10 = false; // ← auf true stellen, wenn du P9 & P10 ebenfalls verlangen willst
+      var allow = !!consents['1'] && !!consents['8'] && (
+        !REQUIRE_P9_P10 || (!!consents['9'] && !!consents['10'])
+      );
+
+      // Consent Mode gemäß TCF aktualisieren (hier nur Analytics; Ads bleiben aus)
+      gtag('consent', 'update', {
+        analytics_storage: allow ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+
+      // Erst jetzt GA4 laden
+      if (allow) loadGA();
+
+      // // Debug (optional):
+      // console.debug('[TCF] purposes', consents, '→ analytics allowed?', allow);
+    }
+
+    // Event-Listener registrieren
+    if (typeof window.__tcfapi === 'function') {
+      window.__tcfapi('addEventListener', 2, function(tcData, ok){
+        if (!ok || !tcData) return;
+        // Reagiere sowohl auf initialen Load als auch auf Nutzereingaben
+        if (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') {
+          onTCF(tcData);
+        }
+      });
+    } else {
+      // Falls CMP erst später verfügbar ist
+      document.addEventListener('DOMContentLoaded', function(){
+        if (typeof window.__tcfapi === 'function') {
+          window.__tcfapi('addEventListener', 2, function(tcData, ok){
+            if (ok) onTCF(tcData);
+          });
+        }
+      });
+    }
+  })();
+  </script>
+  <!-- === Ende GA/Consent-Integration === -->
+
   <!-- Open Graph (für Link-Vorschauen) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.startingpawn.com/de/">
