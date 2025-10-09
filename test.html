@@ -196,12 +196,12 @@
         if (cmd === "ping") {
           clb(
             {
-              gppVersion: "1.1", // must be “Version.Subversion”, current: “1.1”
-              cmpStatus: "stub", // possible values: stub, loading, loaded, error
-              cmpDisplayStatus: "hidden", // possible values: hidden, visible, disabled
-              signalStatus: "not ready", // possible values: not ready, ready
-              supportedAPIs: SUPPORTED_APIS, // list of supported APIs
-              cmpId: CMP_ID, // IAB assigned CMP ID, may be 0 during stub/loading
+              gppVersion: "1.1",
+              cmpStatus: "stub",
+              cmpDisplayStatus: "hidden",
+              signalStatus: "not ready",
+              supportedAPIs: SUPPORTED_APIS,
+              cmpId: CMP_ID,
               sectionList: [],
               applicableSections: [-1],
               gppString: "",
@@ -223,10 +223,10 @@
           clb(
             {
               eventName: "listenerRegistered",
-              listenerId: lnr, // Registered ID of the listener
-              data: true, // positive signal
+              listenerId: lnr,
+              data: true,
               pingData: {
-                gppVersion: "1.1", // must be “Version/Subversion”, current: “1.1”
+                gppVersion: "1.1",
                 cmpStatus: "stub",
                 cmpDisplayStatus: "hidden",
                 signalStatus: "not ready",
@@ -253,7 +253,7 @@
             {
               eventName: "listenerRemoved",
               listenerId: par,
-              data: success, // status info
+              data: success,
               pingData: {
                 gppVersion: "1.1",
                 cmpStatus: "stub",
@@ -273,19 +273,14 @@
           clb(false, true);
         } else if (cmd === "getSection" || cmd === "getField") {
           clb(null, true);
-        }
-        //queue all other commands
-        else {
+        } else {
           __gpp.queue.push([].slice.apply(b));
         }
       };
       window.__gpp_msghandler = function (event) {
         var msgIsString = typeof event.data === "string";
-        try {
-          var json = msgIsString ? JSON.parse(event.data) : event.data;
-        } catch (e) {
-          var json = null;
-        }
+        try { var json = msgIsString ? JSON.parse(event.data) : event.data; }
+        catch (e) { var json = null; }
         if (typeof json === "object" && json !== null && "__gppCall" in json) {
           var i = json.__gppCall;
           window.__gpp(
@@ -344,11 +339,9 @@
 
   <!-- === Consent Mode v2 Defaults (VOR allem, was Cookies setzen könnte) === -->
   <script>
-    // GA/Ads dürfen NICHT automatisch laden – erst nach Consent.
+    // Alles zunächst untersagen; spätere Updates per TCF/GPP.
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
-
-    // Standard: alles verweigern; wird später durch TCF-Status überschrieben.
     gtag('consent', 'default', {
       ad_storage: 'denied',
       analytics_storage: 'denied',
@@ -357,71 +350,90 @@
     });
   </script>
 
-  <!-- === TCF -> Consent Mode Bridge + GA4 nur bei P1 & P8 (P9/P10 optional) === -->
+  <!-- === EU (TCF 2.2): P1+P8 nötig | US/RoW: Analytics erlauben === -->
   <script>
   (function(){
-    // ▼▼ Deine GA4-ID hier eintragen (aktuell: aus deinem Snippet)
-    var GA_ID = 'G-NBE0CNNFK7';
+    var GA_ID = 'G-NBE0CNNFK7';      // ← deine GA4-ID
+    var REQUIRE_P9_P10 = false;       // ← auf true setzen, wenn du P9 & P10 auch voraussetzen willst
 
-    // GA4 laden (nur einmal)
     function loadGA(){
       if (window.__gaLoaded) return;
       var s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
       document.head.appendChild(s);
-
-      // Grundkonfiguration – ohne Google Signals
       gtag('js', new Date());
       gtag('config', GA_ID, {
-        anonymize_ip: true,          // GA4 anonymisiert IP ohnehin; explizit ist ok
-        allow_google_signals: false  // keine geräteübergreifenden Signals ohne ausdrückliche Freigabe
+        anonymize_ip: true,
+        allow_google_signals: false   // keine Ads-/Signals-Funktionen
       });
-
       window.__gaLoaded = true;
     }
 
-    // Auf CMP-Events hören (TCF 2.2)
-    function onTCF(tcData){
-      var consents = (tcData && tcData.purpose && tcData.purpose.consents) || {};
-
-      // Pflicht: P1 + P8; P9/P10 sind optional (togglebar)
-      var REQUIRE_P9_P10 = false; // ← auf true stellen, wenn du P9 & P10 ebenfalls verlangen willst
-      var allow = !!consents['1'] && !!consents['8'] && (
-        !REQUIRE_P9_P10 || (!!consents['9'] && !!consents['10'])
-      );
-
-      // Consent Mode gemäß TCF aktualisieren (hier nur Analytics; Ads bleiben aus)
+    function grantAnalytics(){
       gtag('consent', 'update', {
-        analytics_storage: allow ? 'granted' : 'denied',
+        analytics_storage: 'granted',
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
       });
-
-      // Erst jetzt GA4 laden
-      if (allow) loadGA();
-
-      // // Debug (optional):
-      // console.debug('[TCF] purposes', consents, '→ analytics allowed?', allow);
+      loadGA();
     }
 
-    // Event-Listener registrieren
+    function denyAnalytics(){
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+    }
+
+    // --- EU-Logik: nur bei P1 + P8 (optional P9/P10) erlauben ---
+    function handleTCF(tcData){
+      var c = (tcData && tcData.purpose && tcData.purpose.consents) || {};
+      var allow = !!c['1'] && !!c['8'] && (!REQUIRE_P9_P10 || (!!c['9'] && !!c['10']));
+      if (allow) grantAnalytics(); else denyAnalytics();
+    }
+
+    // --- US/RoW-Logik: wenn GDPR nicht gilt, Analytics erlauben ---
+    function handleTCFPing(){
+      if (typeof window.__tcfapi !== 'function') return;
+      try {
+        window.__tcfapi('ping', 2, function(ping){
+          // gdprApplies === false ⇒ kein EU-Kontext (z. B. USA)
+          if (ping && ping.gdprApplies === false) {
+            // Optionaler GPP-Ping (wir nutzen nur Analytics, keine Ads)
+            if (typeof window.__gpp === 'function') {
+              window.__gpp('ping', function(){ grantAnalytics(); });
+            } else {
+              grantAnalytics();
+            }
+          }
+        });
+      } catch(e) {}
+    }
+
+    // Listener für TCF-Events (EU)
     if (typeof window.__tcfapi === 'function') {
       window.__tcfapi('addEventListener', 2, function(tcData, ok){
         if (!ok || !tcData) return;
-        // Reagiere sowohl auf initialen Load als auch auf Nutzereingaben
         if (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') {
-          onTCF(tcData);
+          handleTCF(tcData);
         }
       });
+      // Sofort prüfen, ob wir außerhalb der EU sind
+      handleTCFPing();
     } else {
-      // Falls CMP erst später verfügbar ist
+      // Falls gar kein TCF verfügbar (reine RoW-Seite) → Analytics erlauben
       document.addEventListener('DOMContentLoaded', function(){
         if (typeof window.__tcfapi === 'function') {
+          handleTCFPing();
           window.__tcfapi('addEventListener', 2, function(tcData, ok){
-            if (ok) onTCF(tcData);
+            if (ok) handleTCF(tcData);
           });
+        } else {
+          grantAnalytics();
         }
       });
     }
@@ -447,10 +459,7 @@
     "name": "Starting Pawn",
     "description": "Kostenlose Polyglot-Schacheröffnungsbücher für elektronische Schachbretter",
     "url": "https://www.startingpawn.com/de/",
-    "author": {
-      "@type": "Person",
-      "name": "Tobias"
-    },
+    "author": { "@type": "Person", "name": "Tobias" },
     "inLanguage": "de-DE"
   }
   </script>
@@ -491,31 +500,22 @@
     /* Typografie-Verbesserungen */
     .title, .lead, .bullets { text-wrap: balance; }
     .nowrap{ white-space:nowrap; }
-    .lead, .bullets li{
-      hyphens:auto;
-      -webkit-hyphens:auto;
-      overflow-wrap:anywhere;
-    }
+    .lead, .bullets li{ hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Header + Topnav - Sticky & Glasmorphismus */
     header{
-      max-width:var(--max);
-      width:100%;
-      margin:0 auto;
+      max-width:var(--max); width:100%; margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
       border-bottom:1px solid rgba(43, 50, 64, 0.3);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
       background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
-    .logo{
-      width:48px;height:48px;border-radius:50%;
+    .logo{ width:48px;height:48px;border-radius:50%;
       background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
-      box-shadow:0 0 24px rgba(229,9,20,.35)
-    }
+      box-shadow:0 0 24px rgba(229,9,20,.35) }
     h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
     .sub{color:var(--muted);font-size:.9rem}
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
@@ -526,22 +526,11 @@
 
     /* Hero-Layout */
     .hero{
-      max-width:var(--max);
-      width:100%;
-      margin:0 auto;
-      padding:1.2rem 1rem 2rem;
-      display:grid;
-      gap:1.2rem;
-      grid-template-columns: 1fr;
-      flex:1;
-      align-items:center;
+      max-width:var(--max); width:100%; margin:0 auto; padding:1.2rem 1rem 2rem;
+      display:grid; gap:1.2rem; grid-template-columns: 1fr; flex:1; align-items:center;
     }
     @media (min-width: 980px){
-      .hero{
-        grid-template-columns: 1.2fr .8fr;
-        gap:2rem;
-        padding:2rem 1rem;
-      }
+      .hero{ grid-template-columns: 1.2fr .8fr; gap:2rem; padding:2rem 1rem; }
     }
     @media (orientation: landscape) and (max-height: 768px){
       header{ padding:0.8rem 1rem 0.5rem; }
@@ -589,35 +578,13 @@
 
     /* Bullets */
     .bullets{
-      list-style:none;
-      padding:0;
-      display:grid;
-      gap:.45rem;
-      color:#d9dce4;
-      padding-left: var(--indent-start);
+      list-style:none; padding:0; display:grid; gap:.45rem; color:#d9dce4; padding-left: var(--indent-start);
     }
-    .bullets li{
-      position:relative;
-      padding-left: var(--bullet-gap);
-      line-height:1.55;
-    }
-    .bullets li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      line-height:1.55;
-      font-weight:700;
-      color:#ff5f6d;
-    }
+    .bullets li{ position:relative; padding-left: var(--bullet-gap); line-height:1.55; }
+    .bullets li::before{ content:"•"; position:absolute; left:0; top:0; line-height:1.55; font-weight:700; color:#ff5f6d; }
     .bullets code{
       font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:.92em;
-      background:#0f1117;
-      border:1px solid #2b3240;
-      border-radius:6px;
-      padding:.05em .35em;
-      color:#e9eaee;
+      font-size:.92em; background:#0f1117; border:1px solid #2b3240; border-radius:6px; padding:.05em .35em; color:#e9eaee;
     }
 
     .cta{ display:flex; gap:.6rem; flex-wrap:wrap }
@@ -635,36 +602,19 @@
 
     /* Visual */
     .visual{
-      border:var(--border) solid #222737; 
-      border-radius:var(--radius);
+      border:var(--border) solid #222737; border-radius:var(--radius);
       background:
         radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.22), transparent 65%),
         linear-gradient(135deg, #0f1117 0%, #141822 100%);
-      padding:1rem;
-      display:flex; 
-      align-items:center; 
-      justify-content:center;
-      min-height:320px;
+      padding:1rem; display:flex; align-items:center; justify-content:center; min-height:320px;
     }
-    .visual img{ 
-      max-width:85%;
-      height:auto; 
-      display:block; 
-      filter:drop-shadow(0 8px 24px rgba(0,0,0,.45));
-      opacity:0.95;
-      transition:transform 0.3s ease;
-    }
+    .visual img{ max-width:85%; height:auto; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,.45)); opacity:0.95; transition:transform 0.3s ease; }
     .visual:hover img { transform:scale(1.05); }
 
     /* Footer */
     footer{
-      max-width:var(--max);
-      width:100%;
-      margin:1.2rem auto 2.4rem;
-      color:#a2a6b2;
-      font-size:.92rem;
-      padding:0 1rem;
-      text-align:center;
+      max-width:var(--max); width:100%; margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
     }
 
     /* FAB & Sheet (mobil) */
@@ -674,32 +624,22 @@
       display:none; place-items:center; user-select:none; cursor:pointer;
       background:linear-gradient(180deg, #1b2230, #121a26);
       color:#e9eaee; font-size:34px; line-height:1;
-      border:1px solid #2b3240;
-      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      border:1px solid #2b3240; box-shadow:0 6px 16px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
     .fab:hover{
       transform:translateY(-1px);
-      box-shadow:
-        0 0 0 2px rgba(229,9,20,.22),
-        0 14px 32px rgba(0,0,0,.45),
-        0 0 18px rgba(229,9,20,.16);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
     }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
-    @media (max-width: 979px){
-      .topnav{ display:none }
-      .fab{ display:grid }
-    }
+    @media (max-width: 979px){ .topnav{ display:none } .fab{ display:grid } }
 
     .sheet{ position:fixed; inset:0; z-index:55; }
     .sheet[hidden]{ display:none }
-    .sheet-backdrop{
-      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
-      backdrop-filter:blur(2px);
-    }
+    .sheet-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease; backdrop-filter:blur(2px); }
     .sheet-panel{
-      position:absolute; left:0; right:0; bottom:0;
-      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      position:absolute; left:0; right:0; bottom:0; background:#12131a;
+      border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
       padding:1rem; transform:translateY(100%); transition:transform .2s ease;
       box-shadow:0 -12px 30px rgba(0,0,0,.5);
     }
