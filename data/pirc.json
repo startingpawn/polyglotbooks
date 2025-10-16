@@ -1,0 +1,35 @@
+[
+  {
+    "id": "pirc",
+    "title": "Pirc-Verteidigung (B07–B09)",
+    "desc": "1.e4 d6 2.d4 Nf6 3.Nc3 g6 – umfasst Klassisches (Zweispringer-)System und Österreichischen Angriff.",
+    "bundle": {
+      "file": "books/semiopen/b07-b09-pirc.zip",
+      "size": "—",
+      "label": "Alle B07–B09 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "B07",
+        "name": "Pirc-Verteidigung – Grundstellung",
+        "name_en": "Pirc Defence – base",
+        "line": "1.e4 d6 2.d4 Nf6 3.Nc3",
+        "pgnFile": "pgn/semiopen/B07.pgn"
+      },
+      {
+        "eco": "B08",
+        "name": "Pirc, Klassisches (Zweispringer-)System",
+        "name_en": "Pirc, Classical (Two Knights) System",
+        "line": "1.e4 d6 2.d4 Nf6 3.Nc3 g6 4.Nf3",
+        "pgnFile": "pgn/semiopen/B08.pgn"
+      },
+      {
+        "eco": "B09",
+        "name": "Pirc, Österreichischer Angriff",
+        "name_en": "Pirc, Austrian Attack",
+        "line": "1.e4 d6 2.d4 Nf6 3.Nc3 g6 4.f4",
+        "pgnFile": "pgn/semiopen/B09.pgn"
+      }
+    ]
+  }
+]
