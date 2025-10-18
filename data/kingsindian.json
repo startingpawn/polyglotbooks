@@ -1,0 +1,294 @@
+[
+  {
+    "id": "kid",
+    "title": "Königsindische Verteidigung (E60–E99)",
+    "desc": "1.d4 Sf6 2.c4 g6 – umfasst Fianchetto-, Klassisch/Orthodox-, Sämisch-, Awerbach- und Vierbauern-Systeme.",
+    "bundle": {
+      "file": "books/indian/e60-e99-kingsindian.zip",
+      "size": "32.0 MB",
+      "label": "Alle E60–E99 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "E60",
+        "name": "Königsindische Verteidigung – Grundstellung",
+        "name_en": "King's Indian Defence – base",
+        "line": "1.d4 Nf6 2.c4 g6",
+        "pgnFile": "pgn/indian/E60.pgn"
+      },
+      {
+        "eco": "E61",
+        "name": "Königsindisch, 3.Sc3",
+        "name_en": "King's Indian, 3.Nc3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3",
+        "pgnFile": "pgn/indian/E61.pgn"
+      },
+      {
+        "eco": "E62",
+        "name": "Königsindisch, Fianchetto-Variante",
+        "name_en": "King's Indian, Fianchetto Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3",
+        "pgnFile": "pgn/indian/E62.pgn"
+      },
+      {
+        "eco": "E63",
+        "name": "Fianchetto – Panno-Variante",
+        "name_en": "Fianchetto, Panno Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 Nc6 7.O-O a6",
+        "pgnFile": "pgn/indian/E63.pgn"
+      },
+      {
+        "eco": "E64",
+        "name": "Fianchetto – Jugoslawisches System",
+        "name_en": "Fianchetto, Yugoslav System",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 c5",
+        "pgnFile": "pgn/indian/E64.pgn"
+      },
+      {
+        "eco": "E65",
+        "name": "Fianchetto – Jugoslawisch, 7.O-O",
+        "name_en": "Fianchetto, Yugoslav, 7.O-O",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 c5 7.O-O",
+        "pgnFile": "pgn/indian/E65.pgn"
+      },
+      {
+        "eco": "E66",
+        "name": "Fianchetto – Jugoslawisch, Panno",
+        "name_en": "Fianchetto, Yugoslav Panno",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 c5 7.O-O Nc6 8.d5",
+        "pgnFile": "pgn/indian/E66.pgn"
+      },
+      {
+        "eco": "E67",
+        "name": "Fianchetto mit …Sbd7",
+        "name_en": "Fianchetto with …Nbd7",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 Nbd7",
+        "pgnFile": "pgn/indian/E67.pgn"
+      },
+      {
+        "eco": "E68",
+        "name": "Fianchetto, Klassische Variante (8.e4)",
+        "name_en": "Fianchetto, Classical Variation (8.e4)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 Nbd7 7.O-O e5 8.e4",
+        "pgnFile": "pgn/indian/E68.pgn"
+      },
+      {
+        "eco": "E69",
+        "name": "Fianchetto – Klassische Hauptvariante",
+        "name_en": "Fianchetto, Classical Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.Nf3 d6 5.g3 O-O 6.Bg2 Nbd7 7.O-O e5 8.e4 c6 9.h3",
+        "pgnFile": "pgn/indian/E69.pgn"
+      },
+      {
+        "eco": "E70",
+        "name": "Königsindisch, 4.e4",
+        "name_en": "King's Indian, 4.e4",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4",
+        "pgnFile": "pgn/indian/E70.pgn"
+      },
+      {
+        "eco": "E71",
+        "name": "Makogonow-System (5.h3)",
+        "name_en": "Makogonov System (5.h3)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.h3",
+        "pgnFile": "pgn/indian/E71.pgn"
+      },
+      {
+        "eco": "E72",
+        "name": "Königsindisch mit e4 & g3",
+        "name_en": "King's Indian with e4 & g3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.g3",
+        "pgnFile": "pgn/indian/E72.pgn"
+      },
+      {
+        "eco": "E73",
+        "name": "Königsindisch, 5.Le2",
+        "name_en": "King's Indian, 5.Be2",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2",
+        "pgnFile": "pgn/indian/E73.pgn"
+      },
+      {
+        "eco": "E74",
+        "name": "Awerbach-Variante, 6…c5",
+        "name_en": "Averbakh Variation, 6…c5",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2 O-O 6.Bg5 c5",
+        "pgnFile": "pgn/indian/E74.pgn"
+      },
+      {
+        "eco": "E75",
+        "name": "Awerbach – Hauptvariante",
+        "name_en": "Averbakh – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Be2 O-O 6.Bg5 c5 7.d5 e6",
+        "pgnFile": "pgn/indian/E75.pgn"
+      },
+      {
+        "eco": "E76",
+        "name": "Vierbauernangriff",
+        "name_en": "Four Pawns Attack",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4",
+        "pgnFile": "pgn/indian/E76.pgn"
+      },
+      {
+        "eco": "E77",
+        "name": "Vierbauernangriff, 6.Le2",
+        "name_en": "Four Pawns Attack, 6.Be2",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2",
+        "pgnFile": "pgn/indian/E77.pgn"
+      },
+      {
+        "eco": "E78",
+        "name": "Vierbauernangriff mit Le2 & Sf3",
+        "name_en": "Four Pawns Attack, with Be2 & Nf3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2 c5 7.Nf3",
+        "pgnFile": "pgn/indian/E78.pgn"
+      },
+      {
+        "eco": "E79",
+        "name": "Vierbauernangriff – Hauptvariante",
+        "name_en": "Four Pawns Attack – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Be2 c5 7.Nf3 cxd4 8.Nxd4 Nc6 9.Be3",
+        "pgnFile": "pgn/indian/E79.pgn"
+      },
+      {
+        "eco": "E80",
+        "name": "Sämisch-Variante",
+        "name_en": "Sämisch Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3",
+        "pgnFile": "pgn/indian/E80.pgn"
+      },
+      {
+        "eco": "E81",
+        "name": "Sämisch, 5…O-O",
+        "name_en": "Sämisch, 5…O-O",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O",
+        "pgnFile": "pgn/indian/E81.pgn"
+      },
+      {
+        "eco": "E82",
+        "name": "Sämisch, Doppel-Fianchetto",
+        "name_en": "Sämisch, Double Fianchetto",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 b6",
+        "pgnFile": "pgn/indian/E82.pgn"
+      },
+      {
+        "eco": "E83",
+        "name": "Sämisch, 6…Sc6",
+        "name_en": "Sämisch, 6…Nc6",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 Nc6",
+        "pgnFile": "pgn/indian/E83.pgn"
+      },
+      {
+        "eco": "E84",
+        "name": "Sämisch, Panno – Hauptvariante",
+        "name_en": "Sämisch, Panno – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 Nc6 7.Nge2 a6 8.Qd2 Rb8",
+        "pgnFile": "pgn/indian/E84.pgn"
+      },
+      {
+        "eco": "E85",
+        "name": "Sämisch, Orthodoxe Variante",
+        "name_en": "Sämisch, Orthodox Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 e5",
+        "pgnFile": "pgn/indian/E85.pgn"
+      },
+      {
+        "eco": "E86",
+        "name": "Sämisch, Orthodox – 7.Nge2 c6",
+        "name_en": "Sämisch, Orthodox, 7.Nge2 c6",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 e5 7.Nge2 c6",
+        "pgnFile": "pgn/indian/E86.pgn"
+      },
+      {
+        "eco": "E87",
+        "name": "Sämisch, Orthodox – 7.d5",
+        "name_en": "Sämisch, Orthodox, 7.d5",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 e5 7.d5",
+        "pgnFile": "pgn/indian/E87.pgn"
+      },
+      {
+        "eco": "E88",
+        "name": "Sämisch, Orthodox – 7.d5 c6",
+        "name_en": "Sämisch, Orthodox, 7.d5 c6",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 e5 7.d5 c6",
+        "pgnFile": "pgn/indian/E88.pgn"
+      },
+      {
+        "eco": "E89",
+        "name": "Sämisch, Orthodox – Hauptvariante",
+        "name_en": "Sämisch, Orthodox – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 e5 7.d5 c6 8.Nge2 cxd5",
+        "pgnFile": "pgn/indian/E89.pgn"
+      },
+      {
+        "eco": "E90",
+        "name": "Königsindisch, 5.Sf3",
+        "name_en": "King's Indian, 5.Nf3",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3",
+        "pgnFile": "pgn/indian/E90.pgn"
+      },
+      {
+        "eco": "E91",
+        "name": "Kasachische Variante, 6.Le2",
+        "name_en": "Kazakh Variation, 6.Be2",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2",
+        "pgnFile": "pgn/indian/E91.pgn"
+      },
+      {
+        "eco": "E92",
+        "name": "Klassische Variante",
+        "name_en": "Classical Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5",
+        "pgnFile": "pgn/indian/E92.pgn"
+      },
+      {
+        "eco": "E93",
+        "name": "Petrosjan-System – Hauptvariante",
+        "name_en": "Petrosian System – Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.d5 Nbd7",
+        "pgnFile": "pgn/indian/E93.pgn"
+      },
+      {
+        "eco": "E94",
+        "name": "Orthodoxe Variante",
+        "name_en": "Orthodox Variation",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O",
+        "pgnFile": "pgn/indian/E94.pgn"
+      },
+      {
+        "eco": "E95",
+        "name": "Orthodox – 7…Sbd7, 8.Te1",
+        "name_en": "Orthodox, 7…Nbd7, 8.Re1",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nbd7 8.Re1",
+        "pgnFile": "pgn/indian/E95.pgn"
+      },
+      {
+        "eco": "E96",
+        "name": "Orthodox – 7…Sbd7, Hauptvariante",
+        "name_en": "Orthodox, 7…Nbd7, Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nbd7 8.Re1 c6 9.Bf1 a5",
+        "pgnFile": "pgn/indian/E96.pgn"
+      },
+      {
+        "eco": "E97",
+        "name": "Orthodox – Aronin–Taimanow (Mar-del-Plata)",
+        "name_en": "Orthodox, Aronin–Taimanov (Yugoslav / Mar del Plata)",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6",
+        "pgnFile": "pgn/indian/E97.pgn"
+      },
+      {
+        "eco": "E98",
+        "name": "Orthodox – Aronin–Taimanow, 9.Se1",
+        "name_en": "Orthodox, Aronin–Taimanov, 9.Ne1",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Ne1",
+        "pgnFile": "pgn/indian/E98.pgn"
+      },
+      {
+        "eco": "E99",
+        "name": "Orthodox – Aronin–Taimanow, Hauptvariante",
+        "name_en": "Orthodox, Aronin–Taimanov, Main Line",
+        "line": "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5 7.O-O Nc6 8.d5 Ne7 9.Ne1 Nd7 10.f3 f5",
+        "pgnFile": "pgn/indian/E99.pgn"
+      }
+    ]
+  }
+]
