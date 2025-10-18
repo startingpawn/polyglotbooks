@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+
+  <!-- Title & Description (optimized) -->
+  <title>King's Indian Defence (E60–E99) – Variations & Polyglot Downloads | Starting Pawn</title>
+  <meta name="description" content="King's Indian Defence (ECO E60–E99): All variations with interactive boards, moves, and free Polyglot opening books (.bin) for DGT, Millennium, Chessnut & more.">
+
+  <!-- Favicon & Theme -->
+  <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
+
+  <!-- Canonical & hreflang -->
+  <link rel="canonical" href="https://www.startingpawn.com/en/kingsindian.html">
+  <link rel="alternate" href="https://www.startingpawn.com/de/kingsindian.html" hreflang="de">
+  <link rel="alternate" href="https://www.startingpawn.com/en/kingsindian.html" hreflang="en">
+  <link rel="alternate" href="https://www.startingpawn.com/" hreflang="x-default">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.startingpawn.com/en/kingsindian.html">
+  <meta property="og:title" content="King's Indian Defence (E60–E99) – Polyglot Opening Books">
+  <meta property="og:description" content="All King's Indian Defence variations with interactive boards & free Polyglot books (.bin) for e-boards.">
+  <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
+  <meta property="og:image:alt" content="Starting Pawn – King's Indian Defence opening books">
+  <meta property="og:site_name" content="Starting Pawn">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Network optimization for external modules -->
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- chessboard-element (Web Component) -->
+  <script type="module">
+    import 'https://unpkg.com/chessboard-element?module';
+  </script>
+
+  <!-- Structured Data: Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.startingpawn.com/en/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Choose openings",
+        "item": "https://www.startingpawn.com/en/choose.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Single openings",
+        "item": "https://www.startingpawn.com/en/single.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "King's Indian Defence (E60–E99)",
+        "item": "https://www.startingpawn.com/en/kingsindian.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "inLanguage": "en",
+    "name": "King's Indian Defence (E60–E99)",
+    "description": "King's Indian Defence (ECO E60–E99) variations with interactive boards and free Polyglot books (.bin).",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Starting Pawn",
+      "url": "https://www.startingpawn.com/"
+    },
+    "about": ["King's Indian Defence", "ECO E60–E99"],
+    "hasPart": [
+      {"@type": "CreativeWork", "name": "E60–E69 – King's Indian without 4.Nf3"},
+      {"@type": "CreativeWork", "name": "E70–E79 – Classical System"},
+      {"@type": "CreativeWork", "name": "E80–E89 – Sämisch Variation"},
+      {"@type": "CreativeWork", "name": "E90–E99 – Classical Main Line"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
+      --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
+      color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      display:flex;
+      flex-direction:column;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* Header - OPTIMIZED with sticky & glassmorphism */
+    header{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      position:sticky; top:0; z-index:40;
+      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:rgba(11, 12, 16, 0.7);
+    }
+    .brand{display:flex; align-items:center; gap:1rem}
+    .logo{
+      width:48px;height:48px;border-radius:50%;
+      background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
+      box-shadow:0 0 24px rgba(229,9,20,.35)
+    }
+    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
+    .sub{color:var(--muted);font-size:.9rem}
+
+    .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
+    .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
+    .nav-link:hover{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.12), rgba(229,9,20,.05)) }
+    .nav-link.active{ border-color:#2b3240; background:linear-gradient(180deg, rgba(229,9,20,.18), rgba(229,9,20,.08)) }
+    .nav-sep{ width:1px; height:22px; background:#2b3240; margin:0 .25rem; display:inline-block }
+
+    /* Breadcrumbs */
+    .crumbs{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem .8rem;
+      color:#aeb3bf;font-size:.92rem
+    }
+    .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
+
+    main{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem 3rem;
+      flex:1;
+    }
+    
+    /* LANDSCAPE OPTIMIZATION */
+    @media (orientation: landscape) and (max-height: 768px){
+      header{ padding:0.8rem 1rem 0.5rem; }
+      .logo{ width:40px; height:40px; }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
+      .crumbs{ padding:0 1rem 0.4rem; }
+      main{ padding:0 1rem 2rem; }
+      .top-head{ margin:0.4rem 0 1.2rem; padding:1rem; }
+      .top-title{ margin:0.1rem 0 0.5rem; font-size:1.1rem; }
+      .cards-grid{ gap:1rem; }
+      .eco-card{ box-shadow:0 1px 2px rgba(0,0,0,0.15), 0 6px 15px rgba(229,9,20,0.03); }
+      .info{ padding:0.7rem 0.9rem; }
+      .player{ padding:0.6rem 0.75rem; }
+      .ctr{ width:40px; height:40px; }
+      footer{ margin:0.5rem auto 1rem; }
+    }
+    
+    /* Mobile Landscape (Smartphones) */
+    @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
+      main{ padding:0 0.8rem 1.5rem; }
+      .top-head{ margin:0.3rem 0 0.8rem; padding:0.8rem; }
+      .top-title{ margin:0 0 0.3rem; font-size:1rem; }
+      .top-desc{ font-size:0.88rem; }
+      .dl-btn{ padding:0.4rem 0.65rem; font-size:0.9rem; }
+      .cards-grid{ gap:0.7rem; }
+      .info{ padding:0.6rem 0.8rem; font-size:0.9rem; }
+      .line{ font-size:0.85rem; }
+      .player{ padding:0.5rem 0.65rem; }
+      .ctr{ width:36px; height:36px; }
+      .ctr svg{ width:18px; height:18px; }
+      .counter{ font-size:0.85rem; }
+    }
+
+    /* Header above boards */
+    .top-head{
+      margin:.6rem 0 2rem;
+      padding:1.2rem 1.3rem;
+      border:var(--border) solid #222737; 
+      border-radius:var(--radius);
+      background:
+        radial-gradient(250px 250px at 70% 20%, rgba(229,9,20,.12), transparent 65%),
+        linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box, 
+        var(--panel);
+      display:flex; 
+      align-items:flex-start; 
+      justify-content:space-between; 
+      gap:1rem; 
+      flex-wrap:wrap;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
+    }
+    .top-head:hover{ 
+      transform:translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12);
+    }
+    .top-title{ 
+      margin:.1rem 0 .8rem;
+      font-size:1.2rem;
+      padding-left:1.15rem;          /* indent like landing */
+      text-wrap:balance;
+    }
+    .top-desc{ 
+      margin:.1rem 0 0; 
+      color:#c9cbd3;
+      padding-left:1.15rem;          /* indent like landing */
+      text-wrap:balance;
+      hyphens:auto;
+      -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+    /* Button indent if it wraps under text */
+    .top-head .dl-btn{
+      align-self:flex-start;
+      margin-left:1.15rem;
+    }
+
+    .dl-btn{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.5rem .75rem;
+      border-radius:12px; font-weight:700; font-size:.95rem;
+      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
+      color:#fff; border:none; text-decoration:none; white-space:nowrap;
+      box-shadow:0 8px 18px rgba(229,9,20,.24);
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .dl-btn::before{ content:"⤓"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
+    .dl-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
+
+    /* Grid */
+    .cards-grid{
+      display:grid; 
+      gap:1.5rem;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    }
+    @media (min-width: 980px){
+      .cards-grid{ grid-template-columns:repeat(3, 1fr); gap:1.8rem; }
+    }
+
+    /* Card */
+    .eco-card{
+      position:relative; display:flex; flex-direction:column;
+      border-radius:var(--radius); overflow:hidden; 
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
+      border:var(--border) solid #222737;
+      transition:.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15), 0 8px 20px rgba(229,9,20,0.04);
+    }
+    .eco-card:hover{ 
+      box-shadow:var(--ring), 0 10px 30px rgba(229,9,20,.20); 
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, #111319 0%, #141623 100%);
+    }
+    .thumb{
+      width:100%;
+      aspect-ratio:16/10; background:#121420;
+      display:flex; align-items:center; justify-content:center;
+      border-radius:var(--radius) var(--radius) 0 0; box-sizing:border-box
+    }
+    .thumb-board{ aspect-ratio:auto; padding:0 }
+    .thumb.img-error{ background: repeating-linear-gradient(45deg,#171a22,#171a22 10px,#1b1f2a 10px,#1b1f2a 20px) }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+
+    /* Board */
+    .auto-board{ width:100%; display:block; cursor:default }
+    .auto-board chess-board{
+      display:block;
+      width:100%;
+      aspect-ratio:1 / 1;
+      min-height:180px;
+    }
+    .auto-board.not-initialized { opacity: 0.7; }
+    .auto-board.initialized { opacity: 1; transition: opacity 0.3s ease; }
+
+    /* Player */
+    .player{ 
+      border-top:1px solid #1e2230; 
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+      padding:.7rem .85rem .75rem;
+    }
+    .controls{ display:flex; justify-content:space-between; align-items:center; gap:.7rem; }
+    .ctrls-left{ display:flex; gap:.45rem; align-items:center; flex-wrap:wrap }
+    .ctr{
+      width:44px; height:44px; border-radius:12px;
+      border:1px solid #2b3240; background:#161a24; color:#e9eaee; cursor:pointer;
+      font-size:0; line-height:0; display:inline-grid; place-items:center;
+    }
+    .ctr:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+    .ctr[disabled]{ opacity:.5; cursor:not-allowed }
+    .ctr svg{ width:20px; height:20px; display:block; fill:currentColor }
+    .ctrls-right{ display:flex; gap:.6rem; align-items:center; color:#c3c6d1 }
+    .counter{ font-variant-numeric:tabular-nums; }
+
+    .badges{position:absolute;top:.6rem;left:.6rem;display:flex;gap:.4rem;pointer-events:none}
+    .chip{font:600 .78rem/1.2 system-ui; padding:.35rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px)}
+    .chip.eco{background:linear-gradient(180deg, rgba(229,9,20,.9), rgba(229,9,20,.65)); border:none}
+    .chip.error{background:#d32f2f; border:none}
+
+    .info{ 
+      padding:.8rem 1rem 1rem;
+      color:#dfe1e7;
+      border-top:1px solid #1e2230; 
+      display:flex; flex-direction:column; gap:.35rem;
+      background:linear-gradient(180deg, #0f1117, #0d0f14);
+    }
+    .name{font-weight:650}
+    .line{color:#b6bac6;font-size:.92rem}
+
+    /* Footer */
+    footer{
+      max-width:var(--max);
+      width:100%;
+      margin:1.2rem auto 2.4rem;
+      color:#a2a6b2; font-size:.92rem; padding:0 1rem;
+      text-align:center;
+    }
+
+    /* FAB (mobile) */
+    .fab{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:56px; height:56px; border-radius:50%;
+      display:none; place-items:center; user-select:none; cursor:pointer;
+      background:linear-gradient(180deg, #1b2230, #121a26);
+      color:#e9eaee; font-size:34px; line-height:1;
+      border:1px solid #2b3240;
+      box-shadow:0 6px 16px rgba(0,0,0,.35);
+      transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .fab:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
+    }
+    .fab[aria-expanded="true"]{ transform:rotate(45deg) }
+    @media (max-width: 979px){
+      .topnav{ display:none }
+      .fab{ display:grid }
+    }
+
+    /* Bottom sheet menu */
+    .sheet{ position:fixed; inset:0; z-index:55; }
+    .sheet[hidden]{ display:none }
+    .sheet-backdrop{
+      position:absolute; inset:0; background:rgba(0,0,0,.5); opacity:0; transition:opacity .2s ease;
+      backdrop-filter:blur(2px);
+    }
+    .sheet-panel{
+      position:absolute; left:0; right:0; bottom:0;
+      background:#12131a; border-top:1px solid #2b3240; border-radius:16px 16px 0 0;
+      padding:1rem; transform:translateY(100%); transition:transform .2s ease;
+      box-shadow:0 -12px 30px rgba(0,0,0,.5);
+    }
+    .sheet[data-open="true"] .sheet-backdrop{ opacity:1 }
+    .sheet[data-open="true"] .sheet-panel{ transform:translateY(0) }
+    .sheet-panel nav{ display:flex; flex-direction:column; gap:.6rem }
+    .sheet-panel a{
+      padding:.75rem 1rem; border:1px solid #2b3240; border-radius:12px; background:#161a24; color:#e9eaee;
+      text-decoration:none; font-weight:600;
+    }
+    .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+  </style>
+
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Polyglot Chess Opening Books</h1>
+        <div class="sub"><em>Starting Pawn - Theory that gets to the board</em></div>
+      </div>
+    </div>
+    <nav class="topnav" aria-label="Main menu">
+      <a class="nav-link" href="/en/">Home</a>
+      <a class="nav-link" href="/en/choose.html">Openings</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-link" href="/en/faq.html">FAQ</a>
+      <a class="nav-link" href="/en/contact.html">Contact</a>
+      <a class="nav-link" href="/en/impressum.html">Imprint</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/en/">Home</a> &nbsp;→&nbsp;
+    <a href="/en/choose.html">Choose openings</a> &nbsp;→&nbsp;
+    <a href="/en/single.html">Single openings</a> &nbsp;→&nbsp;
+    <strong>King's Indian Defence</strong>
+  </nav>
+
+  <main id="app" aria-live="polite">
+    <p>Loading data…</p>
+  </main>
+
+  <footer>
+    <small>&copy; 2025 Starting Pawn</small>
+  </footer>
+
+  <!-- Mobile FAB & Sheet -->
+  <button class="fab" id="fab" aria-label="Open menu" aria-expanded="false" title="Menu">+</button>
+
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-label="Mobile menu">
+      <nav>
+        <a href="/en/">Home</a>
+        <a href="/en/choose.html">Openings</a>
+        <a href="/en/faq.html">FAQ</a>
+        <a href="/en/contact.html">Contact</a>
+        <a href="/en/impressum.html">Imprint</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Error display -->
+  <script>
+    (function(){
+      const show = (msg) => {
+        const el = document.getElementById('app');
+        if (el) el.insertAdjacentHTML('beforeend', `<p style="color:#ff6b6b">Error: ${msg}</p>`);
+      };
+      const ignorable = (m) => /ResizeObserver loop (limit exceeded|completed with undelivered notifications)/i.test(String(m||''));
+      window.addEventListener('error', e => { if (!ignorable(e.message)) show(e.message); });
+      window.addEventListener('unhandledrejection', e => {
+        const r = e.reason && (e.reason.message || e.reason);
+        if (!ignorable(r)) show(r);
+      });
+    })();
+  </script>
+
+  <!-- Mobile Menu Handler -->
+  <script>
+    document.getElementById('fab')?.addEventListener('click', function() {
+      const sheet = document.getElementById('sheet');
+      const isOpen = sheet.dataset.open === 'true';
+      
+      if (isOpen) {
+        sheet.dataset.open = 'false';
+        this.setAttribute('aria-expanded', 'false');
+        setTimeout(() => sheet.hidden = true, 200);
+      } else {
+        sheet.hidden = false;
+        requestAnimationFrame(() => {
+          sheet.dataset.open = 'true';
+          this.setAttribute('aria-expanded', 'true');
+        });
+      }
+    });
+
+    document.querySelector('.sheet-backdrop')?.addEventListener('click', () => {
+      const fab = document.getElementById('fab');
+      const sheet = document.getElementById('sheet');
+      sheet.dataset.open = 'false';
+      fab?.setAttribute('aria-expanded', 'false');
+      setTimeout(() => sheet.hidden = true, 200);
+    });
+  </script>
+
+  <!-- JSON Loader + Render -->
+  <script>
+    const qs = new URLSearchParams(location.search);
+    const Q_ID = (qs.get('id') || 'ki').toLowerCase();
+    const Q_TXT = (qs.get('q') || "king's indian").toLowerCase();
+
+    // Always create root-absolute paths
+    const fixPath = p => {
+      if (typeof p !== 'string') return p;
+      p = p.trim();
+      return p.startsWith('/') ? p : '/' + p;
+    };
+
+    const withinKingsIndianEco = (eco) => /^E[6-9][0-9]$/i.test(String(eco||'').trim());
+
+    function flattenItemsWithBundle(op){
+      const items = [];
+      if (Array.isArray(op.items)) items.push(...op.items);
+      if (Array.isArray(op.groups)) {
+        for (const g of op.groups) {
+          const gItems = Array.isArray(g.items) ? g.items : [];
+          const bundleFile = g?.bundle?.file || g?.file || null;
+          for (const it of gItems) {
+            items.push({ ...it, file: it.file || bundleFile || it.file });
+          }
+        }
+      }
+      return items;
+    }
+
+    function pickKingsIndian(openings){
+      let op = openings.find(o => (o.id||'').toLowerCase() === Q_ID);
+      if (op) return op;
+      op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
+      if (op) return op;
+      op = openings.find(o => flattenItemsWithBundle(o).some(it => withinKingsIndianEco(it.eco)));
+      return op || null;
+    }
+
+    function filterStrictKingsIndian(op){
+      const clone = JSON.parse(JSON.stringify(op||{}));
+      if (Array.isArray(clone.items)) {
+        clone.items = clone.items.filter(it => withinKingsIndianEco(it.eco));
+      }
+      if (Array.isArray(clone.groups)) {
+        clone.groups = clone.groups.map(g => {
+          const g2 = { ...g };
+          g2.items = Array.isArray(g.items) ? g.items.filter(it => withinKingsIndianEco(it.eco)) : [];
+          return g2;
+        }).filter(g => Array.isArray(g.items) && g.items.length > 0);
+      }
+      return clone;
+    }
+
+    function pickBundle(op){
+      if (op?.bundle?.file) {
+        return { file: fixPath(op.bundle.file), label: op.bundle.label || 'All E60–E99 (.bin)' };
+      }
+      if (Array.isArray(op?.groups)) {
+        for (const g of op.groups) {
+          const file = g?.bundle?.file || g?.file || '';
+          if (file) return { file: fixPath(file), label: g?.bundle?.label || g?.label || 'All E60–E99 (.bin)' };
+        }
+      }
+      return null;
+    }
+
+    function card(it){
+      const img = fixPath(it.image || '/assets/logo.png');
+      const hasBoard = (it.pgn || it.pgnFile);
+      const eco = String(it.eco||'').toUpperCase();
+      const displayName = it.name_en || it.name || 'Variation';
+      const media = hasBoard
+        ? `<div class="auto-board not-initialized"
+             ${it.pgn ? `data-pgn="${encodeURIComponent(it.pgn)}"` : ''}
+             ${it.pgnFile ? `data-pgnfile="${encodeURIComponent(fixPath(it.pgnFile))}"` : ''}
+             ${Number.isInteger(it.pgnIndex) ? `data-pgnindex="${it.pgnIndex}"` : ''}
+             title="Play moves">
+             <chess-board class="cb-mini"></chess-board>
+           </div>`
+        : `<div class="thumb">
+             <img loading="lazy" src="${img}" alt="Screenshot ${eco}: ${displayName}"
+                  onerror="this.onerror=null; this.src='/assets/logo.png'; this.closest('.thumb').classList.add('img-error');">
+           </div>`;
+
+      const player = hasBoard ? `
+        <div class="player" data-player>
+          <div class="controls">
+            <div class="ctrls-left">
+              <button class="ctr" data​​​​​​​​​​​​​​​​-first title="To start" aria-label="To start">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 6h2v12H6zM16 6v12l-8-6 8-6z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-prev title="Move back" aria-label="Move back">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-play title="Play" aria-label="Play">
+                <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-next title="Move forward" aria-label="Move forward">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                </svg>
+              </button>
+              <button class="ctr" data-last title="To end" aria-label="To end">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16 18h2V6h-2zM8 6l8 6-8 6z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="ctrls-right"><span class="counter" data-counter>0/0</span></div>
+          </div>
+        </div>` : '';
+
+      const tagOpen  = `<div class="eco-card" data-eco="${eco}" tabindex="0" title="${displayName}">`;
+      const tagClose = `</div>`;
+
+      return `
+        ${tagOpen}
+          ${hasBoard ? `<div class="thumb thumb-board">${media}</div>` : media}
+          ${player}
+          <div class="badges">
+            ${eco ? `<span class="chip eco">${eco}</span>` : ''}
+          </div>
+          <div class="info">
+            <div class="name">${displayName}</div>
+            ${it.line ? `<div class="line">${it.line}</div>` : ''}
+          </div>
+        ${tagClose}`;
+    }
+
+    function renderKingsIndian(){
+      const root = document.getElementById('app');
+      
+      // Load kingsindian.json directly
+      const openings = window.kingsIndianData || [];
+      
+      if(!Array.isArray(openings)){ 
+        root.innerHTML = 'kingsindian.json is not an array.'; 
+        return; 
+      }
+
+      const opRaw = pickKingsIndian(openings);
+      if (!opRaw){
+        const list = openings.map(o => `• ${o.id ? `[${o.id}] `:''}${o.title||'Untitled'}`).join('<br>');
+        root.innerHTML = `<p>No King's Indian Defence entry found.</p><p><strong>Available entries:</strong><br>${list}</p>`;
+        return;
+      }
+
+      const op = filterStrictKingsIndian(opRaw);
+      const bundle = pickBundle(op);
+      let items = flattenItemsWithBundle(op).filter(it => withinKingsIndianEco(it.eco));
+
+      let html = '';
+      html += `<section class="top-head">
+        <div>
+          <h2 class="top-title">King's Indian Defence (E60–E99)</h2>
+          <p class="top-desc">A dynamic defence with kingside counterplay</p>
+        </div>
+        ${bundle && bundle.file ? `<a class="dl-btn" href="/en/download.html?file=${encodeURIComponent(bundle.file)}">Download (.zip)</a>` : ``}
+      </section>`;
+
+      if (!items.length){
+        html += `<p>No matching entries for King's Indian Defence (E60–E99). Check the ECO codes in <code>/data/kingsindian.json</code>.</p>`;
+      } else {
+        html += `<div class="cards-grid">${ items.map(it => card(it)).join('') }</div>`;
+      }
+      root.innerHTML = html;
+
+      document.dispatchEvent(new Event('openings-rendered'));
+    }
+
+    (async () => {
+      const root = document.getElementById('app');
+      const url = '/data/kingsindian.json?v=' + Date.now();
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
+        const text = await res.text();
+        const json = JSON.parse(text);
+        window.kingsIndianData = json;
+        renderKingsIndian();
+      } catch (e) {
+        root.insertAdjacentHTML('beforeend', `<p>Could not load <code>${url}</code>:<br><small>${String(e)}</small></p>`);
+      }
+    })();
+  </script>
+
+  <!-- Optimized Board & Player Module -->
+  <script type="module">
+    import { Chess } from "https://cdn.jsdelivr.net/npm/chess.js@1.4.0/+esm";
+
+    const INTERVAL = 1800;
+    
+    const activeTimers = new Set();
+    const boardControllers = new WeakMap();
+
+    const sfx = (() => {
+      const a = new Audio('/assets/sfx/move.mp3');
+      a.preload = 'auto';
+      a.volume = 0.35;
+      return { 
+        enabled: true, 
+        play() { 
+          try { 
+            if (this.enabled) {
+              a.currentTime = 0;
+              a.play().catch(() => {});
+            }
+          } catch(_) {} 
+        } 
+      };
+    })();
+
+    window.addEventListener('beforeunload', () => {
+      activeTimers.forEach(timer => clearInterval(timer));
+      activeTimers.clear();
+    });
+
+    const firstGameFrom = (content, index = 0) => {
+      let norm = String(content || '').replace(/\r\n/g, '\n').replace(/^\uFEFF/, '').trim();
+      const parts = norm.split(/\n\n(?=\[Event\s)/g).filter(Boolean);
+      norm = (parts[index] ?? parts[0] ?? norm).trim();
+      norm = norm.replace(/(\](?:[ \t]*\n))+([^\[])/m, (m, headers, next) => headers.replace(/\s*$/, '\n\n') + next);
+      return norm;
+    };
+
+    const sanitizeToEnglishSAN = (text) => {
+      return text
+        .replace(/^\s*\[[^\]]*]\s*$/gm, ' ')
+        .replace(/\{[^}]*\}/g, ' ')
+        .replace(/;[^\n]*/g, ' ')
+        .replace(/\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)/g, ' ')
+        .replace(/\$[0-9]+/g, ' ')
+        .replace(/\b(1-0|0-1|1\/2-1\/2|\*)\b/g, ' ')
+        .replace(/…/g, '...')
+        .replace(/[—–−]/g, '-')
+        .replace(/×/g, 'x')
+        .replace(/\b0-0-0\b|\bO-O-O\b|\bO–O–O\b|\b0–0–0\b/gi, 'O-O-O')
+        .replace(/\b0-0\b|\bO-O\b|\bO–O\b|\b0–0\b/gi, 'O-O')
+        .replace(/[♔]/g,'K').replace(/[♕]/g,'Q').replace(/[♖]/g,'R').replace(/[♗]/g,'B').replace(/[♘]/g,'N')
+        .replace(/\bS/g,'N').replace(/\bL/g,'B').replace(/\bT/g,'R').replace(/\bD/g,'Q')
+        .replace(/‡/g,'+')
+        .replace(/\b\d+\.(?:\.\.)?/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    };
+
+    function historyFromPGN(pgnRaw) {
+      const g1 = new Chess();
+      try { g1.load_pgn(pgnRaw); } catch {}
+      let h = g1.history({ verbose: true });
+      if (h.length) return h;
+
+      const san = sanitizeToEnglishSAN(pgnRaw);
+      const g2 = new Chess();
+      const tokens = san.split(/\s+/).filter(Boolean);
+      let ok = 0;
+      for (const t of tokens) {
+        if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(t) || t === '...') continue;
+        try { if (g2.move(t, { sloppy: true })) ok++; } catch {}
+      }
+      if (ok) return g2.history({ verbose: true });
+
+      const g3 = new Chess();
+      ok = 0;
+      for (const t of tokens) {
+        const m = t.match(/^[a-h][1-8][a-h][1-8][nbrqk]?$/i);
+        if (!m) continue;
+        try {
+          const from = t.slice(0,2), to = t.slice(2,4);
+          const promo = t.length === 5 ? t.slice(4).toLowerCase() : undefined;
+          if (g3.move({ from, to, promotion: promo })) ok++;
+        } catch {}
+      }
+      if (ok) return g3.history({ verbose: true });
+
+      return [];
+    }
+
+    async function fetchWithRetry(url, tries = 3) {
+      let lastErr;
+      for (let i = 0; i < tries; i++) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return await res.text();
+        } catch(e) {
+          lastErr = e;
+          await new Promise(r => setTimeout(r, 150 + i * 200));
+        }
+      }
+      throw lastErr;
+    }
+
+    class BoardController {
+      constructor(wrap, card, board, hist) {
+        this.wrap = wrap;
+        this.card = card;
+        this.board = board;
+        this.hist = hist;
+        this.idx = 0;
+        this.playing = false;
+        this.timerId = null;
+        
+        this.player = card.querySelector('[data-player]');
+        this.controls = {
+          first: this.player?.querySelector('[data-first]'),
+          prev: this.player?.querySelector('[data-prev]'),
+          play: this.player?.querySelector('[data-play]'),
+          next: this.player?.querySelector('[data-next]'),
+          last: this.player?.querySelector('[data-last]'),
+          counter: this.player?.querySelector('[data-counter]')
+        };
+        
+        this.setupControls();
+        this.setupIntersectionObserver();
+        this.draw(0);
+      }
+
+      draw(n) {
+        const g = new Chess();
+        for (let i = 0; i < n; i++) g.move(this.hist[i]);
+        const fen = g.fen();
+        requestAnimationFrame(() => { this.board?.setPosition?.(fen); });
+        if (this.controls.counter) this.controls.counter.textContent = `${n}/${this.hist.length}`;
+        this.updateButtonStates(n);
+      }
+
+      updateButtonStates(n) {
+        const { first, prev, next, last } = this.controls;
+        if (prev && first) prev.disabled = first.disabled = (n <= 0);
+        if (next && last) next.disabled = last.disabled = (n >= this.hist.length);
+      }
+
+      setIdx(n) {
+        const forward = n > this.idx;
+        this.idx = Math.max(0, Math.min(n, this.hist.length));
+        this.draw(this.idx);
+        if (forward && this.idx > 0) sfx.play();
+      }
+
+      start() {
+        if (this.playing || this.hist.length === 0) return;
+        this.setIdx(0);
+        this.playing = true;
+        if (this.controls.play) { this.controls.play.disabled = true; this.controls.play.title = 'Playing'; }
+        this.timerId = setInterval(() => {
+          if (this.idx >= this.hist.length) { this.stop(); return; }
+          this.setIdx(this.idx + 1);
+        }, INTERVAL);
+        activeTimers.add(this.timerId);
+      }
+
+      stop() {
+        this.playing = false;
+        if (this.timerId) { clearInterval(this.timerId); activeTimers.delete(this.timerId); this.timerId = null; }
+        if (this.controls.play) {
+          this.controls.play.disabled = false;
+          this.controls.play.title = 'Play';
+          this.controls.play.setAttribute('aria-label', 'Play');
+        }
+      }
+
+      setupControls() {
+        const stopPropagation = (e) => { e.preventDefault(); e.stopPropagation(); };
+        this.wrap.addEventListener('click', stopPropagation);
+        this.player?.addEventListener('click', stopPropagation);
+        const { first, prev, play, next, last } = this.controls;
+        first?.addEventListener('click', () => this.setIdx(0));
+        prev?.addEventListener('click', () => this.setIdx(this.idx - 1));
+        next?.addEventListener('click', () => this.setIdx(this.idx + 1));
+        last?.addEventListener('click', () => this.setIdx(this.hist.length));
+        play?.addEventListener('click', () => this.start());
+      }
+
+      setupIntersectionObserver() {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if (!entry.isIntersecting && this.playing) this.stop(); });
+        }, { threshold: 0.15 });
+        observer.observe(this.card);
+      }
+
+      destroy() { this.stop(); }
+    }
+
+    async function initializeSingleBoard(wrap) {
+      if (wrap.classList.contains('initialized')) return;
+      const card = wrap.closest('.eco-card');
+      const board = wrap.querySelector('chess-board');
+      if (!board || !card) return;
+      wrap.classList.add('initializing');
+
+      let sized = false;
+      for (let i = 0; i < 20; i++) {
+        const w = board.getBoundingClientRect().width;
+        if (w > 20) { sized = true; break; }
+        await new Promise(r => setTimeout(r, 50));
+      }
+      if (!sized) { wrap.classList.remove('initializing'); return; }
+
+      let pgn = '';
+      const pgnInline = wrap.dataset.pgn ? decodeURIComponent(wrap.dataset.pgn) : '';
+      const pgnFile = wrap.dataset.pgnfile ? decodeURIComponent(wrap.dataset.pgnfile) : '';
+      const pgnIndex = wrap.dataset.pgnindex ? parseInt(wrap.dataset.pgnindex, 10) : 0;
+
+      if (pgnInline) {
+        pgn = firstGameFrom(pgnInline, pgnIndex);
+      } else if (pgnFile) {
+        try {
+          const txt = await fetchWithRetry(pgnFile + '?v=' + Date.now());
+          pgn = firstGameFrom(txt, Number.isFinite(pgnIndex) ? pgnIndex : 0);
+        } catch (err) {
+          console.warn('Could not load PGN file:', pgnFile, err);
+          const errorChip = document.createElement('span');
+          errorChip.className = 'chip error';
+          errorChip.textContent = 'PGN missing';
+          card.querySelector('.badges')?.appendChild(errorChip);
+          wrap.classList.remove('initializing');
+          return;
+        }
+      } else {
+        wrap.classList.remove('initializing');
+        return;
+      }
+
+      const hist = historyFromPGN(pgn);
+      if (!hist || hist.length === 0) { wrap.classList.remove('initializing'); return; }
+
+      const controller = new BoardController(wrap, card, board, hist);
+      boardControllers.set(wrap, controller);
+      wrap.classList.remove('initializing', 'not-initialized');
+      wrap.classList.add('initialized');
+    }
+
+    async function setupBoards() {
+      await customElements.whenDefined('chess-board');
+      const boards = document.querySelectorAll('.auto-board');
+      if (boards.length === 0) return;
+
+      const boardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('initialized')) {
+            initializeSingleBoard(entry.target);
+          }
+        });
+      }, { rootMargin: '100px' });
+
+      boards.forEach(board => { boardObserver.observe(board); });
+    }
+
+    Promise.all([
+      customElements.whenDefined('chess-board'),
+      new Promise(resolve => {
+        if (document.querySelector('.cards-grid')) resolve();
+        else document.addEventListener('openings-rendered', resolve);
+      })
+    ]).then(setupBoards).catch(err => {
+      console.error('Board initialization failed:', err);
+    });
+  </script>
+</body>
+</html>
