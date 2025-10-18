@@ -1,0 +1,49 @@
+[
+  {
+    "id": "vienna",
+    "title": "Wiener Partie (C25–C29)",
+    "desc": "1.e4 e5 2.Nc3 – umfasst die Wiener Partie, das Wiener Gambit und verwandte Systeme.",
+    "bundle": {
+      "file": "books/open/c25-c29-vienna.zip",
+      "size": "8.5 MB",
+      "label": "Alle C25–C29 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "C25",
+        "name": "Wiener Partie – Grundstellung",
+        "name_en": "Vienna Game – base",
+        "line": "1.e4 e5 2.Nc3",
+        "pgnFile": "pgn/open/C25.pgn"
+      },
+      {
+        "eco": "C26",
+        "name": "Wiener Partie, Falkbeer-Variante",
+        "name_en": "Vienna Game, Falkbeer Variation",
+        "line": "1.e4 e5 2.Nc3 Nf6",
+        "pgnFile": "pgn/open/C26.pgn"
+      },
+      {
+        "eco": "C27",
+        "name": "Wiener Partie, Frankenstein–Dracula-Variante",
+        "name_en": "Vienna Game, Frankenstein–Dracula Variation",
+        "line": "1.e4 e5 2.Nc3 Nf6 3.Bc4 Nxe4",
+        "pgnFile": "pgn/open/C27.pgn"
+      },
+      {
+        "eco": "C28",
+        "name": "Wiener Partie (3…Nc6)",
+        "name_en": "Vienna Game (3…Nc6)",
+        "line": "1.e4 e5 2.Nc3 Nf6 3.Bc4 Nc6",
+        "pgnFile": "pgn/open/C28.pgn"
+      },
+      {
+        "eco": "C29",
+        "name": "Wiener Gambit, Steinitz-Variante",
+        "name_en": "Vienna Gambit, Steinitz Variation",
+        "line": "1.e4 e5 2.Nc3 Nf6 3.f4 d5 4.d3",
+        "pgnFile": "pgn/open/C29.pgn"
+      }
+    ]
+  }
+]
