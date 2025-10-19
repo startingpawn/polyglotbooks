@@ -1,0 +1,21 @@
+[
+  {
+    "id": "scandinavian",
+    "title": "Skandinavische Verteidigung (B01)",
+    "desc": "1.e4 d5 – halboffene Eröffnung; ECO B01.",
+    "bundle": {
+      "file": "books/semiopen/b01-scandinavian.zip",
+      "size": "—",
+      "label": "Alle B01 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "B01",
+        "name": "Skandinavische Verteidigung – Grundstellung",
+        "name_en": "Scandinavian Defence – base",
+        "line": "1.e4 d5",
+        "pgnFile": "pgn/semiopen/B01.pgn"
+      }
+    ]
+  }
+]
