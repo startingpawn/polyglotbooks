@@ -1,12 +1,14 @@
-[Event "Tarrasch Defence"]
-[Site "startingpawn.com"]
-[Date "2025.09.21"]
+[Event "Starting Pawn – Tarrasch D32–D34"]
+[Site "StartingPawn.com"]
+[Date "2025.10.20"]
 [Round "-"]
 [White "White"]
 [Black "Black"]
 [Result "*"]
 [ECO "D32"]
 [Opening "Tarrasch Defence"]
-[Annotator "Tarrasch-Verteidigung"]
+[Variation "Base"]
+[OpeningDE "Tarrasch-Verteidigung – Grundstellung"]
+[VariationDE "Grundstellung"]
 
 1.d4 d5 2.c4 e6 3.Nc3 c5 *
