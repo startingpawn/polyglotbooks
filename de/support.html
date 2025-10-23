@@ -160,13 +160,17 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 2rem; line-height:1.5 }
 
-    /* Text-Anordnung – jetzt mittig */
-    .panel > h2, .panel > .lead, .panel > p{
-      padding-left: 0; 
+    /* Text-Anordnung – Überschrift mittig, Fließtext Blocksatz */
+    .panel > h2{
+      padding-left: 0;
       text-align: center;
       text-wrap: balance;
     }
     .panel > .lead, .panel > p{
+      padding-left: 0;
+      text-align: justify;
+      text-align-last: justify;
+      text-justify: inter-word;
       hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
     }
 
