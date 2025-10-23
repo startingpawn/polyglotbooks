@@ -160,19 +160,21 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 2rem; line-height:1.5 }
 
-    /* Text-Anordnung */
+    /* Text-Anordnung – jetzt mittig */
     .panel > h2, .panel > .lead, .panel > p{
-      padding-left: var(--indent-start); text-wrap: balance;
+      padding-left: 0; 
+      text-align: center;
+      text-wrap: balance;
     }
     .panel > .lead, .panel > p{
       hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
     }
 
-    /* Foto mittig */
+    /* Foto mittig (größer + mehr Abstand unten) */
     .author-photo{
       display:block;
-      margin: 0 auto 1rem;
-      width:140px; height:140px; object-fit:cover;
+      margin: 0 auto 1.75rem;
+      width:180px; height:180px; object-fit:cover;
       border-radius:12px; border:1px solid #2b3240;
     }
 
