@@ -140,7 +140,6 @@
       .panel{ padding:0.8rem; }
       .panel h2{ font-size:1.1rem; margin:0 0 0.5rem; }
       .lead{ font-size:0.88rem; margin:0 0 0.8rem; }
-      .btn{ padding:0.45rem 0.7rem; font-size:0.9rem; }
     }
 
     /* Panel */
@@ -183,27 +182,27 @@
       padding-left: 0; margin-top:1rem;
     }
 
+    /* Bild-Button (Ko-fi) */
+    .kofi-btn{
+      display:inline-block; border-radius:12px; border:1px solid #2b3240;
+      background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
+      transition:transform .12s ease, box-shadow .12s ease;
+      line-height:0; /* remove inline-gap */
+    }
+    .kofi-btn:hover{ 
+      transform:translateY(-1px); 
+      box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset;
+    }
+    .kofi-btn:focus-visible{
+      outline:none; box-shadow:0 0 0 3px rgba(229,9,20,.45);
+    }
+    .kofi-btn img{
+      display:block; width:220px; height:auto; border-radius:12px;
+    }
+
     /* Text unter Button mittig */
     .below-cta{
       text-align:center; padding-left:0; margin-top:1rem;
-    }
-
-    .btn{
-      display:inline-flex; align-items:center; gap:.45rem;
-      padding:.55rem .8rem; border-radius:12px; font-weight:700; font-size:.95rem;
-      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
-      transition:.12s ease;
-    }
-    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-    .btn-primary{
-      background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78));
-      color:#fff; border:none; 
-      box-shadow:0 8px 18px rgba(229,9,20,.24);
-      transition:transform .12s ease, box-shadow .12s ease;
-    }
-    .btn-primary:hover{ 
-      transform:translateY(-1px); 
-      box-shadow:0 10px 24px rgba(229,9,20,.30);
     }
 
     /* Footer */
@@ -284,10 +283,10 @@
   <main class="hero">
     <!-- EIN gemeinsamer Rahmen: Über den Autor + Unterstützung -->
     <section class="panel" aria-labelledby="about-support">
-      <h2 id="about-support">Über den Autor & Unterstützen</h2>
+      <h2 id="about-support">Über mich</h2>
 
       <!-- Foto mittig -->
-      <img class="author-photo" src="/assets/tobias.jpg" alt="Foto von Tobias Mitterdorfer">
+      <img class="author-photo" src="/assets/tobias.jpg" alt="Foto von Tobias">
 
       <!-- Über mich -->
       <p class="lead">
@@ -302,13 +301,13 @@
         und wird aktiv weiterentwickelt: neue ECO-Inhalte, gepflegte PGNs und aktuelle Polyglot-Books.
       </p>
 
-      <!-- Button mittig -->
+      <!-- Ko-fi Bild-Button mittig -->
       <div class="cta">
-        <a class="btn btn-primary"
+        <a class="kofi-btn"
            href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
            target="_blank" rel="noopener noreferrer"
-           aria-label="Jetzt unterstützen – weiter zu Ko-fi">
-          Jetzt unterstützen <span class="muted">via Ko-fi</span>
+           aria-label="Unterstützen via Ko-fi">
+          <img src="assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" width="220" height="70" decoding="async" />
         </a>
       </div>
 
@@ -316,7 +315,6 @@
       <p class="muted below-cta">
         100&nbsp;% der Beiträge fließen in Hosting, Traffic & Entwicklung.
       </p>
-      <!-- (Liste wurde zuvor entfernt) -->
     </section>
   </main>
 
