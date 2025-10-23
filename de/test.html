@@ -76,46 +76,18 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* ——— Auffälliger Support-Link (nur für "Tobias") ——— */
-    .support-link{
-      position:relative;
+    /* ——— Support-Link (Variante 1: Gradient-Underline, bold + animiert) ——— */
+    .support-underline{
+      text-decoration:none;
+      background:
+        linear-gradient(currentColor, currentColor) 0 100% / 0% .14em no-repeat;
+      text-underline-offset:.2em;
       font-weight:900;
-      color:#fff;
-      padding:0 .15em;
-      border-radius:8px;
-      background:linear-gradient(transparent 62%, rgba(229,9,20,.28) 0);
-      text-decoration-thickness:.14em;
-      text-underline-offset:.18em;
-      transition:box-shadow .15s ease, background .15s ease, text-shadow .15s ease;
-      outline:0;
     }
-    .support-link:hover,
-    .support-link:focus-visible{
-      background:linear-gradient(transparent 40%, rgba(229,9,20,.55) 0);
-      box-shadow:var(--ring);
-      text-shadow:0 0 10px rgba(229,9,20,.35);
-    }
-    .support-link::after{
-      content:" ↗";
-      font-weight:700;
-      opacity:.9;
-    }
-    /* Einmaliger sanfter "Pulse" beim Laden, um Aufmerksamkeit zu erzeugen */
-    .support-link::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      border-radius:10px;
-      box-shadow:0 0 0 0 rgba(229,9,20,.45);
-      animation:supportPulse 1800ms ease-out 1;
-      pointer-events:none;
-    }
-    @keyframes supportPulse{
-      0%{ box-shadow:0 0 0 0 rgba(229,9,20,.45); }
-      100%{ box-shadow:0 0 0 16px rgba(229,9,20,0); }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .support-link::before{ animation:none }
+    .support-underline:hover,
+    .support-underline:focus-visible{
+      background-size: 100% .14em;
+      transition: background-size .18s ease;
     }
 
     /* Typografie-Verbesserungen */
@@ -366,7 +338,7 @@
     <section class="panel">
       <h2 class="title">Willkommen bei Starting Pawn</h2>
       <p class="lead">
-        Hallo, ich bin <strong><a href="/de/support.html" class="support-link" rel="author" aria-label="Unterstütze Starting Pawn – zur Support-Seite">Tobias</a></strong> und ich freue mich, dass du dieses Projekt entdeckt hast.<br><br>Diese Polyglot- Schach Eröffnungsbücher wurden entwickelt, um mit <strong>e-Boards</strong> von DGT, Millennium, Chessnut, Certabo, Square Off, TabuTronic und iChessOne die Welt der Eröffnungen strukturiert zu erkunden, zu lernen und zu meistern - klar aufgebaut, praxisnah und direkt am Brett.
+        Hallo, ich bin <strong><a href="/de/support.html" class="support-link support-underline" rel="author" aria-label="Unterstütze Starting Pawn – zur Support-Seite">Tobias</a></strong> und ich freue mich, dass du dieses Projekt entdeckt hast.<br><br>Diese Polyglot- Schach Eröffnungsbücher wurden entwickelt, um mit <strong>e-Boards</strong> von DGT, Millennium, Chessnut, Certabo, Square Off, TabuTronic und iChessOne die Welt der Eröffnungen strukturiert zu erkunden, zu lernen und zu meistern - klar aufgebaut, praxisnah und direkt am Brett.
       </p>
 
       <ul class="bullets">
