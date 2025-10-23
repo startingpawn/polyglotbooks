@@ -82,6 +82,7 @@
       flex-direction:column;
     }
     a{color:inherit; text-decoration:none}
+    .muted{ color:var(--muted) } /* hinzugefügt für dezentere Beitexte */
 
     /* Header - OPTIMIERT mit Sticky & Glasmorphismus */
     header{
@@ -278,14 +279,29 @@
   </nav>
 
   <main class="hero">
-    <!-- Panel 1: Unterstützen -->
+    <!-- Panel 1: Über den Autor (zuerst Vertrauensaufbau) -->
+    <section class="panel" aria-labelledby="about">
+      <h2 id="about">Über den Autor</h2>
+      <p class="lead">
+        Ich bin Tobias und baue <strong>Starting Pawn</strong> als Community-Projekt für praktische Eröffnungsarbeit –
+        <em>Theory that gets to the board</em>. Ich pflege ECO-Sektionen, aktualisiere PGNs und stelle Polyglot-Books bereit.
+        Dein Feedback hilft – und dein Beitrag hält das Projekt langfristig aktuell.
+      </p>
+      <div class="contact">
+        <img src="/assets/tobias.jpg" alt="Foto von Tobias Mitterdorfer" width="120" height="120" style="border-radius:12px;border:1px solid #2b3240;">
+        <span class="email-chip" title="Kontakt">
+          ✉️ <a href="mailto:info@startingpawn.com"><code>info@startingpawn.com</code></a>
+        </span>
+        <a class="btn" href="/de/faq.html" aria-label="Zur FAQ">FAQ</a>
+      </div>
+    </section>
+
+    <!-- Panel 2: Unterstützen (CTA nach Kontext) -->
     <section class="panel" aria-labelledby="support">
       <h2 id="support">Unterstützen</h2>
       <p class="lead">
-        Starting Pawn bleibt durch deinen Beitrag <strong>werbefrei</strong> und wird aktiv weiterentwickelt:
-        neue ECO-Inhalte, gepflegte PGNs und aktuelle Polyglot-Books. 
-        <br><br>
-        Wenn dir die Seite hilft, freue ich mich über deine Unterstützung.
+        Wenn dir Starting Pawn hilft, freue ich mich über deine Unterstützung. So bleibt die Seite <strong>werbefrei</strong>
+        und wird aktiv weiterentwickelt: neue ECO-Inhalte, gepflegte PGNs und aktuelle Polyglot-Books.
       </p>
 
       <div class="contact">
@@ -314,21 +330,6 @@
         <li>Pflege/Erweiterung der ECO-Sektionen</li>
         <li>Aktualisierung der PGNs & Polyglot-Books</li>
       </ul>
-    </section>
-
-    <!-- Panel 2: Über den Autor (optional, kurz) -->
-    <section class="panel" aria-labelledby="about">
-      <h2 id="about">Über den Autor</h2>
-      <p class="lead">
-        Ich bin Tobias und baue Starting Pawn als Community-Projekt für praktische Eröffnungsarbeit:
-        <em>Theory that gets to the board</em>. Dein Support hilft mir, die Inhalte langfristig aktuell zu halten.
-      </p>
-      <div class="contact">
-        <span class="email-chip" title="Kontakt">
-          ✉️ <a href="mailto:info@startingpawn.com"><code>info@startingpawn.com</code></a>
-        </span>
-        <a class="btn" href="/de/faq.html" aria-label="Zur FAQ">FAQ</a>
-      </div>
     </section>
   </main>
 
