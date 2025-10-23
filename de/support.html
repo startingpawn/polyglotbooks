@@ -170,7 +170,7 @@
       hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
     }
 
-    /* Foto mittig (größer + mehr Abstand unten) */
+    /* Foto mittig */
     .author-photo{
       display:block;
       margin: 0 auto 1.75rem;
@@ -207,12 +207,12 @@
       text-align:center; padding-left:0; margin-top:1rem;
     }
 
-    /* NUR die Absätze zwischen Foto und Button:
-       Block mittig, Zeilen linksbündig, angenehme Zeilenlänge */
+    /* NUR die beiden Absätze zwischen Foto und Button:
+       Block zentriert, Zeilen linksbündig – mit starker Priorität */
     .panel .author-photo ~ .lead{
-      text-align: left;                 /* jede Zeile bündig links */
-      width: min(62ch, 100%);           /* feste Lesebreite */
-      margin-inline: auto;              /* Block zentriert */
+      text-align: left !important;     /* jede Zeile bündig links */
+      width: min(62ch, 100%);          /* angenehme Lesebreite */
+      margin-inline: auto;             /* Block mittig */
     }
 
     /* Footer */
