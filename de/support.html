@@ -160,17 +160,13 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 2rem; line-height:1.5 }
 
-    /* Text-Anordnung – Überschrift mittig, Fließtext Blocksatz */
-    .panel > h2{
-      padding-left: 0;
+    /* Text-Anordnung – jetzt mittig */
+    .panel > h2, .panel > .lead, .panel > p{
+      padding-left: 0; 
       text-align: center;
       text-wrap: balance;
     }
     .panel > .lead, .panel > p{
-      padding-left: 0;
-      text-align: justify;
-      text-align-last: justify;
-      text-justify: inter-word;
       hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
     }
 
@@ -209,6 +205,11 @@
     /* Text unter Button mittig */
     .below-cta{
       text-align:center; padding-left:0; margin-top:1rem;
+    }
+
+    /* >>> NEU: Nur die beiden Absätze zwischen Foto und Button linksbündig <<< */
+    .panel .author-photo ~ .lead{
+      text-align:left;
     }
 
     /* Footer */
@@ -369,7 +370,7 @@
         if (sheet.hidden) open(); else close();
       });
       backdrop?.addEventListener('click', close);
-      panel?.addEventListener('click', (e) => {
+      panel?.addEventListener('click, (e) => {
         if (e.target.tagName === 'A') close();
       });
       document.addEventListener('keydown', (e) => {
