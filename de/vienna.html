@@ -478,8 +478,8 @@
   <!-- JSON-Loader + Render -->
   <script>
     const qs = new URLSearchParams(location.search);
-    const Q_ID = (qs.get('id') || 'qg').toLowerCase();
-    const Q_TXT = (qs.get('q') || 'damengambit').toLowerCase();
+    const Q_ID = (qs.get('id') || 'vienna').toLowerCase();
+    const Q_TXT = (qs.get('q') || 'vienna').toLowerCase();
 
     // Immer root-absolute Pfade erzeugen
     const fixPath = p => {
@@ -510,7 +510,7 @@
       if (op) return op;
       op = openings.find(o => new RegExp(Q_TXT,'i').test(o.title||'') || new RegExp(Q_TXT,'i').test(o.desc||''));
       if (op) return op;
-      op = openings.find(o => flattenItemsWithBundle(o).some(it => withinQueensGambitEco(it.eco)));
+      op = openings.find(o => flattenItemsWithBundle(o).some(it => withinViennaEco(it.eco)));
       return op || null;
     }
 
@@ -637,7 +637,7 @@
       html += `<section class="top-head">
         <div>
           <h2 class="top-title">Wiener Partie (C25–C29)</h2>
-          <p class="top-desc">Die klassische Springerentwicklung nach c3 mit scharfen taktischen Möglichkeiten</p>
+          <p class="top-desc">Klassische Entwicklung mit 2.Sf3 – flexibel, taktisch scharf und reich an Übergängen.</p>
         </div>
         ${bundle && bundle.file ? `<a class="dl-btn" href="/de/download.html?file=${encodeURIComponent(bundle.file)}">Download (.zip)</a>` : ``}
       </section>`;
