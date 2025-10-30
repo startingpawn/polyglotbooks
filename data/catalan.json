@@ -1,0 +1,77 @@
+[
+  {
+    "id": "catalan",
+    "title": "Katalanische Eröffnung (E01–E09)",
+    "desc": "1.d4 Nf6 2.c4 e6 3.g3 – umfasst offen (…dxc4) und geschlossen (…dxc4 wird vermieden).",
+    "bundle": {
+      "file": "books/indian/e01-e09-catalan.zip",
+      "size": "—",
+      "label": "Alle E01–E09 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "E01",
+        "name": "Katalanisch, geschlossen – Grundstellung",
+        "name_en": "Catalan, Closed – base",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2",
+        "pgnFile": "pgn/indian/E01.pgn"
+      },
+      {
+        "eco": "E02",
+        "name": "Katalanisch, offen, 5.Da4+",
+        "name_en": "Catalan, Open, 5.Qa4+",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Qa4+",
+        "pgnFile": "pgn/indian/E02.pgn"
+      },
+      {
+        "eco": "E03",
+        "name": "Katalanisch, offen, Aljechin-Variante",
+        "name_en": "Catalan, Open, Alekhine Variation",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Qa4+ Nbd7",
+        "pgnFile": "pgn/indian/E03.pgn"
+      },
+      {
+        "eco": "E04",
+        "name": "Katalanisch, offen, 5.Sf3",
+        "name_en": "Catalan, Open, 5.Nf3",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Nf3",
+        "pgnFile": "pgn/indian/E04.pgn"
+      },
+      {
+        "eco": "E05",
+        "name": "Katalanisch, offen, Klassische Variante",
+        "name_en": "Catalan, Open, Classical line",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Nf3 Be7",
+        "pgnFile": "pgn/indian/E05.pgn"
+      },
+      {
+        "eco": "E06",
+        "name": "Katalanisch, geschlossen, 5.Sf3",
+        "name_en": "Catalan, Closed, 5.Nf3",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3",
+        "pgnFile": "pgn/indian/E06.pgn"
+      },
+      {
+        "eco": "E07",
+        "name": "Katalanisch, geschlossen, 6…Sbd7",
+        "name_en": "Catalan, Closed, 6…Nbd7",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3 O-O 6.O-O Nbd7",
+        "pgnFile": "pgn/indian/E07.pgn"
+      },
+      {
+        "eco": "E08",
+        "name": "Katalanisch, geschlossen, 7.Dc2",
+        "name_en": "Catalan, Closed, 7.Qc2",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3 O-O 6.O-O Nbd7 7.Qc2",
+        "pgnFile": "pgn/indian/E08.pgn"
+      },
+      {
+        "eco": "E09",
+        "name": "Katalanisch, geschlossen – Hauptvariante",
+        "name_en": "Catalan, Closed – Main Line",
+        "line": "1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 Be7 5.Nf3 O-O 6.O-O Nbd7 7.Qc2 c6 8.Nbd2",
+        "pgnFile": "pgn/indian/E09.pgn"
+      }
+    ]
+  }
+]
