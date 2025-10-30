@@ -1,0 +1,28 @@
+[
+  {
+    "id": "centre",
+    "title": "Zentrumsspiel (C21–C22)",
+    "desc": "1.e4 e5 2.d4 exd4 – C21: Grundstellung; C22: 3.Dxd4 …Sc6.",
+    "bundle": {
+      "file": "books/open/c21-c22-centre.zip",
+      "size": "—",
+      "label": "Alle C21–C22 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "C21",
+        "name": "Zentrumsspiel – Grundstellung",
+        "name_en": "Centre Game – base",
+        "line": "1.e4 e5 2.d4 exd4",
+        "pgnFile": "pgn/open/C21.pgn"
+      },
+      {
+        "eco": "C22",
+        "name": "Zentrumsspiel, 3.Dxd4 …Sc6 – Grundstellung",
+        "name_en": "Centre Game, 3.Qxd4 …Nc6 – base",
+        "line": "1.e4 e5 2.d4 exd4 3.Qxd4 Nc6",
+        "pgnFile": "pgn/open/C22.pgn"
+      }
+    ]
+  }
+]
