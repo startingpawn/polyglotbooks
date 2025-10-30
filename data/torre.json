@@ -1,0 +1,21 @@
+[
+  {
+    "id": "torre",
+    "title": "Torre-Angriff (D03)",
+    "desc": "1.d4 d5 2.Nf3 Nf6 3.Bg5 – Tartakower-Variante des Damenbauernspiels.",
+    "bundle": {
+      "file": "books/closed/d03-torre.zip",
+      "size": "—",
+      "label": "Alle D03 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "D03",
+        "name": "Torre-Angriff (Tartakower-Variante) – Grundstellung",
+        "name_en": "Torre Attack (Tartakower Variation) – base",
+        "line": "1.d4 d5 2.Nf3 Nf6 3.Bg5",
+        "pgnFile": "pgn/closed/D03.pgn"
+      }
+    ]
+  }
+]
