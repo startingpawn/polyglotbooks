@@ -1,0 +1,15 @@
+[Event "Catalan E04"]
+[Site "Starting Pawn"]
+[Date "2025.10.30"]
+[Round "-"]
+[White "-"]
+[Black "-"]
+[Result "*"]
+[ECO "E04"]
+[Opening "Catalan Opening"]
+[Variation "Catalan, Open, 5.Nf3"]
+[OpeningDE "Katalanisch"]
+[VariationDE "Katalanisch, offen, 5.Sf3"]
+[Source "startingpawn.com"]
+
+1.d4 Nf6 2.c4 e6 3.g3 d5 4.Bg2 dxc4 5.Nf3 *
