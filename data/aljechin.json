@@ -1,0 +1,42 @@
+[
+  {
+    "id": "aljechin",
+    "title": "Aljechin-Verteidigung (B02–B05)",
+    "desc": "1.e4 Nf6 – umfasst 3.d4 (inkl. Abtausch & Vierbauernangriff) sowie die Moderne Variante (4.Nf3/…Bg4).",
+    "bundle": {
+      "file": "books/semiopen/b02-b05-aljechin.zip",
+      "size": "—",
+      "label": "Alle B02–B05 (.bin)"
+    },
+    "items": [
+      {
+        "eco": "B02",
+        "name": "Aljechin-Verteidigung – Grundstellung",
+        "name_en": "Alekhine's Defence – base",
+        "line": "1.e4 Nf6",
+        "pgnFile": "pgn/semiopen/B02.pgn"
+      },
+      {
+        "eco": "B03",
+        "name": "Aljechin-Verteidigung, 3.d4",
+        "name_en": "Alekhine's Defence, 3.d4",
+        "line": "1.e4 Nf6 2.e5 Nd5 3.d4",
+        "pgnFile": "pgn/semiopen/B03.pgn"
+      },
+      {
+        "eco": "B04",
+        "name": "Aljechin-Verteidigung, Moderne Variante (4.Sf3)",
+        "name_en": "Alekhine's Defence, Modern Variation (4.Nf3)",
+        "line": "1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3",
+        "pgnFile": "pgn/semiopen/B04.pgn"
+      },
+      {
+        "eco": "B05",
+        "name": "Aljechin-Verteidigung, Moderne Variante (4…Lg4)",
+        "name_en": "Alekhine's Defence, Modern Variation (4...Bg4)",
+        "line": "1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3 Bg4",
+        "pgnFile": "pgn/semiopen/B05.pgn"
+      }
+    ]
+  }
+]
