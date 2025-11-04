@@ -208,6 +208,14 @@
     .kofi-btn img{
       display:block; width:220px; height:auto; border-radius:12px;
     }
+
+    /* Autor-Foto mittig */
+    .author-photo{
+      display:block;
+      margin: .25rem auto .9rem;  /* zentriert */
+      width:180px; height:180px;
+      border-radius:12px; border:1px solid #2b3240; object-fit:cover;
+    }
   </style>
 </head>
 <body>
@@ -250,9 +258,8 @@
                 Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
               </h3>
               <p id="status" aria-live="polite" style="line-height:1.7;">
-                <img src="https://www.startingpawn.com/assets/me.PNG"
-                     alt="Foto von Tobias" width="180" height="180"
-                     style="display:block;margin:.25rem 0 .9rem;border-radius:12px;border:1px solid #2b3240;object-fit:cover">
+                <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG"
+                     alt="Foto von Tobias" width="180" height="180">
                 Hi, ich bin Tobias – die Idee hinter Starting Pawn.<br>
                 Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,<br>
                 das Theorie wirklich aufs Brett bringt – Theory that gets to the board.<br>
