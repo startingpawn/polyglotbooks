@@ -61,7 +61,7 @@
     }
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
 
-    /* Main - OPTIMIERT für Breitformat */
+    /* Main */
     main.hero{
       max-width:var(--max); 
       width:100%;
@@ -82,12 +82,6 @@
       .panel{ padding:1rem; }
       .panel h2{ margin:0.1rem 0 0.8rem; font-size:1.2rem; }
       .lead{ margin:0.1rem 0 0.8rem; }
-      .ring{ width:100px !important; height:100px !important; }
-      .ring svg{ width:100px; height:100px; }
-      .ring .num{ font-size:1.6rem; }
-      .timer h3{ font-size:0.95rem !important; }
-      .timer p{ font-size:0.9rem; }
-      .card-body{ padding:0.9rem 1rem; }
       footer{ margin:0.5rem auto 1rem; }
     }
     
@@ -97,13 +91,6 @@
       .panel{ padding:0.8rem; }
       .panel h2{ font-size:1.1rem; margin:0 0 0.5rem; }
       .lead{ font-size:0.88rem; margin:0 0 0.6rem; }
-      .ring{ width:80px !important; height:80px !important; }
-      .ring svg{ width:80px; height:80px; }
-      .ring .num{ font-size:1.3rem; }
-      .timer{ gap:0.7rem; }
-      .timer h3{ font-size:0.88rem !important; margin:0 0 0.15rem !important; }
-      .timer p{ font-size:0.82rem; }
-      .card-body{ padding:0.7rem 0.9rem; }
     }
 
     /* Panel */
@@ -139,16 +126,12 @@
     .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
     .card-body{ padding:1.1rem 1.2rem 1.2rem; color:#dfe1e7; line-height:1.55; }
 
-    /* Countdown */
+    /* Countdown (ohne Ring) */
     .timer{
-      display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:center;
-      justify-content:center; max-width:600px; margin:0 auto;
+      display:grid; grid-template-columns:1fr; gap:1rem; align-items:center;
+      justify-content:center; max-width:600px; margin:0 auto; text-align:left;
     }
     @media (min-width: 800px){ .timer{ gap:2rem } .card-body{ padding:1.5rem 2rem } }
-    .ring{ width:120px; height:120px; position:relative; display:grid; place-items:center;
-      filter:drop-shadow(0 8px 18px rgba(229,9,20,.18)); }
-    .ring svg{ transform:rotate(-90deg); display:block }
-    .ring .num{ position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em; text-shadow:0 1px 0 rgba(0,0,0,.35); }
     .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Footer */
@@ -196,8 +179,7 @@
 
     /* Mobile Portrait Optimierung */
     @media (max-width: 600px) and (orientation: portrait) {
-      .timer { grid-template-columns: 1fr !important; text-align: center; gap: 1.5rem; justify-items: center; max-width: 100%; }
-      .ring { margin: 0 auto; }
+      .timer { text-align: center; gap: 1.5rem; justify-items: center; max-width: 100%; }
       .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
       .timer p { font-size: 0.9rem; text-align: center; }
       #status { text-align: center !important; margin: 0 auto; }
@@ -205,9 +187,6 @@
 
     /* Sehr kleine Bildschirme */
     @media (max-width: 380px) {
-      .ring{ width:100px !important; height:100px !important; }
-      .ring svg{ width:100px; height:100px; }
-      .ring .num{ font-size:1.6rem; }
       .timer h3{ font-size:0.85rem !important; white-space: normal; line-height: 1.4; }
       .timer p{ font-size:0.85rem; }
     }
@@ -266,20 +245,6 @@
       <article class="info-card" aria-label="Countdown">
         <div class="card-body">
           <div class="timer">
-            <div class="ring" aria-hidden="true">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/>
-                <circle id="progress" cx="60" cy="60" r="54" fill="none" stroke="url(#g)" stroke-width="10"
-                        stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="0"/>
-                <defs>
-                  <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="rgba(229,9,20,1)" />
-                    <stop offset="100%" stop-color="rgba(229,9,20,.7)" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="num" id="num">15</div>
-            </div>
             <div>
               <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">
                 Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
@@ -294,7 +259,7 @@
                 Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>
                 So ist Starting Pawn entstanden.<br><br>
                 Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung – so bleibt die Seite werbefrei und kann aktiv weiterentwickelt werden.<br><br>
-                <!-- OBERER KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
+                <!-- KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
                 <a class="kofi-btn" href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
                    target="_blank" rel="noopener" data-kofi aria-label="Unterstützen via Ko-fi">
                   <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" decoding="async">
@@ -304,7 +269,7 @@
             </div>
           </div>
         </div>
-        <!-- card-actions wurde zuvor entfernt -->
+        <!-- card-actions war bereits entfernt -->
       </article>
 
       <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem; text-align:center">
@@ -347,7 +312,7 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
     })();
 
-    /* Download-Logik + Countdown */
+    /* Download-Logik + Countdown (ohne Ring) */
     (function(){
       const DEFAULT_FILE = '/downloads/elite-allbooks.bin';
       const qs = new URLSearchParams(location.search);
@@ -373,19 +338,7 @@
       let timer = null;
       let done = false;
 
-      const num = document.getElementById('num');
       const txtSec = document.getElementById('txtSec');
-      const progress = document.getElementById('progress');
-
-      const CIRC = 2 * Math.PI * 54;
-      progress.setAttribute('stroke-dasharray', String(CIRC));
-      progress.setAttribute('stroke-dashoffset', '0');
-
-      function setProgress(s){
-        const p = (SECS_TOTAL - s) / SECS_TOTAL;
-        const off = CIRC * (1 - p);
-        progress.setAttribute('stroke-dashoffset', String(off));
-      }
 
       function triggerDownload(){
         if (done) return;
@@ -402,29 +355,23 @@
       function tick(){
         secs--;
         if (secs <= 0){
-          num.textContent = '0';
           txtSec.textContent = '0';
-          setProgress(0);
           clearInterval(timer);
           triggerDownload();
           return;
         }
-        num.textContent = String(secs);
         txtSec.textContent = String(secs);
-        setProgress(secs);
       }
 
       function start(){
-        num.textContent = String(secs);
         txtSec.textContent = String(secs);
-        setProgress(secs);
         setTimeout(() => { timer = setInterval(tick, 1000); }, 350);
       }
 
       start();
     })();
 
-    /* Ko-fi Widget beim Klick auf KO-FI Button (oben) */
+    /* Ko-fi Widget beim Klick auf KO-FI Button */
     (function(){
       function openKofiWidget(e){
         e.preventDefault();
@@ -450,7 +397,7 @@
         iframe.focus?.();
       }
 
-      // Gleiche Funktion für alle [data-kofi]-Elemente (hier: nur der obere Button)
+      // Gleiche Funktion für alle [data-kofi]-Elemente (hier: der obere Button)
       const kofiButtons = document.querySelectorAll('[data-kofi]');
       kofiButtons.forEach(btn => btn.addEventListener('click', openKofiWidget));
     })();
