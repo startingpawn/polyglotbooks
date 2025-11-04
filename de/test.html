@@ -28,7 +28,9 @@
 
     /* Header – sticky + leichtes Glas */
     header{
-      max-width:var(--max); width:100%; margin:0 auto;
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
@@ -158,7 +160,7 @@
       filter:drop-shadow(0 8px 18px rgba(229,9,20,.18)); }
     .ring svg{ transform:rotate(-90deg); display:block }
     .ring .num{ position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em; text-shadow:0 1px 0 rgba(0,0,0,.35); }
-    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
+    .timer p, .timer div#status{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Buttons */
     .btn{
@@ -174,6 +176,21 @@
     .btn-donate:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
     .btn-donate::before{ content:"❤"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
 
+    /* Ko-fi Bild-Button + Foto (aus support.html) */
+    .author-photo{
+      display:block; margin:0.5rem auto 1rem; width:180px; height:180px; object-fit:cover;
+      border-radius:12px; border:1px solid #2b3240;
+    }
+    .cta{ display:flex; align-items:center; justify-content:center; gap:.6rem; flex-wrap:wrap; margin-top:1rem; }
+    .kofi-btn{
+      display:inline-block; border-radius:12px; border:1px solid #2b3240; background:#0f1117;
+      box-shadow:0 8px 18px rgba(229,9,20,.12); transition:transform .12s ease, box-shadow .12s ease; line-height:0;
+    }
+    .kofi-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset; }
+    .kofi-btn:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(229,9,20,.45); }
+    .kofi-btn img{ display:block; width:220px; height:auto; border-radius:12px; }
+    .below-cta{ text-align:center; margin-top:1rem; }
+    
     /* Footer */
     footer{
       max-width:var(--max); width:100%;
@@ -222,7 +239,6 @@
       .timer{ grid-template-columns: 1fr !important; text-align: center; gap: 1.5rem; justify-items: center; max-width: 100%; }
       .ring{ margin: 0 auto; }
       .timer h3{ text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
-      .timer p{ font-size: 0.9rem; text-align: center; }
       #status{ text-align: center !important; margin: 0 auto; }
       .card-actions{ flex-direction: column; gap: 0.8rem; }
       .support-note{ margin-right: 0; text-align: center; font-size: 0.85rem; }
@@ -237,28 +253,6 @@
       .timer h3{ font-size:0.85rem !important; white-space: normal; line-height: 1.4; }
       .timer p{ font-size:0.85rem; }
     }
-
-    /* Support-Block (optional, falls eingebunden) */
-    .support-block{ margin-top:1.2rem; }
-    .panel .support-block > h2, .panel .support-block > .lead, .panel .support-block > p{
-      padding-left:0; text-align:center; text-wrap:balance;
-    }
-    .panel .support-block > .lead, .panel .support-block > p{
-      hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
-    }
-    .author-photo{
-      display:block; margin:0 auto 1.75rem; width:180px; height:180px; object-fit:cover;
-      border-radius:12px; border:1px solid #2b3240;
-    }
-    .cta{ display:flex; align-items:center; justify-content:center; gap:.6rem; flex-wrap:wrap; padding-left:0; margin-top:1rem; }
-    .kofi-btn{
-      display:inline-block; border-radius:12px; border:1px solid #2b3240; background:#0f1117;
-      box-shadow:0 8px 18px rgba(229,9,20,.12); transition:transform .12s ease, box-shadow .12s ease; line-height:0;
-    }
-    .kofi-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset; }
-    .kofi-btn:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(229,9,20,.45); }
-    .kofi-btn img{ display:block; width:220px; height:auto; border-radius:12px; }
-    .below-cta{ text-align:center; padding-left:0; margin-top:1rem; }
   </style>
 </head>
 <body>
@@ -311,14 +305,44 @@
               <div class="num" id="num">15</div>
             </div>
             <div>
-              <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">
+              <h3 style="margin:.2rem 0 1.2rem;font-size:1.05rem">
                 Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
               </h3>
-              <p id="status" aria-live="polite" style="line-height:1.7;">
-                Wenn dir mein Projekt hilft, die richtigen Stellungen schneller zu erreichen, freue ich mich über deine Unterstützung.<br><br>
-                Schon ein kleiner Betrag hilft, Server-, Domain- und Traffic-Kosten zu decken und neue Books zu entwickeln.<br><br>
-                Keine Paywall, keine Werbung – nur Schach.
-              </p>
+
+              <!-- ERSETZTER BLOCK -->
+              <div id="status" aria-live="polite" style="line-height:1.7;">
+                <h4 style="margin:.2rem 0 0.8rem; font-size:1.02rem;">Über mich</h4>
+
+                <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG" alt="Foto von Tobias">
+
+                <p style="margin:.4rem 0 0.8rem;">
+                  Hi, ich bin Tobias – die Idee hinter Starting Pawn.<br>
+                  Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,<br>
+                  das Theorie wirklich aufs Brett bringt – Theory that gets to the board.<br>
+                  Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>
+                  So ist Starting Pawn entstanden.
+                </p>
+
+                <p style="margin:.6rem 0 0.8rem;">
+                  Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung –<br>
+                  so bleibt die Seite werbefrei und kann aktiv weiterentwickelt werden.
+                </p>
+
+                <div class="cta">
+                  <a class="kofi-btn"
+                     href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
+                     target="_blank" rel="noopener noreferrer"
+                     aria-label="Unterstützen via Ko-fi">
+                    <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" width="220" height="70" decoding="async" />
+                  </a>
+                </div>
+
+                <p class="muted below-cta">
+                  100&nbsp;% deines Beitrags fließt in Hosting, Traffic &amp; Entwicklung.
+                </p>
+              </div>
+              <!-- /ERSETZTER BLOCK -->
+
             </div>
           </div>
         </div>
@@ -331,34 +355,6 @@
       <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem; text-align:center">
         Der Download startet automatisch. Danke für deine Geduld!
       </p>
-
-      <!-- (optional) zusätzlicher Support-Block kann hier bleiben, falls gewünscht -->
-      <section class="support-block" aria-labelledby="about-support">
-        <h2 id="about-support">Über mich</h2>
-        <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG" alt="Foto von Tobias">
-        <p class="lead" style="text-align:center; padding-left:0;">
-          Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.<br>
-          Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,<br>
-          das Theorie wirklich aufs Brett bringt – <em>Theory that gets to the board</em>.<br>
-          Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>
-          So ist Starting Pawn entstanden.
-        </p>
-        <p class="lead" style="text-align:center; padding-left:0;">
-          Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung –<br>
-          so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.
-        </p>
-        <div class="cta">
-          <a class="kofi-btn"
-             href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Unterstützen via Ko-fi">
-            <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" width="220" height="70" decoding="async" />
-          </a>
-        </div>
-        <p class="muted below-cta">
-          100&nbsp;% deines Beitrags fließt in Hosting, Traffic & Entwicklung.
-        </p>
-      </section>
     </section>
   </main>
 
