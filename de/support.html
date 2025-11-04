@@ -1,79 +1,18 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-
-  <!-- Suchmaschinen ausschließen -->
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-
-  <!-- Title & Description (optimiert) -->
-  <title>Unterstützen – Starting Pawn | Polyglot Schach-Eröffnungsbücher</title>
-  <meta name="description" content="Unterstütze Starting Pawn: Finanziere Hosting, Traffic und neue ECO-Inhalte. Spenden/Beitrag via Ko-fi – werbefrei, community-getrieben. Danke!">
-
-  <!-- Favicon & Theme -->
-  <link rel="icon" href="https://www.startingpawn.com/assets/logo.png">
-
-  <!-- Canonical & hreflang (DE ↔ EN + x-default) -->
-  <link rel="canonical" href="https://www.startingpawn.com/de/support.html">
-  <link rel="alternate" href="https://www.startingpawn.com/de/support.html" hreflang="de">
-  <link rel="alternate" href="https://www.startingpawn.com/en/support.html" hreflang="en">
-  <link rel="alternate" href="https://www.startingpawn.com/" hreflang="x-default">
-
-  <!-- Open Graph (für Link-Vorschauen) -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.startingpawn.com/de/support.html">
-  <meta property="og:title" content="Unterstützen – Starting Pawn">
-  <meta property="og:description" content="Hilf mit, Starting Pawn zu finanzieren – Hosting, Traffic & neue ECO-Inhalte. Beitrag via Ko-fi.">
-  <meta property="og:image" content="https://www.startingpawn.com/assets/og-cover.png">
-  <meta property="og:image:alt" content="Starting Pawn – kostenlose Schach-Eröffnungsbücher">
-  <meta property="og:site_name" content="Starting Pawn">
-  <meta property="og:locale" content="de_DE">
-
-  <!-- Strukturierte Daten: Breadcrumb + Organization (mit DonateAction) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.startingpawn.com/de/" },
-      { "@type": "ListItem", "position": 2, "name": "Unterstützen", "item": "https://www.startingpawn.com/de/support.html" }
-    ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Starting Pawn",
-    "url": "https://www.startingpawn.com",
-    "logo": "https://www.startingpawn.com/assets/logo.png",
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "email": "info@startingpawn.com",
-        "contactType": "customer support",
-        "availableLanguage": ["de", "en"]
-      }
-    ],
-    "potentialAction": {
-      "@type": "DonateAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
-      }
-    }
-  }
-  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex, noarchive, nosnippet, follow">
+  <meta name="googlebot" content="noindex, noarchive, nosnippet, follow">
+  <title>Download – Starting Pawn</title>
+  <link rel="icon" href="/assets/logo.png">
 
   <style>
     :root{
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
-      --radius:16px; --max:1200px; --gap:1.2rem; --border:2px;
+      --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
       --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
@@ -85,26 +24,27 @@
       display:flex; flex-direction:column;
     }
     a{color:inherit; text-decoration:none}
-    .muted{ color:var(--muted) }
 
-    /* Header */
+    /* Header – sticky + leichtes Glas */
     header{
-      max-width:var(--max); width:100%; margin:0 auto;
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
       padding:clamp(1.2rem, 2.8vh, 2rem) 1rem .8rem;
       display:flex; align-items:center; justify-content:space-between; gap:1rem;
       position:sticky; top:0; z-index:40;
-      border-bottom:1px solid rgba(43, 50, 64, 0.3);
+      border-bottom:1px solid rgba(43,50,64,.3);
+      background:rgba(11,12,16,.7);
       backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-      background:rgba(11, 12, 16, 0.7);
     }
     .brand{display:flex; align-items:center; gap:1rem}
     .logo{
-      width:48px;height:48px;border-radius:50%;
+      width:48px; height:48px; border-radius:50%;
       background:#1a1517 url('/assets/logo.png') center/80% no-repeat;
       box-shadow:0 0 24px rgba(229,9,20,.35)
     }
-    h1{margin:0;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15}
-    .sub{color:var(--muted);font-size:.9rem}
+    h1{margin:0; font-size:clamp(1.2rem,2vw,1.6rem); line-height:1.15}
+    .sub{color:var(--muted); font-size:.9rem}
 
     .topnav{ display:flex; align-items:center; gap:.25rem; flex-wrap:wrap }
     .nav-link{ padding:.55rem .75rem; border-radius:10px; color:#e9eaee; border:1px solid transparent }
@@ -114,37 +54,56 @@
 
     /* Breadcrumbs */
     .crumbs{
-      max-width:var(--max); width:100%; margin:0 auto;
-      padding:0 1rem .8rem; color:#aeb3bf; font-size:.92rem;
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto;
+      padding:0 1rem 1.6rem; color:#aeb3bf; font-size:.92rem;
     }
     .crumbs a{color:#cfd3db}.crumbs a:hover{color:#fff;text-decoration:underline}
 
-    /* Inhalt */
+    /* Main - OPTIMIERT für Breitformat */
     main.hero{
-      max-width:var(--max); width:100%; margin:0 auto;
-      padding:1.2rem 1rem 2rem;
+      max-width:var(--max); 
+      width:100%;
+      margin:0 auto;
+      padding:1.2rem 1rem 2.8rem;
       display:grid; gap:1.2rem; grid-template-columns:1fr;
-      flex:1; align-items:center;
+      flex:1;
+      align-items:center; justify-items:center;
     }
-
-    /* Landscape Optimierungen */
+    
+    /* LANDSCAPE OPTIMIERUNG */
     @media (orientation: landscape) and (max-height: 768px){
       header{ padding:0.8rem 1rem 0.5rem; }
       .logo{ width:40px; height:40px; }
       h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
-      .crumbs{ padding:0 1rem 0.4rem; }
+      .crumbs{ padding:0 1rem 0.8rem; }
       main.hero{ padding:1rem; }
       .panel{ padding:1rem; }
       .panel h2{ margin:0.1rem 0 0.8rem; font-size:1.2rem; }
-      .lead{ margin:0.1rem 1rem; font-size:0.95rem; }
+      .lead{ margin:0.1rem 0 0.8rem; }
+      .ring{ width:100px !important; height:100px !important; }
+      .ring svg{ width:100px; height:100px; }
+      .ring .num{ font-size:1.6rem; }
+      .timer h3{ font-size:0.95rem !important; }
+      .timer p{ font-size:0.9rem; }
+      .card-body{ padding:0.9rem 1rem; }
       footer{ margin:0.5rem auto 1rem; }
     }
+    
     /* Mobile Landscape */
     @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
       main.hero{ padding:0.8rem; }
       .panel{ padding:0.8rem; }
       .panel h2{ font-size:1.1rem; margin:0 0 0.5rem; }
-      .lead{ font-size:0.88rem; margin:0 0 0.8rem; }
+      .lead{ font-size:0.88rem; margin:0 0 0.6rem; }
+      .ring{ width:80px !important; height:80px !important; }
+      .ring svg{ width:80px; height:80px; }
+      .ring .num{ font-size:1.3rem; }
+      .timer{ gap:0.7rem; }
+      .timer h3{ font-size:0.88rem !important; margin:0 0 0.15rem !important; }
+      .timer p{ font-size:0.82rem; }
+      .card-body{ padding:0.7rem 0.9rem; }
     }
 
     /* Panel */
@@ -155,62 +114,42 @@
         linear-gradient(180deg, rgba(229,9,20,.06), transparent 120px) padding-box,
         var(--panel);
       padding:1.2rem 1.2rem 1.1rem;
+      max-width:760px; margin-inline:auto;
       transition:transform .2s ease, box-shadow .2s ease;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 10px 40px rgba(229,9,20,0.08);
+      box-shadow:0 1px 3px rgba(0,0,0,.2), 0 10px 40px rgba(229,9,20,.08);
     }
-    .panel:hover{ 
-      transform:translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 15px 50px rgba(229,9,20,0.12);
-    }
+    .panel:hover{ transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,.3), 0 15px 50px rgba(229,9,20,.12) }
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
-    .lead{ color:#cfd3db; margin:.2rem 0 2rem; line-height:1.5 }
+    .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
 
-    /* Text-Anordnung – jetzt mittig */
     .panel > h2, .panel > .lead, .panel > p{
-      padding-left: 0; 
-      text-align: center;
+      padding-left: var(--indent-start);
       text-wrap: balance;
     }
-    .panel > .lead, .panel > p{
+    .lead, .panel > p{
       hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
     }
 
-    /* Foto mittig (größer + mehr Abstand unten) */
-    .author-photo{
-      display:block;
-      margin: 0 auto 1.75rem;
-      width:180px; height:180px; object-fit:cover;
-      border-radius:12px; border:1px solid #2b3240;
+    /* Info-Card */
+    .info-card{
+      border:var(--border) solid #222737; border-radius:var(--radius);
+      background:linear-gradient(135deg, #0f1117 0%, #121521 100%);
+      overflow:hidden; transition:transform .15s ease, box-shadow .15s ease;
     }
+    .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
+    .card-body{ padding:1.1rem 1.2rem 1.2rem; color:#dfe1e7; line-height:1.55; }
 
-    /* CTA-Bereich: mittig */
-    .cta{
-      display:flex; align-items:center; justify-content:center; gap:.6rem; flex-wrap:wrap;
-      padding-left: 0; margin-top:1rem;
+    /* Countdown */
+    .timer{
+      display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:center;
+      justify-content:center; max-width:600px; margin:0 auto;
     }
-
-    /* Bild-Button (Ko-fi) */
-    .kofi-btn{
-      display:inline-block; border-radius:12px; border:1px solid #2b3240;
-      background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
-      transition:transform .12s ease, box-shadow .12s ease;
-      line-height:0; /* remove inline-gap */
-    }
-    .kofi-btn:hover{ 
-      transform:translateY(-1px); 
-      box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset;
-    }
-    .kofi-btn:focus-visible{
-      outline:none; box-shadow:0 0 0 3px rgba(229,9,20,.45);
-    }
-    .kofi-btn img{
-      display:block; width:220px; height:auto; border-radius:12px;
-    }
-
-    /* Text unter Button mittig */
-    .below-cta{
-      text-align:center; padding-left:0; margin-top:1rem;
-    }
+    @media (min-width: 800px){ .timer{ gap:2rem } .card-body{ padding:1.5rem 2rem } }
+    .ring{ width:120px; height:120px; position:relative; display:grid; place-items:center;
+      filter:drop-shadow(0 8px 18px rgba(229,9,20,.18)); }
+    .ring svg{ transform:rotate(-90deg); display:block }
+    .ring .num{ position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em; text-shadow:0 1px 0 rgba(0,0,0,.35); }
+    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Footer */
     footer{
@@ -219,26 +158,19 @@
       padding:0 1rem; text-align:center;
     }
 
-    /* Mobiler + Button */
+    /* FAB */
     .fab{
       position:fixed; right:16px; bottom:16px; z-index:60;
       width:56px; height:56px; border-radius:50%;
       display:none; place-items:center; user-select:none; cursor:pointer;
       background:linear-gradient(180deg, #1b2230, #121a26);
-      color:#e9eaee; font-size:34px; line-height:1;
-      border:1px solid #2b3240;
+      color:#e9eaee; font-size:34px; line-height:1; border:1px solid #2b3240;
       box-shadow:0 6px 16px rgba(0,0,0,.35);
       transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
     }
-    .fab:hover{
-      transform:translateY(-1px);
-      box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16);
-    }
+    .fab:hover{ transform:translateY(-1px); box-shadow:0 0 0 2px rgba(229,9,20,.22), 0 14px 32px rgba(0,0,0,.45), 0 0 18px rgba(229,9,20,.16) }
     .fab[aria-expanded="true"]{ transform:rotate(45deg) }
-    @media (max-width: 979px){
-      .topnav{ display:none }
-      .fab{ display:grid }
-    }
+    @media (max-width:799px){ .topnav{display:none} .fab{display:grid} .panel{max-width:100%} }
 
     /* Bottom-Sheet Menü */
     .sheet{ position:fixed; inset:0; z-index:55; }
@@ -261,6 +193,42 @@
       text-decoration:none; font-weight:600;
     }
     .sheet-panel a:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
+
+    /* Mobile Portrait Optimierung */
+    @media (max-width: 600px) and (orientation: portrait) {
+      .timer { grid-template-columns: 1fr !important; text-align: center; gap: 1.5rem; justify-items: center; max-width: 100%; }
+      .ring { margin: 0 auto; }
+      .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
+      .timer p { font-size: 0.9rem; text-align: center; }
+      #status { text-align: center !important; margin: 0 auto; }
+    }
+
+    /* Sehr kleine Bildschirme */
+    @media (max-width: 380px) {
+      .ring{ width:100px !important; height:100px !important; }
+      .ring svg{ width:100px; height:100px; }
+      .ring .num{ font-size:1.6rem; }
+      .timer h3{ font-size:0.85rem !important; white-space: normal; line-height: 1.4; }
+      .timer p{ font-size:0.85rem; }
+    }
+
+    /* Bild-Button (Ko-fi) — ursprüngliche Eigenschaften */
+    .kofi-btn{
+      display:inline-block; border-radius:12px; border:1px solid #2b3240;
+      background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
+      transition:transform .12s ease, box-shadow .12s ease;
+      line-height:0; /* remove inline-gap */
+    }
+    .kofi-btn:hover{ 
+      transform:translateY(-1px); 
+      box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset;
+    }
+    .kofi-btn:focus-visible{
+      outline:none; box-shadow:0 0 0 3px rgba(229,9,20,.45);
+    }
+    .kofi-btn img{
+      display:block; width:220px; height:auto; border-radius:12px;
+    }
   </style>
 </head>
 <body>
@@ -277,46 +245,70 @@
       <a class="nav-link" href="/de/choose.html">Eröffnungen</a>
       <span class="nav-sep" aria-hidden="true"></span>
       <a class="nav-link" href="/de/faq.html">FAQ</a>
-      <a class="nav-link" href="/de/contact.html">Kontakt</>
+      <a class="nav-link" href="/de/contact.html">Kontakt</a>
       <a class="nav-link" href="/de/impressum.html">Impressum</a>
     </nav>
   </header>
 
   <nav class="crumbs" aria-label="Breadcrumb">
-    <a href="/de/">Home</a> &nbsp;→&nbsp; <strong>Unterstützen</strong>
+    <a href="/de/">Home</a> &nbsp;→&nbsp;
+    <a href="/de/choose.html">Auswahl</a> &nbsp;→&nbsp;
+    <strong>Download</strong>
   </nav>
 
   <main class="hero">
-    <!-- EIN gemeinsamer Rahmen: Über den Autor + Unterstützung -->
-    <section class="panel" aria-labelledby="about-support">
-      <h2 id="about-support">Über mich</h2>
-
-      <!-- Foto mittig -->
-      <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG" alt="Foto von Tobias">
-
-      <!-- Über mich -->
+    <section class="panel" aria-labelledby="dl">
+      <h2 id="dl">Download wird vorbereitet</h2>
       <p class="lead">
-        Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.<br>Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,<br>das Theorie wirklich aufs Brett bringt – <em>Theory that gets to the board</em>.<br>Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>So ist Starting Pawn entstanden.
+        Deine Datei: <strong id="fileLabel">elite-allbooks.bin</strong>
       </p>
 
-      <!-- Unterstützen -->
-      <p class="lead">
-        Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung – <br>so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.
-      </p>
+      <article class="info-card" aria-label="Countdown">
+        <div class="card-body">
+          <div class="timer">
+            <div class="ring" aria-hidden="true">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/>
+                <circle id="progress" cx="60" cy="60" r="54" fill="none" stroke="url(#g)" stroke-width="10"
+                        stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="0"/>
+                <defs>
+                  <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(229,9,20,1)" />
+                    <stop offset="100%" stop-color="rgba(229,9,20,.7)" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="num" id="num">15</div>
+            </div>
+            <div>
+              <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">
+                Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
+              </h3>
+              <p id="status" aria-live="polite" style="line-height:1.7;">
+                <img src="https://www.startingpawn.com/assets/me.PNG"
+                     alt="Foto von Tobias" width="180" height="180"
+                     style="display:block;margin:.25rem 0 .9rem;border-radius:12px;border:1px solid #2b3240;object-fit:cover">
+                Hi, ich bin Tobias – die Idee hinter Starting Pawn.<br>
+                Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,<br>
+                das Theorie wirklich aufs Brett bringt – Theory that gets to the board.<br>
+                Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>
+                So ist Starting Pawn entstanden.<br><br>
+                Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung – so bleibt die Seite werbefrei und kann aktiv weiterentwickelt werden.<br><br>
+                <!-- OBERER KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
+                <a class="kofi-btn" href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
+                   target="_blank" rel="noopener" data-kofi aria-label="Unterstützen via Ko-fi">
+                  <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" decoding="async">
+                </a><br><br>
+                <span style="color:#cbd0da;">100&nbsp;% deines Beitrags fließt in Hosting, Traffic &amp; Entwicklung.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- card-actions wurde zuvor entfernt -->
+      </article>
 
-      <!-- Ko-fi Bild-Button mittig -->
-      <div class="cta">
-        <a class="kofi-btn"
-           href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Unterstützen via Ko-fi">
-          <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" width="220" height="70" decoding="async" />
-        </a>
-      </div>
-
-      <!-- Text unter Button mittig -->
-      <p class="muted below-cta">
-        100&nbsp;% deines Beitrags fließt in Hosting, Traffic & Entwicklung.
+      <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem; text-align:center">
+        Der Download startet automatisch. Danke für deine Geduld!
       </p>
     </section>
   </main>
@@ -341,36 +333,126 @@
   </div>
 
   <script>
-    // Mobiler + Button (Bottom-Sheet)
+    /* Bottom-Sheet */
     (function(){
       const fab = document.getElementById('fab');
       const sheet = document.getElementById('sheet');
       const backdrop = sheet?.querySelector('.sheet-backdrop');
       const panel = sheet?.querySelector('.sheet-panel');
-
-      const open = () => {
-        if (!sheet) return;
-        sheet.hidden = false;
-        requestAnimationFrame(() => sheet.setAttribute('data-open','true'));
-        fab?.setAttribute('aria-expanded','true');
-      };
-      const close = () => {
-        if (!sheet) return;
-        sheet.removeAttribute('data-open');
-        fab?.setAttribute('aria-expanded','false');
-        setTimeout(() => { sheet.hidden = true; }, 200);
-      };
-
-      fab?.addEventListener('click', () => {
-        if (sheet.hidden) open(); else close();
-      });
+      const open = () => { if (!sheet) return; sheet.hidden = false; requestAnimationFrame(() => sheet.setAttribute('data-open','true')); fab?.setAttribute('aria-expanded','true'); };
+      const close = () => { if (!sheet) return; sheet.removeAttribute('data-open'); fab?.setAttribute('aria-expanded','false'); setTimeout(() => { sheet.hidden = true; }, 200); };
+      fab?.addEventListener('click', () => { sheet.hidden ? open() : close(); });
       backdrop?.addEventListener('click', close);
-      panel?.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') close();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !sheet.hidden) close();
-      });
+      panel?.addEventListener('click', (e) => { if (e.target.tagName === 'A') close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
+    })();
+
+    /* Download-Logik + Countdown */
+    (function(){
+      const DEFAULT_FILE = '/downloads/elite-allbooks.bin';
+      const qs = new URLSearchParams(location.search);
+      const raw = qs.get('file') ? decodeURIComponent(qs.get('file')) : DEFAULT_FILE;
+
+      const isSameOriginPath = !/^(?:[a-z]+:)?\/\//i.test(raw);
+      const isAllowedExt = /\.(?:bin|zip)(?:[?#].*)?$/i.test(raw);
+
+      let sanitized = (isSameOriginPath && isAllowedExt) ? raw : DEFAULT_FILE;
+      sanitized = sanitized.replace(/\\/g,'/');
+      sanitized = sanitized.replace(/\.\./g,'');
+      sanitized = sanitized.replace(/^\.(\/|\\)/,'/');
+      if (!sanitized.startsWith('/')) sanitized = '/' + sanitized;
+
+      const file = sanitized;
+
+      const fileLabel = document.getElementById('fileLabel');
+      const displayName = file.replace(/^.*[\\/]/, '').split('?')[0].split('#')[0];
+      fileLabel.textContent = displayName;
+
+      const SECS_TOTAL = 20;
+      let secs = SECS_TOTAL;
+      let timer = null;
+      let done = false;
+
+      const num = document.getElementById('num');
+      const txtSec = document.getElementById('txtSec');
+      const progress = document.getElementById('progress');
+
+      const CIRC = 2 * Math.PI * 54;
+      progress.setAttribute('stroke-dasharray', String(CIRC));
+      progress.setAttribute('stroke-dashoffset', '0');
+
+      function setProgress(s){
+        const p = (SECS_TOTAL - s) / SECS_TOTAL;
+        const off = CIRC * (1 - p);
+        progress.setAttribute('stroke-dashoffset', String(off));
+      }
+
+      function triggerDownload(){
+        if (done) return;
+        done = true;
+        const a = document.createElement('a');
+        a.href = file;
+        a.download = '';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 0);
+      }
+
+      function tick(){
+        secs--;
+        if (secs <= 0){
+          num.textContent = '0';
+          txtSec.textContent = '0';
+          setProgress(0);
+          clearInterval(timer);
+          triggerDownload();
+          return;
+        }
+        num.textContent = String(secs);
+        txtSec.textContent = String(secs);
+        setProgress(secs);
+      }
+
+      function start(){
+        num.textContent = String(secs);
+        txtSec.textContent = String(secs);
+        setProgress(secs);
+        setTimeout(() => { timer = setInterval(tick, 1000); }, 350);
+      }
+
+      start();
+    })();
+
+    /* Ko-fi Widget beim Klick auf KO-FI Button (oben) */
+    (function(){
+      function openKofiWidget(e){
+        e.preventDefault();
+        const existing = document.getElementById('kofiframe');
+        if (existing){
+          existing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        const wrap = document.createElement('div');
+        const iframe = document.createElement('iframe');
+        iframe.id = 'kofiframe';
+        iframe.src = 'https://ko-fi.com/startingpawn/?hidefeed=true&widget=true&embed=true&preview=true';
+        iframe.style.border = 'none';
+        iframe.style.width = '100%';
+        iframe.style.padding = '4px';
+        iframe.style.background = '#f9f9f9';
+        iframe.height = '712';
+        iframe.title = 'startingpawn';
+        wrap.appendChild(iframe);
+        const panel = document.querySelector('section.panel');
+        panel?.appendChild(wrap);
+        wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        iframe.focus?.();
+      }
+
+      // Gleiche Funktion für alle [data-kofi]-Elemente (hier: nur der obere Button)
+      const kofiButtons = document.querySelectorAll('[data-kofi]');
+      kofiButtons.forEach(btn => btn.addEventListener('click', openKofiWidget));
     })();
   </script>
 </body>
