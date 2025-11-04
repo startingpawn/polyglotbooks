@@ -194,13 +194,13 @@
       .timer p{ font-size:0.85rem; }
     }
 
-    /* Bild-Button (Ko-fi) — ursprüngliche Eigenschaften */
+    /* Ko-fi Button (Bild) — ursprüngliche Eigenschaften */
     .kofi-btn{
       display:inline-block; border-radius:12px; border:1px solid #2b3240;
       background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
       transition:transform .12s ease, box-shadow .12s ease;
-      line-height:0; /* remove inline-gap */
-      margin:.8rem auto .35rem; /* Button näher am Text, etwas Abstand nach unten */
+      line-height:0;
+      margin:.8rem auto .35rem;
     }
     .kofi-btn:hover{ 
       transform:translateY(-1px); 
@@ -221,9 +221,10 @@
       color:#cbd0da;
       font-size:.92rem;
       font-family: var(--brand-sub-font);
+      max-width:56ch;
     }
 
-    /* Über-mich Block + Foto (zentriert & responsiv) – gleiche Schrift wie Header-Subtitel */
+    /* Über mich + Foto */
     .about-heading{
       display:block;
       margin:.2rem auto .5rem;
@@ -231,24 +232,33 @@
       text-align:center;
       font-family: var(--brand-sub-font);
     }
-    .about-block{
-      display:block;
-      margin:.6rem auto .2rem;
-      color:#cfd3db; line-height:1.55;
-      max-width:56ch;
-      text-align:center;
-      font-family: var(--brand-sub-font);
-    }
     .author-photo{
       display:block;
-      margin:.2rem auto .6rem; /* direkt unter Überschrift, wenig Abstand */
+      margin:.2rem auto .8rem;
       width:clamp(140px, 28vw, 200px);
       aspect-ratio:1 / 1;
-      height:auto;
-      object-fit:cover;
-      border-radius:12px;
-      border:1px solid #2b3240;
+      height:auto; object-fit:cover;
+      border-radius:12px; border:1px solid #2b3240;
       box-shadow:0 8px 18px rgba(229,9,20,.12);
+    }
+
+    /* Absatz-Style: links/rechts bündig (inkl. letzte Zeile) + gleiche Schrift wie Subtitel */
+    .about-para{
+      display:block;
+      margin:.6rem auto .2rem;
+      color:#cfd3db;
+      max-width:56ch;
+      line-height:1.6;
+      font-family: var(--brand-sub-font);
+      text-align:justify;
+      text-align-last:justify;               /* für Browser mit Support */
+      hyphens:auto; -webkit-hyphens:auto;
+      overflow-wrap:anywhere;
+    }
+    .about-para::after{                      /* „justify“ auch für die letzte Zeile */
+      content:"";
+      display:inline-block;
+      width:100%;
     }
   </style>
 </head>
@@ -298,24 +308,15 @@
                 <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG"
                      alt="Foto von Tobias" width="200" height="200" decoding="async">
 
-                <!-- Text unter dem Foto – mit der gleichen Schrift wie der Header-Subtitel -->
-                <span class="about-block">
-                  Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.
+                <!-- gerecht ausgerichtete Absätze (gleicher Anfang & Ende) -->
+                <span class="about-para">
+                  Hi, ich bin Tobias – die Idee hinter Starting Pawn. Aus meiner Schachleidenschaft wurde ein Hobbyprojekt, das Theorie wirklich aufs Brett bringt – Theory that gets to the board. Irgendwann fragte ich mich: Warum das nicht mit allen teilen?
                 </span>
-                <span class="about-block">
-                  Aus meiner Schachleidenschaft wurde ein Hobbyprojekt, das Theorie wirklich aufs Brett bringt – <em>Theory that gets to the board</em>.
-                </span>
-                <span class="about-block">
-                  Irgendwann fragte ich mich: Warum das nicht mit allen teilen?
-                </span>
-                <span class="about-block">
-                  Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung
-                </span>
-                <span class="about-block">
-                  – so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.
+                <span class="about-para">
+                  Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung – so bleibt die Seite werbefrei und kann aktiv weiterentwickelt werden.
                 </span>
 
-                <!-- KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
+                <!-- Ko-fi Button -->
                 <a class="kofi-btn"
                    href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
                    target="_blank" rel="noopener" data-kofi aria-label="Unterstützen via Ko-fi">
