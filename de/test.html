@@ -14,6 +14,8 @@
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
       --indent-start: 1.15rem;
+      /* gleiche Schrift wie der Header-Subtitel */
+      --brand-sub-font: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -218,14 +220,16 @@
       text-align:center;
       color:#cbd0da;
       font-size:.92rem;
+      font-family: var(--brand-sub-font);
     }
 
-    /* Über-mich Block + Foto (zentriert & responsiv) */
+    /* Über-mich Block + Foto (zentriert & responsiv) – gleiche Schrift wie Header-Subtitel */
     .about-heading{
       display:block;
       margin:.2rem auto .5rem;
       font-size:1rem; font-weight:700; color:#dfe1e7; letter-spacing:.01em;
       text-align:center;
+      font-family: var(--brand-sub-font);
     }
     .about-block{
       display:block;
@@ -233,6 +237,7 @@
       color:#cfd3db; line-height:1.55;
       max-width:56ch;
       text-align:center;
+      font-family: var(--brand-sub-font);
     }
     .author-photo{
       display:block;
@@ -293,16 +298,21 @@
                 <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG"
                      alt="Foto von Tobias" width="200" height="200" decoding="async">
 
+                <!-- Text unter dem Foto – mit der gleichen Schrift wie der Header-Subtitel -->
                 <span class="about-block">
-                  Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.<br><br>
-                  Aus meiner Schachleidenschaft wurde ein Hobbyprojekt,
-                  das Theorie wirklich aufs Brett bringt – <em>Theory that gets to the board</em>.<br><br>
+                  Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.
+                </span>
+                <span class="about-block">
+                  Aus meiner Schachleidenschaft wurde ein Hobbyprojekt, das Theorie wirklich aufs Brett bringt – <em>Theory that gets to the board</em>.
+                </span>
+                <span class="about-block">
                   Irgendwann fragte ich mich: Warum das nicht mit allen teilen?
                 </span>
-
-                <span class="about-block" style="margin-top:.6rem;">
-                  Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung <br><br> –
-                  so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.
+                <span class="about-block">
+                  Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung
+                </span>
+                <span class="about-block">
+                  – so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.
                 </span>
 
                 <!-- KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
@@ -312,7 +322,7 @@
                   <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen">
                 </a>
 
-                <!-- Text unter dem Button -->
+                <!-- Text direkt unter dem Button -->
                 <span class="below-cta">100&nbsp;% deines Beitrags fließt in Hosting, Traffic &amp; Entwicklung.</span>
               </p>
             </div>
