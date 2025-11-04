@@ -13,7 +13,6 @@
       --bg:#0b0c10; --panel:#12131a; --muted:#9aa0a6; --text:#e9eaee;
       --accent:#e50914; --ring:0 0 0 2px rgba(229,9,20,.35);
       --radius:16px; --max:1200px; --gap:1.2rem; --gap-desktop:1.6rem; --border:2px;
-      /* NEU: Einrückung wie auf der Index.html */
       --indent-start: 1.15rem;
     }
     *{box-sizing:border-box}
@@ -22,8 +21,7 @@
       margin:0;
       background:radial-gradient(1000px 700px at 50% -20%, #1a1214 0, var(--bg) 60%, var(--bg) 100%);
       color:var(--text); font:16px system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
-      display:flex;
-      flex-direction:column;
+      display:flex; flex-direction:column;
     }
     a{color:inherit; text-decoration:none}
 
@@ -76,110 +74,40 @@
     
     /* LANDSCAPE OPTIMIERUNG - weniger Höhe, alles passt auf Bildschirm */
     @media (orientation: landscape) and (max-height: 768px){
-      header{
-        padding:0.8rem 1rem 0.5rem;
-      }
-      .logo{
-        width:40px;
-        height:40px;
-      }
-      h1{
-        font-size:clamp(1.1rem,1.8vw,1.4rem);
-      }
-      .crumbs{
-        padding:0 1rem 0.8rem;
-      }
-      main.hero{
-        padding:1rem;
-      }
-      .panel{
-        padding:1rem;
-      }
-      .panel h2{
-        margin:0.1rem 0 0.8rem;
-        font-size:1.2rem;
-      }
-      .lead{
-        margin:0.1rem 0 0.8rem;
-      }
-      .ring{
-        width:100px !important;
-        height:100px !important;
-      }
-      .ring svg{
-        width:100px;
-        height:100px;
-      }
-      .ring .num{
-        font-size:1.6rem;
-      }
-      .timer h3{
-        font-size:0.95rem !important;
-      }
-      .timer p{
-        font-size:0.9rem;
-      }
-      .card-body{
-        padding:0.9rem 1rem;
-      }
-      .card-actions{
-        padding:0.7rem 1rem;
-      }
-      footer{
-        margin:0.5rem auto 1rem;
-      }
+      header{ padding:0.8rem 1rem 0.5rem; }
+      .logo{ width:40px; height:40px; }
+      h1{ font-size:clamp(1.1rem,1.8vw,1.4rem); }
+      .crumbs{ padding:0 1rem 0.8rem; }
+      main.hero{ padding:1rem; }
+      .panel{ padding:1rem; }
+      .panel h2{ margin:0.1rem 0 0.8rem; font-size:1.2rem; }
+      .lead{ margin:0.1rem 0 0.8rem; }
+      .ring{ width:100px !important; height:100px !important; }
+      .ring svg{ width:100px; height:100px; }
+      .ring .num{ font-size:1.6rem; }
+      .timer h3{ font-size:0.95rem !important; }
+      .timer p{ font-size:0.9rem; }
+      .card-body{ padding:0.9rem 1rem; }
+      .card-actions{ padding:0.7rem 1rem; }
+      footer{ margin:0.5rem auto 1rem; }
     }
     
     /* Mobile Landscape (Smartphones) */
     @media (orientation: landscape) and (max-width: 979px) and (max-height: 500px){
-      main.hero{
-        padding:0.8rem;
-      }
-      .panel{
-        padding:0.8rem;
-      }
-      .panel h2{
-        font-size:1.1rem;
-        margin:0 0 0.5rem;
-      }
-      .lead{
-        font-size:0.88rem;
-        margin:0 0 0.6rem;
-      }
-      .ring{
-        width:80px !important;
-        height:80px !important;
-      }
-      .ring svg{
-        width:80px;
-        height:80px;
-      }
-      .ring .num{
-        font-size:1.3rem;
-      }
-      .timer{
-        gap:0.7rem;
-      }
-      .timer h3{
-        font-size:0.88rem !important;
-        margin:0 0 0.15rem !important;
-      }
-      .timer p{
-        font-size:0.82rem;
-      }
-      .card-body{
-        padding:0.7rem 0.9rem;
-      }
-      .card-actions{
-        padding:0.6rem 0.9rem;
-      }
-      .support-note{
-        font-size:0.85rem;
-      }
-      .btn{
-        padding:0.45rem 0.7rem;
-        font-size:0.9rem;
-      }
+      main.hero{ padding:0.8rem; }
+      .panel{ padding:0.8rem; }
+      .panel h2{ font-size:1.1rem; margin:0 0 0.5rem; }
+      .lead{ font-size:0.88rem; margin:0 0 0.6rem; }
+      .ring{ width:80px !important; height:80px !important; }
+      .ring svg{ width:80px; height:80px; }
+      .ring .num{ font-size:1.3rem; }
+      .timer{ gap:0.7rem; }
+      .timer h3{ font-size:0.88rem !important; margin:0 0 0.15rem !important; }
+      .timer p{ font-size:0.82rem; }
+      .card-body{ padding:0.7rem 0.9rem; }
+      .card-actions{ padding:0.6rem 0.9rem; }
+      .support-note{ font-size:0.85rem; }
+      .btn{ padding:0.45rem 0.7rem; font-size:0.9rem; }
     }
 
     /* Panel */
@@ -198,18 +126,13 @@
     .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
     .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
 
-    /* NEU: Typografie & Einrückung wie Index.html */
-    .panel > h2,
-    .panel > .lead,
-    .panel > p{
+    /* Typografie & Einrückung */
+    .panel > h2, .panel > .lead, .panel > p{
       padding-left: var(--indent-start);
       text-wrap: balance;
     }
-    .lead,
-    .panel > p{
-      hyphens:auto;
-      -webkit-hyphens:auto;
-      overflow-wrap:anywhere;
+    .lead, .panel > p{
+      hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere;
     }
 
     /* Info-Card */
@@ -219,11 +142,7 @@
       overflow:hidden; transition:transform .15s ease, box-shadow .15s ease;
     }
     .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
-    .card-body{ 
-      padding:1.1rem 1.2rem 1.2rem; 
-      color:#dfe1e7; 
-      line-height:1.55;
-    }
+    .card-body{ padding:1.1rem 1.2rem 1.2rem; color:#dfe1e7; line-height:1.55; }
     .card-actions{
       padding:.9rem 1.2rem; border-top:1px solid #1e2230;
       background:linear-gradient(180deg, #0f1117, #0d0f14);
@@ -231,51 +150,23 @@
     }
     .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
-    /* Countdown – ZENTRIERT für größere Displays */
+    /* Countdown */
     .timer{
-      display:grid; 
-      grid-template-columns: auto 1fr; 
-      gap:1rem; 
-      align-items:center;
-      justify-content:center;
-      max-width:600px;
-      margin:0 auto;
+      display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:center;
+      justify-content:center; max-width:600px; margin:0 auto;
     }
-    
-    /* Für größere Displays: Timer-Inhalt zentriert */
-    @media (min-width: 800px) {
-      .timer {
-        gap: 2rem;
-      }
-      .card-body {
-        padding: 1.5rem 2rem;
-      }
-    }
-    
-    .ring{
-      width:120px; height:120px; position:relative; display:grid; place-items:center;
-      filter:drop-shadow(0 8px 18px rgba(229,9,20,.18));
-    }
+    @media (min-width: 800px){ .timer{ gap:2rem } .card-body{ padding:1.5rem 2rem } }
+    .ring{ width:120px; height:120px; position:relative; display:grid; place-items:center;
+      filter:drop-shadow(0 8px 18px rgba(229,9,20,.18)); }
     .ring svg{ transform:rotate(-90deg); display:block }
-    .ring .num{
-      position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em;
-      text-shadow:0 1px 0 rgba(0,0,0,.35);
-    }
-    .timer p{ 
-      margin:.2rem 0 0; 
-      color:#c7cbd6; 
-      text-wrap:balance; 
-      hyphens:auto; 
-      -webkit-hyphens:auto; 
-      overflow-wrap:anywhere;
-    }
+    .ring .num{ position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em; text-shadow:0 1px 0 rgba(0,0,0,.35); }
+    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Buttons */
     .btn{
       display:inline-flex; align-items:center; gap:.45rem;
       padding:.55rem .9rem; border-radius:12px; font-weight:700; font-size:.95rem;
-      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee;
-      transition:.12s ease;
+      text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee; transition:.12s ease;
     }
     .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
     .btn-donate{
@@ -285,12 +176,23 @@
     .btn-donate:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
     .btn-donate::before{ content:"❤"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
 
+    /* Ko-fi-Style für den ersetzenden Button */
+    .btn-donate.kofi{ 
+      padding:0; background:transparent; border:1px solid #2b3240; 
+      box-shadow:0 8px 18px rgba(229,9,20,.12);
+      line-height:0;
+    }
+    .btn-donate.kofi::before{ content:none; } /* Herz ausblenden */
+    .btn-donate.kofi:hover{ 
+      transform:translateY(-1px);
+      box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset;
+    }
+
     /* Footer */
     footer{
-      max-width:var(--max);
-      width:100%;
-      margin:1.2rem auto 2.4rem;
-      color:#a2a6b2; font-size:.92rem; padding:0 1rem; text-align:center;
+      max-width:var(--max); width:100%;
+      margin:1.2rem auto 2.4rem; color:#a2a6b2; font-size:.92rem;
+      padding:0 1rem; text-align:center;
     }
 
     /* FAB */
@@ -331,34 +233,27 @@
 
     /* Mobile Portrait Optimierung */
     @media (max-width: 600px) and (orientation: portrait) {
-      .timer {
-        grid-template-columns: 1fr !important;
-        text-align: center;
-        gap: 1.5rem;
-        justify-items: center;
-        max-width: 100%;
-      }
-      .ring { margin: 0 auto; }
-      .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
-      .timer p { font-size: 0.9rem; text-align: center; }
+      .timer{ grid-template-columns: 1fr !important; text-align: center; gap: 1.5rem; justify-items: center; max-width: 100%; }
+      .ring{ margin: 0 auto; }
+      .timer h3{ text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
+      .timer p{ font-size: 0.9rem; text-align: center; }
 
-      #status { 
-        text-align: center !important; 
-        margin: 0 auto; 
-      }
+      #status{ text-align: center !important; margin: 0 auto; }
 
-      .card-actions { flex-direction: column; gap: 0.8rem; }
-      .support-note { margin-right: 0; text-align: center; font-size: 0.85rem; }
-      .btn-donate { width: 100%; justify-content: center; }
+      .card-actions{ flex-direction: column; gap: 0.8rem; }
+      .support-note{ margin-right: 0; text-align: center; font-size: 0.85rem; }
+
+      /* Ko-fi-Button soll NICHT auf 100% ziehen */
+      .card-actions .btn-donate.kofi{ width:auto !important; justify-content:center; }
     }
 
-    /* Sehr kleine Bildschirme (unter 380px Breite) */
+    /* Sehr kleine Bildschirme */
     @media (max-width: 380px) {
-      .ring { width: 100px !important; height: 100px !important; }
-      .ring svg { width: 100px; height: 100px; }
-      .ring .num { font-size: 1.6rem; }
-      .timer h3 { font-size: 0.85rem !important; white-space: normal; line-height: 1.4; }
-      .timer p { font-size: 0.85rem; }
+      .ring{ width:100px !important; height:100px !important; }
+      .ring svg{ width:100px; height:100px; }
+      .ring .num{ font-size:1.6rem; }
+      .timer h3{ font-size:0.85rem !important; white-space: normal; line-height: 1.4; }
+      .timer p{ font-size:0.85rem; }
     }
   </style>
 </head>
@@ -382,17 +277,13 @@
   </header>
 
   <nav class="crumbs" aria-label="Breadcrumb">
-    <a href="/de/">Home</a> &nbsp;→&nbsp;
-    <a href="/de/choose.html">Auswahl</a> &nbsp;→&nbsp;
-    <strong>Download</strong>
+    <a href="/de/">Home</a> &nbsp;→&nbsp; <a href="/de/choose.html">Auswahl</a> &nbsp;→&nbsp; <strong>Download</strong>
   </nav>
 
   <main class="hero">
     <section class="panel" aria-labelledby="dl">
       <h2 id="dl">Download wird vorbereitet</h2>
-      <p class="lead">
-        Deine Datei: <strong id="fileLabel">elite-allbooks.bin</strong>
-      </p>
+      <p class="lead">Deine Datei: <strong id="fileLabel">elite-allbooks.bin</strong></p>
 
       <article class="info-card" aria-label="Countdown">
         <div class="card-body">
@@ -439,7 +330,16 @@
         </div>
         <div class="card-actions">
           <span class="support-note">Dein Beitrag fließt zu 100 % in den Betrieb & neue Inhalte.</span>
-          <a class="btn btn-donate" href="/de/donate.html" target="_blank" rel="noopener">Jetzt unterstützen</a>
+
+          <!-- Ko-fi ersetzt den „Jetzt unterstützen“-Button, behält aber dessen Funktion -->
+          <a class="btn btn-donate kofi" id="donateBtn"
+             href="https://ko-fi.com/startingpawn?utm_source=downloadpage&utm_medium=button&utm_campaign=donate"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Unterstützen via Ko-fi" title="Unterstützen via Ko-fi" style="width:auto;">
+            <img src="https://www.startingpawn.com/assets/kofi.png"
+                 alt="Ko-fi: Jetzt unterstützen" width="220" height="70"
+                 decoding="async" style="display:block;border-radius:12px;">
+          </a>
         </div>
       </article>
 
@@ -469,7 +369,7 @@
   </div>
 
   <script>
-    /* ---------- Bottom-Sheet ---------- */
+    /* Bottom-Sheet */
     (function(){
       const fab = document.getElementById('fab');
       const sheet = document.getElementById('sheet');
@@ -483,26 +383,23 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
     })();
 
-    /* ---------- Download-Logik + Countdown ---------- */
+    /* Download-Logik + Countdown */
     (function(){
       const DEFAULT_FILE = '/downloads/elite-allbooks.bin';
       const qs = new URLSearchParams(location.search);
       const raw = qs.get('file') ? decodeURIComponent(qs.get('file')) : DEFAULT_FILE;
 
-      // nur gleiche-Origin-Pfade (.bin/.zip) erlauben, Query/Hash ok
       const isSameOriginPath = !/^(?:[a-z]+:)?\/\//i.test(raw);
       const isAllowedExt = /\.(?:bin|zip)(?:[?#].*)?$/i.test(raw);
 
-      // Pfad säubern und root-absolut machen, '..' entfernen
       let sanitized = (isSameOriginPath && isAllowedExt) ? raw : DEFAULT_FILE;
-      sanitized = sanitized.replace(/\\/g,'/');          // Backslashes → Slashes
-      sanitized = sanitized.replace(/\.\./g,'');         // keine Parent-Verweise
-      sanitized = sanitized.replace(/^\.(\/|\\)/,'/');   // './' entfernen
+      sanitized = sanitized.replace(/\\/g,'/');
+      sanitized = sanitized.replace(/\.\./g,'');
+      sanitized = sanitized.replace(/^\.(\/|\\)/,'/');
       if (!sanitized.startsWith('/')) sanitized = '/' + sanitized;
 
       const file = sanitized;
 
-      // Dateiname ohne Pfad/Query anzeigen
       const fileLabel = document.getElementById('fileLabel');
       const displayName = file.replace(/^.*[\\/]/, '').split('?')[0].split('#')[0];
       fileLabel.textContent = displayName;
@@ -563,11 +460,11 @@
       start();
     })();
 
-    /* ---------- Ko-fi Widget beim Klick auf "Jetzt unterstützen" ---------- */
+    /* Ko-fi Widget beim Klick auf den (ersetzten) Button */
     (function(){
-      const btn = document.querySelector('.btn.btn-donate');
+      const btn = document.querySelector('.btn.btn-donate'); // greift unseren Ko-fi-Button
       btn?.addEventListener('click', function(e){
-        e.preventDefault();
+        e.preventDefault(); // Funktion „Jetzt unterstützen“ beibehalten: Widget einbetten
         if (document.getElementById('kofiframe')) {
           document.getElementById('kofiframe').scrollIntoView({ behavior: 'smooth', block: 'start' });
           return;
