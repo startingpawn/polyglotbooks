@@ -106,8 +106,8 @@
       box-shadow:0 1px 3px rgba(0,0,0,.2), 0 10px 40px rgba(229,9,20,.08);
     }
     .panel:hover{ transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,.3), 0 15px 50px rgba(229,9,20,.12) }
-    .panel h2{ margin:.2rem 0 1.5rem; font-size:1.35rem }
-    .lead{ color:#cfd3db; margin:.2rem 0 1.2rem; line-height:1.5 }
+    .panel h2{ margin:.2rem 0 1.2rem; font-size:1.35rem }
+    .lead{ color:#cfd3db; margin:.2rem 0 1.1rem; line-height:1.5 }
 
     .panel > h2, .panel > .lead, .panel > p{
       padding-left: var(--indent-start);
@@ -131,8 +131,9 @@
       display:grid; grid-template-columns:1fr; gap:1rem; align-items:center;
       justify-content:center; max-width:600px; margin:0 auto; text-align:left;
     }
-    @media (min-width: 800px){ .timer{ gap:2rem } .card-body{ padding:1.5rem 2rem } }
-    .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
+    @media (min-width: 800px){ .timer{ gap:1.4rem } .card-body{ padding:1.4rem 1.8rem } }
+    .timer h3{ margin:.1rem 0 1rem; font-size:1.02rem }
+    .timer p{ margin:.4rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Footer */
     footer{
@@ -179,15 +180,15 @@
 
     /* Mobile Portrait Optimierung */
     @media (max-width: 600px) and (orientation: portrait) {
-      .timer { text-align: center; gap: 1.5rem; justify-items: center; max-width: 100%; }
-      .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
+      .timer { text-align: center; gap: 1.25rem; justify-items: center; max-width: 100%; }
+      .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; margin-bottom:.8rem; }
       .timer p { font-size: 0.9rem; text-align: center; }
       #status { text-align: center !important; margin: 0 auto; }
     }
 
     /* Sehr kleine Bildschirme */
     @media (max-width: 380px) {
-      .timer h3{ font-size:0.85rem !important; white-space: normal; line-height: 1.4; }
+      .timer h3{ font-size:0.85rem !important; white-space: normal; line-height:1.35; }
       .timer p{ font-size:0.85rem; }
     }
 
@@ -197,6 +198,7 @@
       background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
       transition:transform .12s ease, box-shadow .12s ease;
       line-height:0; /* remove inline-gap */
+      margin:.6rem 0 0;
     }
     .kofi-btn:hover{ 
       transform:translateY(-1px); 
@@ -209,12 +211,25 @@
       display:block; width:220px; height:auto; border-radius:12px;
     }
 
-    /* Autor-Foto mittig */
+    /* Über-mich Block + Foto (zentriert & responsiv) */
+    .about-heading{
+      margin:.2rem 0 .5rem;
+      font-size:1rem; font-weight:700; color:#dfe1e7; letter-spacing:.01em;
+    }
+    .about-block{
+      margin:.2rem auto .8rem;
+      color:#cfd3db; line-height:1.55;
+    }
     .author-photo{
       display:block;
-      margin: .25rem auto .9rem;  /* zentriert */
-      width:180px; height:180px;
-      border-radius:12px; border:1px solid #2b3240; object-fit:cover;
+      margin:.4rem auto 1rem; /* zentriert + Luft nach unten */
+      width:clamp(140px, 28vw, 200px);
+      aspect-ratio:1 / 1;
+      height:auto;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid #2b3240;
+      box-shadow:0 8px 18px rgba(229,9,20,.12);
     }
   </style>
 </head>
@@ -254,29 +269,39 @@
         <div class="card-body">
           <div class="timer">
             <div>
-              <h3 style="margin:.2rem 0 1.5rem;font-size:1.05rem">
+              <h3>
                 Download startet in <span id="txtSec" style="display:inline-block;min-width:1.5ch;text-align:center">15</span> Sekunden …
               </h3>
-              <p id="status" aria-live="polite" style="line-height:1.7;">
+
+              <p id="status" aria-live="polite">
+                <span class="about-heading">Über mich</span>
+                <span class="about-block">
+                  Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.<br>
+                  Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,
+                  das Theorie wirklich aufs Brett bringt – <em>Theory that gets to the board</em>.<br>
+                  Irgendwann fragte ich mich: Warum das nicht mit allen teilen?
+                  So ist Starting Pawn entstanden.
+                </span>
+
                 <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG"
-                     alt="Foto von Tobias" width="180" height="180">
-                Hi, ich bin Tobias – die Idee hinter Starting Pawn.<br>
-                Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,<br>
-                das Theorie wirklich aufs Brett bringt – Theory that gets to the board.<br>
-                Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>
-                So ist Starting Pawn entstanden.<br><br>
-                Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung – so bleibt die Seite werbefrei und kann aktiv weiterentwickelt werden.<br><br>
+                     alt="Foto von Tobias" width="200" height="200" decoding="async">
+
+                Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung –
+                so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.<br><br>
+
                 <!-- KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
-                <a class="kofi-btn" href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
+                <a class="kofi-btn"
+                   href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
                    target="_blank" rel="noopener" data-kofi aria-label="Unterstützen via Ko-fi">
-                  <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen" decoding="async">
+                  <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen">
                 </a><br><br>
+
                 <span style="color:#cbd0da;">100&nbsp;% deines Beitrags fließt in Hosting, Traffic &amp; Entwicklung.</span>
               </p>
             </div>
           </div>
         </div>
-        <!-- card-actions war bereits entfernt -->
+        <!-- keine card-actions -->
       </article>
 
       <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem; text-align:center">
