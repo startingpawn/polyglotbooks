@@ -133,7 +133,7 @@
     }
     @media (min-width: 800px){ .timer{ gap:1.4rem } .card-body{ padding:1.4rem 1.8rem } }
     .timer h3{ margin:.1rem 0 1rem; font-size:1.02rem }
-    .timer p{ margin:.4rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
+    .timer p{ margin:.6rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
 
     /* Footer */
     footer{
@@ -198,7 +198,7 @@
       background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
       transition:transform .12s ease, box-shadow .12s ease;
       line-height:0; /* remove inline-gap */
-      margin:.6rem 0 0;
+      margin:.8rem 0 0;
     }
     .kofi-btn:hover{ 
       transform:translateY(-1px); 
@@ -213,16 +213,21 @@
 
     /* Über-mich Block + Foto (zentriert & responsiv) */
     .about-heading{
-      margin:.2rem 0 .5rem;
+      display:block;
+      margin:.2rem auto .5rem;
       font-size:1rem; font-weight:700; color:#dfe1e7; letter-spacing:.01em;
+      text-align:center;
     }
     .about-block{
-      margin:.2rem auto .8rem;
+      display:block;
+      margin:.6rem auto .2rem;
       color:#cfd3db; line-height:1.55;
+      max-width:56ch;
+      text-align:center;
     }
     .author-photo{
       display:block;
-      margin:.4rem auto 1rem; /* zentriert + Luft nach unten */
+      margin:.2rem auto .6rem; /* direkt unter Überschrift, wenig Abstand */
       width:clamp(140px, 28vw, 200px);
       aspect-ratio:1 / 1;
       height:auto;
@@ -275,6 +280,10 @@
 
               <p id="status" aria-live="polite">
                 <span class="about-heading">Über mich</span>
+
+                <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG"
+                     alt="Foto von Tobias" width="200" height="200" decoding="async">
+
                 <span class="about-block">
                   Hi, ich bin Tobias – die Idee hinter <strong>Starting Pawn</strong>.<br>
                   Aus meiner Schachleidenschaft seit Kindertagen wurde ein Hobbyprojekt,
@@ -283,20 +292,17 @@
                   So ist Starting Pawn entstanden.
                 </span>
 
-                <img class="author-photo" src="https://www.startingpawn.com/assets/me.PNG"
-                     alt="Foto von Tobias" width="200" height="200" decoding="async">
-
-                Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung –
-                so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.<br><br>
+                <span class="about-block" style="margin-top:.6rem;">
+                  Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung –
+                  so bleibt die Seite <strong>werbefrei</strong> und kann aktiv weiterentwickelt werden.
+                </span>
 
                 <!-- KO-FI BUTTON (ursprüngliche Styles via .kofi-btn, gleiche Funktion via JS) -->
                 <a class="kofi-btn"
                    href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
                    target="_blank" rel="noopener" data-kofi aria-label="Unterstützen via Ko-fi">
                   <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen">
-                </a><br><br>
-
-                <span style="color:#cbd0da;">100&nbsp;% deines Beitrags fließt in Hosting, Traffic &amp; Entwicklung.</span>
+                </a>
               </p>
             </div>
           </div>
