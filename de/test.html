@@ -198,7 +198,7 @@
       background:#0f1117; box-shadow:0 8px 18px rgba(229,9,20,.12);
       transition:transform .12s ease, box-shadow .12s ease;
       line-height:0; /* remove inline-gap */
-      margin:.8rem 0 0;
+      margin:.8rem auto .35rem; /* Button näher am Text, etwas Abstand nach unten */
     }
     .kofi-btn:hover{ 
       transform:translateY(-1px); 
@@ -209,6 +209,15 @@
     }
     .kofi-btn img{
       display:block; width:220px; height:auto; border-radius:12px;
+    }
+
+    /* Text unter Button */
+    .below-cta{
+      display:block;
+      margin:.2rem auto 0;
+      text-align:center;
+      color:#cbd0da;
+      font-size:.92rem;
     }
 
     /* Über-mich Block + Foto (zentriert & responsiv) */
@@ -303,6 +312,9 @@
                    target="_blank" rel="noopener" data-kofi aria-label="Unterstützen via Ko-fi">
                   <img src="https://www.startingpawn.com/assets/kofi.png" alt="Ko-fi: Jetzt unterstützen">
                 </a>
+
+                <!-- Text unter dem Button -->
+                <span class="below-cta">100&nbsp;% deines Beitrags fließt in Hosting, Traffic &amp; Entwicklung.</span>
               </p>
             </div>
           </div>
