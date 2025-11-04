@@ -88,7 +88,6 @@
       .timer h3{ font-size:0.95rem !important; }
       .timer p{ font-size:0.9rem; }
       .card-body{ padding:0.9rem 1rem; }
-      .card-actions{ padding:0.7rem 1rem; }
       footer{ margin:0.5rem auto 1rem; }
     }
     
@@ -105,9 +104,6 @@
       .timer h3{ font-size:0.88rem !important; margin:0 0 0.15rem !important; }
       .timer p{ font-size:0.82rem; }
       .card-body{ padding:0.7rem 0.9rem; }
-      .card-actions{ padding:0.6rem 0.9rem; }
-      .support-note{ font-size:0.85rem; }
-      .btn{ padding:0.45rem 0.7rem; font-size:0.9rem; }
     }
 
     /* Panel */
@@ -142,12 +138,6 @@
     }
     .info-card:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(229,9,20,.10) }
     .card-body{ padding:1.1rem 1.2rem 1.2rem; color:#dfe1e7; line-height:1.55; }
-    .card-actions{
-      padding:.9rem 1.2rem; border-top:1px solid #1e2230;
-      background:linear-gradient(180deg, #0f1117, #0d0f14);
-      display:flex; gap:.6rem; justify-content:flex-end; align-items:center; flex-wrap:wrap;
-    }
-    .support-note{ color:#cbd0da; font-size:.92rem; margin-right:auto }
 
     /* Countdown */
     .timer{
@@ -160,25 +150,6 @@
     .ring svg{ transform:rotate(-90deg); display:block }
     .ring .num{ position:absolute; font:700 2rem/1 system-ui; letter-spacing:.02em; text-shadow:0 1px 0 rgba(0,0,0,.35); }
     .timer p{ margin:.2rem 0 0; color:#c7cbd6; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:anywhere; }
-
-    /* Buttons */
-    .btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.55rem .9rem; border-radius:12px;
-          font-weight:700; font-size:.95rem; text-decoration:none; border:1px solid #2b3240; background:#161a24; color:#e9eaee; transition:.12s ease; }
-    .btn:hover{ box-shadow:0 0 0 2px rgba(229,9,20,.25) }
-    .btn-donate{ background:linear-gradient(180deg, rgba(229,9,20,.95), rgba(229,9,20,.78)); color:#fff; border:none; box-shadow:0 8px 18px rgba(229,9,20,.24); }
-    .btn-donate:hover{ transform:translateY(-1px); box-shadow:0 10px 24px rgba(229,9,20,.30) }
-    .btn-donate::before{ content:"❤"; font-size:1rem; line-height:1; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
-
-    /* Ko-fi-Style für den ersetzenden Button unten */
-    .btn-donate.kofi{ 
-      padding:0; background:transparent; border:1px solid #2b3240; 
-      box-shadow:0 8px 18px rgba(229,9,20,.12); line-height:0;
-    }
-    .btn-donate.kofi::before{ content:none; } /* Herz ausblenden */
-    .btn-donate.kofi:hover{ 
-      transform:translateY(-1px);
-      box-shadow:0 10px 24px rgba(229,9,20,.18), 0 0 0 2px rgba(229,9,20,.25) inset;
-    }
 
     /* Footer */
     footer{
@@ -230,9 +201,6 @@
       .timer h3 { text-align: center; white-space: nowrap; font-size: 0.95rem !important; }
       .timer p { font-size: 0.9rem; text-align: center; }
       #status { text-align: center !important; margin: 0 auto; }
-      .card-actions { flex-direction: column; gap: 0.8rem; }
-      .support-note { margin-right: 0; text-align: center; font-size: 0.85rem; }
-      .btn-donate.kofi{ width:auto !important; justify-content:center; }
     }
 
     /* Sehr kleine Bildschirme */
@@ -308,7 +276,7 @@
                 Irgendwann fragte ich mich: Warum das nicht mit allen teilen?<br>
                 So ist Starting Pawn entstanden.<br><br>
                 Wenn dir meine Eröffnungsbücher helfen, freue ich mich über deine Unterstützung – so bleibt die Seite werbefrei und kann aktiv weiterentwickelt werden.<br><br>
-                <!-- OBERER KO-FI BUTTON: bekommt dieselbe Funktion per JS -->
+                <!-- OBERER KO-FI BUTTON -->
                 <a href="https://ko-fi.com/startingpawn?utm_source=supportpage&utm_medium=button&utm_campaign=donate"
                    target="_blank" rel="noopener" data-kofi
                    style="display:inline-block;border:1px solid #2b3240;border-radius:12px;background:#0f1117;line-height:0;box-shadow:0 8px 18px rgba(229,9,20,.12);">
@@ -321,19 +289,7 @@
             </div>
           </div>
         </div>
-        <div class="card-actions">
-          <span class="support-note">Dein Beitrag fließt zu 100 % in den Betrieb & neue Inhalte.</span>
-
-          <!-- UNTERER KO-FI BUTTON (ersetzt „Jetzt unterstützen“), gleiche Funktion via JS -->
-          <a class="btn btn-donate kofi"
-             href="https://ko-fi.com/startingpawn?utm_source=downloadpage&utm_medium=button&utm_campaign=donate"
-             target="_blank" rel="noopener noreferrer" data-kofi
-             aria-label="Unterstützen via Ko-fi" title="Unterstützen via Ko-fi" style="width:auto;">
-            <img src="https://www.startingpawn.com/assets/kofi.png"
-                 alt="Ko-fi: Jetzt unterstützen" width="220" height="70"
-                 decoding="async" style="display:block;border-radius:12px;">
-          </a>
-        </div>
+        <!-- card-actions komplett entfernt (Hinweis + unterer Ko-fi Button) -->
       </article>
 
       <p style="margin:.9rem 0 0; color:#aeb3bf; font-size:.92rem; text-align:center">
@@ -453,7 +409,7 @@
       start();
     })();
 
-    /* Ko-fi Widget beim Klick auf KO-FI-Buttons (oben & unten) */
+    /* Ko-fi Widget beim Klick auf KO-FI Buttons (oben) */
     (function(){
       function openKofiWidget(e){
         e.preventDefault();
@@ -479,7 +435,7 @@
         iframe.focus?.();
       }
 
-      // Alle Buttons/Links mit data-kofi erhalten die gleiche Funktion
+      // Alle Links mit data-kofi erhalten die gleiche Funktion (hier: nur der obere Button)
       const kofiButtons = document.querySelectorAll('[data-kofi]');
       kofiButtons.forEach(btn => btn.addEventListener('click', openKofiWidget));
     })();
